@@ -24,7 +24,9 @@
 ## 3. 全局阻塞项与待决策事项 (Blockers & Pending Decisions)
 
 ### 3.1 待决策事项
-* **Nex₂U 战略定位推演**：需要明确 Nex₂U 是底层工具、SaaS 产品、垂直应用还是供应链生成系统，及其在 Synexa 生态中的位置与 Nexsply 的关系。 (当前最高优先级)
+* *(暂无全局待决策事项)*
+
+*(已解决)* **Nex₂U 战略定位推演**：已明确 Nex₂U 为 Synexa 生态的“健康饮食智能协同引擎”（底层规则与生成系统），NuBō/Nufō³/NuStā 为其三端应用，Nexsply 为其平行的供应链数据接口。详见 `03-projects/Nex2U/Nex2U_Mission_Target_Deduction_v1.0.md`。
 
 ### 3.2 阻塞项
 * *(暂无全局阻塞项)*
@@ -35,6 +37,7 @@
 | :--- | :--- | :--- | :--- |
 | 2026-04-06 | 体系目录结构重构 | 引入 `02-context-os` 和 `05-sop` 目录，解耦项目层与体系层，确立 Context OS 为全局动态入口。 | 全局 |
 | 2026-04-06 | Nex₂U EP 版本修正 | 统一 `Nex2U_Step3_Execution_Protocol` 文件名与内容标题版本为 v0.2。 | Nex₂U 项目 |
+| 2026-04-06 | Nex₂U 战略定位推演 | 确认 Nex₂U 为 Synexa 生态的“健康饮食智能协同引擎”，明确其三层结构及与 NuBō/Nufō³/NuStā/Nexsply 的边界。 | 全局/Nex₂U |
 
 ---
 *注：本文件由 Manus 治理智能体维护，任何全局状态变更必须同步回写至此。*

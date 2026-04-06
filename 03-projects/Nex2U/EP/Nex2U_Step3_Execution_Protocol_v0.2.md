@@ -1,4 +1,4 @@
-# 《Nex₂U · Step 3 业务结构建模执行协议 v0.1》
+# 《Nex₂U · Step 3 业务结构建模执行协议 v0.2》
 
 > **EP（Execution Protocol）· 任务级执行协议**
 > 本协议为 Synexa iS 体系下，针对「智食引擎·Nex₂U」项目 Step 3（业务结构建模）的唯一标准执行依据。

@@ -1,0 +1,85 @@
+graph TD
+    %% ─── 用户触点层 ───
+    subgraph UC["📡 用户触点层 · User Channels"]
+        direction LR
+        UC1["📱 手机端\nJSAPI支付"]
+        UC2["🖥️ 电脑端\nNative扫码支付"]
+        UC3["📟 平板端\n护士站"]
+    end
+
+    %% ─── Nufō³ 交互层 ───
+    subgraph NF["🍽️ Nufō³ · 食全食美 · C端交互层"]
+        direction LR
+        NF1["28主题场景入口\nT01-T28"]
+        NF2["点餐 / 推荐展示"]
+        NF4["微信服务号\nOpenID绑定"]
+    end
+
+    %% ─── Nex₂U 系统中枢层 ───
+    subgraph NX["⚙️ Nex₂U · 智食引擎 · 系统中枢层"]
+        direction LR
+        NX1["P1 菜单引擎\n结构约束 + 成本优化"]
+        NX2["28主题 → 12母型\n映射逻辑"]
+        NX3["标签系统\n推荐逻辑"]
+        NX4["用户画像\n场景状态识别"]
+    end
+
+    %% ─── 六大核心数据库 ───
+    subgraph DB["🗄️ 六大核心数据库 · Core Databases"]
+        direction LR
+        DB1["📋 主题系统\n28主题 T01-T28"]
+        DB2["🍽️ 母型系统\n12正餐+7轻餐"]
+        DB3["🧬 营养结构点\n90个 P·C·V·E·PR"]
+        DB4["⚙️ 工艺规则库\nE01-E15"]
+        DB5["🥦 食材原料库\n200+食材"]
+        DB6["📦 菜单产品库\n500+菜品·SOP"]
+    end
+
+    %% ─── NuBō 执行层 ───
+    subgraph NB["🏭 NuBō · 优食运维 · B端执行层"]
+        direction LR
+        NB1["运营管理后台"]
+        NB2["菜单管理·订单处理"]
+        NB3["厨房执行·生产SOP"]
+        NB4["飞鹅云打印API\n自动出单"]
+    end
+
+    %% ─── 知识与供应链 ───
+    subgraph EXT["🔗 外部支撑层"]
+        direction LR
+        NS["💡 NuStā · 健康稳态知识体系\n医学证据 · 循证数据库 · 专病知识图谱"]
+        SP["🌐 Nexsply · 供应链接口\n全球原材料采购 · 供应网络"]
+    end
+
+    %% ─── 数据闭环 ───
+    subgraph DL["📊 数据网络层 · Data Lake"]
+        direction LR
+        DL1["用户行为数据"]
+        DL2["营养结构数据"]
+        DL3["运营成本数据"]
+    end
+
+    %% ─── 连接关系 ───
+    UC1 & UC2 & UC3 --> NF1
+    NF1 --> NF2
+    NF4 --> NF2
+    NF2 --> NX1
+    NX4 --> NX1
+    NX1 --> NX2 --> NX3 --> NF2
+
+    NX1 <--> DB1 & DB2 & DB3 & DB4
+    DB3 <--> DB5
+    DB5 --> DB6
+    DB6 --> NB3
+
+    NX1 --> NB2
+    NB2 --> NB3 --> NB4
+    NB1 --> NB2
+
+    NS --> DB3
+    NS --> NX1
+    SP --> DB5
+
+    NB3 --> DL1 & DL2 & DL3
+    NF2 --> DL1
+    DL1 & DL2 & DL3 --> NX1

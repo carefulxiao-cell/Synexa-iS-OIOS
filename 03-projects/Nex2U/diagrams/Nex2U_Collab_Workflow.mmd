@@ -1,0 +1,50 @@
+flowchart LR
+    subgraph USER["用户（Careful）"]
+        Input["业务输入<br/>营养点 / 场景 / 想法"]
+    end
+
+    subgraph GPT["GPT · 数字系统架构师 D3"]
+        G1["业务逻辑推演"]
+        G2["营养结构设计"]
+        G3["场景规则制定"]
+        G4["结构化文档输出"]
+    end
+
+    subgraph GITHUB["GitHub · SSOT（唯一数据源）"]
+        MD["Master Doc<br/>（随时最新）"]
+        ARCH["架构图<br/>（随文档更新）"]
+        CODE["代码仓库"]
+    end
+
+    subgraph MANUS["Manus · 执行型数字员工 D1/D2"]
+        M1["读取 Master Doc"]
+        M2["生成/更新架构图"]
+        M3["拆解开发任务清单"]
+        M4["代码开发与部署"]
+    end
+
+    subgraph CODE_TOOL["Code（Cursor / Nano Banana）"]
+        C1["前端开发<br/>Nufō³ / NuBō 界面"]
+        C2["后端开发<br/>规则引擎 / API"]
+        C3["测试与迭代"]
+    end
+
+    Input --> G1
+    G1 --> G2 --> G3 --> G4
+    G4 -->|"更新文档"| MD
+    MD --> M1
+    M1 --> M2
+    M2 -->|"推送"| ARCH
+    M1 --> M3
+    M3 --> M4
+    M4 -->|"推送"| CODE
+    CODE --> C1
+    CODE --> C2
+    C1 & C2 --> C3
+    C3 -->|"反馈结果"| MD
+
+    style USER fill:#2e2e1a,color:#e0e0e0,stroke:#d9aa4a
+    style GPT fill:#1a3a2e,color:#e0e0e0,stroke:#4aaa69
+    style GITHUB fill:#1e1e2e,color:#e0e0e0,stroke:#9a4ad9
+    style MANUS fill:#1a1a2e,color:#e0e0e0,stroke:#4a90d9
+    style CODE_TOOL fill:#2e1a1a,color:#e0e0e0,stroke:#d94a4a

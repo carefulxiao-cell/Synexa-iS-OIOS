@@ -1,0 +1,129 @@
+direction: down
+
+title: {
+  label: "Nex₂U 用户交互与履约流 · User Flow & Fulfillment V.2.1"
+  near: top-center
+  style: {
+    font-size: 20
+    bold: true
+  }
+}
+
+# ─── 用户入口 ───
+entry: "用户入口" {
+  style: {
+    fill: "#EFF6FF"
+    stroke: "#93C5FD"
+    bold: true
+  }
+  qr: "📷 扫描二维码\n(桌位/床位静态码)"
+  wechat_nav: "📱 微信服务号\n直接进入"
+  desktop_nav: "🖥️ 电脑端直接访问\n运营/后台人员"
+}
+
+# ─── 身份识别 ───
+auth: "🔐 身份识别与绑定" {
+  style: {
+    fill: "#F0FDF4"
+    stroke: "#86EFAC"
+    bold: true
+  }
+  openid: "微信 OpenID 获取\n(网页授权)"
+  bind: "用户信息绑定\n(场景·位置·人群)"
+  profile: "用户画像加载\n(历史偏好·健康状态)"
+}
+
+# ─── 场景选择 ───
+scene: "🎯 场景与主题选择" {
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#FCD34D"
+    bold: true
+  }
+  theme: "28主题场景展示\nT01-T28"
+  recommend: "智能推荐\n(基于画像+场景)"
+  browse: "自主浏览\n(按分类筛选)"
+}
+
+# ─── 点餐与支付 ───
+order: "🛒 点餐与支付" {
+  style: {
+    fill: "#FDF4FF"
+    stroke: "#D8B4FE"
+    bold: true
+  }
+  cart: "加入购物车\n(营养标签展示)"
+  payment_mobile: "📱 手机端支付\nJSAPI 微信支付"
+  payment_desktop: "🖥️ 电脑端支付\nNative 扫码支付"
+  confirm: "订单确认\n(推送模板消息)"
+}
+
+# ─── 履约执行 ───
+fulfill: "🏭 履约执行" {
+  style: {
+    fill: "#FFF7ED"
+    stroke: "#FDBA74"
+    bold: true
+  }
+  print: "飞鹅云打印\n自动出单 → 厨房"
+  kitchen: "厨房生产\n按 SOP 执行"
+  delivery: "配送 / 取餐"
+}
+
+# ─── 运营后台 ───
+ops: "⚙️ 运营管理后台 (电脑端)" {
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#CBD5E1"
+    bold: true
+  }
+  menu_mgmt: "菜单管理\n(上下架·价格·库存)"
+  order_mgmt: "订单管理\n(实时订单·历史查询)"
+  data_view: "数据看板\n(营收·销量·用户分析)"
+  feishu_sync: "飞书多维表格\n菜品数据协同"
+}
+
+# ─── 反馈闭环 ───
+feedback: "🔄 反馈闭环" {
+  style: {
+    fill: "#F0F9FF"
+    stroke: "#7DD3FC"
+    bold: true
+  }
+  rating: "用户评价\n(满意度·口味反馈)"
+  health_log: "饮食洞察面板\n(轻量健康记录)"
+  data_loop: "数据回流\n→ 规则迭代优化"
+}
+
+# ─── 连接关系 ───
+entry.qr -> auth.openid
+entry.wechat_nav -> auth.openid
+entry.desktop_nav -> ops
+
+auth.openid -> auth.bind
+auth.bind -> auth.profile
+auth.profile -> scene.recommend
+
+scene.theme -> scene.recommend
+scene.theme -> scene.browse
+scene.recommend -> order.cart
+scene.browse -> order.cart
+
+order.cart -> order.payment_mobile
+order.cart -> order.payment_desktop
+order.payment_mobile -> order.confirm
+order.payment_desktop -> order.confirm
+
+order.confirm -> fulfill.print
+fulfill.print -> fulfill.kitchen
+fulfill.kitchen -> fulfill.delivery
+
+ops.feishu_sync -> ops.menu_mgmt
+ops.menu_mgmt -> scene.theme: "菜单更新"
+ops.order_mgmt -> fulfill.print: "订单监控"
+
+fulfill.delivery -> feedback.rating
+feedback.rating -> feedback.health_log
+feedback.health_log -> feedback.data_loop
+feedback.data_loop -> scene.recommend: "优化推荐"
+ops.data_view -> feedback.data_loop: "数据汇聚"

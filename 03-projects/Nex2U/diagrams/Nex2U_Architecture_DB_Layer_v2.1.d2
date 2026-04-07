@@ -1,0 +1,124 @@
+direction: right
+
+title: {
+  label: "Nex₂U 六大核心数据库层 · Core Database Architecture V.2.1"
+  near: top-center
+  style: {
+    font-size: 20
+    bold: true
+  }
+}
+
+# ─── 知识输入 ───
+nusta: "💡 NuStā\n健康稳态知识体系" {
+  style: {
+    fill: "#E0F2FE"
+    stroke: "#7DD3FC"
+    bold: true
+  }
+  evidence: "医学证据层\nESPEN/ASPEN 临床指南"
+  research: "循证医学数据库\nPubMed · UpToDate"
+  graph: "专病知识图谱\n临床专家经验结构化"
+}
+
+nexsply: "🌐 Nexsply\n供应链接口" {
+  style: {
+    fill: "#E0F2FE"
+    stroke: "#7DD3FC"
+    bold: true
+  }
+  sourcing: "全球原材料采购"
+  network: "供应网络组织"
+  cost: "成本优化引擎输入"
+}
+
+# ─── 六大核心数据库 ───
+db: "🗄️ 六大核心数据库" {
+  style: {
+    fill: "#FDF4FF"
+    stroke: "#D8B4FE"
+    bold: true
+  }
+
+  db1: "📋 主题系统\n28主题 T01-T28\n四大归属分类" {
+    style: {
+      fill: "#F3E8FF"
+      bold: true
+    }
+    breakfast: "早餐 4类\n启动代谢"
+    main_work: "正餐·工作补能 4类"
+    main_special: "正餐·特殊膳食 9类"
+    main_chronic: "正餐·慢病管理 5类"
+    main_func: "正餐·功能食养 3类"
+    snack: "加餐 3类\n补能调节"
+  }
+
+  db2: "🍽️ 母型系统\n19个母型" {
+    style.fill: "#F3E8FF"
+    main_types: "正餐母型 12个\n标准均衡·双蛋白·体力能量\n高蛋白功能·高纤维代谢·抗炎轻负担\n术后恢复·肠胃调理·老年温和\n糖尿病控制·低嘌呤·软食流质"
+    light_types: "轻餐母型 7个\n对应早餐与加餐结构模板"
+  }
+
+  db3: "🧬 营养结构点体系\n90个营养点 P·C·V·E·PR" {
+    style: {
+      fill: "#F3E8FF"
+      bold: true
+    }
+    protein: "蛋白结构点 (P)\n修复·维持·功能支持"
+    carb: "碳水结构点 (C)\n供能稳定·血糖控制"
+    fat: "脂肪结构点 (E)\n炎症·代谢·能量密度"
+    veg: "蔬菜纤维结构点 (V)\n肠道·饱腹·微量营养"
+    ctrl: "控制约束结构点 (PR)\n医疗·慢病·限制"
+    texture: "质构结构点\n吞咽·咀嚼适配"
+  }
+
+  db4: "⚙️ 工艺规则库\nE01-E15" {
+    style.fill: "#F3E8FF"
+    cooking: "烹饪工艺标准"
+    processing: "食材加工处理"
+    safety: "质构·安全规范"
+  }
+
+  db5: "🥦 食材原料库\n200+ 食材" {
+    style.fill: "#F3E8FF"
+    items: "食材基础信息"
+    nutrition: "营养标签"
+    tags: "功能标签·禁忌标注"
+  }
+
+  db6: "📦 菜单产品库\n500+ 菜品" {
+    style.fill: "#F3E8FF"
+    menu: "菜品信息·营养数据"
+    sop: "生产 SOP"
+    cost: "成本数据"
+  }
+}
+
+# ─── 引擎层 ───
+engine: "⚙️ P1 菜单引擎\n结构约束 + 成本优化 双引擎" {
+  style: {
+    fill: "#FEF3C7"
+    stroke: "#FCD34D"
+    bold: true
+  }
+}
+
+# ─── 连接关系 ───
+nusta.evidence -> db.db3
+nusta.research -> db.db3
+nusta.graph -> db.db3
+
+nexsply.sourcing -> db.db5
+nexsply.network -> db.db5
+nexsply.cost -> engine
+
+db.db1 -> engine
+db.db2 -> engine
+db.db3 -> engine
+db.db4 -> engine
+
+db.db2 -> db.db3: "约束精度层"
+db.db3 -> db.db5: "原料映射"
+db.db4 -> db.db5: "工艺约束"
+db.db5 -> db.db6: "算法组合"
+db.db6 -> engine: "产品输出"

@@ -1,0 +1,78 @@
+graph TB
+    subgraph USER["用户 / 决策层"]
+        U1["医院管理层<br/>（决策者）"]
+        U2["运营管理人员<br/>（管理层）"]
+        U3["用餐用户<br/>（C端）"]
+    end
+
+    subgraph L3["Layer 3 · 交互与呈现层"]
+        Nufo["Nufō³<br/>食全食美<br/>C端饮食体验"]
+        NuBo_Front["NuBō 运营后台<br/>菜单管理 / 爆品管理<br/>数据看板 / 报表"]
+        Dashboard["决策层 Dashboard<br/>成本 / 满意度 / 复购率<br/>项目健康度"]
+    end
+
+    subgraph L1["Layer 1 · 系统中枢层（Nex₂U）"]
+        P1["P1 高质效全维<br/>科学菜单引擎"]
+        Engine["九维约束引擎<br/>用户接受度 · 口味聚合 · 爆品潜力<br/>场景适配 · 运营协同 · 实施落地<br/>成本效率 · 健康友好 · 反馈迭代"]
+        Tag["标签系统<br/>用户标签 / 菜品标签<br/>场景标签 / 动态标签"]
+        Rule["规则引擎<br/>推荐逻辑 / 菜单规则集<br/>爆品识别 / 调整策略"]
+        Data["数据处理模块<br/>行为 / 运营 / 结果<br/>结构化结果生成"]
+    end
+
+    subgraph L2["Layer 2 · 执行层（NuBō）"]
+        Kitchen["厨房执行体系<br/>菜单标准生产"]
+        TeamMeal["团餐公司协同<br/>运营协同流程"]
+        NexChef["NexChef（未来）<br/>智能厨房 / 具身执行终端"]
+    end
+
+    subgraph NuSta["NuStā · 健康稳态知识体系"]
+        Knowledge["营养逻辑库<br/>食物结构原则<br/>功能饮食定义"]
+        Trust["信任解释引擎<br/>为什么推荐<br/>为什么组合"]
+    end
+
+    subgraph Nexsply["Nexsply · 意臻供应链"]
+        Supply["全球原材料采购<br/>供应链整合<br/>精准食材需求匹配"]
+    end
+
+    subgraph DataNet["Layer 3 · 数据网络层"]
+        D1["用户画像层"]
+        D2["场景状态层"]
+        D3["行为层"]
+        D4["结果层"]
+    end
+
+    U3 --> Nufo
+    U2 --> NuBo_Front
+    U1 --> Dashboard
+
+    Nufo --> P1
+    NuBo_Front --> P1
+    Dashboard --> Data
+
+    P1 --> Engine
+    Engine --> Tag
+    Engine --> Rule
+    Rule --> Data
+    Tag --> Data
+
+    P1 --> Kitchen
+    P1 --> TeamMeal
+
+    Kitchen --> DataNet
+    TeamMeal --> DataNet
+    DataNet --> Data
+    Data --> Rule
+
+    Knowledge --> Engine
+    Trust --> Nufo
+
+    P1 --> Supply
+    Supply --> Kitchen
+
+    style L1 fill:#1a1a2e,color:#e0e0e0,stroke:#4a90d9
+    style L2 fill:#16213e,color:#e0e0e0,stroke:#4a90d9
+    style L3 fill:#0f3460,color:#e0e0e0,stroke:#4a90d9
+    style NuSta fill:#1a3a2e,color:#e0e0e0,stroke:#4aaa69
+    style Nexsply fill:#2e1a1a,color:#e0e0e0,stroke:#d94a4a
+    style DataNet fill:#1e1e2e,color:#e0e0e0,stroke:#9a4ad9
+    style USER fill:#2e2e1a,color:#e0e0e0,stroke:#d9aa4a

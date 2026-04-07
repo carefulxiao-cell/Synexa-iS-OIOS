@@ -1,0 +1,225 @@
+direction: down
+
+title: {
+  label: "Nex₂U 全局系统架构 · Global System Architecture V.2.1"
+  near: top-center
+  style: {
+    font-size: 22
+    bold: true
+  }
+}
+
+# ─── 用户触点层 ───
+users: "📡 用户触点层 · User Channels" {
+  style: {
+    fill: "#EFF6FF"
+    stroke: "#93C5FD"
+    font-size: 14
+    bold: true
+  }
+  mobile: "📱 手机端\nJSAPI 微信支付" {
+    style.fill: "#DBEAFE"
+  }
+  desktop: "🖥️ 电脑端\n运营/后台工作台\nNative 扫码支付" {
+    style.fill: "#DBEAFE"
+  }
+  tablet: "📟 平板端\n现场服务" {
+    style.fill: "#DBEAFE"
+  }
+}
+
+# ─── Nufō³ 交互层 ───
+nufo: "🍽️ Nufō³ · 食全食美 · C端交互层" {
+  style: {
+    fill: "#F0FDF4"
+    stroke: "#86EFAC"
+    font-size: 14
+    bold: true
+  }
+  scenes: "28主题场景入口\nT01-T28" {
+    style.fill: "#DCFCE7"
+  }
+  order: "点餐 / 推荐展示" {
+    style.fill: "#DCFCE7"
+  }
+  wechat: "微信服务号\nOpenID 绑定\n模板消息推送" {
+    style.fill: "#DCFCE7"
+  }
+  insight: "个人饮食洞察面板\n(轻量反馈)" {
+    style.fill: "#DCFCE7"
+  }
+}
+
+# ─── Nex₂U 系统中枢层 ───
+nexus: "⚙️ Nex₂U · 智食引擎 · 系统中枢层" {
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#FCD34D"
+    font-size: 14
+    bold: true
+  }
+  engine: "P1 菜单引擎\n结构约束 + 成本优化 双引擎" {
+    style: {
+      fill: "#FEF3C7"
+      bold: true
+    }
+  }
+  mapping: "28主题 → 12母型\n映射逻辑" {
+    style.fill: "#FEF3C7"
+  }
+  tags: "标签系统\n推荐逻辑" {
+    style.fill: "#FEF3C7"
+  }
+  profile: "用户画像\n场景状态识别" {
+    style.fill: "#FEF3C7"
+  }
+  loop: "规则迭代\n数据反馈闭环" {
+    style.fill: "#FEF3C7"
+  }
+}
+
+# ─── 六大核心数据库 ───
+db: "🗄️ 六大核心数据库 · Core Databases" {
+  style: {
+    fill: "#FDF4FF"
+    stroke: "#D8B4FE"
+    font-size: 14
+    bold: true
+  }
+  db1: "📋 主题系统\n28主题 T01-T28" {
+    style.fill: "#F3E8FF"
+  }
+  db2: "🍽️ 母型系统\n12正餐 + 7轻餐" {
+    style.fill: "#F3E8FF"
+  }
+  db3: "🧬 营养结构点\n90个 P·C·V·E·PR\n六维分类" {
+    style: {
+      fill: "#F3E8FF"
+      bold: true
+    }
+  }
+  db4: "⚙️ 工艺规则库\nE01-E15" {
+    style.fill: "#F3E8FF"
+  }
+  db5: "🥦 食材原料库\n200+ 食材" {
+    style.fill: "#F3E8FF"
+  }
+  db6: "📦 菜单产品库\n500+ 菜品 · SOP" {
+    style.fill: "#F3E8FF"
+  }
+}
+
+# ─── NuBō 执行层 ───
+nubo: "🏭 NuBō · 优食运维 · B端执行层" {
+  style: {
+    fill: "#FFF7ED"
+    stroke: "#FDBA74"
+    font-size: 14
+    bold: true
+  }
+  ops: "运营管理后台" {
+    style.fill: "#FFEDD5"
+  }
+  menu: "菜单管理 · 订单处理" {
+    style.fill: "#FFEDD5"
+  }
+  kitchen: "厨房执行 · 生产 SOP" {
+    style.fill: "#FFEDD5"
+  }
+  print: "飞鹅云打印 API\n自动出单" {
+    style.fill: "#FFEDD5"
+  }
+  feishu: "飞书多维表格\n菜品数据协同" {
+    style.fill: "#FFEDD5"
+  }
+}
+
+# ─── 外部支撑层 ───
+support: "🔗 外部支撑层" {
+  style: {
+    fill: "#F0F9FF"
+    stroke: "#7DD3FC"
+    font-size: 14
+    bold: true
+  }
+  nusta: "💡 NuStā · 健康稳态知识体系\n医学证据 · 循证数据库 · 专病知识图谱\n营养逻辑 · 信任解释" {
+    style.fill: "#E0F2FE"
+  }
+  nexsply: "🌐 Nexsply · 供应链接口\n全球原材料采购 · 供应网络组织\n成本优化引擎输入" {
+    style.fill: "#E0F2FE"
+  }
+  embodied: "🤖 具身智能接口\n(未来)\n自动化设备 · 智能厨房" {
+    style: {
+      fill: "#E0F2FE"
+      stroke-dash: 4
+    }
+  }
+}
+
+# ─── 数据闭环层 ───
+datalake: "📊 数据网络层 · Data Lake" {
+  style: {
+    fill: "#F8FAFC"
+    stroke: "#CBD5E1"
+    font-size: 14
+    bold: true
+  }
+  d1: "用户行为数据" {
+    style.fill: "#F1F5F9"
+  }
+  d2: "营养结构数据" {
+    style.fill: "#F1F5F9"
+  }
+  d3: "运营成本数据" {
+    style.fill: "#F1F5F9"
+  }
+  d4: "健康指标数据\n(未来：生化指标联动)" {
+    style: {
+      fill: "#F1F5F9"
+      stroke-dash: 4
+    }
+  }
+}
+
+# ─── 连接关系 ───
+users.mobile -> nufo.scenes
+users.desktop -> nubo.ops
+users.tablet -> nufo.scenes
+
+nufo.scenes -> nufo.order
+nufo.wechat -> nufo.order
+nufo.order -> nexus.engine
+nufo.insight -> nexus.profile
+
+nexus.engine -> nexus.mapping
+nexus.mapping -> nexus.tags
+nexus.tags -> nufo.order
+nexus.profile -> nexus.engine
+nexus.loop -> nexus.engine
+
+nexus.engine -> db.db1
+nexus.engine -> db.db2
+nexus.engine -> db.db3
+nexus.engine -> db.db4
+db.db3 -> db.db5
+db.db5 -> db.db6
+db.db6 -> nubo.kitchen
+
+nexus.engine -> nubo.menu
+nubo.menu -> nubo.kitchen
+nubo.kitchen -> nubo.print
+nubo.ops -> nubo.menu
+nubo.feishu -> nubo.menu
+
+support.nusta -> db.db3
+support.nusta -> nexus.engine
+support.nexsply -> db.db5
+support.embodied -> nubo.kitchen
+
+nubo.kitchen -> datalake.d1
+nubo.kitchen -> datalake.d3
+nufo.order -> datalake.d1
+nufo.insight -> datalake.d2
+datalake.d1 -> nexus.loop
+datalake.d2 -> nexus.loop
+datalake.d3 -> nexus.loop

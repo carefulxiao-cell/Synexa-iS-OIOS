@@ -1,0 +1,189 @@
+direction: down
+
+title: {
+  label: "Synexa iS · AI 工作空间架构图 V.1.0"
+  near: top-center
+  style: {
+    font-size: 20
+    bold: true
+  }
+}
+
+github: {
+  label: "GitHub · SSOT\n(唯一真实信息源)"
+  shape: cylinder
+  style: {
+    fill: "#1a1a2e"
+    font-color: white
+    bold: true
+    font-size: 14
+  }
+}
+
+sop: {
+  label: "iS-SOP\n规程资产库\n05-sop/"
+  shape: document
+  style: {
+    fill: "#16213e"
+    font-color: white
+    font-size: 13
+  }
+}
+
+github -> sop: {
+  label: "规程写入"
+  style: { stroke-dash: 4 }
+}
+
+layer_governance: {
+  label: "治理层"
+  style: {
+    fill: "#0f3460"
+    font-color: white
+    font-size: 12
+    bold: true
+    stroke: "#e94560"
+    stroke-width: 2
+  }
+
+  core: {
+    label: "智核中枢\niS-Core\n基线治理 · 项目孵化与裁决"
+    style: {
+      fill: "#e94560"
+      font-color: white
+      bold: true
+      font-size: 13
+    }
+  }
+
+  hub: {
+    label: "智权枢纽\niS-Hub\n任务中台 · 跨项目协调"
+    style: {
+      fill: "#c23152"
+      font-color: white
+      font-size: 13
+    }
+  }
+}
+
+layer_support: {
+  label: "支撑层"
+  style: {
+    fill: "#1a4a6e"
+    font-color: white
+    font-size: 12
+    bold: true
+    stroke: "#4ecdc4"
+    stroke-width: 2
+  }
+
+  sco: {
+    label: "枢机经纬\niS-SCO\n推演辅助 · 战略决策支持\n(N·Grid / EKB)"
+    style: {
+      fill: "#4ecdc4"
+      font-color: "#1a1a2e"
+      bold: true
+      font-size: 13
+    }
+  }
+
+  matrix: {
+    label: "智核矩阵\niS-Matrix\nAI 劳动力 · 批量执行与内容生产"
+    style: {
+      fill: "#3ab5ad"
+      font-color: "#1a1a2e"
+      font-size: 13
+    }
+  }
+
+  lab: {
+    label: "智核实验场\niS-Lab\n灵感容器 · 未成熟想法最小验证"
+    style: {
+      fill: "#2a9d8f"
+      font-color: white
+      font-size: 13
+    }
+  }
+}
+
+layer_project: {
+  label: "项目层 · 各 PCS 实例（平级）"
+  style: {
+    fill: "#2d4a22"
+    font-color: white
+    font-size: 12
+    bold: true
+    stroke: "#95d44a"
+    stroke-width: 2
+  }
+
+  synexa: {
+    label: "超智建设\niS-Synexa"
+    style: { fill: "#95d44a"; font-color: "#1a1a2e"; font-size: 12 }
+  }
+  nex2u: {
+    label: "智食引擎\niS-Nex2U"
+    style: { fill: "#95d44a"; font-color: "#1a1a2e"; font-size: 12 }
+  }
+  nexsply: {
+    label: "意臻供应链\niS-Nexsply"
+    style: { fill: "#95d44a"; font-color: "#1a1a2e"; font-size: 12 }
+  }
+  bg: {
+    label: "Bella Giornata\niS-BG"
+    style: { fill: "#95d44a"; font-color: "#1a1a2e"; font-size: 12 }
+  }
+  more: {
+    label: "更多项目\niS-[代号]"
+    style: { fill: "#6aaa2a"; font-color: white; font-size: 12; stroke-dash: 4 }
+  }
+}
+
+github -> layer_governance.core: {
+  label: "基线读取"
+  style: { stroke: "#e94560"; bold: true }
+}
+
+layer_governance.core -> layer_governance.hub: {
+  label: "协调指令"
+}
+
+layer_governance.core -> layer_project: {
+  label: "孵化立项 · 生成 PCS"
+  style: { stroke: "#e94560"; bold: true }
+}
+
+layer_governance.hub -> layer_project: {
+  label: "跨项目调度"
+  style: { stroke-dash: 3 }
+}
+
+layer_project -> layer_support.sco: {
+  label: "调用推演"
+  style: { stroke-dash: 3 }
+}
+
+layer_project -> layer_support.matrix: {
+  label: "调用执行"
+  style: { stroke-dash: 3 }
+}
+
+layer_support.lab -> layer_governance.core: {
+  label: "成熟后提交立项"
+  style: { stroke-dash: 4; stroke: "#2a9d8f" }
+}
+
+layer_project -> github: {
+  label: "状态回写 (SSOT)"
+  style: { stroke: "#95d44a"; bold: true }
+}
+
+sop -> layer_governance.core: {
+  label: "规程约束"
+  style: { stroke-dash: 4 }
+}
+
+sop -> layer_project: {
+  label: "操作指南"
+  style: { stroke-dash: 4 }
+}

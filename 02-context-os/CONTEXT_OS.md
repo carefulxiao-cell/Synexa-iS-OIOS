@@ -45,6 +45,7 @@
 ## 4. 全局阻塞项与待决策事项 (Blockers & Pending Decisions)
 
 ### 4.1 待决策事项
+* **Synexa 命名体系深化**：Synexa（超智）/ Synexa iS（超智 iS）/ iS-Core（智核中枢）三层命名当前为暂定版，需找时间深化定义、对外表达口径与内部文件统一更新。
 * **Nex₂U 业务系统设计推演**：基于现有雏形系统（NuBō/Nufō³），明确系统边界、多场景可配置架构逻辑，并识别直接升级与重构模块。 (当前最高优先级)
 * **各待立项项目启动**：iS-Synexa、iS-Nexsply、iS-NexChef（待定）、iS-SOP 需要在 iS-Core 完成最小定义后正式立项。
 

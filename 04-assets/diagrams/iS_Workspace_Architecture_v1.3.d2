@@ -1,0 +1,141 @@
+direction: down
+
+title: {
+  label: "Synexa iS · AI 工作空间架构图 v1.3"
+  near: top-center
+  shape: text
+  style.font-size: 20
+  style.bold: true
+}
+
+github: {
+  label: "GitHub · SSOT\n（唯一真实数据源）"
+  shape: cylinder
+  style.fill: "#1a1a2e"
+  style.font-color: white
+  style.stroke: "#4a4a8a"
+}
+
+core: {
+  label: "智核中枢 · iS-Core\n【董事会 · 主控入口】\n全局治理 + 基线治理 · 项目孵化与裁决\n对外品牌名：超智系统·Synexa iS\nL1·治认中枢"
+  shape: rectangle
+  style.fill: "#16213e"
+  style.font-color: white
+  style.stroke: "#0f3460"
+  style.border-radius: 8
+}
+
+hub: {
+  label: "智权枢纽 · iS-Hub\n【情报室】\n智能体资源库\n内外部 Agent 案例·工具·平台汇聚\nL1·治认中枢（延伸）"
+  shape: rectangle
+  style.fill: "#1a1a3e"
+  style.font-color: "#a0a0ff"
+  style.stroke: "#3a3a8a"
+  style.border-radius: 8
+}
+
+sco: {
+  label: "枢机经纬 · iS-SCO\n【策略室】\n推演辅助 · 战略推演与决策支持\nN·Grid / EKB\nL2·知识推演"
+  shape: rectangle
+  style.fill: "#0f3460"
+  style.font-color: white
+  style.stroke: "#e94560"
+  style.border-radius: 8
+}
+
+matrix: {
+  label: "智核矩阵 · iS-Matrix\n【研究培训室】\n结构化产出引擎\nSOP · 规程 · 模板 · 数字员工指令\nL3·技能规程"
+  shape: rectangle
+  style.fill: "#533483"
+  style.font-color: white
+  style.stroke: "#7a4fc0"
+  style.border-radius: 8
+}
+
+lab: {
+  label: "智核实验场 · iS-Lab\n【灵感前测室】\n灵感容器 · 最小验证场\nL1·治认中枢（前置）"
+  shape: rectangle
+  style.fill: "#2d4a22"
+  style.font-color: "#a8d8a8"
+  style.stroke: "#4a8a3a"
+  style.border-radius: 8
+  style.stroke-dash: 5
+}
+
+pcs: {
+  label: "各 PCS 项目 · iS-[代号]\n【项目组】\n具体项目全生命周期推进\n\niS-Synexa · iS-Nex2U\niS-Nexsply · iS-NexChef(待定)\nG·集团级 / B·业务线级 / F·功能模块级"
+  shape: rectangle
+  style.fill: "#1e3a5f"
+  style.font-color: white
+  style.stroke: "#2e6aaf"
+  style.border-radius: 8
+}
+
+sop_store: {
+  label: "05-sop/\n（SOP 规程资产库）"
+  shape: page
+  style.fill: "#3a2a1a"
+  style.font-color: "#ffcc88"
+  style.stroke: "#8a5a2a"
+}
+
+# 知识生产闭环（主链路）
+sco -> core: "推演结论\n→ 基线更新" {
+  style.stroke: "#e94560"
+  style.bold: true
+}
+core -> matrix: "裁决共识\n→ 生产指令" {
+  style.stroke: "#7a4fc0"
+  style.bold: true
+}
+matrix -> pcs: "SOP/规程/模板\n→ 应用落地" {
+  style.stroke: "#2e6aaf"
+  style.bold: true
+}
+pcs -> sco: "执行反馈\n→ 新一轮推演" {
+  style.stroke: "#e94560"
+  style.bold: true
+  style.stroke-dash: 3
+}
+
+# 中枢孵化
+lab -> core: "验证通过\n→ 提交立项" {
+  style.stroke: "#4a8a3a"
+}
+core -> pcs: "最小定义完成\n→ 创建 PCS" {
+  style.stroke: "#0f3460"
+}
+
+# Hub 情报输入
+hub -> core: "外部 Agent 情报\n→ 参照输入" {
+  style.stroke: "#3a3a8a"
+  style.stroke-dash: 3
+}
+hub -> matrix: "工具选型建议\n→ 生产参考" {
+  style.stroke: "#3a3a8a"
+  style.stroke-dash: 3
+}
+
+# SOP 存储
+matrix -> sop_store: "产出回写" {
+  style.stroke: "#8a5a2a"
+}
+sop_store -> pcs: "规程调用" {
+  style.stroke: "#8a5a2a"
+  style.stroke-dash: 3
+}
+
+# GitHub SSOT
+core -> github: "状态回写" {
+  style.stroke: "#4a4a8a"
+}
+matrix -> github: "文档推送" {
+  style.stroke: "#4a4a8a"
+}
+pcs -> github: "PCS 更新" {
+  style.stroke: "#4a4a8a"
+}
+github -> core: "每次接入\n读取基线" {
+  style.stroke: "#4a4a8a"
+  style.stroke-dash: 3
+}

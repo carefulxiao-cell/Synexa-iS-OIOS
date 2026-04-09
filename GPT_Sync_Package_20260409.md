@@ -1,7 +1,7 @@
 # GPT 同步包 · Synexa iS
 
 > **生成日期**：2026-04-09
-> **适用对象**：GPT【智核中枢·Synexa iS】Project
+> **适用对象**：GPT【超智系统·Synexa iS】Project
 > **说明**：本文件是首次完整同步包，包含所有需要上传的文件清单和需要复制录入的指令文本。
 
 ---
@@ -36,7 +36,7 @@
 
 ## 三、需要复制录入的 GPT Project 指令
 
-以下内容请完整复制，粘贴至 GPT【智核中枢·Synexa iS】Project 的 **Instructions** 字段，**替换原有全部内容**：
+以下内容请完整复制，粘贴至 GPT【超智系统·Synexa iS】Project 的 **Instructions** 字段，**替换原有全部内容**：
 
 ---
 

@@ -1,6 +1,6 @@
-# Synexa iS · 智核中枢（OIOS）
+# Synexa iS · 智能系统基座（OIOS）
 
-> **Synexa iS**，是 Synexa 生态的智核中枢（Intelligence Core），一套组织级智能操作系统（OIOS），让所有项目、智能体与协作者随时运行在同一个清明的认知基线上。
+> **Synexa iS**，是 Synexa 生态的智能系统基座（Intelligent System），一套组织级智能操作系统（OIOS），让所有项目、智能体与协作者随时运行在同一个清明的认知基线上。
 
 ---
 
@@ -22,7 +22,7 @@ Synexa-iS-OIOS/
 | 文件 | 角色 | 层级 |
 |---|---|---|
 | `00-overview/Synexa_iS_Overview.md` | 0号文件·接入协议 | L0 |
-| `01-master-blueprint/Synexa_iS_SSADS_Master_Blueprint_v1.2.md` | 总纲·制度母法 | L1 |
+| `01-master-blueprint/Synexa_iS_SSADS_Master_Blueprint_v1.4.md` | 总纲·制度母法 | L1 |
 | `03-projects/Nex2U/Nex2U_SAP_Strategic_Alignment_v0.1.md` | 战略对齐协议 | L3 子模块 |
 | `03-projects/Nex2U/Nex2U_Project_Startup_Kit_v0.3.md` | 项目建构启动包 | L3 |
 | `03-projects/Nex2U/Nex2U_PCS_Template_v0.2.md` | 项目中枢系统 | L3 |

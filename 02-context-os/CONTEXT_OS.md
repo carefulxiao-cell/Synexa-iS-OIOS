@@ -24,7 +24,7 @@
 | :--- | :--- | :--- |
 | `Synexa_Architecture_Definition_v1.0.md` | 2026-04-09 | ⏳ 待上传 |
 | `AI_Workspace_Architecture_v1.2.md` | 2026-04-09 | ⏳ 待上传 |
-| `iS_Instructions_All_Workspaces_v1.0.md` | 2026-04-08 | ⏳ 待上传 |
+| `iS_Instructions_All_Workspaces_v1.1.md` | 2026-04-08 | ⏳ 待上传 |
 | `Synexa_iS_SSADS_Master_Blueprint_v1.4.md` | 2026-04-08 | ⏳ 待上传 |
 | `CONTEXT_OS.md` | 2026-04-08 | ⏳ 待上传 |
 | `_INDEX.md` | 2026-04-08 | ⏳ 待上传 |
@@ -61,6 +61,7 @@
 | :--- | :--- | :--- | :--- |
 | 2026-04-08 | 工作空间架构重构 | 确立六类工作空间（Core/Hub/SCO/Matrix/PCS/Lab），明确 Matrix 为结构化产出引擎，取消 SOP 独立组，确立五节点知识生产闭环。 | 全局 |
 | 2026-04-08 | iS-Hub 重新定义 | 将 iS-Hub 定义为"情报室·智能体资源库"，负责内外部 Agent 案例、工具与平台的汇聚与参照。 | 全局 |
+| 2026-04-09 | 修复体系身份混淆 Bug | 全面核查并修复了将 System Layer（Synexa iS）与 Module Layer（iS-Core）混同的系统性 Bug，更新了 Manus/GPT 指令母本、全工作空间指令模板、Overview 及 README。 | 全局 |
 | 2026-04-08 | 强化跨平台同步机制 | 在 CONTEXT_OS 引入「待同步事项」追踪机制，强制 AI 每次接入主动盯紧 GPT 侧的文件同步状态。 | 全局 |
 | 2026-04-07 | Manus Project 指令文件入库（智核中枢） | `Manus_Project_Instructions_v26.1.3.md` 推送至 `00-overview/` 目录，作为 Manus 智核中枢 Project 的正式治理指令 | 全局 |
 | 2026-04-07 | Manus Project 指令文件入库（Nex₂U） | `Manus_Project_Instructions_Nex2U_v26.1.1.md` 推送至 `03-projects/Nex2U/` 目录，作为 Manus 智食引擎 Project 的正式治理指令 | Nex₂U 项目 |

@@ -1,0 +1,191 @@
+direction: down
+
+title: {
+  label: "Synexa 体系架构图 v1.0\n四层架构 · 增长飞轮"
+  near: top-center
+  shape: text
+  style.font-size: 18
+  style.bold: true
+}
+
+# ① Brand Layer
+brand: {
+  label: "① Brand Layer｜品牌层\nSynexa｜超智\n顶层商业标识 · 系统叙事入口\n以协同为核心、驱动系统性效能的基础平台"
+  shape: rectangle
+  style.fill: "#0a0a1a"
+  style.font-color: "#e8e8ff"
+  style.stroke: "#6060cc"
+  style.border-radius: 12
+  style.font-size: 13
+}
+
+# ② System Layer
+system: {
+  label: "② System Layer｜系统层\nSynexa iS｜智能系统基座（Intelligent System）\n协同调度 · 决策支撑 · 能力组织 · 数据与规则运行\n⚠️ 防塌规则：不做业务，不直接产生收入，只提供能力与调度"
+  shape: rectangle
+  style.fill: "#0f1a3a"
+  style.font-color: "#a0c0ff"
+  style.stroke: "#2060cc"
+  style.border-radius: 12
+  style.font-size: 12
+}
+
+# ③ Module Layer
+modules: {
+  label: "③ Module Layer｜模块层\niS Modules｜智核模块体系（组织操作系统级别）"
+  shape: rectangle
+  style.fill: "#1a0f3a"
+  style.font-color: "#c0a0ff"
+  style.stroke: "#6020cc"
+  style.border-radius: 12
+  style.font-size: 13
+
+  core: {
+    label: "iS-Core\n智核中枢\n【董事会】\n治理与裁决"
+    shape: rectangle
+    style.fill: "#16213e"
+    style.font-color: white
+    style.stroke: "#0f3460"
+    style.border-radius: 8
+    style.font-size: 11
+  }
+  hub: {
+    label: "iS-Hub\n智权枢纽\n【情报室】\n资源与情报"
+    shape: rectangle
+    style.fill: "#1a1a3e"
+    style.font-color: "#a0a0ff"
+    style.stroke: "#3a3a8a"
+    style.border-radius: 8
+    style.font-size: 11
+  }
+  sco: {
+    label: "iS-SCO\n枢机经纬\n【策略室】\n战略推演"
+    shape: rectangle
+    style.fill: "#0f3460"
+    style.font-color: white
+    style.stroke: "#e94560"
+    style.border-radius: 8
+    style.font-size: 11
+  }
+  matrix: {
+    label: "iS-Matrix\n智核矩阵\n【研究培训室】\n结构化生产"
+    shape: rectangle
+    style.fill: "#533483"
+    style.font-color: white
+    style.stroke: "#7a4fc0"
+    style.border-radius: 8
+    style.font-size: 11
+  }
+  pcs: {
+    label: "iS-PCS\n项目执行系统\n【项目组】\n推进器"
+    shape: rectangle
+    style.fill: "#1e3a5f"
+    style.font-color: white
+    style.stroke: "#2e6aaf"
+    style.border-radius: 8
+    style.font-size: 11
+  }
+  lab: {
+    label: "iS-Lab\n智核实验场\n【灵感前测室】\n创新验证"
+    shape: rectangle
+    style.fill: "#2d4a22"
+    style.font-color: "#a8d8a8"
+    style.stroke: "#4a8a3a"
+    style.border-radius: 8
+    style.font-size: 11
+    style.stroke-dash: 5
+  }
+}
+
+# ④ Engine Layer
+engines: {
+  label: "④ Engine Layer｜业务引擎层\nNex Engines｜业务引擎体系\n⚠️ 关键规则：所有收入、用户、市场，全部发生在此层"
+  shape: rectangle
+  style.fill: "#1a2a0a"
+  style.font-color: "#c0e080"
+  style.stroke: "#4a8a10"
+  style.border-radius: 12
+  style.font-size: 12
+
+  nex2u: {
+    label: "Nex₂U\n智食引擎"
+    shape: rectangle
+    style.fill: "#1e3a10"
+    style.font-color: "#a8d860"
+    style.stroke: "#4a8a20"
+    style.border-radius: 8
+    style.font-size: 11
+  }
+  nexsply: {
+    label: "NexSply\n供应链引擎"
+    shape: rectangle
+    style.fill: "#1e3a10"
+    style.font-color: "#a8d860"
+    style.stroke: "#4a8a20"
+    style.border-radius: 8
+    style.font-size: 11
+  }
+  nexchef: {
+    label: "NexChef\n餐食方案\n具身智能（待定）"
+    shape: rectangle
+    style.fill: "#1e3a10"
+    style.font-color: "#a8d860"
+    style.stroke: "#4a8a20"
+    style.border-radius: 8
+    style.font-size: 11
+    style.stroke-dash: 5
+  }
+  nexep: {
+    label: "NexEP\n扩展业务引擎"
+    shape: rectangle
+    style.fill: "#1e3a10"
+    style.font-color: "#a8d860"
+    style.stroke: "#4a8a20"
+    style.border-radius: 8
+    style.font-size: 11
+    style.stroke-dash: 5
+  }
+}
+
+# GitHub SSOT
+github: {
+  label: "GitHub · SSOT\n唯一真实数据源"
+  shape: cylinder
+  style.fill: "#1a1a2e"
+  style.font-color: white
+  style.stroke: "#4a4a8a"
+}
+
+# 四层垂直关系
+brand -> system: "定义规则\n系统叙事" {
+  style.stroke: "#6060cc"
+  style.bold: true
+}
+system -> modules: "调度能力\n承载决策" {
+  style.stroke: "#6020cc"
+  style.bold: true
+}
+modules -> engines: "提供能力与工具\nSOP · 规程 · 策略" {
+  style.stroke: "#4a8a10"
+  style.bold: true
+}
+
+# 飞轮闭环：数据回流
+engines -> system: "数据回流\n优化结构" {
+  style.stroke: "#e94560"
+  style.bold: true
+  style.stroke-dash: 3
+}
+system -> engines: "结构反哺\n提升效率" {
+  style.stroke: "#4a8a10"
+  style.stroke-dash: 3
+}
+
+# GitHub 连接
+modules.core -> github: "状态回写" {
+  style.stroke: "#4a4a8a"
+}
+github -> modules.core: "每次接入读取基线" {
+  style.stroke: "#4a4a8a"
+  style.stroke-dash: 3
+}

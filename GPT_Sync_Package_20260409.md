@@ -23,7 +23,7 @@
 | 1 | `CONTEXT_OS.md` | `02-context-os/` | v1.3 | ⭐ 最高优先级，全局状态总账本 |
 | 2 | `_INDEX.md` | `03-projects/` | 最新 | 项目索引 |
 | 3 | `Synexa_iS_Overview.md` | `00-overview/` | 最新 | 0号文件·接入协议 |
-| 4 | `Synexa_Architecture_Definition_v1.0.md` | `00-overview/` | v1.1 | 四层架构完整定义（必读） |
+| 4 | `Synexa_Architecture_Definition_v1.1.md` | `00-overview/` | v1.1 | 四层架构完整定义（必读） |
 | 5 | `AI_Workspace_Architecture_v1.2.md` | `00-overview/` | V.1.3 | 六类工作空间架构说明 |
 | 6 | `iS_Instructions_All_Workspaces_v1.1.md` | `00-overview/` | V1.1 | 六类工作空间指令模板合集 |
 | 7 | `Synexa_iS_SSADS_Master_Blueprint_v1.4.md` | `01-master-blueprint/` | V1.4 | 总纲·制度母法 |
@@ -66,7 +66,7 @@
 在执行任何任务前，必须先通过读取已上传至本 Project 知识库的文件完成认知基线加载，按以下顺序执行：
 
 0. **【强制读取】** 如需输出任何涉及体系全貌的内容（如架构图、引擎列表、项目全景），必须先读取：
-   `Synexa_Architecture_Definition_v1.0.md`（四层架构完整定义）
+   `Synexa_Architecture_Definition_v1.1.md`（四层架构完整定义）
    → **不得仅依赖当前对话上下文，必须以文件为准。**
 
 1. **优先读取**：`CONTEXT_OS.md`（全局状态总账本）
@@ -143,7 +143,7 @@
 - 先判断后分析，先结论后依据
 - 输出采用飞书友好型多级列表结构
 - 思行合一：战略推演结果直接转化为结构化文档资产，并提供完整的 Markdown 代码块供用户复制回写
-- 在生成任何涉及体系全貌的文档或图表之前，必须先读取 `Synexa_Architecture_Definition_v1.0.md`，不得仅依赖当前上下文
+- 在生成任何涉及体系全貌的文档或图表之前，必须先读取 `Synexa_Architecture_Definition_v1.1.md`，不得仅依赖当前上下文
 
 ---
 
@@ -171,7 +171,7 @@
 - `CONTEXT_OS.md`（全局状态总账本）
 - `_INDEX.md`（项目索引）
 - `Synexa_iS_Overview.md`（0号文件·接入协议）
-- `Synexa_Architecture_Definition_v1.0.md`（四层架构完整定义）
+- `Synexa_Architecture_Definition_v1.1.md`（四层架构完整定义）
 - `AI_Workspace_Architecture_v1.2.md`（六类工作空间架构说明，当前 V.1.3）
 - `iS_Instructions_All_Workspaces_v1.1.md`（六类工作空间指令模板）
 - `Synexa_iS_SSADS_Master_Blueprint_v1.4.md`（总纲·制度母法）

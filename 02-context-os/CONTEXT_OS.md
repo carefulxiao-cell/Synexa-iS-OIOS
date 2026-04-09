@@ -29,7 +29,7 @@
 | `iS_Instructions_All_Workspaces_v1.2.md` | 2026-04-09 | ⏳ 待上传 | 全工作空间指令模板（含9个对话组共识基准） |
 | `AI_Workspace_Architecture_v1.3.md` | 2026-04-09 | ⏳ 待上传 | 工作空间架构说明（v1.2 已作废） |
 | `iS_Workspace_Architecture_v1.3.png` | 2026-04-09 | ⏳ 待上传 | 工作空间架构图（新版） |
-| `Synexa_Architecture_Definition_v1.0.md` | 2026-04-09 | ⏳ 待上传 | 四层架构完整定义 |
+| `Synexa_Architecture_Definition_v1.1.md` | 2026-04-09 | ⏳ 待上传 | 四层架构完整定义 |
 | `Synexa_iS_SSADS_Master_Blueprint_v1.4.md` | 2026-04-08 | ⏳ 待上传 | 总纲·制度母法 |
 | `CONTEXT_OS.md` | 2026-04-09 | ⏳ 待上传 | 本文件 |
 | `_INDEX.md` | 2026-04-09 | ⏳ 待上传 | 项目索引 |

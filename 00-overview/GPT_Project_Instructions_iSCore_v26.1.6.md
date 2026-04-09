@@ -51,7 +51,7 @@
 | `CONTEXT_OS.md` | 全局状态总账本（必须最新版） |
 | `_INDEX.md` | 项目索引 |
 | `Synexa_iS_Overview.md` | 0号文件·接入协议 |
-| `Synexa_Architecture_Definition_v1.0.md` | 四层架构完整定义 |
+| `Synexa_Architecture_Definition_v1.1.md` | 四层架构完整定义 |
 | `AI_Workspace_Architecture_v1.3.md` | 工作空间架构说明 |
 | `Synexa_iS_SSADS_Master_Blueprint_v1.4.md` | 总纲·制度母法 |
 | `iS_Instructions_All_Workspaces_v1.1.md` | 全工作空间指令模板 |

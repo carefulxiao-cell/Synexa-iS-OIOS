@@ -24,7 +24,7 @@ Synexa iS 体系下共设六类 AI 工作空间，各有明确的职责边界与
 
 > **关于 SOP 的定位说明**：SOP 不是独立的工作空间类型，而是 `iS-Matrix` 的核心产出类型之一。SOP 文件存放于 GitHub `05-sop/` 目录，是所有工作空间的规程权威来源。
 
-> **关于超智（Synexa）的定位说明**：Synexa 体系由四层构成——Brand Layer（超智品牌）→ System Layer（Synexa iS 智能系统基座）→ Module Layer（iS Modules 智核模块体系，即本文件所定义的六类工作空间）→ Engine Layer（Nex 业务引擎体系）。六类工作空间属于 Module Layer，是 Synexa iS 的功能单元。所有收入与市场发生在 Nex 层，iS 层只提供能力与调度，不直接产生收入。完整定义见 `00-overview/Synexa_Architecture_Definition_v1.0.md`。
+> **关于超智（Synexa）的定位说明**：Synexa 体系由四层构成——Brand Layer（超智品牌）→ System Layer（Synexa iS 智能系统基座）→ Module Layer（iS Modules 智核模块体系，即本文件所定义的六类工作空间）→ Engine Layer（Nex 业务引擎体系）。六类工作空间属于 Module Layer，是 Synexa iS 的功能单元。所有收入与市场发生在 Nex 层，iS 层只提供能力与调度，不直接产生收入。完整定义见 `00-overview/Synexa_Architecture_Definition_v1.1.md`。
 
 ---
 

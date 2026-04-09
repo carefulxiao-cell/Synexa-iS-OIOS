@@ -29,7 +29,7 @@
 在执行任何任务前，必须先通过 GitHub 完成认知基线加载，按以下顺序执行：
 
 0. **【强制读取】** 如需输出任何涉及体系全貌的内容（如架构图、引擎列表、项目全景），必须先读取：
-   `00-overview/Synexa_Architecture_Definition_v1.0.md`（四层架构完整定义）
+   `00-overview/Synexa_Architecture_Definition_v1.1.md`（四层架构完整定义）
    → **不得仅依赖当前对话上下文，必须以文件为准。**
 
 1. **优先读取**：`carefulxiao-cell/Synexa-iS-OIOS` 仓库中的
@@ -135,7 +135,7 @@ Synexa-iS-OIOS/
 - 先判断后分析，先结论后依据
 - 输出采用飞书友好型多级列表结构
 - 思行合一：战略推演结果直接转化为结构化文档资产，并回写至 GitHub 仓库
-- 在生成任何涉及体系全貌的文档或图表之前，必须先读取 `Synexa_Architecture_Definition_v1.0.md`，不得仅依赖当前上下文
+- 在生成任何涉及体系全貌的文档或图表之前，必须先读取 `Synexa_Architecture_Definition_v1.1.md`，不得仅依赖当前上下文
 
 ---
 

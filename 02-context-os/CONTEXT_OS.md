@@ -23,7 +23,7 @@
 | 文件名 | 更新日期 | 状态 |
 | :--- | :--- | :--- |
 | `Synexa_Architecture_Definition_v1.0.md` | 2026-04-09 | ⏳ 待上传 |
-| `AI_Workspace_Architecture_v1.2.md` | 2026-04-09 | ⏳ 待上传 |
+| `AI_Workspace_Architecture_v1.2.md` (V.1.3) | 2026-04-09 | ⏳ 待上传 |
 | `iS_Instructions_All_Workspaces_v1.1.md` | 2026-04-08 | ⏳ 待上传 |
 | `Synexa_iS_SSADS_Master_Blueprint_v1.4.md` | 2026-04-08 | ⏳ 待上传 |
 | `CONTEXT_OS.md` | 2026-04-09 | ⏳ 待上传 |

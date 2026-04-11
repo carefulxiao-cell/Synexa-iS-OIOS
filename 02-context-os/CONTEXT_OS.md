@@ -1,7 +1,7 @@
 # Synexa iS · Context OS (全局状态总账本)
 
 > **版本**：v1.4
-> **更新时间**：2026-04-09
+> **更新时间**：2026-04-11
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
 
@@ -36,6 +36,8 @@
 | `iS-Synexa_PCS_v0.1.md` | 2026-04-09 | ⏳ 待上传 | 超智建设 PCS |
 | `Nex2U_PCS_Template_v0.2.md` | 2026-04-08 | ⏳ 待上传 | 智食引擎 PCS |
 | `Synexa_iS_Overview.md` | 2026-04-09 | ⏳ 待上传 | 0号文件 |
+| `Synexa_Codex_v1.0_Public_View.md` | 2026-04-11 | ⏳ 待上传 | Synexa Codex 首发版（L1+L2 Public View） |
+| `iS-Publish_PCS_v0.1.md` | 2026-04-11 | ⏳ 待上传 | 信息生产与发布系统 PCS |
 
 > **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
 
@@ -50,6 +52,7 @@
 | **iS-Nexsply** | 意臻供应链 | G·集团级 | 待启动 | ⚪ 待立项 | 待定 | 全球优质原材料采购与供应链整合 |
 | **iS-NexChef** | NexChef（待定） | B·业务线级 | 持续运营 | 🔵 运行中 | 待定 | 餐饮与生活方式品牌，项目名称待确认 |
 | **iS-SOP** | 规程资产库 | F·功能模块级 | 待启动 | ⚪ 待立项 | iS-Matrix | 生产并维护全体系的 SOP 与操作规程 |
+| **iS-Publish** | 信息生产与发布系统 | F·功能模块级 | Step 0A（已完成） | 🟡 已立项 | iS-Matrix | 基于"一源多发"机制，将 SSOT 渲染为面向不同受众的多深度文档切片（Synexa Codex 体系） |
 
 ---
 
@@ -71,6 +74,7 @@
 | 日期 | 决策事项 | 决策结果 | 影响范围 |
 | :--- | :--- | :--- | :--- |
 | 2026-04-09 | 融合「超智系统·Synexa iS」与「智核中枢·iS-Core」 | 两者合并为单一对话组【智核中枢·iS-Core】；「Synexa iS」保留为对外品牌名；对话组总数从10个减为9个；更新全部相关文件。 | 全局 |
+| 2026-04-11 | iS-Publish 立项（Step 0A）；Synexa Codex v1.0 Public View 首发 | 确立 iS-Publish 为 F·功能模块级项目；定义"动态知识协议（DKP）"与 L1/L2/L3 三层受众切片机制；完成《Synexa Codex v1.0 Public View》首个产物；创建 PCS v0.1。 | iS-Publish, iS-Synexa |
 | 2026-04-09 | iS-Synexa 立项（Step 0A） | 完成超智建设项目的最小定义：G·集团级，P2·次优先，创建 PCS v0.1，待推进至 Step 0B。 | iS-Synexa |
 | 2026-04-09 | 修复体系身份混淆 Bug | 全面核查并修复了将 System Layer（Synexa iS）与 Module Layer（iS-Core）混同的系统性 Bug，更新了 Manus/GPT 指令母本、全工作空间指令模板、Overview 及 README。 | 全局 |
 | 2026-04-08 | 工作空间架构重构 | 确立六类工作空间（Core/Hub/SCO/Matrix/PCS/Lab），明确 Matrix 为结构化产出引擎，取消 SOP 独立组，确立五节点知识生产闭环。 | 全局 |

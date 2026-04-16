@@ -1,6 +1,6 @@
 # Synexa iS · Context OS (全局状态总账本)
 
-> **版本**：v1.8
+> **版本**：v1.9
 > **更新时间**：2026-04-16
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
@@ -71,6 +71,7 @@
 | `iS-NexFlow_PCS_Briefing_v0.6.md` | 2026-04-16 | ⏳ 待上传 | NexFlow 完整定位文件（V0.6，iS-Core 正式裁决通过） |
 | `SYNEXA_OVERVIEW.md` | 2026-04-16 | ⏳ 待上传 | 超智总览（已更新母品牌 + 超级系列 + 四大引擎·中台描述） |
 | `iS-NexFlow_Workspace_Startup_Guide_v1.0.md` | 2026-04-16 | ⏳ 待上传 | iS-NexFlow 工作空间启动指引（含系统提示词 + 启动路径 + 基线说明） |
+| `NexFlow_TBF_V3.0.md` | 2026-04-16 | ⏳ 待上传 | NexFlow V3.0 任务目标基线文件（TBF 机制首个实例，含 SCO 核查结论） |
 
 > **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
 
@@ -81,7 +82,7 @@
 | 项目代号 | 项目名称 | 层级 | 当前所处 Step | 状态 | 负责人/主导 Agent | 核心目标 |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **iS-Nex2U** | 智食引擎 | G·集团级 | Step 3 (业务结构建模) | 🟢 推进中 | 治理智能体 | 将非结构化健康餐饮逻辑转化为可计算的规则引擎 |
-| **iS-NexFlow** | 【超级项管·iS-NexFlow】- PCS（一站式项目协同智能平台） | **G·集团级**（正式裁决） | 迭代推演中（V2.6-brand 当前基线，V3.0 指令包已就绪待执行） | 🟢 推进中 | iS-SCO | 将项目执行过程中所有信息流统一纳管，「信息不出系统」 |
+| **iS-NexFlow** | 【超级项管·iS-NexFlow】- PCS（一站式项目协同智能平台） | **G·集团级**（正式裁决） | 迭代推演中（V2.6-brand 当前基线，V3.0 TBF 已建立，补丁指令待执行） | 🟢 推进中 | iS-SCO | 将项目执行过程中所有信息流统一纳管，「信息不出系统」 |
 | **iS-Synexa** | 超智建设 | G·集团级 | Step 0B（待推进） | 🟡 已立项 | iS-Core | 超智品牌建设与对外表达，P2·次优先；需同步超智官网建设 |
 | **iS-Nexsply** | 意臻供应链 | G·集团级 | 待启动 | ⚪ 待立项 | 待定 | 全球优质原材料采购与供应链整合 |
 | **iS-NexChef** | NexChef（待定） | G·集团级 | 持续运营 | 🔵 运行中 | 待定 | 餐饮与生活方式品牌，项目名称待确认 |
@@ -99,6 +100,7 @@
 * **各待立项项目启动**：iS-Nexsply、iS-NexChef（待定）、iS-SOP 需要在 iS-Core 完成最小定义后正式立项。
 * **iS-Synexa Step 0B**：超智建设项目需推进至 Step 0B（启动检查），确认品牌叙事方向、官网目标受众、视觉规范起点；**同步通知超智官网建设负责方**，确保官网内容框架与体系架构定义保持一致。
 * **【超级项管·iS-NexFlow】- PCS 工作空间建立**：iS-Core 已授权，启动指引（`iS-NexFlow_Workspace_Startup_Guide_v1.0.md`）已生成并归档至 GitHub。待用户在 Manus / GPT 建立专属 Project，命名「超级项管·iS-NexFlow」，粘贴指引中的系统提示词。V3.0 指令包（`nexflow_v3_0_final.md`）尚在本地沙盒，待推送至 `carefulxiao-cell/nexflow/docs/`。
+* **NexFlow V3.0 文件中心补丁**：TBF 核查已确认文件中心（/files）6项均未完成，补丁指令待在【超级项管·iS-NexFlow】工作空间执行。
 
 ### 4.2 阻塞项
 
@@ -110,6 +112,7 @@
 
 | 日期 | 决策事项 | 决策结果 | 影响范围 |
 | :--- | :--- | :--- | :--- |
+| 2026-04-16 | **TBF 机制基线原则裁决（iS-Core 正式裁决）** | ①每次版本迭代，指令包必须附带 TBF，与指令包同时归档至 `docs/` 目录 ✅通过；②执行框完成后必须逐项回写 TBF，不得只说「已完成」✅通过；③SCO 每次版本交付后执行 TBF 核查，核查结论回写 TBF ✅通过；④TBF 是版本交付的必要条件，未完成核查不得标记「已完成」✅通过；⑤TBF 机制适用所有有代码交付的 PCS 项目，从 NexFlow V3.0 开始试行 ✅通过。NexFlow V3.0 TBF 已同步建立并归档。 | 全局体系治理，iS-NexFlow 首发 |
 | 2026-04-16 | **iS-NexFlow 七项裁决（iS-Core 正式裁决）** | ①定位升级：「执行操作系统」→「一站式项目协同智能平台 / 一站项管协同中台」✅通过；②层级升级：G·集团级（与 Nex2U / Nexsply / NexChef 同级）✅通过；③品牌架构确认：超智=母品牌+中央引擎·中台，超级系列=对外产品线品牌，四大引擎·中台对应关系 ✅通过；④GitHub 仓库更新授权 ✅已执行；⑤PCS 文件归档 ✅已归档（03-projects/NexFlow/）；⑥新专栏建立授权 ✅已授权，待用户操作；⑦超智官网建设同步 ✅已记录为待决策事项，归入 iS-Synexa Step 0B 推进范畴。 | iS-NexFlow, 全局品牌, iS-Synexa |
 | 2026-04-16 | 超智品牌架构定义正式裁决 | 确认「超智 = 母品牌 + 中央引擎·中台」、「超级系列 = 对外产品线品牌」、四大引擎·中台与超级系列对应关系；更新至 CONTEXT_OS v1.6 及 SYNEXA_OVERVIEW.md；超智官网建设需同步对齐（归入 iS-Synexa Step 0B）。 | 全局品牌 |
 | 2026-04-16 | iS-NexFlow 品牌架构与定位对齐 | iS-SCO 提交 PCS Briefing V0.6，明确 NexFlow 为「超级项目管理」主题引擎·中台，定位升级为「一站式项目协同智能平台」，层级申请 G·集团级；品牌标识 NexFlow · IntP·Lab；系统内品牌文字已同步更新（登录页、侧边栏、Guide页、index.html title）；PCS 文件已归档至 carefulxiao-cell/nexflow/docs/ 与 Synexa-iS-OIOS/03-projects/NexFlow/；iS-Core 正式裁决通过。 | iS-NexFlow, 全局品牌 |

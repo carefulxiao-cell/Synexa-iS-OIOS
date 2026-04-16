@@ -1,6 +1,6 @@
 # Synexa iS · Context OS (全局状态总账本)
 
-> **版本**：v1.9
+> **版本**：v1.10
 > **更新时间**：2026-04-16
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
@@ -56,12 +56,14 @@
 | :--- | :--- | :--- | :--- |
 | `Manus_Project_Instructions_v26.1.6.md` | 2026-04-09 | ⏳ 待上传 | 融合版 Manus 指令（iS-Core 主控） |
 | `GPT_Project_Instructions_iSCore_v26.1.6.md` | 2026-04-09 | ⏳ 待复制录入 | 融合版 GPT 指令，需复制至 GPT Project Instructions 字段 |
-| `iS_Instructions_All_Workspaces_v1.2.md` | 2026-04-09 | ⏳ 待上传 | 全工作空间指令模板（含9个对话组共识基准） |
+| `iS_Instructions_All_Workspaces_v1.3.md` | 2026-04-16 | ⏳ 待上传 | 全工作空间指令模板（注入 FBR 机制触发词规则） |
 | `AI_Workspace_Architecture_v1.3.md` | 2026-04-09 | ⏳ 待上传 | 工作空间架构说明（v1.2 已作废） |
 | `iS_Workspace_Architecture_v1.3.png` | 2026-04-09 | ⏳ 待上传 | 工作空间架构图（新版） |
 | `Synexa_Architecture_Definition_v1.1.md` | 2026-04-09 | ⏳ 待上传 | 四层架构完整定义 |
 | `Synexa_iS_SSADS_Master_Blueprint_v1.4.md` | 2026-04-08 | ⏳ 待上传 | 总纲·制度母法 |
-| `CONTEXT_OS.md` | 2026-04-16 | ⏳ 待上传 | 本文件（**v1.6**，含 NexFlow 正式裁决 + 品牌架构更新） |
+| `CONTEXT_OS.md` | 2026-04-16 | ⏳ 待上传 | 本文件（**v1.10**，含 FBR 机制正式裁决） |
+| `FBL_Template_v1.0.md` | 2026-04-16 | ⏳ 待上传 | FBL 功能基线列表模板 |
+| `SOP_001_FBR_Mechanism_v1.0.md` | 2026-04-16 | ⏳ 待上传 | FBR 机制标准操作程序 |
 | `_INDEX.md` | 2026-04-16 | ⏳ 待上传 | 项目索引（已更新 NexFlow 层级与状态） |
 | `iS-Synexa_PCS_v0.1.md` | 2026-04-09 | ⏳ 待上传 | 超智建设 PCS |
 | `Nex2U_PCS_Template_v0.2.md` | 2026-04-08 | ⏳ 待上传 | 智食引擎 PCS |
@@ -73,7 +75,7 @@
 | `iS-NexFlow_Workspace_Startup_Guide_v1.0.md` | 2026-04-16 | ⏳ 待上传 | iS-NexFlow 工作空间启动指引（含系统提示词 + 启动路径 + 基线说明） |
 | `NexFlow_TBF_V3.0.md` | 2026-04-16 | ⏳ 待上传 | NexFlow V3.0 任务目标基线文件（TBF 机制首个实例，含 SCO 核查结论） |
 
-> **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
+> **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`iS_Instructions_All_Workspaces_v1.2.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
 
 ---
 
@@ -112,6 +114,7 @@
 
 | 日期 | 决策事项 | 决策结果 | 影响范围 |
 | :--- | :--- | :--- | :--- |
+| 2026-04-16 | **FBR 机制正式裁决（iS-Core 正式裁决）** | 确立 FBR (Functional Baseline & Review) 机制为超智体系所有系统级项目的标配。①起草并归档 `FBL_Template_v1.0.md`；②起草并归档 `SOP_001_FBR_Mechanism_v1.0.md`；③在全工作空间指令模板中注入「全面审查 [系统代号]」触发词的标准响应规则，升级为 v1.3。 | 全局体系治理 |
 | 2026-04-16 | **TBF 机制基线原则裁决（iS-Core 正式裁决）** | ①每次版本迭代，指令包必须附带 TBF，与指令包同时归档至 `docs/` 目录 ✅通过；②执行框完成后必须逐项回写 TBF，不得只说「已完成」✅通过；③SCO 每次版本交付后执行 TBF 核查，核查结论回写 TBF ✅通过；④TBF 是版本交付的必要条件，未完成核查不得标记「已完成」✅通过；⑤TBF 机制适用所有有代码交付的 PCS 项目，从 NexFlow V3.0 开始试行 ✅通过。NexFlow V3.0 TBF 已同步建立并归档。 | 全局体系治理，iS-NexFlow 首发 |
 | 2026-04-16 | **iS-NexFlow 七项裁决（iS-Core 正式裁决）** | ①定位升级：「执行操作系统」→「一站式项目协同智能平台 / 一站项管协同中台」✅通过；②层级升级：G·集团级（与 Nex2U / Nexsply / NexChef 同级）✅通过；③品牌架构确认：超智=母品牌+中央引擎·中台，超级系列=对外产品线品牌，四大引擎·中台对应关系 ✅通过；④GitHub 仓库更新授权 ✅已执行；⑤PCS 文件归档 ✅已归档（03-projects/NexFlow/）；⑥新专栏建立授权 ✅已授权，待用户操作；⑦超智官网建设同步 ✅已记录为待决策事项，归入 iS-Synexa Step 0B 推进范畴。 | iS-NexFlow, 全局品牌, iS-Synexa |
 | 2026-04-16 | 超智品牌架构定义正式裁决 | 确认「超智 = 母品牌 + 中央引擎·中台」、「超级系列 = 对外产品线品牌」、四大引擎·中台与超级系列对应关系；更新至 CONTEXT_OS v1.6 及 SYNEXA_OVERVIEW.md；超智官网建设需同步对齐（归入 iS-Synexa Step 0B）。 | 全局品牌 |

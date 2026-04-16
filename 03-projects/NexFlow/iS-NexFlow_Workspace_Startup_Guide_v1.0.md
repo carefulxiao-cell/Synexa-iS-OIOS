@@ -3,7 +3,7 @@
 > **版本**：V1.0
 > **日期**：2026-04-16
 > **来源**：iS-Core 智核中枢
-> **定位**：指导【超级项管·NexFlow】工作空间（Manus / GPT）的建立、基线配置与首阶段运转。
+> **定位**：指导【超级项管·iS-NexFlow】- PCS 工作空间（Manus / GPT）的建立、基线配置与首阶段运转。
 
 ---
 
@@ -20,13 +20,17 @@ NexFlow 当前的真实状态是：**产品先行，治理滞后**。V2.6-brand 
 这是最先要做的物理动作，不需要任何内容准备，只需要操作平台。
 
 ### 2.1 在 Manus 平台建立
-新建一个 Project，命名为「**超级项管·NexFlow**」，在 Project Instructions 中粘贴以下系统提示词（直接可用）：
 
-```markdown
+新建一个 Project，命名为「**超级项管·iS-NexFlow**」，在 Project Instructions 中粘贴以下系统提示词（直接可用）：
+
+---
+
+```
 你是 Synexa iS 体系在 Manus 平台的项目协同智能体，代号 iS-NexFlow，职能定位为【项目组 · PCS 执行空间】。
 
 【身份定义】
 你负责 NexFlow（超级项目管理）的全生命周期推进，包括功能规划、迭代指令生成、用户需求分析和产品演进管理。
+本工作空间的正式名称为【超级项管·iS-NexFlow】- PCS，与【智食引擎·Nex₂U】- PCS 同级，均为 G·集团级 PCS 项目组。
 
 【前置接入协议（每次对话强制执行）】
 在执行任何任务前，必须按以下顺序完成：
@@ -51,32 +55,35 @@ NexFlow 当前的真实状态是：**产品先行，治理滞后**。V2.6-brand 
 - 产品代码：carefulxiao-cell/nexflow
 ```
 
+---
+
 ### 2.2 在 GPT 平台建立
-同步建立对应的 GPT Project，命名一致（**超级项管·NexFlow**），Project Instructions 使用同等内容，并上传 `iS-NexFlow_PCS_Briefing_v0.6.md` 与本启动指引作为知识文件。
+
+同步建立对应的 GPT Project，命名一致（**超级项管·iS-NexFlow**），Project Instructions 使用同等内容，并上传 `iS-NexFlow_PCS_Briefing_v0.6.md` 与本启动指引作为知识文件。
 
 ---
 
 ## 三、Step 2｜完成 PCS 正式文件（治理层）
 
-工作空间建立后，第一项任务是由 iS-NexFlow 工作空间将现有的《PCS Briefing V0.6》转化为正式的 PCS 文件，包含以下七个基线组件：
+工作空间建立后，第一项任务是由【超级项管·iS-NexFlow】- PCS 工作空间将现有的《PCS Briefing V0.6》转化为正式的 PCS 文件，包含以下七个基线组件：
 
 | 组件 | 说明 | 当前状态 |
 |------|------|---------|
 | 项目章程 | 一句话定义、核心目标、价值主张 | PCS Briefing V0.6 已有，需格式化 |
 | 项目蓝图 | 八大模块完整定义、版本路线图 | PCS Briefing V0.6 已有，需格式化 |
-| 当前任务板 | V2.6 → V2.7 → V3.0 迭代任务清单 | 需从 nexflow/todo.md 同步 |
+| 当前任务板 | V2.6-brand → V3.0 → V3.1 迭代任务清单 | 需从 nexflow/todo.md 同步 |
 | 决策日志 | 历史关键决策记录 | 需从 iS-SCO 策略室存档整理 |
 | 文件索引 | 所有相关文件的路径与版本 | 需新建 |
 | 术语表 | 核心概念定义（如「信息不出系统」） | 需新建 |
 | AI 交接协议 | 当前断点、禁止事项、下一步 | 需新建 |
 
-**这一步在 iS-NexFlow 工作空间内完成，不在 iS-Core 处理。**
+**这一步在【超级项管·iS-NexFlow】- PCS 工作空间内完成，不在 iS-Core 处理。**
 
 ---
 
 ## 四、Step 3｜建立迭代推进节奏（执行层）
 
-PCS 建立后，工作空间进入常规运转模式。NexFlow 当前处于 V2.6-brand 稳定基线，下一步迭代路径按以下节奏推进：
+PCS 建立后，工作空间进入常规运转模式。下一步迭代路径按以下节奏推进：
 
 | 阶段 | 版本目标 | 核心任务 | 优先级 |
 |------|---------|---------|--------|
@@ -86,16 +93,17 @@ PCS 建立后，工作空间进入常规运转模式。NexFlow 当前处于 V2.6
 | 远期 | V3.x | 跨引擎协同接口（Nexsply / NexChef / Nex2U）+ 一键交付包 | ⚪ 规划中 |
 
 **每次迭代的标准流程**：
-```text
+
+```
 iS-SCO 策略室出指令
     ↓
-iS-NexFlow 工作空间审核、拆解为开发任务
+【超级项管·iS-NexFlow】- PCS 工作空间审核、拆解为开发任务
     ↓
 NexFlow-V2 执行框写代码、跑测试
     ↓
 代码推送至 carefulxiao-cell/nexflow
     ↓
-iS-NexFlow 工作空间验收、更新 PCS 任务板
+【超级项管·iS-NexFlow】- PCS 工作空间验收、更新 PCS 任务板
     ↓
 关键决策回写 CONTEXT_OS（由 iS-Core 执行）
 ```
@@ -104,15 +112,19 @@ iS-NexFlow 工作空间验收、更新 PCS 任务板
 
 ## 五、附录：NexFlow 系统基线说明（2026-04-16）
 
-此基线说明作为 iS-NexFlow 工作空间启动时的初始状态输入。
+此基线说明作为【超级项管·iS-NexFlow】- PCS 工作空间启动时的初始状态输入。
 
 ### 5.1 代码仓库
-* **仓库地址**：`https://github.com/carefulxiao-cell/nexflow`
-* **属性**：私有仓库（Private）
-* **主分支**：`main`
-* **当前最新版本**：V2.6-brand（Checkpoint: 72b8ec1）
 
-### 5.2 当前版本状态
+| 字段 | 内容 |
+|------|------|
+| 仓库地址 | `https://github.com/carefulxiao-cell/nexflow` |
+| 属性 | 私有仓库（Private） |
+| 主分支 | `main` |
+| 当前最新版本 | V2.6-brand（Checkpoint: 72b8ec1） |
+
+### 5.2 版本历史
+
 V2.6-brand 为当前稳定基线，已通过全部 21 项测试，TypeScript 零错误。
 
 | 版本 | 核心内容 | 状态 |
@@ -129,6 +141,7 @@ V2.6-brand 为当前稳定基线，已通过全部 21 项测试，TypeScript 零
 | **V2.6-brand** | **V0.6 品牌对齐 + CONTEXT_OS 更新 + 文件归档** | **✅ 当前基线** |
 
 ### 5.3 当前功能模块清单
+
 | 模块 | 路由 | 说明 |
 |------|------|------|
 | 项目总览 | `/` | 项目列表 + 新建入口 |
@@ -143,17 +156,22 @@ V2.6-brand 为当前稳定基线，已通过全部 21 项测试，TypeScript 零
 | 权限管理 | `/admin/approval` | 注册审批 + 权限分级 |
 | 使用指南 | `/guide` | 系统使用说明 |
 
-### 5.4 仓库内文档归档
-`docs/` 目录当前状态：
-* **已归档**：`iS-NexFlow_PCS_Briefing_v0.6.md`（PCS 定位对齐汇报文件，已获 iS-Core 裁决）
-* **待归档**：`nexflow_v3_0_final.md`（V3.0 搭建指令包，尚在本地沙盒，待推送）
+### 5.4 仓库文档归档状态
+
+| 文件 | 状态 |
+|------|------|
+| `docs/iS-NexFlow_PCS_Briefing_v0.6.md` | ✅ 已归档（iS-Core 正式裁决通过） |
+| `docs/nexflow_v3_0_final.md` | ⏳ 待推送（V3.0 搭建指令包，尚在本地沙盒） |
 
 ### 5.5 命名体系锚定
+
 | 名称 | 定义 |
 |------|------|
 | **NexFlow** | 产品名，一站式项目协同智能平台 |
 | **IntP·Lab** | 产品副标（Integrated Project Lab） |
-| **iS-NexFlow PCS** | 在 Synexa iS 体系中的项目协同系统定位 |
+| **超级项管·iS-NexFlow** | 工作空间名称（Manus / GPT Project 命名） |
+| **【超级项管·iS-NexFlow】- PCS** | 工作空间全称，与【智食引擎·Nex₂U】- PCS 命名结构一致 |
+| **iS-NexFlow** | 体系内部代号，用于文件命名、GitHub 路径、跨空间引用 |
 | **nexflow** | GitHub 代码仓库名，私有 |
 
 ---

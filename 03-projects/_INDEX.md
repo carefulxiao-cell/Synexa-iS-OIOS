@@ -13,7 +13,7 @@
 | 项目代号 | 项目名称 | 层级 | 当前 Step | 目录路径 | 备注 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **iS-Nex2U** | 智食引擎 | G·集团级 | Step 3 | `03-projects/Nex2U/` | 首个实战验证样板；当前最高优先级 |
-| **iS-NexFlow** | 一站式项目协同智能平台 | G·集团级 | 迭代推演中（V2.6 实战验证） | `03-projects/NexFlow/` | iS-Core 正式裁决通过（2026-04-16）；超级系列：超级项目管理；品牌标识：NexFlow · IntP·Lab |
+| **iS-NexFlow** | 【超级项管·iS-NexFlow】- PCS | G·集团级 | 迭代推演中（V2.6-brand 当前基线，V3.0 指令包已就绪待执行） | `03-projects/NexFlow/` | iS-Core 正式裁决通过（2026-04-16）；超级系列：超级项目管理；品牌标识：NexFlow · IntP·Lab |
 | **iS-Synexa** | 超智建设 | G·集团级 | Step 0B（待推进） | `03-projects/Synexa/` | 超智品牌建设与对外表达，P2·次优先；需同步超智官网建设 |
 
 ## 待启动项目 (Planned)

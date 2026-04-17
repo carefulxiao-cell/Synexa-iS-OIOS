@@ -1,0 +1,74 @@
+%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#1d3557', 'primaryTextColor': '#ffffff', 'primaryBorderColor': '#457b9d', 'lineColor': '#457b9d', 'secondaryColor': '#e63946', 'tertiaryColor': '#2d6a4f', 'background': '#ffffff', 'fontSize': '14px'}}}%%
+flowchart TD
+    %% ── 决策者 ──
+    HUMAN(["👤 决策者 Human\n战略意志 · 最终裁决"])
+
+    %% ── 第一层：动态基线层 ──
+    subgraph BL["🔴 动态基线层 Dynamic Baseline — 所有 AI 协同的唯一前提"]
+        direction LR
+        L3["L3 全局级\nCONTEXT_OS.md\n全局状态总账本"]
+        L2["L2 空间级\nISYNC Protocol\n跨平台同步协议\nManus / GPT / GitHub"]
+        L1F["L1 项目级\nFBL 功能基线\n指令汇总 · 代码比对\n验证闭环"]
+        L1T["L1 项目级\nTBF 任务基线\n三态门禁\n✅通过 / ⚠️待验证 / ❌未通过"]
+        L1R["⚡ L1 强制归档规则\n指令产生即推送 GitHub\n未推送 = 未生效"]
+    end
+
+    %% ── 第二层：五节点工作流 ──
+    subgraph WF["🔵 五节点知识生产闭环"]
+        direction TB
+        SCO1["① SCO 枢机经纬\n策略室 — 战略推演 · 需求定义"]
+        CORE["② Core 智核中枢\n董事会 — 基线治理 · 裁决 · 调度"]
+        MTX["③ Matrix 智核矩阵\n研究室 — 规则化 · SOP · 模板"]
+        PCS["④ PCS 项目组\n执行层 — 开发 · 代码 · TBF 报告"]
+        SCO2["⑤ SCO 验收\n策略室 — 验证产物是否符合战略意图"]
+        SCO1 -->|"战略意图 · 需求"| CORE
+        CORE -->|"裁决 · 立项"| MTX
+        MTX -->|"规程 · 模板 · 指令包"| PCS
+        PCS -->|"代码包 · TBF 报告"| SCO2
+        SCO2 -->|"迭代建议 · 验收结论"| SCO1
+    end
+
+    %% ── 第三层：核心机制 ──
+    subgraph MC["🟢 核心运作机制 五项原则"]
+        direction LR
+        M1["① 强制门禁\n规范→硬卡点\nSOP_003 提交规范"]
+        M2["② SSOT 原则\n未写入 GitHub = 不存在\n聊天记录不作执行依据"]
+        M3["③ 正反向双重验证\n正向：指令→代码是否实现\n反向：代码→指令是否授权"]
+        M4["④ 版本生命周期\n新版生效→旧版明确作废\n防止 AI 引用历史约束"]
+        M5["⑤ 人机协作边界\n哪些决策必须由人做\n哪些 AI 可自主执行"]
+    end
+
+    %% ── 第四层：跨平台协作 ──
+    subgraph PL["🟣 跨平台协作层"]
+        direction LR
+        MANUS["Manus\n执行智能体\niS-Core 主控入口"]
+        GH["GitHub\nSSOT 中央仓\ncarefulxiao-cell/Synexa-iS-OIOS"]
+        GPT["GPT\n策略智能体\nSCO / 知识推演"]
+        MANUS -->|"L1 归档 · 回写变更"| GH
+        GPT -->|"L1 归档 · 回写变更"| GH
+        GH -->|"读取基线"| MANUS
+        GH -->|"读取基线"| GPT
+    end
+
+    %% ── 层间连接 ──
+    HUMAN -->|"战略意志注入"| BL
+    HUMAN -->|"最终裁决"| CORE
+    BL -->|"基线约束全部节点"| WF
+    WF -->|"机制保障闭环质量"| MC
+    MC -->|"协议落地到平台"| PL
+    PL -->|"变更回写 · 状态同步"| BL
+
+    %% ── 样式 ──
+    classDef baseline fill:#e63946,stroke:#9d0208,color:#fff,font-weight:bold
+    classDef l1rule fill:#9d0208,stroke:#6b0000,color:#fff,font-weight:bold
+    classDef workflow fill:#457b9d,stroke:#1d3557,color:#fff
+    classDef mechanism fill:#40916c,stroke:#1b4332,color:#fff
+    classDef platform fill:#6d6875,stroke:#3d2b56,color:#fff
+    classDef human fill:#1a1a2e,stroke:#457b9d,color:#fff,font-weight:bold
+
+    class L3,L2,L1F,L1T baseline
+    class L1R l1rule
+    class SCO1,CORE,MTX,PCS,SCO2 workflow
+    class M1,M2,M3,M4,M5 mechanism
+    class MANUS,GH,GPT platform
+    class HUMAN human

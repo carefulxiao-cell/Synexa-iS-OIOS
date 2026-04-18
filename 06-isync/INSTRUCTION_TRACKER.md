@@ -17,8 +17,8 @@
 
 | 编号 | 描述 | 完成时间 | Commit Hash | 核心设计共识 |
 | :--- | :--- | :--- | :--- | :--- |
-| CORE-CMD-001 | 建立全局18步工作流标准 | 2026-04-18 | 待回写 | 已写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`（v1.2）第六维度，分三大阶段共18步 |
-| CORE-CMD-002 | 超智全局超级项管系统 Step 0A 最小定义 | 2026-04-18 | 待回写 | 已写入 `03-projects/_INDEX.md`，并回写 `CONTEXT_OS.md`（v2.3）决策日志 |
+| CORE-CMD-001 | 建立全局18步工作流标准 | 2026-04-18 | `4fdde5a` | 已写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`（v1.2）第六维度，分三大阶段共18步 |
+| CORE-CMD-002 | 超智全局超级项管系统 Step 0A 最小定义 | 2026-04-18 | `4fdde5a` | 已写入 `03-projects/_INDEX.md`，并回写 `CONTEXT_OS.md`（v2.3）决策日志 |
 
 ## 4. 已废弃指令
 

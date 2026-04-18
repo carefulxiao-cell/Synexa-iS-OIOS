@@ -113,4 +113,21 @@ TBF 的核查不能仅停留在代码层（如“测试用例通过”），必�
 ```
 
 ---
+
+## 7. 跨工作空间指令可见性规则
+
+**问题背景**：各工作空间默认只读取自身项目仓库，导致 OIOS 中央仓的体系级 SOP（如 SOP_003）对 PCS 工作空间不可见。
+
+**强制规则**：所有工作空间在执行任何任务前，必须按以下优先级读取指令来源，当在项目仓库中找不到某个规范文件时，**必须主动向上查找 OIOS 中央仓**，而不是报告"文件不存在"：
+
+```
+优先级 1：carefulxiao-cell/Synexa-iS-OIOS/00-master/     （体系级协议）
+优先级 2：carefulxiao-cell/Synexa-iS-OIOS/05-sop/        （体系级 SOP）
+优先级 3：carefulxiao-cell/Synexa-iS-OIOS/03-projects/   （项目基线）
+优先级 4：carefulxiao-cell/[项目仓库]/docs/               （项目级指令包）
+```
+
+此规则已写入 `iS_Instructions_All_Workspaces_v1.3.md`，所有 PCS 工作空间的指令均需包含此前置读取规则。
+
+---
 *注：本协议由 iS-Core 维护，任何修改需经董事会裁决。*

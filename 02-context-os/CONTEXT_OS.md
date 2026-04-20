@@ -83,6 +83,7 @@
 | `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md` | 2026-04-18 | ⏳ 待上传 | 超智系统基座框架文档（已更新，新增全局18步工作流标准完整定义） |
 | `Synexa_iS_Base_Architecture_v1.4.mmd` | 2026-04-18 | ⏳ 待上传 | 架构图 v1.4 Mermaid 源文件（新增 INSTRUCTION_TRACKER、iS-GlobalPM、18步工作流标注） |
 | `Synexa_iS_Base_Architecture_v1.4.png` | 2026-04-18 | ⏳ 待上传 | 架构图 v1.4 渲染图（线框风格，适合 A3 打印） |
+| `Synexa_iS_Base_Architecture_v1.4.2.webp` | 2026-04-20 | ⏳ 待上传 | **架构图 v1.5 终版（用户审定）**，含左侧18步竖排+虚线映射，已入仓为 v1.4.2 与 v1.5_FINAL 双文件 |
 
 > **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`iS_Instructions_All_Workspaces_v1.2.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
 

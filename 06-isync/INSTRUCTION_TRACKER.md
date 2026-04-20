@@ -19,7 +19,7 @@
 | 编号 | 描述 | 优先级 | 批次 | 状态 | 核心设计共识 | 备注 |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | SOP-001 | 建立全局18步工作流标准 | P1 | B1 | ✅ 已完成 | 写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md` 第六维度，分三大阶段共18步 | commit `4fdde5a` |
-| PROJ-001 | iS-GlobalPM Step 0A 最小定义 | P1 | B1 | ✅ 已完成 | 写入 `03-projects/_INDEX.md`；项目代号 iS-GlobalPM，G·集团级，P1 | commit `4fdde5a` |
+| PROJ-001 | NexFlow·Synexa Step 0A 最小定义 | P1 | B1 | ✅ 已完成 | 原 iS-GlobalPM，已重命名为 NexFlow·Synexa | commit `4fdde5a` |
 | ARCH-001 | 架构图 v1.4 → v1.5 迭代 | P2 | B2 | ✅ 已完成 | 左侧18步椭圆框竖排，虚线映射至右侧五节点；右侧主架构结构不变 | commit `efd1ad3` |
 | ARCH-002 | 架构图 v1.5 终版确认（v1.4.2 入仓） | P1 | B2 | ✅ 已完成 | 用户审定终版入仓为 `Synexa_iS_Base_Architecture_v1.4.2.webp` | commit `a8b947a` |
 | SYNC-001 | 架构图终版同步上传至 GPT Project | P1 | B2 | 🔄 已推送·待用户确认 | 以 `Synexa_iS_Base_Architecture_v1.4.2.webp` 为准，上传至 GPT | 用户手动操作项 |
@@ -28,7 +28,7 @@
 | SOP-004 | SOP_007 升级至 v1.1 | P1 | B2 | ✅ 已完成 | 新增 FBR 触发协议 + 经验反哺升级协议 + 执行主体定义 | commit `3765476` |
 | SOP-005 | ISYNC_PROTOCOL 升级至 v1.2 | P1 | B2 | ✅ 已完成 | 新增触发词三 `汇总推送` + 工作空间接入指南更新 | commit `3765476` |
 | DEC-001 | 下发 NexFlow 追踪表补建指令 | P1 | B2 | 📋 指令已下发·待项目执行 | 裁决 NexFlow 补建专属追踪表，按 SOP_007 规范清洗历史指令 | 写入 `DEC-001_NexFlow_Tracker_Init.md` |
-| PROJ-002 | iS-GlobalPM Step 0B 启动检查 | P1 | B3 | 🔒 依赖锁定 | 在 iS-NexFlow V3.x 迭代稳定后立即启动，建立专属 PCS 工作空间 | 前置：NexFlow V3.x 稳定 |
+| PROJ-002 | NexFlow·Synexa Step 0B 启动检查 | P1 | B3 | 🔒 依赖锁定 | 在 iS-NexFlow V3.x 迭代稳定后立即启动，建立专属 PCS 工作空间 | 前置：NexFlow V3.x 稳定 |
 
 ---
 
@@ -44,9 +44,9 @@
 
 | 批次 | 时间 | 指令数 | 状态 | 核心主题 |
 | :--- | :--- | :--- | :--- | :--- |
-| B1 | 2026-04-18 | 2 | ✅ 全部完成 | 18步工作流标准确立 + iS-GlobalPM Step 0A |
+| B1 | 2026-04-18 | 2 | ✅ 全部完成 | 18步工作流标准确立 + NexFlow·Synexa Step 0A |
 | B2 | 2026-04-18 ~ 2026-04-20 | 7 | 🔄 进行中（4已完成，3待用户确认） | 架构图 v1.5 终版确认 + SOP_007 v1.1 + ISYNC v1.2 + 指令汇总机制正式启动 |
-| B3 | 待触发 | 1 | 🔒 依赖锁定 | iS-GlobalPM Step 0B 启动 |
+| B3 | 待触发 | 1 | 🔒 依赖锁定 | NexFlow·Synexa Step 0B 启动 |
 
 ---
 *注：每次生成新指令包后，必须同步更新此表。废弃指令必须先生成新指令并推送确认，再删除旧指令文件，最后在此表标记为「🚫 已废弃」。*

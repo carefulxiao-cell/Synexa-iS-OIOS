@@ -1,7 +1,7 @@
 # iS-Core 指令追踪表 (Instruction Tracker)
 
 > **维护主体**：iS-Core（智核中枢）
-> **版本**：v1.3
+> **版本**：v1.4
 > **最后更新**：2026-04-20
 > **作用**：追踪 Core 工作空间下发的所有指令包的生命周期，确保指令不遗漏、不冲突、可追溯。
 
@@ -14,33 +14,25 @@
 
 ---
 
-## 2. 待执行指令（按批次顺序）
+## 2. 当前指令汇总表（截至 2026-04-20）
 
-| 编号 | 描述 | 优先级 | 批次 | 状态 | 核心设计共识 | 审查触发词 | 来源 | 备注 |
-| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| CORE-CMD-005 | 架构图终版同步上传至 GPT Project | P1 | B2 | ⏳ 待用户执行 | 以 `Synexa_iS_Base_Architecture_v1.4.2.webp` 为准，上传至 GPT【智核中枢·iS-Core】Project | — | iS-Core | 用户手动操作项 |
-| CORE-CMD-007 | 裁决「指令汇总追踪表机制」提升为体系级基线，发布 SOP_007 | P1 | B2 | ⏳ 待用户确认同步至 GPT | 响应 NexFlow PCS ISYNC 通报，裁决通过，已写入 `SOP_007_Instruction_Tracker_Standard_v1.0.md` | — | iS-Core | SOP_007 为 SOP_004/005/006 上位体系级文件 |
-| CORE-CMD-008 | 建立 GLOBAL_INSTRUCTION_TRACKER.md，录入全局项目摘要 | P1 | B2 | ⏳ 待用户确认同步至 GPT | 初始化 `06-isync/GLOBAL_INSTRUCTION_TRACKER.md`，6个项目摘要行，标注 iS-NexFlow V3.0 阻塞项 | — | iS-Core | 各项目在下次迭代时补建标准化追踪表 |
-| CORE-CMD-009 | SOP_007 升级至 v1.1：新增 FBR 触发协议 + 经验反哺升级协议 + 执行主体定义 | P1 | B2 | ✅ 已完成 | 「中枢-xxxx」为指令治理入口；触发词 `汇总推送 [项目代号]`；FBR 主动读取 GitHub 而非接收内容 | — | iS-Core | 正式启动指令汇总机制 |
-| CORE-CMD-010 | ISYNC_PROTOCOL.md 升级至 v1.2：新增触发词三 `汇总推送` + 工作空间接入指南更新 | P1 | B2 | ✅ 已完成 | 全局协议同步升级，所有新立项对话组接入指南已更新 | — | iS-Core | 与 SOP_007 v1.1 配套生效 |
-| CORE-CMD-006 | iS-GlobalPM Step 0B 启动检查 | P1 | B3 | 🔒 依赖锁定 | 在 iS-NexFlow V3.x 迭代稳定后立即启动，建立专属 PCS 工作空间 | `启动项目 iS-GlobalPM` | iS-Core | 前置条件：iS-NexFlow V3.x 稳定 |
-
----
-
-## 3. 已完成指令
-
-| 编号 | 描述 | 完成时间 | Commit Hash | 核心设计共识 |
-| :--- | :--- | :--- | :--- | :--- |
-| **B1 批次** | | | | |
-| CORE-CMD-001 | 建立全局18步工作流标准 | 2026-04-18 | `4fdde5a` | 已写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`（v1.2）第六维度，分三大阶段共18步：分析层（1-5）· 执行层（6-11）· 沉化层（12-18） |
-| CORE-CMD-002 | 超智全局超级项管系统 Step 0A 最小定义 | 2026-04-18 | `4fdde5a` | 已写入 `03-projects/_INDEX.md`；项目代号 iS-GlobalPM，G·集团级，P1，基于18步工作流标准搭建 |
-| **B2 批次** | | | | |
-| CORE-CMD-003 | 架构图 v1.4 升级为 v1.5：融入18步工作流、iS-GlobalPM、INSTRUCTION_TRACKER | 2026-04-18 | `efd1ad3` | 左侧18步椭圆框竖排，虚线映射至右侧五节点；右侧主架构结构不变；已生成 `.mmd` 源文件与 `.png` 渲染图 |
-| CORE-CMD-004 | 架构图 v1.5 终版确认：以用户上传的 v1.4.2 为此阶段终版入仓 | 2026-04-20 | `a8b947a` | 用户审定终版入仓为 `Synexa_iS_Base_Architecture_v1.4.2.webp` 与 `Synexa_iS_Base_Architecture_v1.5_FINAL.webp` 双文件；AI 生成版本（v1.5.png）作为过程文件保留 |
+| 编号 | 描述 | 优先级 | 批次 | 状态 | 核心设计共识 | 备注 |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| SOP-001 | 建立全局18步工作流标准 | P1 | B1 | ✅ 已完成 | 写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md` 第六维度，分三大阶段共18步 | commit `4fdde5a` |
+| PROJ-001 | iS-GlobalPM Step 0A 最小定义 | P1 | B1 | ✅ 已完成 | 写入 `03-projects/_INDEX.md`；项目代号 iS-GlobalPM，G·集团级，P1 | commit `4fdde5a` |
+| ARCH-001 | 架构图 v1.4 → v1.5 迭代 | P2 | B2 | ✅ 已完成 | 左侧18步椭圆框竖排，虚线映射至右侧五节点；右侧主架构结构不变 | commit `efd1ad3` |
+| ARCH-002 | 架构图 v1.5 终版确认（v1.4.2 入仓） | P1 | B2 | ✅ 已完成 | 用户审定终版入仓为 `Synexa_iS_Base_Architecture_v1.4.2.webp` | commit `a8b947a` |
+| SYNC-001 | 架构图终版同步上传至 GPT Project | P1 | B2 | 🔄 已推送·待用户确认 | 以 `Synexa_iS_Base_Architecture_v1.4.2.webp` 为准，上传至 GPT | 用户手动操作项 |
+| SOP-002 | SOP_007 v1.0 发布（体系级基线） | P1 | B2 | 🔄 已推送·待用户确认 | 响应 NexFlow PCS ISYNC 通报，裁决通过，写入 `SOP_007` | commit `2b75d52` |
+| SOP-003 | GLOBAL_INSTRUCTION_TRACKER 建立 | P1 | B2 | 🔄 已推送·待用户确认 | 初始化 `06-isync/GLOBAL_INSTRUCTION_TRACKER.md`，录入6个项目摘要行 | commit `2b75d52` |
+| SOP-004 | SOP_007 升级至 v1.1 | P1 | B2 | ✅ 已完成 | 新增 FBR 触发协议 + 经验反哺升级协议 + 执行主体定义 | commit `3765476` |
+| SOP-005 | ISYNC_PROTOCOL 升级至 v1.2 | P1 | B2 | ✅ 已完成 | 新增触发词三 `汇总推送` + 工作空间接入指南更新 | commit `3765476` |
+| DEC-001 | 下发 NexFlow 追踪表补建指令 | P1 | B2 | 📋 指令已下发·待项目执行 | 裁决 NexFlow 补建专属追踪表，按 SOP_007 规范清洗历史指令 | 写入 `DEC-001_NexFlow_Tracker_Init.md` |
+| PROJ-002 | iS-GlobalPM Step 0B 启动检查 | P1 | B3 | 🔒 依赖锁定 | 在 iS-NexFlow V3.x 迭代稳定后立即启动，建立专属 PCS 工作空间 | 前置：NexFlow V3.x 稳定 |
 
 ---
 
-## 4. 已废弃指令
+## 3. 已废弃指令
 
 | 编号 | 描述 | 废弃时间 | 废弃原因 | 替代指令编号 |
 | :--- | :--- | :--- | :--- | :--- |
@@ -48,14 +40,13 @@
 
 ---
 
-## 5. 批次总览
+## 4. 批次总览
 
 | 批次 | 时间 | 指令数 | 状态 | 核心主题 |
 | :--- | :--- | :--- | :--- | :--- |
 | B1 | 2026-04-18 | 2 | ✅ 全部完成 | 18步工作流标准确立 + iS-GlobalPM Step 0A |
-| B2 | 2026-04-18 ~ 2026-04-20 | 8 | 🔄 进行中（6已完成，2待用户确认同步） | 架构图 v1.5 终版确认 + SOP_007 v1.1 + ISYNC v1.2 + 指令汇总机制正式启动 |
-| B3 | 待触发 | 1 | ⏳ 待触发 | iS-GlobalPM Step 0B 启动 |
+| B2 | 2026-04-18 ~ 2026-04-20 | 7 | 🔄 进行中（4已完成，3待用户确认） | 架构图 v1.5 终版确认 + SOP_007 v1.1 + ISYNC v1.2 + 指令汇总机制正式启动 |
+| B3 | 待触发 | 1 | 🔒 依赖锁定 | iS-GlobalPM Step 0B 启动 |
 
 ---
-
 *注：每次生成新指令包后，必须同步更新此表。废弃指令必须先生成新指令并推送确认，再删除旧指令文件，最后在此表标记为「🚫 已废弃」。*

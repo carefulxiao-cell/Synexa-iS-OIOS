@@ -1,7 +1,7 @@
 # iS-Core 指令追踪表 (Instruction Tracker)
 
 > **维护主体**：iS-Core（智核中枢）
-> **版本**：v1.2
+> **版本**：v1.3
 > **最后更新**：2026-04-20
 > **作用**：追踪 Core 工作空间下发的所有指令包的生命周期，确保指令不遗漏、不冲突、可追溯。
 
@@ -21,7 +21,9 @@
 | CORE-CMD-005 | 架构图终版同步上传至 GPT Project | P1 | B2 | ⏳ 待用户执行 | 以 `Synexa_iS_Base_Architecture_v1.4.2.webp` 为准，上传至 GPT【智核中枢·iS-Core】Project | — | iS-Core | 用户手动操作项 |
 | CORE-CMD-007 | 裁决「指令汇总追踪表机制」提升为体系级基线，发布 SOP_007 | P1 | B2 | ⏳ 待用户确认同步至 GPT | 响应 NexFlow PCS ISYNC 通报，裁决通过，已写入 `SOP_007_Instruction_Tracker_Standard_v1.0.md` | — | iS-Core | SOP_007 为 SOP_004/005/006 上位体系级文件 |
 | CORE-CMD-008 | 建立 GLOBAL_INSTRUCTION_TRACKER.md，录入全局项目摘要 | P1 | B2 | ⏳ 待用户确认同步至 GPT | 初始化 `06-isync/GLOBAL_INSTRUCTION_TRACKER.md`，6个项目摘要行，标注 iS-NexFlow V3.0 阻塞项 | — | iS-Core | 各项目在下次迭代时补建标准化追踪表 |
-| CORE-CMD-006 | iS-GlobalPM Step 0B 启动检查 | P1 | B3 | ⏳ 待触发（前置：iS-NexFlow V3.x 稳定） | 在 iS-NexFlow V3.x 迭代稳定后立即启动，建立专属 PCS 工作空间 | `启动项目 iS-GlobalPM` | iS-Core | 前置条件：iS-NexFlow V3.x 稳定 |
+| CORE-CMD-009 | SOP_007 升级至 v1.1：新增 FBR 触发协议 + 经验反哺升级协议 + 执行主体定义 | P1 | B2 | ✅ 已完成 | 「中枢-xxxx」为指令治理入口；触发词 `汇总推送 [项目代号]`；FBR 主动读取 GitHub 而非接收内容 | — | iS-Core | 正式启动指令汇总机制 |
+| CORE-CMD-010 | ISYNC_PROTOCOL.md 升级至 v1.2：新增触发词三 `汇总推送` + 工作空间接入指南更新 | P1 | B2 | ✅ 已完成 | 全局协议同步升级，所有新立项对话组接入指南已更新 | — | iS-Core | 与 SOP_007 v1.1 配套生效 |
+| CORE-CMD-006 | iS-GlobalPM Step 0B 启动检查 | P1 | B3 | 🔒 依赖锁定 | 在 iS-NexFlow V3.x 迭代稳定后立即启动，建立专属 PCS 工作空间 | `启动项目 iS-GlobalPM` | iS-Core | 前置条件：iS-NexFlow V3.x 稳定 |
 
 ---
 
@@ -51,7 +53,7 @@
 | 批次 | 时间 | 指令数 | 状态 | 核心主题 |
 | :--- | :--- | :--- | :--- | :--- |
 | B1 | 2026-04-18 | 2 | ✅ 全部完成 | 18步工作流标准确立 + iS-GlobalPM Step 0A |
-| B2 | 2026-04-18 ~ 2026-04-20 | 6 | 🔄 进行中（4已完成，2待用户确认同步） | 架构图 v1.5 终版确认 + SOP_007 + 全局追踪总表 |
+| B2 | 2026-04-18 ~ 2026-04-20 | 8 | 🔄 进行中（6已完成，2待用户确认同步） | 架构图 v1.5 终版确认 + SOP_007 v1.1 + ISYNC v1.2 + 指令汇总机制正式启动 |
 | B3 | 待触发 | 1 | ⏳ 待触发 | iS-GlobalPM Step 0B 启动 |
 
 ---

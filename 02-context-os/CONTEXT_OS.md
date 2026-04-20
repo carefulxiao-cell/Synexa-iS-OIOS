@@ -1,7 +1,7 @@
 # Synexa iS · Context OS (全局状态总账本)
 
-> **版本**：v2.4
-> **更新时间**：2026-04-21
+> **版本**：v2.3
+> **更新时间**：2026-04-18
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
 
@@ -97,7 +97,7 @@
 | 项目代号 | 项目名称 | 层级 | 当前所处 Step | 状态 | 负责人/主导 Agent | 核心目标 |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **iS-Nex2U** | 智食引擎 | G·集团级 | Step 3 (业务结构建模) | 🟢 推进中 | 治理智能体 | 将非结构化健康餐饮逻辑转化为可计算的规则引擎 |
-| **iS-NexFlow** | 【超级项管·iS-NexFlow】- PCS（一站式项目协同智能平台） | **G·集团级**（正式裁决） | 全面审查完成（V3.1 full-link 已交付；INSTRUCTION_TRACKER 14条指令核查结果：10✅ / 2⚠️ / 2❌；IQCP 双卡点机制已建立，待 iS-Core 裁决推广） | 🟢 推进中 | iS-SCO | 将项目执行过程中所有信息流统一纳管，「信息不出系统」 |
+| **iS-NexFlow** | 【超级项管·iS-NexFlow】- PCS（一站式项目协同智能平台） | **G·集团级**（正式裁决） | 迭代推演中（V2.6-brand 当前基线，V3.0 TBF 已建立，补丁指令待执行） | 🟢 推进中 | iS-SCO | 将项目执行过程中所有信息流统一纳管，「信息不出系统」 |
 | **NexFlow·Synexa** | 超智内部全局项管 | G·集团级 | Step 0A（最小定义完成） | 🟡 已立项 | iS-Core | NexFlow 产品族在超智 iS 体系内的内部部署版本，管理超智全局所有业务板块的项目推进；P1，待启动 |
 | **NexFlow·iS** | NexFlow 产品开发建构管理 | G·集团级 | 概念方向 | 🟡 已立项 | iS-Core | iS 体系负责推进 NexFlow 产品开发建构的项管线 |
 | **iS-Synexa** | 超智建设 | G·集团级 | Step 0B（待推进） | 🟡 已立项 | iS-Core | 超智品牌建设与对外表达，P2·次优先；需同步超智官网建设 |
@@ -119,13 +119,10 @@
 * **【超级项管·iS-NexFlow】- PCS 工作空间建立**：iS-Core 已授权，启动指引（`iS-NexFlow_Workspace_Startup_Guide_v1.0.md`）已生成并归档至 GitHub。待用户在 Manus / GPT 建立专属 Project，命名「超级项管·iS-NexFlow」，粘贴指引中的系统提示词。V3.0 指令包（`nexflow_v3_0_final.md`）尚在本地沙盒，待推送至 `carefulxiao-cell/nexflow/docs/`。
 * **NexFlow V3.0 文件中心补丁**：TBF 核查已确认文件中心（/files）6项均未完成，补丁指令待在【超级项管·iS-NexFlow】工作空间执行。
 * **NexFlow·Synexa Step 0B**：超智内部全局项管已完成 Step 0A 最小定义，待后续推进至 Step 0B（启动检查）。
-* **[iS-NexFlow] IQCP 机制提交 iS-Core 裁决**：PCS 执行空间已建立「指令质控双卡点机制（IQCP）」，含 PDC（交付前预检）和 PDA（交付后验收）两个强制卡点。建议 iS-Core 裁决是否提升为全体系 SOP，向所有有代码交付的 PCS 推广。
 
 ### 4.2 阻塞项
 
-**[iS-NexFlow · P0 阻断性 Bug]** FIX-008 审批通过后未自动关联 `project_members`，导致新注册用户登录后界面为空。需执行框优先修复 `server/routers/approval.ts`，已生成修复指令包待执行。
-
-**[iS-NexFlow · P1 功能缺失]** CHANGE-001（重要变更模块）和 GUIDE-001（使用指南反馈模块）均未实现，前端页面与后端路由均缺失。已纳入 IQCP 指令包待执行框按优先级实施。
+* *(暂无全局阻塞项)*
 
 ---
 
@@ -139,7 +136,6 @@
 | **INSTRUCTION_TRACKER** | 指令追踪表机制 | 每次新增指令时强制归档 | `06-isync/INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-18，Core 首发，向全 PCS 推广中） |
 | **SOP_007** | 指令汇总追踪表机制体系级标准规范 | 所有 PCS 工作空间建立指令追踪表时强制遵循 | `05-sop/SOP_007_Instruction_Tracker_Standard_v1.0.md` | 🟢 已启用（2026-04-20，响应 NexFlow PCS ISYNC 通报，为 SOP_004/005/006 上位体系级文件） |
 | **GLOBAL_INSTRUCTION_TRACKER** | 全局指令追踪总表 | 各项目在里程碑节点或重大状态变更时向 iS-Core 提交 ISYNC 通报 | `06-isync/GLOBAL_INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-20，初始化，6个项目摘要行） |
-| **IQCP** | 指令质控双卡点机制 | 每条指令下发前（PDC）与代码交付后（PDA）强制执行 | `05-sop/SOP_008_IQCP_v1.0.md`（待裁决后发布） | 🟡 待 iS-Core 裁决（2026-04-21，iS-NexFlow PCS 首发，建议全体系推广） |
 
 ---
 
@@ -157,7 +153,6 @@
 | :--- | :--- | :--- | :--- |
 | 2026-04-18 | **全局18步工作流标准正式确立（iS-Core 裁决）** | 超智全局工作流程标准化为18个步骤，分三大阶段：分析层（步骤1-5：描述情况→推演可能→目标制定→交流互补→对齐理解）、执行层（步骤6-11：生成指令→审核指令→汇总推进→入仓留存→下发执行→反查完善）、沉化层（步骤12-18：阶段完成→整理汇总→状态审查→跟踪推进→整洁清理→更新通报→全局对齐）。已写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`。 | 全局体系治理 |
 | 2026-04-18 | **INSTRUCTION_TRACKER 机制全局启动（iS-Core 裁决）** | `INSTRUCTION_TRACKER.md` 在 Core 工作空间正式初始化，包含批次管理、废弃协议、跨仓库可见性三项优化字段。裁决：该机制将向所有 PCS 工作空间推广，每个 PCS 在下次重大迭代时同步建立本空间的 INSTRUCTION_TRACKER。 | 全局体系治理 |
-| 2026-04-21 | **[iS-NexFlow] 全面审查完成，提交 IQCP 机制建立申请（iS-NexFlow PCS 通报）** | 对 INSTRUCTION_TRACKER.md 全郥14条指令完成三维代码核查：10✅ / 2⚠️ / 2❌。鉴别两个阻断性问题：FIX-008（审批后未关联成员）和 CHANGE-001/GUIDE-001（模块完全缺失）。建立 IQCP（指令质控双卡点机制），含 PDC（交付前预检）和 PDA（交付后验收）两个强制卡点，配套 `INSTRUCTION_TEMPLATE.md`、`SOP_008_IQCP.md` 文件体系。审查方法论已入仓沉淀。建议 iS-Core 将 IQCP 提升为全体系 SOP，向所有有代码交付的 PCS 推广。 | iS-NexFlow，建议全局体系治理 |
 | 2026-04-20 | **NexFlow 产品族命名体系更新（iS-Core 裁决）** | 确立 NexFlow 为产品族主线。原 `iS-GlobalPM` 重命名为 `NexFlow·Synexa`（超智内部全局项管）；新增 `NexFlow·iS`（NexFlow 产品开发建构管理）。 | 全局体系治理 |
 | 2026-04-18 | **iS-GlobalPM Step 0A 最小定义（iS-Core 裁决）** | 项目代号：`iS-GlobalPM`（后更名为 `NexFlow·Synexa`）；名称：超智全局超级项管系统；一句话定义：针对超智全局系统的高效高质执行落地管理，基于18步工作流标准搭建；层级：G·集团级；优先级：P1。已写入 `03-projects/_INDEX.md`。 | iS-GlobalPM |
 | 2026-04-17 | **协作链路结构性修复三项裁决（iS-Core 正式裁决）** | ①ISYNC 协议升级为 v1.2，写入 TBF 三态核查门禁机制（✅通过/⚠️待验证/❌未通过），强制阻断未完成生产验证的下一阶段推进；②新增 `SOP_003_Execution_Submission_v1.0.md`，确立执行框强制提交报告规范，含架构规范自查（无原生 SQL、唯一迁移路径）与生产环境验证截图要求，格式不符 PCS 有权拒绝接收；③确立数据库迁移唯一路径原则：所有数据库结构变更必须通过 Drizzle ORM 标准迁移流程，禁止任何独立建表脚本，违反可要求回滚。TBF 模板同步升级为 v2.1。根因：体系有规范文档但无执行门禁，本次三条裁决将现有规范从「建议」升级为「门禁」。 | 全局体系治理，iS-NexFlow 首发 |

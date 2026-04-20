@@ -84,6 +84,9 @@
 | `Synexa_iS_Base_Architecture_v1.4.mmd` | 2026-04-18 | ⏳ 待上传 | 架构图 v1.4 Mermaid 源文件（新增 INSTRUCTION_TRACKER、iS-GlobalPM、18步工作流标注） |
 | `Synexa_iS_Base_Architecture_v1.4.png` | 2026-04-18 | ⏳ 待上传 | 架构图 v1.4 渲染图（线框风格，适合 A3 打印） |
 | `Synexa_iS_Base_Architecture_v1.4.2.webp` | 2026-04-20 | ⏳ 待上传 | **架构图 v1.5 终版（用户审定）**，含左侧18步竖排+虚线映射，已入仓为 v1.4.2 与 v1.5_FINAL 双文件 |
+| `SOP_007_Instruction_Tracker_Standard_v1.0.md` | 2026-04-20 | ⏳ 待上传 | 指令汇总追踪表机制体系级标准规范（新文件，响应 NexFlow PCS ISYNC 通报裁决通过） |
+| `GLOBAL_INSTRUCTION_TRACKER.md` | 2026-04-20 | ⏳ 待上传 | 全局指令追踪总表（新文件，6个项目摘要行，含 iS-NexFlow V3.0 阻塞项标注） |
+| `INSTRUCTION_TRACKER.md` | 2026-04-20 | ⏳ 待上传 | iS-Core 指令追踪表（v1.2，新增 CORE-CMD-007/008，批次总览更新） |
 
 > **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`iS_Instructions_All_Workspaces_v1.2.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
 
@@ -130,10 +133,20 @@
 | **SOP-003** | 执行框强制提交规范 | 每次代码交付时强制执行 | `05-sop/SOP_003_Execution_Submission_v1.0.md` | 🟢 已启用（2026-04-17） |
 | **ISYNC** | 全局指令同步协议 | `汇总指令` / `全面审查 [项目代号]` | `00-master/ISYNC_PROTOCOL.md` | 🟢 已启用（2026-04-16 初始化） |
 | **INSTRUCTION_TRACKER** | 指令追踪表机制 | 每次新增指令时强制归档 | `06-isync/INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-18，Core 首发，向全 PCS 推广中） |
+| **SOP_007** | 指令汇总追踪表机制体系级标准规范 | 所有 PCS 工作空间建立指令追踪表时强制遵循 | `05-sop/SOP_007_Instruction_Tracker_Standard_v1.0.md` | 🟢 已启用（2026-04-20，响应 NexFlow PCS ISYNC 通报，为 SOP_004/005/006 上位体系级文件） |
+| **GLOBAL_INSTRUCTION_TRACKER** | 全局指令追踪总表 | 各项目在里程碑节点或重大状态变更时向 iS-Core 提交 ISYNC 通报 | `06-isync/GLOBAL_INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-20，初始化，6个项目摘要行） |
 
 ---
 
 ## 6. 关键决策日志 (Decision Log)
+
+### 2026-04-20
+
+**裁决事项**：「指令汇总追踪表机制」提升为体系级基线标准
+
+**来源**：NexFlow PCS ISYNC 通报（机制建立申请）
+
+**裁决结果**：通过。发布 SOP_007 v1.0，建立 GLOBAL_INSTRUCTION_TRACKER.md，要求所有活跃项目在下一次迭代时完成追踪表的标准化改造。SOP_007 定位为 SOP_004/005/006 的上位体系级文件，不引起冲突。
 
 | 日期 | 决策事项 | 决策结果 | 影响范围 |
 | :--- | :--- | :--- | :--- |

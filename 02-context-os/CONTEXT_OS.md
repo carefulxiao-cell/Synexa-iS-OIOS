@@ -1,7 +1,7 @@
 # Synexa iS · Context OS (全局状态总账本)
 
-> **版本**：v2.3
-> **更新时间**：2026-04-18
+> **版本**：v2.4
+> **更新时间**：2026-04-22
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
 
@@ -153,6 +153,7 @@
 | :--- | :--- | :--- | :--- |
 | 2026-04-18 | **全局18步工作流标准正式确立（iS-Core 裁决）** | 超智全局工作流程标准化为18个步骤，分三大阶段：分析层（步骤1-5：描述情况→推演可能→目标制定→交流互补→对齐理解）、执行层（步骤6-11：生成指令→审核指令→汇总推进→入仓留存→下发执行→反查完善）、沉化层（步骤12-18：阶段完成→整理汇总→状态审查→跟踪推进→整洁清理→更新通报→全局对齐）。已写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`。 | 全局体系治理 |
 | 2026-04-18 | **INSTRUCTION_TRACKER 机制全局启动（iS-Core 裁决）** | `INSTRUCTION_TRACKER.md` 在 Core 工作空间正式初始化，包含批次管理、废弃协议、跨仓库可见性三项优化字段。裁决：该机制将向所有 PCS 工作空间推广，每个 PCS 在下次重大迭代时同步建立本空间的 INSTRUCTION_TRACKER。 | 全局体系治理 |
+| 2026-04-22 | **NexFlow 批次G V1.9 MEET-002 会议记录模块重构（iS-NexFlow PCS 执行完成）** | 完成会议记录模块从「逐项填表」到「非结构化纪要→AI标准化→任务卡片校正→汇入闭环→通报生成」的完整重构。数据层：meetings 表新增 standardizedMinutes 字段，status 枚举更新为5态（draft/standardized/tasks_reviewed/organized/archived），migration 0023 执行成功。接口层：重构 create/aiParse/processTodo 三接口，新增 updateStandardized 接口，实现 AI 标准化、结构化任务卡片提取、语义去重比对、批量汇入（sourceOrigin/sourceRefs 写入）、通报自动生成。前端层：Meetings.tsx 完全重写为四视图流程（Input→Standardized→TasksReview→Report），STATUS_LABEL 对齐 schema 枚举。TypeScript 0 errors，9文件 89用例全部PASS。Checkpoint: 62f9cdd1，GitHub commit: 42f4728。 | iS-NexFlow |
 | 2026-04-20 | **NexFlow 产品族命名体系更新（iS-Core 裁决）** | 确立 NexFlow 为产品族主线。原 `iS-GlobalPM` 重命名为 `NexFlow·Synexa`（超智内部全局项管）；新增 `NexFlow·iS`（NexFlow 产品开发建构管理）。 | 全局体系治理 |
 | 2026-04-18 | **iS-GlobalPM Step 0A 最小定义（iS-Core 裁决）** | 项目代号：`iS-GlobalPM`（后更名为 `NexFlow·Synexa`）；名称：超智全局超级项管系统；一句话定义：针对超智全局系统的高效高质执行落地管理，基于18步工作流标准搭建；层级：G·集团级；优先级：P1。已写入 `03-projects/_INDEX.md`。 | iS-GlobalPM |
 | 2026-04-17 | **协作链路结构性修复三项裁决（iS-Core 正式裁决）** | ①ISYNC 协议升级为 v1.2，写入 TBF 三态核查门禁机制（✅通过/⚠️待验证/❌未通过），强制阻断未完成生产验证的下一阶段推进；②新增 `SOP_003_Execution_Submission_v1.0.md`，确立执行框强制提交报告规范，含架构规范自查（无原生 SQL、唯一迁移路径）与生产环境验证截图要求，格式不符 PCS 有权拒绝接收；③确立数据库迁移唯一路径原则：所有数据库结构变更必须通过 Drizzle ORM 标准迁移流程，禁止任何独立建表脚本，违反可要求回滚。TBF 模板同步升级为 v2.1。根因：体系有规范文档但无执行门禁，本次三条裁决将现有规范从「建议」升级为「门禁」。 | 全局体系治理，iS-NexFlow 首发 |

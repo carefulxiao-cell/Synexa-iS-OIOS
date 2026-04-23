@@ -1,0 +1,180 @@
+direction: down
+
+title: {
+  label: "超智系统基座 (Synexa iS Base) · 架构总图 v1.1"
+  near: top-center
+  style.font-size: 22
+  style.bold: true
+}
+
+# =====================
+# 顶层：决策者
+# =====================
+human: "决策者 (Human)\n战略意志 · 最终裁决" {
+  shape: person
+  style.fill: "#1a1a2e"
+  style.font-color: "#ffffff"
+  style.font-size: 14
+  style.bold: true
+}
+
+# =====================
+# 第一层：动态基线层
+# =====================
+baseline: "动态基线层 (Dynamic Baseline) — 所有 AI 协同的唯一前提" {
+  style.fill: "#c1121f"
+  style.font-color: "#ffffff"
+  style.font-size: 14
+  style.bold: true
+  style.border-radius: 6
+
+  l3: "L3 全局级\nCONTEXT_OS.md\n全局状态总账本" {
+    style.fill: "#e63946"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  l2: "L2 空间级\nISYNC Protocol\n跨平台同步协议\n(Manus / GPT / GitHub)" {
+    style.fill: "#e63946"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  l1_fbl: "L1 项目级\nFBL 功能基线\n指令汇总 · 代码比对\n验证闭环" {
+    style.fill: "#e63946"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  l1_tbf: "L1 项目级\nTBF 任务基线\n三态门禁\n✅ 通过 / ⚠️ 待验证 / ❌ 未通过" {
+    style.fill: "#e63946"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  l1_rule: "⚡ L1 强制归档规则\n指令产生即推送 GitHub\n未推送 = 未生效" {
+    style.fill: "#9d0208"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+    style.bold: true
+    style.border-radius: 4
+  }
+}
+
+# =====================
+# 第二层：五节点工作流
+# =====================
+workflow: "五节点知识生产闭环" {
+  style.fill: "#1d3557"
+  style.font-color: "#ffffff"
+  style.font-size: 14
+  style.bold: true
+  style.border-radius: 6
+
+  sco_in: "① SCO 枢机经纬\n策略室\n战略推演 · 需求定义" {
+    style.fill: "#457b9d"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  core: "② Core 智核中枢\n董事会\n基线治理 · 裁决 · 调度" {
+    style.fill: "#457b9d"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  matrix: "③ Matrix 智核矩阵\n研究室\n规则化 · SOP · 模板" {
+    style.fill: "#457b9d"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  pcs: "④ PCS 项目组\n执行层\n开发 · 代码 · TBF 报告" {
+    style.fill: "#457b9d"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  sco_out: "⑤ SCO 验收\n策略室\n验证产物是否符合战略意图" {
+    style.fill: "#457b9d"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+
+  sco_in -> core: "战略意图 · 需求"
+  core -> matrix: "裁决 · 立项"
+  matrix -> pcs: "规程 · 模板 · 指令包"
+  pcs -> sco_out: "代码包 · TBF 报告"
+  sco_out -> sco_in: "迭代建议 · 验收结论"
+}
+
+# =====================
+# 第三层：核心机制
+# =====================
+mechanisms: "核心运作机制 (五项原则)" {
+  style.fill: "#1b4332"
+  style.font-color: "#ffffff"
+  style.font-size: 14
+  style.bold: true
+  style.border-radius: 6
+
+  m1: "① 强制门禁\n规范 → 硬卡点\nSOP_003 提交规范" {
+    style.fill: "#2d6a4f"
+    style.font-color: "#ffffff"
+    style.font-size: 11
+  }
+  m2: "② SSOT 原则\n未写入 GitHub = 不存在\n聊天记录不作执行依据" {
+    style.fill: "#2d6a4f"
+    style.font-color: "#ffffff"
+    style.font-size: 11
+  }
+  m3: "③ 正反向双重验证\n正向：指令→代码是否实现\n反向：代码→指令是否授权" {
+    style.fill: "#2d6a4f"
+    style.font-color: "#ffffff"
+    style.font-size: 11
+  }
+  m4: "④ 版本生命周期\n新版生效→旧版明确作废\n防止 AI 引用历史约束" {
+    style.fill: "#2d6a4f"
+    style.font-color: "#ffffff"
+    style.font-size: 11
+  }
+  m5: "⑤ 人机协作边界\n哪些决策必须由人做\n哪些 AI 可自主执行" {
+    style.fill: "#2d6a4f"
+    style.font-color: "#ffffff"
+    style.font-size: 11
+  }
+}
+
+# =====================
+# 第四层：跨平台协作
+# =====================
+platforms: "跨平台协作层" {
+  style.fill: "#3d2b56"
+  style.font-color: "#ffffff"
+  style.font-size: 14
+  style.bold: true
+  style.border-radius: 6
+
+  manus: "Manus\n执行智能体\niS-Core 主控入口" {
+    style.fill: "#6d6875"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  github: "GitHub\nSSOT 中央仓\ncarefulxiao-cell/Synexa-iS-OIOS" {
+    style.fill: "#6d6875"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+  gpt: "GPT\n策略智能体\nSCO / 知识推演" {
+    style.fill: "#6d6875"
+    style.font-color: "#ffffff"
+    style.font-size: 12
+  }
+
+  manus -> github: "L1 归档 · 回写变更"
+  gpt -> github: "L1 归档 · 回写变更"
+  github -> manus: "读取基线"
+  github -> gpt: "读取基线"
+}
+
+# =====================
+# 层间连接
+# =====================
+human -> baseline: "战略意志注入"
+human -> workflow.core: "最终裁决"
+baseline -> workflow: "基线约束全部节点"
+workflow -> mechanisms: "机制保障闭环质量"
+mechanisms -> platforms: "协议落地到平台"
+platforms -> baseline: "变更回写 · 状态同步"

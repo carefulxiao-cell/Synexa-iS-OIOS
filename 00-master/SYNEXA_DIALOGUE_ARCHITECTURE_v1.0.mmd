@@ -1,0 +1,69 @@
+graph TB
+    subgraph ECO["Layer 4: 全局生态演进机制 (Eco-Evolution)"]
+        CP["CORE_PRINCIPLES\n核心原则汇总"]
+        SR["SYSTEM_REGISTRY\n体系注册表"]
+        OI["Open Issues\n待解决问题"]
+        CTXOS["CONTEXT_OS\n全局状态账本"]
+    end
+
+    subgraph CROSS["Layer 3: 跨组通联机制 (Inter-Project)"]
+        ISYNC_C["ISYNC 中央仓\n06-isync/"]
+        BASELINE["读取基线\n触发词"]
+        XDEP["跨组依赖声明\n(TBF 中注册)"]
+    end
+
+    subgraph PROJ_NF["Layer 2: 同组协同机制 - iS-NexFlow (示例)"]
+        HUB_NF["中枢框\n中枢-超级项管·NexFlow\n(指令生产 + 启动语生成)"]
+        EXEC_NF["执行框\n执行框-超级项管·NexFlow\n(代码开发)"]
+        AUDIT_NF["审查框\n审查框-超级项管·iS-NexFlow\n(全面审查 NexFlow)"]
+        TBF_NF["TBF 任务基线\n(共享文件)"]
+    end
+
+    subgraph DIALOG["Layer 1: 同框对话机制 (Intra-Dialog)"]
+        INIT["中枢引导启动\n(生成启动语)"]
+        APE["APE 原则\n先对齐→再生产→再执行"]
+        ANTI["反逻辑自洽检验\n(验证 [结论])"]
+        SYNC["指令汇总\n(汇总指令)"]
+    end
+
+    subgraph CORE_HUB["iS-Core 中枢主控"]
+        ISCORE["中枢-智核中枢·iS-Core\n(全局裁决 + 体系治理)"]
+    end
+
+    %% Layer 1 内部流转
+    INIT --> APE --> ANTI --> SYNC
+
+    %% Layer 2 内部流转
+    HUB_NF -->|"生成指令 + 启动语"| EXEC_NF
+    EXEC_NF -->|"交付产出"| AUDIT_NF
+    AUDIT_NF -->|"审查报告 + 修复任务"| HUB_NF
+    TBF_NF -.->|"对齐基准"| HUB_NF
+    TBF_NF -.->|"对齐基准"| EXEC_NF
+    TBF_NF -.->|"对齐基准"| AUDIT_NF
+
+    %% Layer 1 → Layer 2
+    SYNC -->|"推送指令"| ISYNC_C
+    INIT -.->|"启动语来自"| HUB_NF
+
+    %% Layer 2 → Layer 3
+    HUB_NF -->|"汇总指令"| ISYNC_C
+    XDEP -.->|"声明依赖"| TBF_NF
+
+    %% Layer 3 → Layer 4
+    ISYNC_C -->|"全量指令资产"| SR
+    BASELINE -->|"触发读取"| CTXOS
+    CTXOS -->|"状态回写"| SR
+
+    %% iS-Core 统管
+    ISCORE -->|"读取基线"| CTXOS
+    ISCORE -->|"全局裁决"| CP
+    ISCORE -->|"调度各组"| PROJ_NF
+    ISCORE -->|"维护"| OI
+    CP -.->|"约束所有框"| DIALOG
+    CP -.->|"约束所有框"| PROJ_NF
+
+    style ECO fill:#1a1a2e,color:#e0e0e0,stroke:#4a4a8a
+    style CROSS fill:#16213e,color:#e0e0e0,stroke:#4a4a8a
+    style PROJ_NF fill:#0f3460,color:#e0e0e0,stroke:#4a4a8a
+    style DIALOG fill:#533483,color:#e0e0e0,stroke:#8a4aaa
+    style CORE_HUB fill:#e94560,color:#ffffff,stroke:#c73652

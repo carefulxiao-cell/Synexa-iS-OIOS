@@ -1,0 +1,240 @@
+direction: down
+
+title: {
+  label: "Synexa iS 全局生态架构 v1.0"
+  near: top-center
+  style.font-size: 20
+  style.bold: true
+}
+
+# ============================================================
+# Layer 4：全局治理层
+# ============================================================
+
+L4: "Layer 4 · 全局治理层" {
+  style.border-radius: 8
+  style.stroke: "#1a1a2e"
+  style.stroke-width: 3
+  style.fill: transparent
+
+  CORE: "CORE_PRINCIPLES.md\n核心原则" {
+    style.stroke: "#1a1a2e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  RACI: "RACI.md\n角色责任表" {
+    style.stroke: "#1a1a2e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  VER: "VERSION_REGISTRY.md\n版本交付注册表" {
+    style.stroke: "#1a1a2e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  ITER: "ITER_PROTOCOL.md\n迭代协议" {
+    style.stroke: "#1a1a2e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  KR: "KNOWLEDGE_REGISTRY.md\n知识资产注册表（横向贯穿）" {
+    style.stroke: "#1a1a2e"
+    style.stroke-width: 2
+    style.stroke-dash: 4
+    style.fill: transparent
+  }
+
+  triggers_L4: "触发词\n`全局检查同步`\n`迭代 [文件/机制名]`" {
+    style.stroke: "#1a1a2e"
+    style.stroke-width: 1
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+}
+
+# ============================================================
+# Layer 3：跨组协同层
+# ============================================================
+
+L3: "Layer 3 · 跨组协同层" {
+  style.border-radius: 8
+  style.stroke: "#16213e"
+  style.stroke-width: 2
+  style.fill: transparent
+
+  CTX: "CONTEXT_OS.md\n全局状态账本" {
+    style.stroke: "#16213e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  IDX: "_INDEX.md\n项目索引" {
+    style.stroke: "#16213e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  WR: "WORKSPACE_REGISTRY.md\n对话组注册表" {
+    style.stroke: "#16213e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  OI: "OPEN_ISSUES.md\n待解决问题清单" {
+    style.stroke: "#16213e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  ET: "EXECUTION_TRACKER.md\n任务跟踪（生产→跟踪→入库）" {
+    style.stroke: "#16213e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  ISYNC_DIR: "06-isync/\n指令归档目录" {
+    style.stroke: "#16213e"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+
+  triggers_L3: "触发词\n`读取基线`\n`跨组复用`\n`全局复用`\n`复用分析`\n`冲突应对`" {
+    style.stroke: "#16213e"
+    style.stroke-width: 1
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+}
+
+# ============================================================
+# Layer 2：同组协作层
+# ============================================================
+
+L2: "Layer 2 · 同组协作层（以 NexFlow 为例）" {
+  style.border-radius: 8
+  style.stroke: "#0f3460"
+  style.stroke-width: 2
+  style.fill: transparent
+
+  HUB: "中枢框\n指令生产 · 目标确认 · 阶段裁决" {
+    style.stroke: "#0f3460"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  EXE: "执行框\n开发交付 · 自审三问" {
+    style.stroke: "#0f3460"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  REV: "审查框\n里程碑独立审查 · 全程上下文连续" {
+    style.stroke: "#0f3460"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  TBF: "TBF 任务目标基线\n（三框共享，中枢框维护）" {
+    style.stroke: "#0f3460"
+    style.stroke-width: 1
+    style.stroke-dash: 3
+    style.fill: transparent
+  }
+  TG: "TRIGGER_GLOSSARY.md\n触发词汇总表" {
+    style.stroke: "#0f3460"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+
+  HUB -> EXE: "指令包 + TBF"
+  EXE -> HUB: "自审通过后提交"
+  HUB -> REV: "关键里程碑触发"
+  REV -> HUB: "审查结论"
+
+  triggers_L2: "触发词\n`全面审查 [系统]`\n`生成启动语`" {
+    style.stroke: "#0f3460"
+    style.stroke-width: 1
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+}
+
+# ============================================================
+# Layer 1：同框治理层
+# ============================================================
+
+L1: "Layer 1 · 同框治理层" {
+  style.border-radius: 8
+  style.stroke: "#533483"
+  style.stroke-width: 2
+  style.fill: transparent
+
+  DF: "DIALOGUE_FRAMEWORK.md\n人机沟通协作框架" {
+    style.stroke: "#533483"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  TP: "TOOL_PRINCIPLES.md\n专项工具原则（10类）" {
+    style.stroke: "#533483"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+
+  principles: "同框核心原则\nAPE原则 · 反逻辑自洽\n自审三问 · 对齐汇总" {
+    style.stroke: "#533483"
+    style.stroke-width: 1
+    style.stroke-dash: 3
+    style.fill: transparent
+  }
+
+  triggers_L1: "触发词\n`更新指令汇总`\n`对齐汇总`" {
+    style.stroke: "#533483"
+    style.stroke-width: 1
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+}
+
+# ============================================================
+# 层级关系连线
+# ============================================================
+
+L4 -> L3: "CORE_PRINCIPLES 约束所有层" {
+  style.stroke: "#1a1a2e"
+  style.stroke-width: 2
+}
+
+L3 -> L2: "CONTEXT_OS 提供全局状态\nISYNC 归档跨组指令" {
+  style.stroke: "#16213e"
+  style.stroke-width: 2
+}
+
+L2 -> L1: "TBF 基线下传\n触发词在框内生效" {
+  style.stroke: "#0f3460"
+  style.stroke-width: 2
+}
+
+L4.KR -> L3: "知识资产横向贯穿" {
+  style.stroke: "#1a1a2e"
+  style.stroke-dash: 4
+  style.stroke-width: 1
+}
+
+L4.KR -> L2: "" {
+  style.stroke: "#1a1a2e"
+  style.stroke-dash: 4
+  style.stroke-width: 1
+}
+
+L4.KR -> L1: "" {
+  style.stroke: "#1a1a2e"
+  style.stroke-dash: 4
+  style.stroke-width: 1
+}
+
+# iS-Core 统管全局
+iSCore: "iS-Core\n智核中枢\n（全局裁决 · 体系治理）" {
+  style.stroke: "#1a1a2e"
+  style.stroke-width: 3
+  style.fill: transparent
+  style.border-radius: 4
+}
+
+iSCore -> L4: "制定并维护全局原则"
+iSCore -> L3: "全局状态管理 · 跨组裁决"

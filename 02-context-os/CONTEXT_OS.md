@@ -1,7 +1,7 @@
 # Synexa iS · Context OS (全局状态总账本)
 
-> **版本**：v2.4
-> **更新时间**：2026-04-22
+> **版本**：v2.5
+> **更新时间**：2026-04-24
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
 
@@ -136,6 +136,7 @@
 | **INSTRUCTION_TRACKER** | 指令追踪表机制 | 每次新增指令时强制归档 | `06-isync/INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-18，Core 首发，向全 PCS 推广中） |
 | **SOP_007** | 指令汇总追踪表机制体系级标准规范 | 所有 PCS 工作空间建立指令追踪表时强制遵循 | `05-sop/SOP_007_Instruction_Tracker_Standard_v1.0.md` | 🟢 已启用（2026-04-20，响应 NexFlow PCS ISYNC 通报，为 SOP_004/005/006 上位体系级文件） |
 | **GLOBAL_INSTRUCTION_TRACKER** | 全局指令追踪总表 | 各项目在里程碑节点或重大状态变更时向 iS-Core 提交 ISYNC 通报 | `06-isync/GLOBAL_INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-20，初始化，6个项目摘要行） |
+| **DIALOGUE_FRAMEWORK_L2** | Layer 2 标准四框架构定义 | 建立新对话组时强制对照 | `00-master/SYNEXA_DIALOGUE_ARCHITECTURE_v1.0.md`（待重建） | 🟡 架构已裁决，文件待重建 |
 
 ---
 
@@ -151,6 +152,7 @@
 
 | 日期 | 决策事项 | 决策结果 | 影响范围 |
 | :--- | :--- | :--- | :--- |
+| 2026-04-24 | **Layer 2 标准框型扩展：新增「编撰-」框型（iS-Core 裁决）** | Layer 2 同组协作层标准框型从三框扩展为四框：①中枢框（`iS-[项目]`）：指令生产·目标确认·阶段裁决；②执行框（`执行-`）：系统/网站/代码类工程生产；③**编撰框（`编撰-`）**：文件/知识/治理文档类生产（新增）；④审查框（`审查-`）：里程碑独立审查。执行框与编撰框可并行运作，互不干扰。全局架构图同步更新至 v1.2（颜色+线条+编撰框）。 | 全局体系治理，Layer 2 架构定义 |
 | 2026-04-18 | **全局18步工作流标准正式确立（iS-Core 裁决）** | 超智全局工作流程标准化为18个步骤，分三大阶段：分析层（步骤1-5：描述情况→推演可能→目标制定→交流互补→对齐理解）、执行层（步骤6-11：生成指令→审核指令→汇总推进→入仓留存→下发执行→反查完善）、沉化层（步骤12-18：阶段完成→整理汇总→状态审查→跟踪推进→整洁清理→更新通报→全局对齐）。已写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`。 | 全局体系治理 |
 | 2026-04-18 | **INSTRUCTION_TRACKER 机制全局启动（iS-Core 裁决）** | `INSTRUCTION_TRACKER.md` 在 Core 工作空间正式初始化，包含批次管理、废弃协议、跨仓库可见性三项优化字段。裁决：该机制将向所有 PCS 工作空间推广，每个 PCS 在下次重大迭代时同步建立本空间的 INSTRUCTION_TRACKER。 | 全局体系治理 |
 | 2026-04-22 | **NexFlow 批次G V1.9 MEET-002 会议记录模块重构（iS-NexFlow PCS 执行完成）** | 完成会议记录模块从「逐项填表」到「非结构化纪要→AI标准化→任务卡片校正→汇入闭环→通报生成」的完整重构。数据层：meetings 表新增 standardizedMinutes 字段，status 枚举更新为5态（draft/standardized/tasks_reviewed/organized/archived），migration 0023 执行成功。接口层：重构 create/aiParse/processTodo 三接口，新增 updateStandardized 接口，实现 AI 标准化、结构化任务卡片提取、语义去重比对、批量汇入（sourceOrigin/sourceRefs 写入）、通报自动生成。前端层：Meetings.tsx 完全重写为四视图流程（Input→Standardized→TasksReview→Report），STATUS_LABEL 对齐 schema 枚举。TypeScript 0 errors，9文件 89用例全部PASS。Checkpoint: 62f9cdd1，GitHub commit: 42f4728。 | iS-NexFlow |

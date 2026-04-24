@@ -1,7 +1,7 @@
 direction: down
 
 title: {
-  label: "Synexa iS 全局生态架构 v1.0"
+  label: "Synexa iS 全局生态架构 v1.2"
   near: top-center
   style.font-size: 20
   style.bold: true
@@ -118,17 +118,22 @@ L2: "Layer 2 · 同组协作层（以 NexFlow 为例）" {
     style.stroke-width: 2
     style.fill: transparent
   }
-  EXE: "执行框\n开发交付 · 自审三问" {
+  EXE: "执行框（执行-）\n系统/网站/代码类工程生产" {
     style.stroke: "#00C853"
     style.stroke-width: 2
     style.fill: transparent
   }
-  REV: "审查框\n里程碑独立审查 · 全程上下文连续" {
+  BZ: "编撰框（编撰-）\n文件/知识/治理文档类生产" {
     style.stroke: "#00C853"
     style.stroke-width: 2
     style.fill: transparent
   }
-  TBF: "TBF 任务目标基线\n（三框共享，中枢框维护）" {
+  REV: "审查框（审查-）\n里程碑独立审查 · 全程上下文连续" {
+    style.stroke: "#00C853"
+    style.stroke-width: 2
+    style.fill: transparent
+  }
+  TBF: "TBF 任务目标基线\n（四框共享，中枢框维护）" {
     style.stroke: "#00C853"
     style.stroke-width: 1
     style.stroke-dash: 3
@@ -140,8 +145,10 @@ L2: "Layer 2 · 同组协作层（以 NexFlow 为例）" {
     style.fill: transparent
   }
 
-  HUB -> EXE: "指令包 + TBF"
+  HUB -> EXE: "工程指令包 + TBF"
+  HUB -> BZ: "文档指令包 + TBF"
   EXE -> HUB: "自审通过后提交"
+  BZ -> HUB: "编撰完成后提交"
   HUB -> REV: "关键里程碑触发"
   REV -> HUB: "审查结论"
 

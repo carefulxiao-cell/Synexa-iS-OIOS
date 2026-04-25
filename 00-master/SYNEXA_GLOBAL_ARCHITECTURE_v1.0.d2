@@ -1,7 +1,7 @@
 direction: down
 
 title: {
-  label: "Synexa iS 全局生态架构 v1.2"
+  label: "Synexa iS 全局生态架构 v1.3"
   near: top-center
   style.font-size: 20
   style.bold: true
@@ -235,7 +235,10 @@ L4.KR -> L1: "" {
   style.stroke-width: 1
 }
 
+# ============================================================
 # iS-Core 统管全局
+# ============================================================
+
 iSCore: "iS-Core\n智核中枢\n（全局裁决 · 体系治理）" {
   style.stroke: "#FF3B3B"
   style.stroke-width: 4
@@ -245,3 +248,130 @@ iSCore: "iS-Core\n智核中枢\n（全局裁决 · 体系治理）" {
 
 iSCore -> L4: "制定并维护全局原则"
 iSCore -> L3: "全局状态管理 · 跨组裁决"
+
+# ============================================================
+# 下方扩展区：iS Modules + Engine Layer（占位，向下滚动）
+# ============================================================
+
+EXPAND: "── 体系模块全景（向下滚动）──" {
+  style.stroke: "#888888"
+  style.stroke-width: 1
+  style.stroke-dash: 4
+  style.fill: transparent
+  style.font-size: 13
+  style.font-color: "#888888"
+}
+
+# iS Modules 表格（左列）
+MODULES: "iS Modules · 智核模块体系" {
+  style.border-radius: 8
+  style.stroke: "#FF3B3B"
+  style.stroke-width: 3
+  style.fill: transparent
+
+  M1: "iS-Core · 智核中枢\nGovernance & Adjudication\n治理与裁决（最终决策）" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 2
+    style.fill: "#FFF5F5"
+    style.font-size: 12
+  }
+  M2: "iS-Hub · 智核枢纽\nResource & Intelligence\n资源与情报（连接外部）" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  M3: "iS-SCO · 战略认知操作系统\nStrategic Cognitive OS\n战略推演（未来判断）" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  M4: "iS-Matrix · 智核矩阵\nStructured Production\n结构化生产（标准/方法/模板）" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  M5: "iS-PCS · 项目执行系统\nProject Control System\n项目执行（推进器）" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  M6: "iS-Lab · 智核实验室\nInnovation Lab\n创新验证（试错场）" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+}
+
+# Engine Layer 表格（右列）
+ENGINES: "Engine Layer · 业务引擎体系" {
+  style.border-radius: 8
+  style.stroke: "#00BFAE"
+  style.stroke-width: 3
+  style.fill: transparent
+
+  E1: "Nex₂U · 智食引擎\nSmart Food Engine\n整体精神核心 · 底层智能协同" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  E2: "NexSply · 意臻\nSupply Chain Engine\n优质供应链服务" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  E3: "NexFlow · 超级项管\nProject Management Engine\n项目管理引擎" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  E4: "NexMPC · 人力协同\nManpower Coordination Engine\n人力资源协同引擎" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  E5: "NexFA · 财务管理\nFinancial Administration Engine\n财务管理引擎" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  E6: "NexChef · 餐食方案\nChef Solution Engine\n餐食方案 / 具身智能" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 1
+    style.fill: transparent
+    style.font-size: 12
+  }
+  E7: "NexEP · 扩展业务\nExtended Platform Engine\n扩展业务引擎（待定）" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 1
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+}
+
+# 连线：iS-Core 向下引出到扩展区
+iSCore -> EXPAND: "" {
+  style.stroke: "#AAAAAA"
+  style.stroke-width: 1
+  style.stroke-dash: 4
+}
+EXPAND -> MODULES: "" {
+  style.stroke: "#FF3B3B"
+  style.stroke-width: 1
+  style.stroke-dash: 3
+}
+EXPAND -> ENGINES: "" {
+  style.stroke: "#00BFAE"
+  style.stroke-width: 1
+  style.stroke-dash: 3
+}

@@ -137,6 +137,7 @@
 | **SOP_007** | 指令汇总追踪表机制体系级标准规范 | 所有 PCS 工作空间建立指令追踪表时强制遵循 | `05-sop/SOP_007_Instruction_Tracker_Standard_v1.0.md` | 🟢 已启用（2026-04-20，响应 NexFlow PCS ISYNC 通报，为 SOP_004/005/006 上位体系级文件） |
 | **GLOBAL_INSTRUCTION_TRACKER** | 全局指令追踪总表 | 各项目在里程碑节点或重大状态变更时向 iS-Core 提交 ISYNC 通报 | `06-isync/GLOBAL_INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-20，初始化，6个项目摘要行） |
 | **DIALOGUE_FRAMEWORK_L2** | Layer 2 标准四框架构定义 | 建立新对话组时强制对照 | `00-master/SYNEXA_DIALOGUE_ARCHITECTURE_v1.0.md`（待重建） | 🟡 架构已裁决，文件待重建 |
+| **SOP-008** | 编撰线标准生产规范 | 启动任何文件/知识类生产任务时强制遵循 | `05-sop/SOP_008_Documentation_Workflow_v1.0.md` | 🟢 已启用（2026-04-25，确立七步工作流） |
 
 ---
 

@@ -1,6 +1,6 @@
 # Synexa iS · Context OS (全局状态总账本)
 
-> **版本**：v2.5
+> **版本**：v2.8
 > **更新时间**：2026-04-29
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
@@ -13,24 +13,25 @@
 * **核心架构**：五层协同架构 (System -> SOP -> Skills -> Agent Matrix -> PCS)
 * **方法总线**：18步全局工作流标准（2026-04-18 正式确立，详见 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`）
 * **最高裁决原则**：总纲 > Context OS > PCS > 决策日志 > 临时讨论
-* **对话组总数**：9个（Manus 与 GPT 一一对应）
+* **对话组总数**：L1×5 + L2×7 + L3/L4 若干（详见 `00-master/WORKSPACE_REGISTRY_v2.0.md`）
+* **域名与基础设施注册**：详见 `00-master/DOMAIN_REGISTRY_v1.0.md`
 * **主控入口**：【智核中枢·iS-Core】（对外品牌名：超智系统·Synexa iS）
 
 ---
 
 ## 1B. 品牌架构总览（iS-Synexa 战略推演 · 2026-04-29 更新）
 
-> 本节为 iS-Synexa 品牌建设组经本次战略推演后的最新共识，已覆盖 2026-04-16 iS-Core 裁决版，所有智能体与文件应以此为准。
+> 本节已由 iS-Synexa 品牌建设组于 2026-04-29 完成战略推演升级，覆盖 2026-04-26 iS-Core 裁决版（七大引擎扩展），所有智能体与文件应以此为准。
 
 ### 超智（Synexa）的本质定位
 
-**超智是一个"自带超级大脑的现代服务网络"，而非纯粹的软件公司。**
+**超智是一个「自带超级大脑的现代服务网络」，而非纯粹的软件公司。**
 
-超智提供新一代健康餐食交付、供应链服务与整合营销服务。其核心护城河在于将多年在复杂现实场景（医院饭堂、供应链、大型传播项目）中积累的非结构化经验，提炼为可计算、可复制的七大数字引擎。对外卖结果（代运营/交付结果），对内用系统（七大引擎）。
+超智提供新一代健康餐食交付、供应链服务与整合营销服务。其核心护城河在于将多年在复杂现实场景（医院饭堂、供应链、大型传播项目）中积累的非结构化经验，提炼为可计算、可复制的七大数字引擎。**对外卖结果（代运营/交付结果），对内用系统（七大引擎）。**
 
 **核心价值主张**：泥土里的数字孪生——既懂凌晨3点的菜市场，又懂 AI 智能体的调度。
 
-### 七大引擎完整定位（2026-04-29 确立）
+### 七大引擎完整定位与收入路径（2026-04-29 确立）
 
 七大引擎分为三类，遵循「先内部捶打，后对外开放」的演进逻辑：
 
@@ -71,6 +72,14 @@
 **描绘未来**：「现在，我们不仅用这些引擎服务自己，也开始将它们作为生产协同工具开放出来，为需要供应链协同、项目管理、整合营销的企业，提供最前沿、体验最优的解决方案。」
 
 > **历史价值保留**：Nex2U 的核心定位话术为「可以活十年的营养决策基础设施」，适合在深度沟通场景（投资人、战略合作方）中使用，比「新一代健康餐食交付」更有穿透力。
+
+### 行业组合示例（超智协同输出）
+
+- 医院饭堂：NexChef（餐食履约）+ Nex2U（营养决策）+ Nexsply（供应链）+ NexFlow（项目管理）
+- 餐饮品牌：NexChef + Nexsply + NexIMC（整合营销）
+- 消费品牌营销：NexIMC（独立服务）
+
+> 超智负责把这些模块协同起来，对外输出完整的行业解决方案，而不是让客户自己拼装。
 
 ---
 
@@ -113,6 +122,9 @@
 | `SOP_007_Instruction_Tracker_Standard_v1.0.md` | 2026-04-20 | ⏳ 待上传 | 指令汇总追踪表机制体系级标准规范（新文件，响应 NexFlow PCS ISYNC 通报裁决通过） |
 | `GLOBAL_INSTRUCTION_TRACKER.md` | 2026-04-20 | ⏳ 待上传 | 全局指令追踪总表（新文件，6个项目摘要行，含 iS-NexFlow V3.0 阻塞项标注） |
 | `INSTRUCTION_TRACKER.md` | 2026-04-20 | ⏳ 待上传 | iS-Core 指令追踪表（v1.2，新增 CORE-CMD-007/008，批次总览更新） |
+| `WORKSPACE_REGISTRY_v2.0.md` | 2026-04-26 | ⏳ 待上传 | 对话组全局注册表 v2.0（L1×5 + L2×7，含 NexMPC/NexFA，Nex2U/NexChef 架构关系明确，旧版 v1.0 作废） |
+| `DOMAIN_REGISTRY_v1.1.md` | 2026-04-26 | ⏳ 待上传 | 域名与基础设施注册表 v1.1（补充引擎归属字段；品牌域=产品介绍/系统域=实战工具；番医项目归属修正；全局枢纽看板归属 NexFlow；v1.0 作废） |
+| `CONTEXT_OS.md` | 2026-04-26 | ⏳ 待上传 | 本文件（**v2.7**，Nex2U/NexChef 主题定位改为对外产品价值描述，内部架构关系移至备注；超智协同描述更新为七大引擎） |
 
 > **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`iS_Instructions_All_Workspaces_v1.2.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
 
@@ -162,6 +174,8 @@
 | **INSTRUCTION_TRACKER** | 指令追踪表机制 | 每次新增指令时强制归档 | `06-isync/INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-18，Core 首发，向全 PCS 推广中） |
 | **SOP_007** | 指令汇总追踪表机制体系级标准规范 | 所有 PCS 工作空间建立指令追踪表时强制遵循 | `05-sop/SOP_007_Instruction_Tracker_Standard_v1.0.md` | 🟢 已启用（2026-04-20，响应 NexFlow PCS ISYNC 通报，为 SOP_004/005/006 上位体系级文件） |
 | **GLOBAL_INSTRUCTION_TRACKER** | 全局指令追踪总表 | 各项目在里程碑节点或重大状态变更时向 iS-Core 提交 ISYNC 通报 | `06-isync/GLOBAL_INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-20，初始化，6个项目摘要行） |
+| **DIALOGUE_FRAMEWORK_L2** | Layer 2 标准四框架构定义 | 建立新对话组时强制对照 | `00-master/SYNEXA_DIALOGUE_ARCHITECTURE_v1.0.md`（待重建） | 🟡 架构已裁决，文件待重建 |
+| **SOP-008** | 编撰线标准生产规范 | 启动任何文件/知识类生产任务时强制遵循 | `05-sop/SOP_008_Documentation_Workflow_v1.0.md` | 🟢 已启用（2026-04-25，确立七步工作流） |
 
 ---
 
@@ -177,9 +191,11 @@
 
 | 日期 | 决策事项 | 决策结果 | 影响范围 |
 | :--- | :--- | :--- | :--- |
+| 2026-04-29 | **超智（Synexa）战略定位与七大引擎体系全面升级（iS-Synexa 品牌建设组推演确立）** | 核心共识：①超智定位从「系统公司」升级为「自带超级大脑的现代服务网络」；②引擎体系在 2026-04-26 七大基础上新增 NexIMC（整合营销传播），形成完整七大引擎（NexFlow/NexMPC/NexFA/Nex2U/NexChef/Nexsply/NexIMC）；③确立三类引擎分类（内部提效型/核心生产型/增收杠杆型）及三阶段收入路径；④NexIMC 定位为整合营销传播服务，面向餐饮、生活小家电等消费品牌，直接创收；⑤对外话术确立为「代运营/交付结果」导向的三段论；⑥保留奇绩申请表历史价值：Nex2U「可以活十年的营养决策基础设施」定位话术。详见 `00-overview/Synexa_Seven_Engines_Positioning_and_Strategy.md`，PCS 升级为 `iS-Synexa_PCS_v0.2.md`。 | 全局品牌，iS-Synexa |
+| 2026-04-26 | **引擎体系扩展：四大→七大（iS-Core 裁决）** | ①新增 NexMPC（人力管理引擎·超级人力管理）、NexFA（财务管理引擎·超级财务管理）；②Nexsply 定位升级为「供应链智能中台（全链路协同覆盖）」；③Nex2U / NexChef 架构关系明确：Nex2U 为规则 SSOT 面向 B 端决策层，NexChef 为消费与应用交互引擎面向 C 端及 B 端操作层，点餐系统归属 NexChef；④iS-Lab 正名为「智核实验·iS-Lab」，副名「灵感前测」；⑤建立 WORKSPACE_REGISTRY v2.0 与 DOMAIN_REGISTRY v1.0 两个新注册表文件。 | 全局品牌架构，L2 引擎体系 |
+| 2026-04-24 | **Layer 2 标准框型扩展：新增「编撰-」框型（iS-Core 裁决）** | Layer 2 同组协作层标准框型从三框扩展为四框：①中枢框（`iS-[项目]`）：指令生产·目标确认·阶段裁决；②执行框（`执行-`）：系统/网站/代码类工程生产；③**编撰框（`编撰-`）**：文件/知识/治理文档类生产（新增）；④审查框（`审查-`）：里程碑独立审查。执行框与编撰框可并行运作，互不干扰。全局架构图同步更新至 v1.2（颜色+线条+编撰框）。 | 全局体系治理，Layer 2 架构定义 |
 | 2026-04-18 | **全局18步工作流标准正式确立（iS-Core 裁决）** | 超智全局工作流程标准化为18个步骤，分三大阶段：分析层（步骤1-5：描述情况→推演可能→目标制定→交流互补→对齐理解）、执行层（步骤6-11：生成指令→审核指令→汇总推进→入仓留存→下发执行→反查完善）、沉化层（步骤12-18：阶段完成→整理汇总→状态审查→跟踪推进→整洁清理→更新通报→全局对齐）。已写入 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`。 | 全局体系治理 |
 | 2026-04-18 | **INSTRUCTION_TRACKER 机制全局启动（iS-Core 裁决）** | `INSTRUCTION_TRACKER.md` 在 Core 工作空间正式初始化，包含批次管理、废弃协议、跨仓库可见性三项优化字段。裁决：该机制将向所有 PCS 工作空间推广，每个 PCS 在下次重大迭代时同步建立本空间的 INSTRUCTION_TRACKER。 | 全局体系治理 |
-| 2026-04-29 | **超智（Synexa）战略定位与七大引擎体系全面升级（iS-Synexa 品牌建设组推演确立）** | 核心共识：①超智定位从「系统公司」升级为「自带超级大脑的现代服务网络」；②引擎从四大升级为七大（新增 NexMPC、NexFA、NexIMC）；③确立三类引擎分类（内部提效型/核心生产型/增收杠杆型）及三阶段收入路径；④NexIMC 定位为整合营销传播服务，面向餐饮、生活小家电等消费品牌，直接创收；⑤对外话术确立为「代运营/交付结果」导向的三段论；⑥保留奇绩申请表历史价值：Nex2U「可以活十年的营养决策基础设施」定位话术。详见 `00-overview/Synexa_Seven_Engines_Positioning_and_Strategy.md`。 | 全局品牌，iS-Synexa |
 | 2026-04-22 | **NexFlow 批次G V1.9 MEET-002 会议记录模块重构（iS-NexFlow PCS 执行完成）** | 完成会议记录模块从「逐项填表」到「非结构化纪要→AI标准化→任务卡片校正→汇入闭环→通报生成」的完整重构。数据层：meetings 表新增 standardizedMinutes 字段，status 枚举更新为5态（draft/standardized/tasks_reviewed/organized/archived），migration 0023 执行成功。接口层：重构 create/aiParse/processTodo 三接口，新增 updateStandardized 接口，实现 AI 标准化、结构化任务卡片提取、语义去重比对、批量汇入（sourceOrigin/sourceRefs 写入）、通报自动生成。前端层：Meetings.tsx 完全重写为四视图流程（Input→Standardized→TasksReview→Report），STATUS_LABEL 对齐 schema 枚举。TypeScript 0 errors，9文件 89用例全部PASS。Checkpoint: 62f9cdd1，GitHub commit: 42f4728。 | iS-NexFlow |
 | 2026-04-20 | **NexFlow 产品族命名体系更新（iS-Core 裁决）** | 确立 NexFlow 为产品族主线。原 `iS-GlobalPM` 重命名为 `NexFlow·Synexa`（超智内部全局项管）；新增 `NexFlow·iS`（NexFlow 产品开发建构管理）。 | 全局体系治理 |
 | 2026-04-18 | **iS-GlobalPM Step 0A 最小定义（iS-Core 裁决）** | 项目代号：`iS-GlobalPM`（后更名为 `NexFlow·Synexa`）；名称：超智全局超级项管系统；一句话定义：针对超智全局系统的高效高质执行落地管理，基于18步工作流标准搭建；层级：G·集团级；优先级：P1。已写入 `03-projects/_INDEX.md`。 | iS-GlobalPM |

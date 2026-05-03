@@ -125,6 +125,8 @@
 | `WORKSPACE_REGISTRY_v2.0.md` | 2026-04-26 | ⏳ 待上传 | 对话组全局注册表 v2.0（L1×5 + L2×7，含 NexMPC/NexFA，Nex2U/NexChef 架构关系明确，旧版 v1.0 作废） |
 | `DOMAIN_REGISTRY_v1.1.md` | 2026-04-26 | ⏳ 待上传 | 域名与基础设施注册表 v1.1（补充引擎归属字段；品牌域=产品介绍/系统域=实战工具；番医项目归属修正；全局枢纽看板归属 NexFlow；v1.0 作废） |
 | `CONTEXT_OS.md` | 2026-04-26 | ⏳ 待上传 | 本文件（**v2.7**，Nex2U/NexChef 主题定位改为对外产品价值描述，内部架构关系移至备注；超智协同描述更新为七大引擎） |
+| `DOMAIN_REGISTRY_v1.2.md` | 2026-05-03 | ⏳ 待上传 | 域名与基础设施注册表 v1.2（新增 ICP 备案信息章节：粤ICP备2024223581号-2，主体：超智（广州）数字科技有限公司；v1.1 作废） |
+| `TASK_TRACKING_PROTOCOL_v1.0.md` | 2026-05-03 | ⏳ 待上传 | 全局任务追踪协议 v1.0（新文件：标准字段规范+触发词机制+接入指南，触发词：`读取任务协议` / `初始化任务表` / `更新任务表` / `输出推进汇总` / `全局任务审查`） |
 
 > **旧文件需删除**：`GPT_Project_Instructions_SynexaiS_v26.1.5.md`、`iS_Instructions_All_Workspaces_v1.1.md`、`iS_Instructions_All_Workspaces_v1.2.md`、`AI_Workspace_Architecture_v1.2.md`（如已上传）
 
@@ -176,6 +178,7 @@
 | **GLOBAL_INSTRUCTION_TRACKER** | 全局指令追踪总表 | 各项目在里程碑节点或重大状态变更时向 iS-Core 提交 ISYNC 通报 | `06-isync/GLOBAL_INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-20，初始化，6个项目摘要行） |
 | **DIALOGUE_FRAMEWORK_L2** | Layer 2 标准四框架构定义 | 建立新对话组时强制对照 | `00-master/SYNEXA_DIALOGUE_ARCHITECTURE_v1.0.md`（待重建） | 🟡 架构已裁决，文件待重建 |
 | **SOP-008** | 编撰线标准生产规范 | 启动任何文件/知识类生产任务时强制遵循 | `05-sop/SOP_008_Documentation_Workflow_v1.0.md` | 🟢 已启用（2026-04-25，确立七步工作流） |
+| **TASK_TRACKING_PROTOCOL** | 全局任务追踪协议 | `读取任务协议` / `初始化任务表 [代号]` / `更新任务表` / `输出推进汇总` / `全局任务审查` | `00-master/TASK_TRACKING_PROTOCOL_v1.0.md` | 🟢 已启用（2026-05-03，标准字段规范+触发词机制+接入指南） |
 
 ---
 

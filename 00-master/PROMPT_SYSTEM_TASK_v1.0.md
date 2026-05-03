@@ -52,7 +52,7 @@
 |---|---|---|
 | 用户向 AI 发出的操作命令 | **指令**（Instruction） | `INSTRUCTION_TRACKER.md` |
 | 写给 AI 的系统规则/提示词 | **工作空间规范** / **Skill** | `iS_Instructions_All_Workspaces` / `*_SKILL.md` |
-| 优化提示词的方法论 | **提示词工程**（Prompt Engineering） | 待建 `PROMPT_ENGINEERING_SKILL_v1.0.md` |
+| 优化提示词的方法论 | **提示词工程**（Prompt Engineering） | `PROMPT_ENGINEERING_SKILL_v1.0.md` |
 
 ---
 
@@ -66,14 +66,14 @@
 | CONTEXT_OS.md 注册 TASK_SUMMARY_SKILL | `02-context-os/CONTEXT_OS.md` | ✅ 已推送 |
 | 全局自定义指令 v2.0（高密度版） | Manus 个性化设置 | ✅ 本次交付，待用户粘贴 |
 | 提示词体系三层架构定义 | 本文件第二节 | ✅ 已裁决 |
+| 建立 `PROMPT_ENGINEERING_SKILL_v1.0.md` | `00-master/PROMPT_ENGINEERING_SKILL_v1.0.md` | ✅ 已完成，待裁决 |
+| 重写 `iS_Instructions_All_Workspaces` → v2.0 | `00-overview/iS_Instructions_All_Workspaces_v2.0.md` | ✅ 已完成，待裁决 |
+| 各工作空间规范引用 `TASK_SUMMARY_SKILL` | `00-overview/iS_Instructions_All_Workspaces_v2.0.md` | ✅ 已完成，包含在 v2.0 中 |
 
 ### 待推进
 
 | 任务 | 优先级 | 说明 |
 |---|---|---|
-| 建立 `PROMPT_ENGINEERING_SKILL_v1.0.md` | P1 | 提示词写法方法论 + 模板库 + 迭代机制 |
-| 重写 `iS_Instructions_All_Workspaces` → v2.0 | P1 | 用新方法论压缩现有九套工作空间规范，消除与全局指令的重叠 |
-| 各工作空间规范引用 `TASK_SUMMARY_SKILL` | P2 | 在各 Project 指令中加入 Skill 触发词声明 |
 | 建立提示词版本迭代记录机制 | P2 | 记录「AI 行为偏离 → 根因 → 修正方式」 |
 
 ---
@@ -95,6 +95,6 @@
 |---|---|---|
 | TASK_SUMMARY_SKILL_v1.0.md | `00-master/` | 本任务产出的第一个 Skill |
 | CORE_PRINCIPLES.md | `00-master/` | 体系最高行为准则，提示词设计的上位文件 |
-| iS_Instructions_All_Workspaces_v1.3.md | `00-overview/` | 现有工作空间规范，待用新方法论重写 |
+| iS_Instructions_All_Workspaces_v2.0.md | `00-overview/` | 现有工作空间规范，已用新方法论重写 |
 | INSTRUCTION_TRACKER.md | `06-isync/` | 操作指令追踪，与本任务独立运作 |
 | CONTEXT_OS.md | `02-context-os/` | 全局状态总账本，本任务重大进展须同步 |

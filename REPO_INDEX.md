@@ -16,7 +16,7 @@
 | `PROMPT_ENGINEERING_SKILL_v1.0.md` | v1.0 | 提示词工程方法论与规范（Skill） | 🟢 活跃 |
 | `PROMPT_SYSTEM_TASK_v1.0.md` | v1.0 | 提示词体系建设任务追踪 | 🟢 活跃 |
 | `TASK_SUMMARY_SKILL_v1.0.md` | v1.0 | 任务情况汇总（Skill） | 🟢 活跃 |
-| `TRIGGER_CHEATSHEET_SKILL_v1.0.md` | v1.0 | 全局触发词速查（Skill） | 🟢 活跃 |
+| `TRIGGER_CHEATSHEET_SKILL_v1.1.md` | v1.0 | 全局触发词速查（Skill） | 🟢 活跃 |
 | `WORKSPACE_REGISTRY_v2.1.md` | v2.1 | 对话组与工作空间全局注册表 | 🟢 活跃 |
 | `DOMAIN_REGISTRY_v1.2.md` | v1.2 | 域名与基础设施注册表 | 🟢 活跃 |
 | `F02_INSTRUCTION_PACKAGE_v1.1.md` | v1.1 | RACI 角色责任表指令包 | 🟢 活跃 |

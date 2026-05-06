@@ -1,7 +1,7 @@
 direction: down
 
 title: {
-  label: "Synexa iS 全局生态架构 v1.5"
+  label: "Synexa iS 全局生态架构 v1.6"
   near: top-center
   style.font-size: 20
   style.bold: true
@@ -456,6 +456,85 @@ EXPAND.MODULES.M4 -> EXPAND.ENGINES: "原子组合 → 专项引擎封装" {
 # iS-Core 向下引出到扩展区
 iSCore -> EXPAND: "" {
   style.stroke: "#AAAAAA"
+  style.stroke-width: 1
+  style.stroke-dash: 4
+}
+
+# ============================================================
+# 图例区：能力原子总表 + 引擎清单表（右下角说明区）
+# ============================================================
+
+LEGEND: "" {
+  direction: right
+  style.fill: transparent
+  style.stroke: transparent
+
+  # 能力原子总表
+  ATOM_TABLE: "能力原子总表（原则 → 知讯 → 能力）" {
+    direction: down
+    style.border-radius: 8
+    style.stroke: "#888888"
+    style.stroke-width: 2
+    style.fill: "#FAFAFA"
+
+    AT_A: "A · 原则层（AI 遵什么）\nA1 全局原则 · A2 角色责任映射\nA3 人机沟通原则 · A4 专项工具原则\nA5 领域映射·清洗" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: "#FFFDF0"
+      style.font-size: 12
+    }
+    AT_B: "B · 知讯层（AI 知道什么）\nB1 全局账本 · B2 基线汇总\nB3 项目索引 · B4 对话注册表\nB5 任务跟踪 · B6 跨平台同步 · B7 版本控制" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: "#F0F7FF"
+      style.font-size: 12
+    }
+    AT_C: "C · 能力层（AI 能做什么）\nC1 触发词激活 · C2 Skill·指令体系\nC3 SOP执行 · C4 反向审查\nC5 报告生成 · C6 开发·工程执行" {
+      style.stroke: "#00C853"
+      style.stroke-width: 2
+      style.fill: "#F0FFF5"
+      style.font-size: 12
+    }
+  }
+
+  # 引擎清单表
+  ENGINE_TABLE: "专项引擎清单（iS-Matrix 组合输出）" {
+    direction: down
+    style.border-radius: 8
+    style.stroke: "#00BFAE"
+    style.stroke-width: 2
+    style.fill: "#F0FFFE"
+
+    ET1: "🔵 建设中\nNex2U · 智食引擎  A5+B2+C2+C5\nNexFlow · 超级项管  B5+C3+B2\nNexChef · 餐食方案  A5+B5+C5\nNexLens · 数据整理  A5+B1+C4+C5" {
+      style.stroke: "#00BFAE"
+      style.stroke-width: 1
+      style.fill: transparent
+      style.font-size: 12
+    }
+    ET2: "⚪️ 待建\nNexMPC · 人力协同  A2+B5+C5\nNexFA · 财务管理  A5+B5+B7+C5\nNexTask · 任务管理  B5+C1+C3\nNexSply · 意臻供应链  A5+B3" {
+      style.stroke: "#00BFAE"
+      style.stroke-width: 1
+      style.stroke-dash: 3
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+}
+
+EXPAND -> LEGEND: "" {
+  style.stroke: transparent
+}
+
+# 能力原子表 → iS-Matrix 连线（说明原子如何流入组合器）
+LEGEND.ATOM_TABLE -> EXPAND.MODULES.M4: "原子供给" {
+  style.stroke: "#888888"
+  style.stroke-width: 1
+  style.stroke-dash: 4
+}
+
+# iS-Matrix → 引擎清单表（说明组合结果）
+EXPAND.MODULES.M4 -> LEGEND.ENGINE_TABLE: "组合封装" {
+  style.stroke: "#FF3B3B"
   style.stroke-width: 1
   style.stroke-dash: 4
 }

@@ -1,14 +1,14 @@
 direction: down
 
 title: {
-  label: "Synexa iS 全局生态架构 v1.4"
+  label: "Synexa iS 全局生态架构 v1.5"
   near: top-center
   style.font-size: 20
   style.bold: true
 }
 
 # ============================================================
-# Layer 4：全局治理层
+# Layer 4：全局治理层（原则 + 知讯 + 能力原子供给基座）
 # ============================================================
 
 L4: "Layer 4 · 全局治理层" {
@@ -17,22 +17,84 @@ L4: "Layer 4 · 全局治理层" {
   style.stroke-width: 5
   style.fill: transparent
 
-  CORE: "CORE_PRINCIPLES.md\n核心原则" {
+  # A · 原则层
+  ATOMS_A: "A · 原则层（AI 遵什么）" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 2
+    style.stroke-dash: 4
+    style.fill: "#FFFDF0"
+
+    CORE: "A1 全局原则\nCORE_PRINCIPLES.md" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    RACI: "A2 角色责任映射\nRACI.md" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    DF_REF: "A3 人机沟通原则\nDIALOGUE_FRAMEWORK.md" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    TP_REF: "A4 专项工具原则\nTOOL_PRINCIPLES.md" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    DR: "A5 领域映射·清洗\nDOMAIN_REGISTRY.md" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+
+  # C · 能力层（Skill）
+  SKILLS: "C · 能力层（可触发词激活的 Skill 模块）" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 2
+    style.stroke-dash: 4
+    style.fill: "#FFFBE6"
+
+    SK1: "C1 触发词激活\nTRIGGER_CHEATSHEET_SKILL" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    SK2: "C2 Skill·指令体系\nPROMPT_ENGINEERING_SKILL" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    SK3: "C5 任务汇总·报告生成\nTASK_SUMMARY_SKILL" {
+      style.stroke: "#F5A623"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+
+  # 其他治理文件
+  VER: "B7 版本控制\nVERSION_REGISTRY.md" {
     style.stroke: "#F5A623"
     style.stroke-width: 2
     style.fill: transparent
   }
-  RACI: "RACI.md\n角色责任表" {
+  ITER: "C4 反向审查·迭代\nITER_PROTOCOL.md" {
     style.stroke: "#F5A623"
     style.stroke-width: 2
     style.fill: transparent
   }
-  VER: "VERSION_REGISTRY.md\n版本交付注册表" {
-    style.stroke: "#F5A623"
-    style.stroke-width: 2
-    style.fill: transparent
-  }
-  ITER: "ITER_PROTOCOL.md\n迭代协议" {
+  REPO: "REPO_INDEX.md\n仓库文件全局索引" {
     style.stroke: "#F5A623"
     style.stroke-width: 2
     style.fill: transparent
@@ -42,37 +104,6 @@ L4: "Layer 4 · 全局治理层" {
     style.stroke-width: 2
     style.stroke-dash: 4
     style.fill: transparent
-  }
-  REPO: "REPO_INDEX.md\n仓库文件全局索引" {
-    style.stroke: "#F5A623"
-    style.stroke-width: 2
-    style.fill: transparent
-  }
-
-  SKILLS: "Skill 层（可触发词激活的能力模块）" {
-    style.stroke: "#F5A623"
-    style.stroke-width: 2
-    style.stroke-dash: 4
-    style.fill: transparent
-
-    SK1: "TRIGGER_CHEATSHEET_SKILL\n触发词速查 + 模糊匹配" {
-      style.stroke: "#F5A623"
-      style.stroke-width: 2
-      style.fill: "#FFFBE6"
-      style.font-size: 12
-    }
-    SK2: "TASK_SUMMARY_SKILL\n任务情况汇总" {
-      style.stroke: "#F5A623"
-      style.stroke-width: 2
-      style.fill: "#FFFBE6"
-      style.font-size: 12
-    }
-    SK3: "PROMPT_ENGINEERING_SKILL\n提示词工程方法论" {
-      style.stroke: "#F5A623"
-      style.stroke-width: 2
-      style.fill: "#FFFBE6"
-      style.font-size: 12
-    }
   }
 
   triggers_L4: "触发词\n`触发词` / `触发词速查`\n`输出任务快照` / `更新任务台账`\n`优化工作空间规范 [代号]`\n`全局检查同步` / `迭代 [文件名]`" {
@@ -85,26 +116,26 @@ L4: "Layer 4 · 全局治理层" {
 }
 
 # ============================================================
-# Layer 3：跨组协同层
+# Layer 3：跨组协同层（B · 知讯层）
 # ============================================================
 
-L3: "Layer 3 · 跨组协同层" {
+L3: "Layer 3 · 跨组协同层（B · 知讯层）" {
   style.border-radius: 8
   style.stroke: "#1E90FF"
   style.stroke-width: 5
   style.fill: transparent
 
-  CTX: "CONTEXT_OS.md\n全局状态账本" {
+  CTX: "B1 全局账本\nCONTEXT_OS.md" {
     style.stroke: "#1E90FF"
     style.stroke-width: 2
     style.fill: transparent
   }
-  IDX: "_INDEX.md\n项目索引" {
+  IDX: "B3 项目索引\n_INDEX.md" {
     style.stroke: "#1E90FF"
     style.stroke-width: 2
     style.fill: transparent
   }
-  WR: "WORKSPACE_REGISTRY.md\n对话组注册表" {
+  WR: "B4 对话注册表\nWORKSPACE_REGISTRY.md" {
     style.stroke: "#1E90FF"
     style.stroke-width: 2
     style.fill: transparent
@@ -114,12 +145,12 @@ L3: "Layer 3 · 跨组协同层" {
     style.stroke-width: 2
     style.fill: transparent
   }
-  ET: "EXECUTION_TRACKER.md\n任务跟踪（生产→跟踪→入库）" {
+  ET: "B5 任务跟踪\nEXECUTION_TRACKER.md" {
     style.stroke: "#1E90FF"
     style.stroke-width: 2
     style.fill: transparent
   }
-  ISYNC_DIR: "06-isync/\n指令归档目录" {
+  ISYNC_DIR: "B6 跨平台同步\n06-isync/" {
     style.stroke: "#1E90FF"
     style.stroke-width: 2
     style.fill: transparent
@@ -170,7 +201,7 @@ L2: "Layer 2 · 同组协作层（以 NexFlow 为例）" {
     style.stroke-dash: 3
     style.fill: transparent
   }
-  TG: "TRIGGER_GLOSSARY.md\n触发词汇总表" {
+  TG: "TRIGGER_GLOSSARY.md\n项目级触发词汇总表" {
     style.stroke: "#00C853"
     style.stroke-width: 2
     style.fill: transparent
@@ -233,7 +264,7 @@ L1: "Layer 1 · 同框治理层" {
 # 层级关系连线
 # ============================================================
 
-L4 -> L3: "CORE_PRINCIPLES 约束所有层" {
+L4 -> L3: "原则约束 + 能力原子供给" {
   style.stroke: "#F5A623"
   style.stroke-width: 2
 }
@@ -284,7 +315,6 @@ iSCore -> L3: "全局状态管理 · 跨组裁决"
 # 下方扩展区：iS Modules + Engine Layer
 # ============================================================
 
-# 使用一个透明节点作为占位符，强制扩展区在最下方
 placeholder: "" {
   style.fill: transparent
   style.stroke: transparent
@@ -299,7 +329,7 @@ EXPAND: {
   style.fill: transparent
   style.stroke: transparent
 
-  # iS Modules 表格（左列）
+  # iS Modules（左列）
   MODULES: "iS Modules · 智核模块体系" {
     direction: down
     style.border-radius: 8
@@ -325,10 +355,10 @@ EXPAND: {
       style.fill: transparent
       style.font-size: 12
     }
-    M4: "iS-Matrix · 智核矩阵\nStructured Production\n结构化生产（标准/方法/模板）" {
+    M4: "iS-Matrix · 智核矩阵\nCapability Atom Combinator\n能力原子组合 → 专项引擎封装" {
       style.stroke: "#FF3B3B"
-      style.stroke-width: 1
-      style.fill: transparent
+      style.stroke-width: 2
+      style.fill: "#FFF5F5"
       style.font-size: 12
     }
     M5: "iS-PCS · 项目执行系统\nProject Control System\n项目执行（推进器）" {
@@ -345,7 +375,7 @@ EXPAND: {
     }
   }
 
-  # Engine Layer 表格（右列）
+  # Engine Layer（右列）
   ENGINES: "Engine Layer · 业务引擎体系" {
     direction: down
     style.border-radius: 8
@@ -353,7 +383,7 @@ EXPAND: {
     style.stroke-width: 3
     style.fill: transparent
 
-    E1: "Nex₂U · 智食引擎\nSmart Food Engine\n整体精神核心 · 底层智能协同" {
+    E1: "Nex₂U · 智食引擎\nSmart Food Engine\n整体精神核心 · 底层智能协同 🔵" {
       style.stroke: "#00BFAE"
       style.stroke-width: 1
       style.fill: transparent
@@ -365,31 +395,39 @@ EXPAND: {
       style.fill: transparent
       style.font-size: 12
     }
-    E3: "NexFlow · 超级项管\nProject Management Engine\n项目管理引擎" {
+    E3: "NexFlow · 超级项管\nProject Management Engine\n项目管理引擎 🔵" {
       style.stroke: "#00BFAE"
       style.stroke-width: 1
       style.fill: transparent
       style.font-size: 12
     }
-    E4: "NexMPC · 人力协同\nManpower Coordination Engine\n人力资源协同引擎" {
+    E4: "NexChef · 餐食方案\nChef Solution Engine\n餐食方案 / 具身智能 🔵" {
       style.stroke: "#00BFAE"
       style.stroke-width: 1
       style.fill: transparent
       style.font-size: 12
     }
-    E5: "NexFA · 财务管理\nFinancial Administration Engine\n财务管理引擎" {
+    E5: "NexLens · 数据整理\nData Intelligence Engine\n映射·清洗·洞察 🔵" {
       style.stroke: "#00BFAE"
       style.stroke-width: 1
       style.fill: transparent
       style.font-size: 12
     }
-    E6: "NexChef · 餐食方案\nChef Solution Engine\n餐食方案 / 具身智能" {
+    E6: "NexMPC · 人力协同\nManpower Coordination Engine\n人力资源协同引擎 ⚪️" {
       style.stroke: "#00BFAE"
       style.stroke-width: 1
+      style.stroke-dash: 3
       style.fill: transparent
       style.font-size: 12
     }
-    E7: "NexEP · 扩展业务\nExtended Platform Engine\n扩展业务引擎（待定）" {
+    E7: "NexFA · 财务管理\nFinancial Administration Engine\n财务管理引擎 ⚪️" {
+      style.stroke: "#00BFAE"
+      style.stroke-width: 1
+      style.stroke-dash: 3
+      style.fill: transparent
+      style.font-size: 12
+    }
+    E8: "NexTask · 任务管理\nTask Management Engine\n任务管理引擎 ⚪️" {
       style.stroke: "#00BFAE"
       style.stroke-width: 1
       style.stroke-dash: 3
@@ -403,7 +441,19 @@ placeholder -> EXPAND: "" {
   style.stroke: transparent
 }
 
-# 连线：iS-Core 向下引出到扩展区
+# 关键新增：Layer 4 能力原子 → iS-Matrix → Engine Layer 的组合流水线
+L4 -> EXPAND.MODULES.M4: "能力原子供给\n（原则·知讯·能力）" {
+  style.stroke: "#F5A623"
+  style.stroke-width: 2
+  style.stroke-dash: 3
+}
+
+EXPAND.MODULES.M4 -> EXPAND.ENGINES: "原子组合 → 专项引擎封装" {
+  style.stroke: "#FF3B3B"
+  style.stroke-width: 2
+}
+
+# iS-Core 向下引出到扩展区
 iSCore -> EXPAND: "" {
   style.stroke: "#AAAAAA"
   style.stroke-width: 1

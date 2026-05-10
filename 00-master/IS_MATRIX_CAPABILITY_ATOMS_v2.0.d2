@@ -1,0 +1,345 @@
+direction: down
+
+title: {
+  label: "iS-Matrix · 能力原子框架 v2.0\n（约束前置 · 通用认知能力 · 体系治理 · 封装引擎）"
+  near: top-center
+  style.font-size: 18
+  style.bold: true
+}
+
+# ============================================================
+# 第 0 层：约束层（Constraints）
+# ============================================================
+
+L0: "第 0 层 · 约束层（Constraints）\n所有能力的运行边界，对外不展示，对内强制执行" {
+  style.border-radius: 8
+  style.stroke: "#FF3B3B"
+  style.stroke-width: 5
+  style.fill: "#FFF5F5"
+
+  Con1: "Con-1\n价值底线与行为原则\nCORE_PRINCIPLES.md" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 2
+    style.fill: transparent
+    style.font-size: 12
+  }
+  Con2: "Con-2\n角色权限与责任边界\nRACI.md" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 2
+    style.fill: transparent
+    style.font-size: 12
+  }
+  Con3: "Con-3\n人机交互规范\nDIALOGUE_FRAMEWORK.md" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 2
+    style.fill: transparent
+    style.font-size: 12
+  }
+  Con4: "Con-4\n工具调用边界\nTOOL_PRINCIPLES.md" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 2
+    style.fill: transparent
+    style.font-size: 12
+  }
+  Con5: "Con-5\n领域概念边界定义\nDOMAIN_REGISTRY.md" {
+    style.stroke: "#FF3B3B"
+    style.stroke-width: 2
+    style.fill: transparent
+    style.font-size: 12
+  }
+}
+
+# ============================================================
+# 第 1 层：通用认知能力层（Universal Cognitive Capabilities）
+# ============================================================
+
+L1: "第 1 层 · 通用认知能力层（Universal Cognitive Capabilities）\n对外交付的语言 · 引擎组合的原子 · 基于 DIKW + Bloom + LLM Agent 四模块" {
+  style.border-radius: 8
+  style.stroke: "#F5A623"
+  style.stroke-width: 5
+  style.fill: "#FFFDF0"
+
+  U1: "U1 · 感知与清洗\nPerception & Cleansing\n多源输入提取 / 非结构化标准化\n格式识别 / 领域映射\n─────────────────\n来源：A5（部分）⚠️ 感知能力新增" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 2
+    style.fill: transparent
+    style.font-size: 12
+  }
+  U2: "U2 · 记忆与检索\nMemory & Retrieval\n知识库构建 / 语义检索\n历史上下文关联 / 状态召回\n─────────────────\n❌ 现有框架完全缺失（新增）" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 2
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+  U3: "U3 · 分析与推理\nAnalysis & Reasoning\n逻辑拆解 / 多维对比\n根因分析 / 数据可视化\n─────────────────\n❌ 现有框架完全缺失（新增）" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 2
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+  U4: "U4 · 生成与执行\nGeneration & Execution\n报告撰写 / 代码生成\nSOP 自动化执行 / API 调用\n─────────────────\n来源：C5 / C6（占位符升级）⚠️" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 2
+    style.fill: transparent
+    style.font-size: 12
+  }
+  U5: "U5 · 决策与判断\nPlanning & Decision\n方案评估 / 优先级裁决\n期望值推演 / 凯利分配\n─────────────────\n❌ 现有框架完全缺失（新增）" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 2
+    style.stroke-dash: 3
+    style.fill: transparent
+    style.font-size: 12
+  }
+
+  ref_dikw: "方法论参考\nDIKW：Data→Info→Knowledge→Wisdom\nBloom：记忆→理解→应用→分析→评估→创造\nLLM Agent：感知→记忆→规划→行动" {
+    style.stroke: "#F5A623"
+    style.stroke-width: 1
+    style.stroke-dash: 4
+    style.fill: transparent
+    style.font-size: 11
+  }
+}
+
+# ============================================================
+# 第 2 层：体系治理层（System Governance）
+# ============================================================
+
+L2: "第 2 层 · 体系治理层（System Governance）\n支撑第 1 层能力稳定可控输出的底层机制 · iS 体系核心壁垒" {
+  style.border-radius: 8
+  style.stroke: "#1E90FF"
+  style.stroke-width: 5
+  style.fill: "#F0F8FF"
+
+  # G1 上下文管理
+  G1: "G1 · 上下文管理（Context Management）\nAgent 执行前的状态定位机制" {
+    style.stroke: "#1E90FF"
+    style.stroke-width: 2
+    style.stroke-dash: 4
+    style.fill: transparent
+
+    G1a: "G1-a 全局状态账本\nCONTEXT_OS.md" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    G1b: "G1-b 认知基线快照\nMaster_Blueprint" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    G1c: "G1-c 项目目录索引\n_INDEX.md" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    G1d: "G1-d 工作空间注册表\nWORKSPACE_REGISTRY.md" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+
+  # G2 协同与调度
+  G2: "G2 · 协同与调度（Orchestration）\n任务分发、跨组接力、触发词调用" {
+    style.stroke: "#1E90FF"
+    style.stroke-width: 2
+    style.stroke-dash: 4
+    style.fill: transparent
+
+    G2a: "G2-a 任务分发与状态跟踪\nTASK_TRACKING_PROTOCOL\nIS_TRACKER_MASTER" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    G2b: "G2-b 跨平台/跨组状态同步\nISYNC 协议\n06-isync/" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    G2c: "G2-c 触发词调用机制\nTRIGGER_CHEATSHEET_SKILL\n（核心工程价值）" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: "#E8F4FF"
+      style.font-size: 12
+    }
+    G2d: "G2-d SOP 标准执行流程\n05-sop/ 目录" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+
+  # G3 质量与审查
+  G3: "G3 · 质量与审查（Quality & Review）\n版本控制、反向验证、文件治理" {
+    style.stroke: "#1E90FF"
+    style.stroke-width: 2
+    style.stroke-dash: 4
+    style.fill: transparent
+
+    G3a: "G3-a 版本控制与变更记录\nVERSION_REGISTRY.md" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    G3b: "G3-b 反向审查与问题识别\nOPEN_ISSUES.md\nITER_PROTOCOL.md" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    G3c: "G3-c 文件治理与命名规范\nIS_SOP_FILE_GOVERNANCE" {
+      style.stroke: "#1E90FF"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+}
+
+# ============================================================
+# 第 3 层：封装交付层（Packaged Engines）
+# ============================================================
+
+L3: "第 3 层 · 封装交付层（Packaged Engines）\n第 1 层能力 × 第 2 层机制 → 按业务场景组合封装 → 对外交付最小单位" {
+  style.border-radius: 8
+  style.stroke: "#00BFAE"
+  style.stroke-width: 5
+  style.fill: "#F0FFFE"
+
+  E1: "E1 · Skill 封装机制\n能力模块化注册与调用\nPROMPT_ENGINEERING_SKILL" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 2
+    style.fill: "#E0FFFE"
+    style.font-size: 12
+  }
+
+  ACTIVE: "建设中 🔵" {
+    style.stroke: "#00BFAE"
+    style.stroke-width: 2
+    style.stroke-dash: 4
+    style.fill: transparent
+
+    E2: "E2 · NexFlow\n超级项管引擎\nU3+U4+U5 × G2a+G2d" {
+      style.stroke: "#00BFAE"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    E3: "E3 · Nex₂U\n智食引擎\nU1+U3+U5 × G1+G2c" {
+      style.stroke: "#00BFAE"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    E4: "E4 · NexChef\n餐食方案引擎\nU1+U4 × G2d" {
+      style.stroke: "#00BFAE"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+    E5: "E5 · NexLens\n数据整理引擎\nU1+U2+U3 × G3b" {
+      style.stroke: "#00BFAE"
+      style.stroke-width: 2
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+
+  PENDING: "待建 ⚪" {
+    style.stroke: "#AAAAAA"
+    style.stroke-width: 1
+    style.stroke-dash: 4
+    style.fill: transparent
+
+    E6: "E6 · NexMPC\n人力协同引擎" {
+      style.stroke: "#AAAAAA"
+      style.stroke-width: 1
+      style.stroke-dash: 3
+      style.fill: transparent
+      style.font-size: 12
+    }
+    E7: "E7 · NexFA\n财务管理引擎" {
+      style.stroke: "#AAAAAA"
+      style.stroke-width: 1
+      style.stroke-dash: 3
+      style.fill: transparent
+      style.font-size: 12
+    }
+    E8: "E8 · NexTask\n任务管理引擎" {
+      style.stroke: "#AAAAAA"
+      style.stroke-width: 1
+      style.stroke-dash: 3
+      style.fill: transparent
+      style.font-size: 12
+    }
+  }
+}
+
+# ============================================================
+# 层级关系连线
+# ============================================================
+
+L0 -> L1: "约束前置：所有能力在边界内运行" {
+  style.stroke: "#FF3B3B"
+  style.stroke-width: 2
+}
+
+L1 -> L2: "通用能力原子 → 治理机制保障稳定输出" {
+  style.stroke: "#F5A623"
+  style.stroke-width: 2
+}
+
+L2 -> L3: "上下文 + 调度 + 质量 → 封装为可交付引擎" {
+  style.stroke: "#1E90FF"
+  style.stroke-width: 2
+}
+
+# ============================================================
+# iS-Matrix 统管能力框架
+# ============================================================
+
+iSMatrix: "iS-Matrix · 智核矩阵\n能力原子组合 → 专项引擎封装\n（本框架的维护者）" {
+  style.stroke: "#FF3B3B"
+  style.stroke-width: 4
+  style.fill: "#FFF5F5"
+  style.border-radius: 4
+}
+
+iSMatrix -> L0: "制定约束边界"
+iSMatrix -> L1: "定义通用认知能力原子"
+iSMatrix -> L3: "组合封装 → 引擎交付"
+
+# ============================================================
+# 图例：对内/对外可见性说明
+# ============================================================
+
+VISIBILITY: "可见性说明\n\n对外展示（客户/合作方）：第 1 层 + 第 3 层\n→ 语言：「我们的 AI 能帮你做什么」\n\n对内使用（Agent 开发/治理）：全四层可见\n→ 第 0 层约束先读 → 第 2 层机制保障 → 第 1 层原子组合 → 第 3 层引擎交付" {
+  style.border-radius: 8
+  style.stroke: "#888888"
+  style.stroke-width: 2
+  style.fill: "#FAFAFA"
+  style.font-size: 12
+}
+
+# ============================================================
+# 方法论溯源说明
+# ============================================================
+
+METHOD_REF: "方法论溯源\n\n第 0 层：Anthropic Constitutional AI · OECD 核心能力框架\n第 1 层：DIKW 金字塔（Ackoff）· Bloom 认知分类法（修订版）\n         LLM Agent 四模块架构（感知/记忆/规划/行动）\n         McKinsey 问题解决框架 · OECD 交付集群\n第 2 层：MIT 功能分解法 · Microsoft Semantic Kernel\n         TOGAF 业务能力框架 · SECI 知识转化模型\n第 3 层：TOGAF 业务能力 · Semantic Kernel Skill 封装" {
+  style.border-radius: 8
+  style.stroke: "#888888"
+  style.stroke-width: 1
+  style.stroke-dash: 3
+  style.fill: "#FAFAFA"
+  style.font-size: 11
+}

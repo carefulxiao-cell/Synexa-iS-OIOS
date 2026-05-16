@@ -1,0 +1,60 @@
+目录分组,文件名,版本,文件类型,用途说明,读取频率,状态
+00-master · 全局治理,SYNEXA_IS_BASE_FRAMEWORK_v1.0.md,v1.0,框架文档,iS 体系基础框架定义 / 约束层核心文件,每次启动,活跃
+00-master · 全局治理,WORKSPACE_REGISTRY_v2.1.md,v2.1,注册表,所有工作空间（对话组）的注册与状态管理,按需,活跃
+00-master · 全局治理,VERSION_REGISTRY.md,-,版本记录,全局文件版本变更记录,按需,活跃
+00-master · 全局治理,OPEN_ISSUES.md,-,问题跟踪,当前未解决问题与阻塞项,每次启动,活跃
+00-master · 全局治理,REPO_INDEX.md,-,文件索引,仓库全局文件索引（顶层）,按需,活跃
+00-master · 全局治理,IS_SOP_FILE_GOVERNANCE.md,-,治理规范,文件命名规范与治理规则,按需,活跃
+00-master · 全局治理,RACI_v1.0.md,v1.0,责任矩阵,各角色职责分工 RACI 矩阵,按需,活跃
+00-master · 全局治理,W01_INSTRUCTION_PACKAGE_v1.5.md,v1.5,指令包,W01 工作空间指令集合包,按需,活跃
+00-master · Skill 体系,TRIGGER_CHEATSHEET_SKILL_v1.1.md,v1.3,Skill,全局触发词速查表 / 模糊匹配机制,每次触发,活跃
+00-master · Skill 体系,QUICK_BRIEF_SKILL_v1.0.md,v1.0,Skill,快速概述技能 / 通用信息提炼输出,按需触发,活跃
+00-master · Skill 体系,TASK_SUMMARY_SKILL_v1.0.md,v1.1,Skill,任务汇总技能 / 触发词声明,按需触发,活跃
+00-master · Skill 体系,IS_SKILL_BOOTSTRAP_v1.0.md,v1.0,接入声明,各对话框通用 Skill 接入声明（指针引用版）,配置时使用,活跃
+00-master · Skill 体系,IS_MATRIX_CAPABILITY_OVERVIEW_SKILL_v1.0.md,v1.0,Skill,能力框架概述技能 / 四层架构快速输出,按需触发,活跃
+00-master · 任务管理,TASK_TRACKING_PROTOCOL_v1.0.md,v1.0,协议,任务跟踪 11 字段标准协议,每次任务操作,活跃
+00-master · 任务管理,IS_TRACKER_MASTER_v1.0.md,v1.2,跟踪表,全局任务推进台账（11 字段对齐版）,每次任务操作,活跃
+00-master · 能力矩阵,IS_MATRIX_CAPABILITY_ATOMS_v2.0.d2,v2.0,D2 源文件,四层能力框架架构图源文件,按需,活跃
+00-master · 能力矩阵,IS_MATRIX_CAPABILITY_ATOMS_v2.0.png,v2.0,架构图,四层能力框架架构图（含新旧对照表）,按需,活跃
+00-master · 能力矩阵,IS_MATRIX_MAPPING_TABLE_v2.0.csv,v2.0,CSV,新旧框架对照表（飞书导入用）,按需,活跃
+00-master · 能力矩阵,IS_MATRIX_CAPABILITY_FULL_v2.0.csv,v2.0,CSV,能力矩阵完整版（飞书多维表格用）,按需,活跃
+00-master · 能力矩阵,IS_FILE_REGISTRY_v1.0.csv,v1.0,CSV,全局文件总目录（飞书多维表格用）,按需,活跃
+00-master · 架构图,SYNEXA_GLOBAL_ARCHITECTURE_v1.0.d2,v1.0,D2 源文件,全局架构图 D2 源文件,按需,历史版本
+00-master · 架构图,SYNEXA_GLOBAL_ARCHITECTURE_v1.7.png,v1.7,架构图,全局架构图最新版,按需,活跃
+00-master · 架构图,SYNEXA_DIALOGUE_ARCHITECTURE_v1.0.png,v1.0,架构图,对话架构图,按需,活跃
+00-master · 协议,ISYNC_PROTOCOL.md,-,协议,全局指令同步协议定义,每次同步,活跃
+01-master-blueprint · 基线,Synexa_iS_SSADS_Master_Blueprint_v1.4.md,v1.4,蓝图,iS 体系主蓝图 / 认知基线核心文件,每次启动,活跃
+02-context-os · 状态,CONTEXT_OS.md,-,状态账本,全局状态总账本 / SSOT 核心文件,每次启动,活跃
+03-projects · 索引,_INDEX.md,-,项目索引,所有项目的状态索引与优先级,每次启动,活跃
+03-projects · NexFlow,iS-NexFlow_PCS_Briefing_v0.6.md,v0.6,PCS,NexFlow 项目宪章与启动简报,项目启动时,活跃
+03-projects · NexFlow,NexFlow_TBF_V3.1.md,v3.1,任务简报,NexFlow 任务简报最新版,按需,活跃
+03-projects · NexFlow,iS-NexFlow_Workspace_Startup_Guide_v1.0.md,v1.0,启动指南,NexFlow 工作空间启动指南,项目启动时,活跃
+03-projects · Nex2U,Nex2U_Master_Doc_v2.1.md,v2.1,主文档,Nex2U 项目主文档最新版,按需,活跃
+03-projects · Nex2U,Nex2U_Business_Strategy_v1.3.md,v1.3,战略文档,Nex2U 商业战略,按需,活跃
+03-projects · Nex2U,Nex2U_Feature_Alignment_v1.1.md,v1.1,功能对齐,Nex2U 功能对齐文档,按需,活跃
+03-projects · Nex2U,GPT_Project_Instructions_Nex2U_v26.1.1.md,v26.1.1,系统指令,Nex2U GPT 工作空间系统指令,配置时使用,活跃
+03-projects · Nex2U,Manus_Project_Instructions_Nex2U_v26.1.1.md,v26.1.1,系统指令,Nex2U Manus 工作空间系统指令,配置时使用,活跃
+03-projects · Synexa,iS-Synexa_PCS_v0.2.md,v0.2,PCS,Synexa 品牌项目宪章,项目启动时,活跃
+04-assets · 品牌,Synexa_Company_Profile_V2.0.md,v2.0,品牌文档,Synexa 公司简介,对外交付时,活跃
+04-assets · 品牌,Synexa_Website_Content_V1.0.md,v1.0,网站内容,Synexa 官网内容文案,按需,活跃
+04-assets · 架构图,Synexa_iS_Base_Architecture_v1.4.png,v1.4,架构图,iS 基础架构图最新版,按需,活跃
+05-sop · 流程,SOP_001_FBR_Mechanism_v1.1.md,v1.1,SOP,FBR 反向审查机制标准流程,按需,活跃
+05-sop · 流程,SOP_002_Manus_Workspace_Naming_v1.2.md,v1.2,SOP,Manus 工作空间命名规范,配置时使用,活跃
+05-sop · 流程,SOP_003_Execution_Submission_v1.0.md,v1.0,SOP,执行提交标准流程,按需,活跃
+05-sop · 流程,SOP_004_Instruction_Tracking_Mechanism_v1.0.md,v1.0,SOP,指令跟踪机制标准流程,按需,活跃
+05-sop · 流程,SOP_005_Instruction_Lifecycle_Protocol_v1.0.md,v1.0,SOP,指令生命周期协议,按需,活跃
+05-sop · 流程,SOP_006_PCS_Instruction_Management_Setup_v1.0.md,v1.0,SOP,PCS 指令管理配置流程,项目启动时,活跃
+05-sop · 流程,SOP_007_Instruction_Tracker_Standard_v1.0.md,v1.0,SOP,指令跟踪标准,按需,活跃
+05-sop · 流程,SOP_008_General_Production_Workflow_v1.1.md,v1.1,SOP,通用生产工作流,按需,活跃
+05-sop · 模板,FBL_Template_v1.1.md,v1.1,模板,FBL 反馈日志模板,按需,活跃
+05-sop · 模板,TBF_Template_v2.1.md,v2.1,模板,TBF 任务简报模板最新版,按需,活跃
+06-isync · 同步,_ISYNC_INDEX.md,-,索引,ISYNC 同步索引,每次同步,活跃
+06-isync · 同步,iS-Core_ISYNC.md,-,同步记录,iS-Core 工作空间同步记录,每次同步,活跃
+06-isync · 同步,iS-NexFlow_ISYNC.md,-,同步记录,NexFlow 工作空间同步记录,每次同步,活跃
+06-isync · 同步,iS-Nex2U_ISYNC.md,-,同步记录,Nex2U 工作空间同步记录,每次同步,活跃
+06-isync · 同步,iS-Synexa_ISYNC.md,-,同步记录,Synexa 工作空间同步记录,每次同步,活跃
+06-isync · 同步,GPT_Sync_Log.md,-,同步日志,GPT 侧文件同步日志,每次 GPT 更新,活跃
+06-isync · 同步,GLOBAL_INSTRUCTION_TRACKER.md,-,指令跟踪,全局指令跟踪总表,按需,活跃
+06-skills · S3-N-Grid,SKILL.md,-,Skill,S3 N-Grid 战略认知操作系统技能入口,按需触发,活跃
+06-skills · S3-N-Grid,S3_N-Grid_Whitepaper_V1.0.md,v1.0,白皮书,N-Grid 方法论白皮书,按需,活跃
+06-tracker · 跟踪,GLOBAL_INSTRUCTION_TRACKER.md,-,指令跟踪,全局指令跟踪（tracker 目录版）,按需,活跃

@@ -1,0 +1,30 @@
+层级,编号,框架定义,子能力说明,现有对应,关联文件,状态
+第 0 层·约束层,Con-1,价值底线与行为原则,所有 Agent 行为的伦理与价值边界,A1 全局原则,SYNEXA_IS_BASE_FRAMEWORK_v1.0.md,有 迁移
+第 0 层·约束层,Con-2,角色权限与责任边界,各 Agent 的职责范围与越界判断,A2 角色责任映射,SYNEXA_IS_BASE_FRAMEWORK_v1.0.md,有 迁移
+第 0 层·约束层,Con-3,人机交互规范,对话格式 / 触发词 / 回复标准,A3 人机沟通原则,TRIGGER_CHEATSHEET_SKILL_v1.1.md,有 迁移
+第 0 层·约束层,Con-4,工具调用边界,哪些工具可调用 / 调用条件与限制,A4 专项工具原则,SYNEXA_IS_BASE_FRAMEWORK_v1.0.md,有 迁移
+第 0 层·约束层,Con-5,领域概念边界定义,各业务域的核心概念定义与边界,A5（部分）,SYNEXA_IS_BASE_FRAMEWORK_v1.0.md,部分有 需拆分
+第 1 层·通用认知能力,U1,感知与清洗,多源输入提取 / 非结构化标准化 / 格式识别 / 领域映射,A5（部分）,IS_MATRIX_CAPABILITY_ATOMS_v2.0.d2,仅覆盖清洗 感知缺失
+第 1 层·通用认知能力,U2,记忆与检索,知识库构建 / 语义检索 / 历史上下文关联 / 状态召回,无,待建,完全缺失 新增
+第 1 层·通用认知能力,U3,分析与推理,逻辑拆解 / 多维对比 / 根因分析 / 数据可视化,无,待建,完全缺失 新增
+第 1 层·通用认知能力,U4,生成与执行,报告撰写 / 代码生成 / SOP 自动执行 / API 调用,C5 / C6（占位符）,IS_MATRIX_CAPABILITY_ATOMS_v2.0.d2,有坑位 无实质内容
+第 1 层·通用认知能力,U5,决策与判断,方案评估 / 优先级裁决 / 期望值推演 / 凯利分配,无,待建,完全缺失 新增
+第 2 层·体系治理,G1-a,全局状态账本,CONTEXT_OS.md 实时状态读取,B1 全局账本,02-context-os/CONTEXT_OS.md,有 迁移
+第 2 层·体系治理,G1-b,认知基线快照,Master_Blueprint 基线文件,B2 基线汇总,01-master-blueprint/Synexa_iS_SSADS_Master_Blueprint_v1.4.md,有 迁移
+第 2 层·体系治理,G1-c,项目目录索引,_INDEX.md 项目列表与状态,B3 项目索引,03-projects/_INDEX.md,有 迁移
+第 2 层·体系治理,G1-d,工作空间注册表,WORKSPACE_REGISTRY.md 对话组注册,B4 对话注册表,00-master/WORKSPACE_REGISTRY_v2.1.md,有 迁移
+第 2 层·体系治理,G2-a,任务分发与状态跟踪,TASK_TRACKING_PROTOCOL / IS_TRACKER_MASTER,B5 任务跟踪,00-master/TASK_TRACKING_PROTOCOL_v1.0.md,有 迁移
+第 2 层·体系治理,G2-b,跨平台/跨组状态同步,ISYNC 协议 / 06-isync/ 目录,B6 跨平台同步,06-isync/_ISYNC_INDEX.md,有 迁移
+第 2 层·体系治理,G2-c,触发词调用机制,TRIGGER_CHEATSHEET_SKILL（核心工程价值）,C1 触发词激活,00-master/TRIGGER_CHEATSHEET_SKILL_v1.1.md,有 迁移
+第 2 层·体系治理,G2-d,SOP 标准执行流程,05-sop/ 目录下各标准流程,C3 SOP 执行,05-sop/,有 迁移
+第 2 层·体系治理,G3-a,版本控制与变更记录,VERSION_REGISTRY.md,B7 版本控制,00-master/VERSION_REGISTRY.md,有 迁移
+第 2 层·体系治理,G3-b,反向审查与问题识别,OPEN_ISSUES.md / ITER_PROTOCOL.md,C4 反向审查,00-master/OPEN_ISSUES.md,有 迁移
+第 2 层·体系治理,G3-c,文件治理与命名规范,IS_SOP_FILE_GOVERNANCE,IS_SOP_FILE_GOVERNANCE,00-master/IS_SOP_FILE_GOVERNANCE.md,有 补入
+第 3 层·封装引擎,E1,Skill 封装机制,能力模块化注册与调用 / PROMPT_ENGINEERING_SKILL,C2 Skill·指令体系,00-master/QUICK_BRIEF_SKILL_v1.0.md,有 迁移
+第 3 层·封装引擎,E2,NexFlow,超级项管引擎 / U3+U4+U5 × G2a+G2d,引擎映射表,03-projects/NexFlow/,有
+第 3 层·封装引擎,E3,Nex₂U,智食引擎 / U1+U3+U5 × G1+G2c,引擎映射表,03-projects/Nex2U/,有
+第 3 层·封装引擎,E4,NexChef,餐食方案引擎 / U1+U4 × G2d,引擎映射表,03-projects/,有
+第 3 层·封装引擎,E5,NexLens,数据整理引擎 / U1+U2+U3 × G1a,引擎映射表,03-projects/,有
+第 3 层·封装引擎,E6,NexMPC,人力协同引擎,引擎映射表,03-projects/,待建
+第 3 层·封装引擎,E7,NexFA,财务管理引擎,引擎映射表,03-projects/,待建
+第 3 层·封装引擎,E8,NexTask,任务管理引擎,引擎映射表,03-projects/,待建

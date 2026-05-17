@@ -1,16 +1,16 @@
-阶段,视图,输入,输出,门控条件,关联文件,触发词,当前激活状态
-PROPOSE(提出),治理视图(Gov View),用户意图/模糊需求,项目最小定义(Step 0A),完成名称/定义/层级/优先级设定,CONTEXT_OS.md / _INDEX.md,启动项目,已激活
-DEFINE(定义),治理视图(Gov View),项目最小定义,项目控制单(PCS),完成目标/交付形式/任务拆解草案,PCS_[项目代号].md,确认执行,已激活
-BUILD(建构),治理视图(Gov View),项目控制单(PCS),进度状态更新,无阻塞项/里程碑达成,CONTEXT_OS.md,-,待激活
-VERIFY(验证),治理视图(Gov View),交付包(DELIVERY_PACKAGE),审查报告/修改建议,通过指令与代码完成度比对审查,VERIFY_REPORT_[项目代号].md,全面审查 [项目代号],待激活
-INTEGRATE(集成),治理视图(Gov View),审查通过的交付包,全局状态更新/能力原子映射,完成 SSOT 回写与能力矩阵更新,CONTEXT_OS.md / IS_MATRIX_CAPABILITY_FULL.csv,汇总指令,待激活
-PROPOSE(提出),协作视图(Team View),业务需求,技术可行性反馈,技术栈匹配/资源可用,-,-,待激活
-DEFINE(定义),协作视图(Team View),PCS 草案,技术架构草案/API设计,架构评审通过,-,-,待激活
-BUILD(建构),协作视图(Team View),项目控制单(PCS),代码/文档/数据结构等,完成核心功能开发与测试,DELIVERY_PACKAGE_[项目代号].md,提取系统交付包,待激活
-VERIFY(验证),协作视图(Team View),审查报告,修复后的代码/补丁,所有必修项修复完成,-,-,待激活
-INTEGRATE(集成),协作视图(Team View),修复后的代码,线上运行环境,部署成功/冒烟测试通过,-,-,待激活
-PROPOSE(提出),展示视图(Pitch View),项目最小定义,一句话 Pitch/概念图,概念清晰易懂,-,-,待激活
-DEFINE(定义),展示视图(Pitch View),项目控制单(PCS),项目蓝图/Roadmap,路径清晰/里程碑明确,-,-,待激活
-BUILD(建构),展示视图(Pitch View),进度状态更新,Demo/阶段性演示,核心链路可跑通,-,-,待激活
-VERIFY(验证),展示视图(Pitch View),审查报告,测试报告摘要/质量认证,无致命缺陷,-,-,待激活
-INTEGRATE(集成),展示视图(Pitch View),全局状态更新,Release Notes/发布公告,文档齐全/可对外发布,-,-,待激活
+阶段,视图,输入,输出,门控条件,关联文件,触发词,当前激活状态,备注/细节指针
+PROPOSE(提出),治理视图(Gov View),用户意图/模糊需求,项目最小定义(Step 0A),完成名称/定义/层级/优先级设定,CONTEXT_OS.md / _INDEX.md,启动项目,已激活,—
+DEFINE(定义),治理视图(Gov View),项目最小定义,项目控制单(PCS),完成目标/交付形式/任务拆解草案,PCS_[项目代号].md,确认执行,已激活,—
+BUILD(建构),治理视图(Gov View),项目控制单(PCS),进度状态更新,无阻塞项/里程碑达成,CONTEXT_OS.md,—,待激活,—
+VERIFY(验证),治理视图(Gov View),交付包(DELIVERY_PACKAGE)（含五大项）,审查报告/修改建议,通过指令与代码完成度比对审查,VERIFY_REPORT_[项目代号].md,全面审查 [项目代号],待激活,输入须含五大项（同协作视图BUILD）；审查须覆盖六维度：架构/数据/接口/安全/业务逻辑/可维护性
+INTEGRATE(集成),治理视图(Gov View),审查通过的交付包,全局状态更新/能力原子映射,完成 SSOT 回写与能力矩阵更新,CONTEXT_OS.md / IS_MATRIX_CAPABILITY_FULL.csv,汇总指令,待激活,—
+PROPOSE(提出),协作视图(Team View),业务需求,技术可行性反馈,技术栈匹配/资源可用,—,—,待激活,—
+DEFINE(定义),协作视图(Team View),PCS 草案,技术架构草案/API设计,架构评审通过,—,—,待激活,—
+BUILD(建构),协作视图(Team View),项目控制单(PCS),代码/文档/数据结构等（交付包五大项）,完成核心功能开发与测试,DELIVERY_PACKAGE_[项目代号].md,提取系统交付包,待激活,输出交付包须含五大项：系统文档/代码包/测试记录/变更记录/数据一致性说明；详见 IS_GENESIS_EXTRACT_SKILL
+VERIFY(验证),协作视图(Team View),审查报告,修复后的代码/补丁,所有必修项修复完成,—,—,待激活,—
+INTEGRATE(集成),协作视图(Team View),修复后的代码,线上运行环境,部署成功/冒烟测试通过,—,—,待激活,—
+PROPOSE(提出),展示视图(Pitch View),项目最小定义,一句话 Pitch/概念图,概念清晰易懂,—,—,待激活,—
+DEFINE(定义),展示视图(Pitch View),项目控制单(PCS),项目蓝图/Roadmap,路径清晰/里程碑明确,—,—,待激活,—
+BUILD(建构),展示视图(Pitch View),进度状态更新,Demo/阶段性演示,核心链路可跑通,—,—,待激活,—
+VERIFY(验证),展示视图(Pitch View),审查报告,测试报告摘要/质量认证,无致命缺陷,—,—,待激活,—
+INTEGRATE(集成),展示视图(Pitch View),全局状态更新,Release Notes/发布公告,文档齐全/可对外发布,—,—,待激活,—

@@ -16,6 +16,7 @@
 * **对话组总数**：L1×5 + L2×7 + L3/L4 若干（详见 `00-master/WORKSPACE_REGISTRY_v2.0.md`）
 * **域名与基础设施注册**：详见 `00-master/DOMAIN_REGISTRY_v1.0.md`
 * **主控入口**：【智核中枢·iS-Core】（对外品牌名：超智系统·Synexa iS）
+* **全局文件命名规范**：`[中文摘要]_[英文代号]_v[版本].md`，所有工作空间生成文件时强制执行。详见 `00-master/PROMPT_SYSTEM_TASK_v1.0.md` 第五节。`IS_SOP_FILE_GOVERNANCE_v1.0.md` 中的命名规则已废止，以本规范为唯一标准。
 
 ---
 
@@ -178,6 +179,7 @@
 | **DIALOGUE_FRAMEWORK_L2** | Layer 2 标准四框架构定义 | 建立新对话组时强制对照 | `00-master/SYNEXA_DIALOGUE_ARCHITECTURE_v1.0.md`（待重建） | 🟡 架构已裁决，文件待重建 |
 | **SOP-008** | 编撰线标准生产规范 | 启动任何文件/知识类生产任务时强制遵循 | `05-sop/SOP_008_Documentation_Workflow_v1.0.md` | 🟢 已启用（2026-04-25，确立七步工作流） |
 | **TASK_SUMMARY_SKILL** | 任务情况汇总 Skill | `输出任务快照` / `更新任务台账` / `读取任务台账` / `新增任务 [任务名]` / `标记完成 [任务名]` / `全局任务审查` | `00-master/TASK_SUMMARY_SKILL_v1.0.md` | 🟢 已启用（2026-05-03，iS-Core 裁决通过，标准字段+双形态+触发词+接入指南） |
+| **FILE_NAMING_CONVENTION** | 全局文件命名规范 | 生成任何文件时强制执行 | `00-master/PROMPT_SYSTEM_TASK_v1.0.md`（第五节） | 🟢 已启用（2026-05-17，iS-Core 裁决通过，格式：[中文摘要]_[英文代号]_v[版本].md，IS_SOP_FILE_GOVERNANCE 命名规则已废止） |
 
 ---
 

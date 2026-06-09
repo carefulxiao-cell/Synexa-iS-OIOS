@@ -61,3 +61,11 @@
 00-master · 全局治理,IS_NAMING_CONVENTION_v1.0.md,v1.0,治理规范,体系命名原则与语言风格选择标准（拉丁/英文/中文规则）,按需,活跃
 04-assets · CI 规范,IS_CI_COLOR_SPEC_v0.1.md,v0.1,CI 规范,全局 CI 色系应用规范（文档/界面/图表/打印）,按需,活跃
 04-assets · CI 规范,超智·系统CI色系规范_V0.1.json,v0.1,CI 原始数据,CI 色系 JSON 原始文件（供程序化调用）,按需,活跃
+00-master · 全局治理,IS_PBS_STANDARD_v1.0.md,v1.0,治理标准,项目基线表（PBS）通用标准规范（M0–M4 五模块结构）,项目孵化时,活跃
+05-engines · CapabilityAtom,IS_CAPABILITY_ATOM_HELP_v1.0.md,v1.0,帮助文档,「能力原子」飞书应用帮助文档（含知识库摘要+术语表）,按需,活跃
+04-assets · 架构图,SYNEXA_GLOBAL_ARCHITECTURE_v1.8_digital_neural.webp,v1.8,架构图,超智全局架构图 v1.8 数字神经版（当前基线）,按需,活跃
+04-assets · 架构图,SynexaiS_Global_Architecture_Overview_V1.0.webp,V1.0,架构图,Synexa iS 全局架构总览 V1.0（当前基线）,按需,活跃
+04-assets · 架构图,Synexa_Nex2U_V0.3.webp,V0.3,架构图,Nex2U 引擎架构图 V0.3（当前基线）,按需,活跃
+04-assets · 架构图（归档）,Synexa_iS_Base_Architecture_v1.5.png,v1.5,架构图,iS 基础架构图 v1.5（已归档至 archive/）,按需,归档
+04-assets · 架构图（归档）,Synexa_iS_Base_Architecture_v1.5_FINAL.webp,v1.5,架构图,iS 基础架构图 v1.5 FINAL webp 版（已归档至 archive/）,按需,归档
+04-assets · 架构图（归档）,Synexa_iS_Base_Architecture_v1.4.png,v1.4,架构图,iS 基础架构图 v1.4（已归档至 archive/）,按需,归档

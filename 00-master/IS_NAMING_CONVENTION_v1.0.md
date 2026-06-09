@@ -125,16 +125,4 @@ iS-Proxima（神经末梢）→ iS-Vena（血脉传输）→ iS-Cortex（皮层�
 
 ---
 
----
-
-## 七、关联规范文件
-
-| 文件 | 路径 | 说明 |
-|------|------|------|
-| CI 色系规范 | `04-assets/CI/IS_CI_COLOR_SPEC_v0.1.md` | 全局 CI 色彩应用规范，覆盖文档、系统界面、图表与打印场景 |
-| CI 色系原始数据 | `04-assets/CI/超智·系统CI色系规范_V0.1.json` | CI 色系 JSON 原始文件，供程序化调用 |
-| Synexa Codex | `04-assets/Synexa_Codex_v1.0_Public_View.md` | 品牌视觉与语言规范总纲 |
-
----
-
 *全局治理文件 · iS-Core 维护 · 版本 V1.0 · 2026-06-09*

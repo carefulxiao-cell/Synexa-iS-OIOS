@@ -58,3 +58,6 @@
 06-skills · S3-N-Grid,SKILL.md,-,Skill,S3 N-Grid 战略认知操作系统技能入口,按需触发,活跃
 06-skills · S3-N-Grid,S3_N-Grid_Whitepaper_V1.0.md,v1.0,白皮书,N-Grid 方法论白皮书,按需,活跃
 06-tracker · 跟踪,GLOBAL_INSTRUCTION_TRACKER.md,-,指令跟踪,全局指令跟踪（tracker 目录版）,按需,活跃
+00-master · 全局治理,IS_NAMING_CONVENTION_v1.0.md,v1.0,治理规范,体系命名原则与语言风格选择标准（拉丁/英文/中文规则）,按需,活跃
+04-assets · CI 规范,IS_CI_COLOR_SPEC_v0.1.md,v0.1,CI 规范,全局 CI 色系应用规范（文档/界面/图表/打印）,按需,活跃
+04-assets · CI 规范,超智·系统CI色系规范_V0.1.json,v0.1,CI 原始数据,CI 色系 JSON 原始文件（供程序化调用）,按需,活跃

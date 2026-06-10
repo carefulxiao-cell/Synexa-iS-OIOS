@@ -70,3 +70,4 @@
 04-assets · 架构图（归档）,Synexa_iS_Base_Architecture_v1.5_FINAL.webp,v1.5,架构图,iS 基础架构图 v1.5 FINAL webp 版（已归档至 archive/）,按需,归档
 04-assets · 架构图（归档）,Synexa_iS_Base_Architecture_v1.4.png,v1.4,架构图,iS 基础架构图 v1.4（已归档至 archive/）,按需,归档
 00-master · 全局治理,IS_CODE_PACKAGE_GOVERNANCE_v1.1.md,v1.1,治理原则,全局代码包治理与交付接入原则（五状态模型+AI接力+版本迭代+存储权限）,代码包接收时,活跃
+00-master · 全局治理,Cross_Workspace_Collaboration_Protocol_v0.1.md,v0.1,全局协议,跨工作空间协同任务协议（触发条件/四级分级/交接任务包/回流反馈包/版本补丁机制）,跨空间任务触发时,活跃

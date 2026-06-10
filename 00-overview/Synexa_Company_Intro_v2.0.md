@@ -408,5 +408,5 @@ Synexa「Collaborative Intelligence」想要构建的是：
 
 ---
 
-*超智（广州）数字科技有限公司 · Synexa (Guangzhou) Digital Technology Co., Ltd.*
+*超智·数智科技 · Synexa (Guangzhou) Digital Technology Co., Ltd.*
 *内部基线文件 · SSOT · 版本 V2.4 · 2026-06-09*

@@ -1,0 +1,5 @@
+interface:
+  display_name: Synexa Collaboration Router
+  short_description: Route cross-workspace Synexa iS tasks into handoff packages, feedback loops, and patchable workflows.
+  icon: route
+  accent_color: "#1F4E5F"

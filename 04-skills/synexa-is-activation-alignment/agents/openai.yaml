@@ -1,0 +1,5 @@
+interface:
+  display_name: Synexa iS 全域激活
+  short_description: 启动 SIA，把复杂任务组织为 Task Room，调用全域能力、Skill、执行体与资产治理机制。
+  icon: network
+  accent_color: "#1F4E5F"

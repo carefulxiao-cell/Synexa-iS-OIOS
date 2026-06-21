@@ -90,5 +90,7 @@ Synexa_Company_Intro_v2.0.md,00-overview/archive/,认知基线文件,超智公�
 SpaceGrotesk-*.ttf,04-assets/fonts/space-grotesk/,字体资产,Space Grotesk 主题英文字体（400/500/600/700）,active,2026-06-21,iS-Core
 NotoSansCJK + NotoSerifCJK + NotoSans-Condensed,04-assets/fonts/noto/,字体资产,Noto 系列中文正文/标题/Condensed 字体,active,2026-06-21,iS-Core
 JetBrainsMono-*.ttf,04-assets/fonts/dejavu/,字体资产,JetBrains Mono 机器字段字体（替代 DejaVu Mono）,active,2026-06-21,iS-Core
-Synexa_Company_Intro_V3.6.md,00-overview/,认知基线文件,超智公司认知基线 V3.6（SSOT 主文件，当前基线）,active,2026-06-21,iS-Core
-Synexa_Company_Intro_V3.6_local.html,00-overview/,认知基线文件,超智公司认知基线 V3.6（本地自包含 HTML 渲染版）,active,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.6.md,00-overview/archive/,认知基线文件,超智公司认知基线 V3.6（已归档，被 V3.7 替代）,archived,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.6_local.html,00-overview/archive/,认知基线文件,超智公司认知基线 V3.6 HTML 渲染版（已归档）,archived,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.7.md,00-overview/,认知基线文件,超智公司认知基线 V3.7（SSOT 主文件，当前基线）,active,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.7_local.html,00-overview/,认知基线文件,超智公司认知基线 V3.7（本地自包含 HTML 渲染版）,active,2026-06-21,iS-Core

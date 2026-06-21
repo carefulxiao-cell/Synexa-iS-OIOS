@@ -84,9 +84,11 @@
 04-skills · SIA 全域激活,release_checklist.md,v0.1.0,检查清单,发布前检查清单（版本 / 资产归属 / 数据源状态）,发布前,活跃
 04-skills · SIA 全域激活,synexa-is-activation-alignment_v0.1.0_skill.zip,v0.1.0,归档包,GPT Skills 安装包（唯一发行版）,GPT 安装时,活跃
 00-overview · 治理索引,Synexa_iS_Activation_Alignment_Protocol_v0.1.md,v0.1.0,治理索引,SIA 全局级激活与对齐协议索引文件（定位 / 适用范围 / Skill 结构 / Patch Proposal）,按需,活跃
-Synexa_Company_Intro_V3.5.md,00-overview/,认知基线文件,超智公司认知基线 V3.5（SSOT 主文件）,active,2026-06-21,iS-Core
-Synexa_Company_Intro_V3.5_local.html,00-overview/,认知基线文件,超智公司认知基线 V3.5（本地自包含 HTML 渲染版）,active,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.5.md,00-overview/archive/,认知基线文件,超智公司认知基线 V3.5（已归档，被 V3.6 替代）,archived,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.5_local.html,00-overview/archive/,认知基线文件,超智公司认知基线 V3.5 HTML 渲染版（已归档）,archived,2026-06-21,iS-Core
 Synexa_Company_Intro_v2.0.md,00-overview/archive/,认知基线文件,超智公司认知基线 V2.0（已归档，被 V3.5 替代）,archived,2026-06-21,iS-Core
 SpaceGrotesk-*.ttf,04-assets/fonts/space-grotesk/,字体资产,Space Grotesk 主题英文字体（400/500/600/700）,active,2026-06-21,iS-Core
 NotoSansCJK + NotoSerifCJK + NotoSans-Condensed,04-assets/fonts/noto/,字体资产,Noto 系列中文正文/标题/Condensed 字体,active,2026-06-21,iS-Core
 JetBrainsMono-*.ttf,04-assets/fonts/dejavu/,字体资产,JetBrains Mono 机器字段字体（替代 DejaVu Mono）,active,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.6.md,00-overview/,认知基线文件,超智公司认知基线 V3.6（SSOT 主文件，当前基线）,active,2026-06-21,iS-Core
+Synexa_Company_Intro_V3.6_local.html,00-overview/,认知基线文件,超智公司认知基线 V3.6（本地自包含 HTML 渲染版）,active,2026-06-21,iS-Core

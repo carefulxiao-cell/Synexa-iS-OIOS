@@ -14,7 +14,7 @@ SYNEXACOLLABORATIVE INTELLIGENCE COMPANYINTERNAL SSOT
 
 <div class="cover-en">
 
-Synexa Company Intro V3.8
+Synexa Company Intro V3.10
 
 </div>
 
@@ -451,7 +451,7 @@ BOUNDARY
 | 项目                    | 定义                                                                     |
 |-------------------------|--------------------------------------------------------------------------|
 | Document Type           | Internal Master SSOT                                                     |
-| Version                 | V3.7                                                                     |
+| Version                 | V3.10                                                                    |
 | Baseline Principle      | 允许演化，但不允许失忆；允许压缩，但不允许失真；允许重排，但不允许暗删。 |
 | Human-Machine Principle | 人能快速理解，机器能稳定解析，智能体能据此推演，组织能持续迭代。         |
 | Visual Principle        | 英文像机器，中文像人；数字像系统，标题像判断；设计决策必须 token 化。    |

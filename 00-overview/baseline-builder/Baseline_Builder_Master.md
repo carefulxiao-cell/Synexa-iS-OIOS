@@ -1,7 +1,7 @@
 # Synexa 基线文件构建主规范
 
 **文件代号**：BBM（Baseline Builder Master）  
-**版本**：V1.0  
+**版本**：V1.2  
 **对齐基准**：Synexa_Company_Intro_V3.10  
 **适用范围**：所有 Synexa 体系基线文件（L2 项目级 + L3 专项台）  
 **文件性质**：机器可执行规范，任何 AI Agent 持此文件即可生产视觉一致的 HTML

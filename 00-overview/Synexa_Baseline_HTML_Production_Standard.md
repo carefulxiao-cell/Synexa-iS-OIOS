@@ -8,6 +8,30 @@
 
 ---
 
+## 0. 字体依赖声明（执行前必读）
+
+**本文件必须与 `fonts/` 文件夹同级存放。**
+
+```
+Synexa_Company_Intro_V.x/          ← 统一字体根目录（文件夹名可自定义）
+├── fonts/                          ← 字体文件夹，永久保留，不随版本更新
+│   ├── space-grotesk/
+│   ├── dejavu/
+│   └── noto/
+├── Synexa_Baseline_HTML_Production_Standard.md   ← 本文件
+├── Synexa_Company_Intro_V3.10.md
+├── Synexa_Company_Intro_V3.10.html
+├── Nex2U_Panyi_Ops_Baseline_V0.5.md
+├── Nex2U_Panyi_Ops_Baseline_V0.5.html
+└── {其他项目基线文件...}
+```
+
+**Agent 执行规则**：任何 AI Agent 收到 HTML 生产任务时，必须先确认本文件与 `fonts/` 同级。生成的 HTML 文件也必须放入同一目录，字体路径 `fonts/` 才能正确解析。
+
+**字体文件不随版本更新**：`fonts/` 内容固定，所有版本的 HTML 共用同一套字体，无需重复复制或更新。
+
+---
+
 ## 1. 文件体系定义
 
 每个基线文件维护三个形态，职责不同，不可混用：

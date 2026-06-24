@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番医饭堂「运营推进台」</title>
+<style>
+
+@font-face { font-family: 'Space Grotesk'; font-weight: 400; src: url('fonts/space-grotesk/SpaceGrotesk-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 500; src: url('fonts/space-grotesk/SpaceGrotesk-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 600; src: url('fonts/space-grotesk/SpaceGrotesk-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 700; src: url('fonts/space-grotesk/SpaceGrotesk-Bold.ttf') format('truetype'); }
+@font-face { font-family: Mono; src: url('fonts/dejavu/JetBrainsMono-Regular.ttf') format('truetype'); }
+@font-face { font-family: Mono; font-weight:700; src: url('fonts/dejavu/JetBrainsMono-Bold.ttf') format('truetype'); }
+@font-face { font-family: EnCondensed; src: url('fonts/noto/NotoSans-Condensed.ttf') format('truetype'); }
+@font-face { font-family: EnCondensed; font-weight:700; src: url('fonts/noto/NotoSans-CondensedBold.ttf') format('truetype'); }
+@font-face { font-family: CJK; src: url('fonts/noto/NotoSansCJK-Regular.ttc') format('collection'); }
+@font-face { font-family: CJK; font-weight:700; src: url('fonts/noto/NotoSansCJK-Bold.ttc') format('collection'); }
+@font-face { font-family: SerifCJK; src: url('fonts/noto/NotoSerifCJK-Regular.ttc') format('collection'); }
+@font-face { font-family: SerifCJK; font-weight:700; src: url('fonts/noto/NotoSerifCJK-Bold.ttc') format('collection'); }
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+  --font-en: 'Space Grotesk', 'EnCondensed', sans-serif;
+  --font-zh: CJK, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-title: SerifCJK, 'Noto Serif CJK SC', serif;
+  --font-mono: Mono, 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  color: var(--dark);
+  background: #fff;
+  line-height: 1.7;
+}
+
+.page-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+}
+
+/* ── Cover ── */
+.cover {
+  padding: 64px 56px 48px;
+  border-bottom: 2px solid var(--border);
+  background: #fff;
+}
+.topline {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.cover-title {
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.cover-en {
+  font-family: var(--font-en);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+.cover-sub {
+  font-family: var(--font-en);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+}
+.quote {
+  font-family: var(--font-title);
+  font-size: 14px;
+  color: var(--mid);
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 18px;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 14px;
+  background: #fff;
+}
+.num {
+  font-family: var(--font-en);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.statlabel {
+  font-family: var(--font-zh);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mid);
+  margin-bottom: 3px;
+}
+.statsub {
+  font-family: var(--font-en);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.04em;
+}
+
+/* ── Section / Chapter ── */
+.section {
+  padding: 40px 56px;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+
+.eyebrow {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── Headings ── */
+h1 {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+h1 .subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 400;
+  font-family: var(--font-zh);
+  margin-left: 8px;
+}
+h2 {
+  font-family: var(--font-zh);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+h3 {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+h4 {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 16px 0 8px;
+}
+
+p { margin-bottom: 12px; }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0 20px;
+}
+thead tr {
+  background: #0B1220;
+}
+thead th {
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  padding: 8px 10px;
+  text-align: left;
+  letter-spacing: 0.04em;
+}
+tbody tr:nth-child(odd)  { background: #fff; }
+tbody tr:nth-child(even) { background: var(--bg-soft); }
+tbody td {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.55;
+}
+table.matrix tbody td:first-child {
+  font-family: var(--font-mono);
+  color: var(--purple);
+  font-size: 12px;
+}
+
+/* ── Callout ── */
+.callout {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout.core { border-left-color: var(--purple); }
+.callout.warn { border-left-color: #F59E0B; }
+.call-label {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.callout.core .call-label { color: var(--purple); }
+.callout.warn .call-label { color: #F59E0B; }
+
+/* ── Blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 14px 0;
+  font-size: 14px;
+  color: var(--mid);
+  font-family: var(--font-title);
+  line-height: 1.8;
+}
+
+/* ── Protocol Grid ── */
+.protocol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.protocol-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  background: #fff;
+}
+.pc-title {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ── Summary Grid ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.summary-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  background: var(--bg-soft);
+  font-size: 13px;
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  background: rgba(139,90,202,0.08);
+  border: 1px solid rgba(139,90,202,0.25);
+  border-radius: 3px;
+  padding: 2px 7px;
+  vertical-align: middle;
+}
+
+/* ── Code ── */
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+pre {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: #0B1220;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 14px 0;
+  line-height: 1.6;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ── Lists ── */
+ul, ol { padding-left: 20px; margin-bottom: 12px; }
+li { margin-bottom: 4px; line-height: 1.65; }
+
+/* ── Footer ── */
+.doc-footer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--faint);
+  text-align: center;
+  padding: 32px 56px 16px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .cover, .section { padding: 32px 24px; }
+  .statgrid { grid-template-columns: repeat(2, 1fr); }
+  .protocol-grid, .summary-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="section cover">
+  <div class="topline">SYNEXA · PANYI CANTEEN · INTERNAL SSOT</div>
+  <div class="cover-title">番医饭堂「运营推进台」</div>
+  <div class="cover-en">Panyi Canteen · Operations Advancement Station V0.1</div>
+  <div class="cover-sub">Daily operation workflows, document standardization, and continuous improvement protocols.</div>
+  <div class="quote">前线录入原始数据（最低门槛）→ 数智自动生成标准化文档 → 中台审查归档。两周内完成日志运营自动化路径。</div>
+  <div class="statgrid">
+    <div class="stat">
+      <div class="num">10</div>
+      <div class="statlabel">标准文档</div>
+      <div class="statsub">Document Types</div>
+    </div>
+    <div class="stat">
+      <div class="num">P0-P3</div>
+      <div class="statlabel">异常分级</div>
+      <div class="statsub">Incident Levels</div>
+    </div>
+    <div class="stat">
+      <div class="num">D+14</div>
+      <div class="statlabel">自动化目标</div>
+      <div class="statsub">Automation Target</div>
+    </div>
+    <div class="stat">
+      <div class="num">6</div>
+      <div class="statlabel">补充模块</div>
+      <div class="statsub">Add-on Modules</div>
+    </div>
+  </div>
+</div>
+<div class="section chapter">
+  <div class="eyebrow">OPERATIONS ADVANCEMENT · L3 STATION</div>
+  <h1 id="l3">番医饭堂·运营推进台「L3 专项台」</h1>
+<p><strong>Panyi Canteen · Operations Advancement Station V0.1</strong></p>
+<p><em>Daily operation workflows, document standardization, and continuous improvement protocols.</em></p>
+<hr />
+<h2 id="_1">台定位</h2>
+<ul>
+<li><strong>覆盖范围</strong>：番医饭堂日常运营工作流、台账/日志/报告标准化交付体系、异常响应机制、补充运营模块。</li>
+<li><strong>不覆盖</strong>：人员岗责定义（归属人力管理台）、任务状态追踪（归属任务跟踪台）。</li>
+<li><strong>与其他台的关系</strong>：从任务跟踪台获取任务状态；向人力管理台反馈岗位效能问题；关键决策进入 Judgment Asset。</li>
+</ul>
+<hr />
+<h2 id="_2">当前状态总览</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>主题</th>
+<th>状态</th>
+<th>最近动作</th>
+<th>下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>O1</td>
+<td>日常运营三段式工作流</td>
+<td>已设计</td>
+<td>完成工作流设计</td>
+<td>D+1启动晨会</td>
+</tr>
+<tr>
+<td>O2</td>
+<td>台账/日志/报告标准化（10种文档）</td>
+<td>待启动</td>
+<td>完成文档体系设计</td>
+<td>D+3完成4个模板</td>
+</tr>
+<tr>
+<td>O3</td>
+<td>异常响应流（P0-P3）建立</td>
+<td>待启动</td>
+<td>完成分级定义</td>
+<td>D+5完成培训</td>
+</tr>
+<tr>
+<td>O4</td>
+<td>日志运营自动化路径</td>
+<td>待启动</td>
+<td>完成路径设计</td>
+<td>D+14完成验证</td>
+</tr>
+<tr>
+<td>O5</td>
+<td>SOP标准化模块</td>
+<td>待启动</td>
+<td>—</td>
+<td>D+14启动初稿</td>
+</tr>
+<tr>
+<td>O6</td>
+<td>院方沟通管理模块</td>
+<td>待启动</td>
+<td>—</td>
+<td>D+7建立记录模板</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch01-daily-operations-workflow">CH01｜日常运营工作流 Daily Operations Workflow</h2>
+<h3 id="_3">三段式结构（情报先于行动原则）</h3>
+<blockquote>
+<p>每日运营严格遵循「简报→执行→复盘」三段式，禁止无简报直接执行。</p>
+</blockquote>
+<h3 id="_4">日常运营流（含当日问题点/特情跟进）</h3>
+<table>
+<thead>
+<tr>
+<th>时间节点</th>
+<th>动作</th>
+<th>负责方</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>07:30</td>
+<td>D-NexOps自动生成「日运营简报」</td>
+<td>数智</td>
+<td>简报（含昨日摘要/今日预警/待决事项/特情跟进状态）</td>
+</tr>
+<tr>
+<td>08:00</td>
+<td>前线晨会（10分钟）</td>
+<td>运营经理主持</td>
+<td>当日任务确认</td>
+</tr>
+<tr>
+<td>08:30</td>
+<td>前线开始执行，各岗位按SOP执行并录入数据</td>
+<td>前线全员</td>
+<td>实时数据</td>
+</tr>
+<tr>
+<td>全天</td>
+<td>iS-Proxima实时捕捉问题点/特情</td>
+<td>数智</td>
+<td>PANYI-ISS-xxx自动创建</td>
+</tr>
+<tr>
+<td>全天</td>
+<td>P0/P1异常：即时升级至运营经理→必要时升级至你</td>
+<td>运营经理/你</td>
+<td>异常处理记录</td>
+</tr>
+<tr>
+<td>17:00</td>
+<td>各岗位完成当日录入</td>
+<td>前线全员</td>
+<td>当日数据完整</td>
+</tr>
+<tr>
+<td>17:30</td>
+<td>D-NexOps自动汇总「当日问题点/特情记录」</td>
+<td>数智</td>
+<td>问题点汇总</td>
+</tr>
+<tr>
+<td>18:00</td>
+<td>日复盘（15分钟，运营经理主持）</td>
+<td>运营经理+前线</td>
+<td>问题点状态确认+经验沉淀</td>
+</tr>
+<tr>
+<td>19:00</td>
+<td>D-NexFA自动生成「日财务台账」</td>
+<td>数智</td>
+<td>财务台账（运营经理审查）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch02-incident-response">CH02｜异常响应机制 Incident Response</h2>
+<h3 id="p0-p3">P0-P3分级响应</h3>
+<table>
+<thead>
+<tr>
+<th>级别</th>
+<th>定义</th>
+<th>响应时限</th>
+<th>处理路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>食安事故/重大投诉/系统崩溃</td>
+<td>立即（5分钟内）</td>
+<td>前线→运营经理→你（同步）</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>食材严重缺货/院方投诉/配送超时</td>
+<td>30分钟内</td>
+<td>前线→运营经理（处理+报告你）</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>一般性缺货/轻微投诉/出品偏差</td>
+<td>当日内</td>
+<td>前线→运营经理（当日解决）</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>轻微问题/改进建议/非紧急事项</td>
+<td>下次复盘</td>
+<td>前线录入→复盘时处理</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>Andon原则</strong>：前线任何人发现问题可即时上报，不压制，不等待。P0/P1异常必须留痕进入Judgment Asset。</p>
+</blockquote>
+<hr />
+<h2 id="ch03-document-standardization">CH03｜台账·日志·报告标准化 Document Standardization</h2>
+<h3 id="_5">核心逻辑</h3>
+<p><strong>前线录入原始数据（最低门槛）→ 数智自动生成标准化文档 → 中台审查归档</strong></p>
+<blockquote>
+<p>目标：两周内完成日志运营自动化路径，前线直接可以完成交付。</p>
+</blockquote>
+<h3 id="10">10种标准化文档体系</h3>
+<table>
+<thead>
+<tr>
+<th>文档类型</th>
+<th>生成频率</th>
+<th>录入方式</th>
+<th>生成方式</th>
+<th>负责数智角色</th>
+<th>审查方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日运营简报</td>
+<td>每日07:30</td>
+<td>前日数据自动汇总</td>
+<td>自动生成</td>
+<td>D-NexOps</td>
+<td>运营经理</td>
+</tr>
+<tr>
+<td>当日问题点/特情记录</td>
+<td>实时+每日汇总</td>
+<td>前线飞书消息上报</td>
+<td>自动整理</td>
+<td>D-NexTask</td>
+<td>运营经理</td>
+</tr>
+<tr>
+<td>食安日检记录</td>
+<td>每日</td>
+<td>食安主管飞书表单录入</td>
+<td>自动格式化</td>
+<td>D-NexOps</td>
+<td>食安主管</td>
+</tr>
+<tr>
+<td>库存台账</td>
+<td>每日</td>
+<td>仓管员飞书表单录入</td>
+<td>自动生成</td>
+<td>D-NexSply</td>
+<td>仓管员</td>
+</tr>
+<tr>
+<td>打单记录</td>
+<td>每日</td>
+<td>行政文员录入</td>
+<td>自动汇总</td>
+<td>D-NexChef</td>
+<td>行政文员</td>
+</tr>
+<tr>
+<td>生产出品记录</td>
+<td>每日</td>
+<td>厨房飞书表单录入</td>
+<td>自动格式化</td>
+<td>D-NexChef</td>
+<td>食堂经理</td>
+</tr>
+<tr>
+<td>日财务台账</td>
+<td>每日</td>
+<td>订单+采购数据自动汇总</td>
+<td>自动生成</td>
+<td>D-NexFA</td>
+<td>运营经理</td>
+</tr>
+<tr>
+<td>周运营报告</td>
+<td>每周一</td>
+<td>7日数据自动汇总</td>
+<td>自动生成</td>
+<td>D-NexLens</td>
+<td>运营经理→你</td>
+</tr>
+<tr>
+<td>周任务洞察报告</td>
+<td>每周一</td>
+<td>任务板自动分析</td>
+<td>自动生成</td>
+<td>D-NexLens</td>
+<td>你</td>
+</tr>
+<tr>
+<td>月经营复盘报告</td>
+<td>每月</td>
+<td>月度数据+人工补充</td>
+<td>自动生成+人工判断</td>
+<td>D-NexLens+D-NexFA</td>
+<td>你</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">文档交付标准</h3>
+<table>
+<thead>
+<tr>
+<th>标准维度</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>排版</td>
+<td>统一模板（Synexa iS规范）；表格为主，文字为辅；关键数据加粗</td>
+</tr>
+<tr>
+<td>模块完整性</td>
+<td>每份文档必须包含：日期/版本 / 摘要 / 正文 / 异常标记 / 待决事项 / 负责人签认</td>
+</tr>
+<tr>
+<td>质量门</td>
+<td>空值字段不超过10%；关键字段（食安/财务）不允许空值</td>
+</tr>
+<tr>
+<td>审查机制</td>
+<td>日报：当日运营经理审查；周报：你审查；月报：你裁决</td>
+</tr>
+<tr>
+<td>归档规则</td>
+<td>日报存飞书Base；周报/月报推送GitHub；重大异常同步进入iS-Cortex</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch04-project-advancement-flow">CH04｜项目推进流 Project Advancement Flow</h2>
+<h3 id="p0-p5">P0-P5阶段推进</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>工作</th>
+<th>产物/目标</th>
+<th>主导方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>接收同事补录表</td>
+<td>采购标准数据、营收明细、生产出品与时效试记录</td>
+<td>运营经理+行政文员</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>产品SKU×营收映射</td>
+<td>识别产品真实销售、数量/项次、金额、时段、点位</td>
+<td>D-NexChef+D-NexFA</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>结构点×食材/BOM初表</td>
+<td>把结构点反推主食材、单位、价格、采购支撑</td>
+<td>D-NexSply+D-NexChef</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>采购预推演</td>
+<td>按三周菜单和产品表现推日采购、周采购、成本占比</td>
+<td>D-NexSply</td>
+</tr>
+<tr>
+<td>P4</td>
+<td>生产与配送校验</td>
+<td>产能低/中/高/超载、路线、温控、标签、120分钟</td>
+<td>D-NexChef+D-NexOps</td>
+</tr>
+<tr>
+<td>P5</td>
+<td>复盘与规则更新</td>
+<td>保留/降频/替换/待上/研发/待研发和Project-to-Skill沉淀</td>
+<td>D-NexLens+你</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch05-key-decisions">CH05｜关键决策记录 Key Decisions</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>结论</th>
+<th>影响范围</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-24</td>
+<td>数智层级精简为4层（你→中台→引擎→前线），不启用L1-L7全库</td>
+<td>全体系</td>
+</tr>
+<tr>
+<td>2026-06-24</td>
+<td>5个共同内核融合进各机制，不独立运转</td>
+<td>全体系</td>
+</tr>
+<tr>
+<td>2026-06-24</td>
+<td>台账/日志/报告标准化：前线最小录入→数智自动生成→中台审查，两周内完成</td>
+<td>台账体系</td>
+</tr>
+<tr>
+<td>2026-06-24</td>
+<td>财务缺口短期由D-NexFA数智承担，中期配置兼职财务</td>
+<td>财务职能域</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch06-rule-changes">CH06｜规则变更记录 Rule Changes</h2>
+<blockquote>
+<p>当前版本为初版，无历史变更记录。</p>
+</blockquote>
+<hr />
+<h2 id="ch07-pending-issues">CH07｜待解决问题池 Pending Issues</h2>
+<table>
+<thead>
+<tr>
+<th>问题描述</th>
+<th>优先级</th>
+<th>负责人</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>飞书Base九表当前建立状态未确认，影响日志自动化路径</td>
+<td>High</td>
+<td>你</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>SOP标准化模块尚未启动，厨师长思路传统可能有阻力</td>
+<td>High</td>
+<td>运营经理</td>
+<td>待启动</td>
+</tr>
+<tr>
+<td>院方沟通管理模块未建立，院方承诺事项无正式记录</td>
+<td>High</td>
+<td>客服经理</td>
+<td>待启动</td>
+</tr>
+<tr>
+<td>菜单审核闭环（退回/修正机制）未正式化</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待启动</td>
+</tr>
+<tr>
+<td>供应商管理模块未建立，供应商资质档案缺失</td>
+<td>Medium</td>
+<td>仓管员+D-NexSply</td>
+<td>待启动</td>
+</tr>
+<tr>
+<td>Project-to-Skill沉淀机制未启动（番医是样板项目）</td>
+<td>Medium</td>
+<td>iS-Core</td>
+<td>待启动</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch08-recommended-modules">CH08｜建议必要补充模块 Recommended Modules</h2>
+<table>
+<thead>
+<tr>
+<th>补充模块</th>
+<th>必要性判断</th>
+<th>具体内容</th>
+<th>优先级</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOP标准化模块</td>
+<td>厨师长思路传统，食安主管年纪大，SOP是保障出品稳定和食安合规的底线</td>
+<td>厨房SOP/配送SOP/食安SOP/专项餐SOP，精确到操作步骤，数智辅助生成初稿</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>院方沟通管理模块</td>
+<td>院方是甲方，沟通记录和承诺管理是风险控制的关键</td>
+<td>院方沟通记录/承诺事项跟踪/反馈处理记录，进入Judgment Asset</td>
+<td>P0</td>
+</tr>
+<tr>
+<td>菜单审核闭环</td>
+<td>当前菜单调整依赖口头，缺乏正式退回/修正机制</td>
+<td>菜单提案→数智审查→人工裁决→退回/通过→执行</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>供应商管理模块</td>
+<td>当前采购无专职岗，供应商关系和资质管理是风险点</td>
+<td>供应商资质档案/价格历史/异常记录/备供方案，D-NexSply支持</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>Project-to-Skill沉淀机制</td>
+<td>番医是Nex₂U的样板项目，每周必须执行一次P2S沉淀</td>
+<td>每周复盘后，异常/规则/经验进入iS-Cortex；每月输出可复用Skill包</td>
+<td>P1</td>
+</tr>
+<tr>
+<td>数智员工效能评估</td>
+<td>数智员工由你主导，需要定期评估各引擎的实际效能</td>
+<td>每月：任务完成率/输出质量/前线满意度，识别低效引擎并迭代</td>
+<td>P2</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="bsop">附录 B｜SOP摘要框架（待完善）</h2>
+<table>
+<thead>
+<tr>
+<th>SOP类型</th>
+<th>覆盖范围</th>
+<th>当前状态</th>
+<th>负责方</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>厨房生产SOP</td>
+<td>备料→烹饪→出品→清洁，精确到操作步骤</td>
+<td>待制定</td>
+<td>厨师长+D-NexChef</td>
+</tr>
+<tr>
+<td>食安管理SOP</td>
+<td>晨检→留样→温控→消毒→记录</td>
+<td>待制定</td>
+<td>食安主管+D-NexOps</td>
+</tr>
+<tr>
+<td>配送SOP</td>
+<td>打包→标签→出发→送达→签收→异常处理</td>
+<td>待制定</td>
+<td>运营经理+D-NexOps</td>
+</tr>
+<tr>
+<td>专项餐SOP</td>
+<td>月子餐/手术室餐的制作、包装、配送专项规程</td>
+<td>待制定</td>
+<td>食堂经理·偏专项+D-NexChef</td>
+</tr>
+<tr>
+<td>台账录入SOP</td>
+<td>各岗位飞书表单录入操作规程</td>
+<td>待制定</td>
+<td>行政文员+D-NexOps</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>番医饭堂·运营推进台 V0.1 · 2026-06-24 · SYNEXA INTERNAL SSOT</em></p>
+</div>
+<div class="doc-footer">
+  番医饭堂「运营推进台」 · SYNEXA INTERNAL SSOT · 2026-06-24 · BBM V1.2
+</div>
+</div>
+</body>
+</html>

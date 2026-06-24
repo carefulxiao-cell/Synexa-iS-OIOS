@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番医饭堂「人力管理台」</title>
+<style>
+
+@font-face { font-family: 'Space Grotesk'; font-weight: 400; src: url('fonts/space-grotesk/SpaceGrotesk-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 500; src: url('fonts/space-grotesk/SpaceGrotesk-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 600; src: url('fonts/space-grotesk/SpaceGrotesk-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 700; src: url('fonts/space-grotesk/SpaceGrotesk-Bold.ttf') format('truetype'); }
+@font-face { font-family: Mono; src: url('fonts/dejavu/JetBrainsMono-Regular.ttf') format('truetype'); }
+@font-face { font-family: Mono; font-weight:700; src: url('fonts/dejavu/JetBrainsMono-Bold.ttf') format('truetype'); }
+@font-face { font-family: EnCondensed; src: url('fonts/noto/NotoSans-Condensed.ttf') format('truetype'); }
+@font-face { font-family: EnCondensed; font-weight:700; src: url('fonts/noto/NotoSans-CondensedBold.ttf') format('truetype'); }
+@font-face { font-family: CJK; src: url('fonts/noto/NotoSansCJK-Regular.ttc') format('collection'); }
+@font-face { font-family: CJK; font-weight:700; src: url('fonts/noto/NotoSansCJK-Bold.ttc') format('collection'); }
+@font-face { font-family: SerifCJK; src: url('fonts/noto/NotoSerifCJK-Regular.ttc') format('collection'); }
+@font-face { font-family: SerifCJK; font-weight:700; src: url('fonts/noto/NotoSerifCJK-Bold.ttc') format('collection'); }
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+  --font-en: 'Space Grotesk', 'EnCondensed', sans-serif;
+  --font-zh: CJK, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-title: SerifCJK, 'Noto Serif CJK SC', serif;
+  --font-mono: Mono, 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  color: var(--dark);
+  background: #fff;
+  line-height: 1.7;
+}
+
+.page-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+}
+
+/* ── Cover ── */
+.cover {
+  padding: 64px 56px 48px;
+  border-bottom: 2px solid var(--border);
+  background: #fff;
+}
+.topline {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.cover-title {
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.cover-en {
+  font-family: var(--font-en);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+.cover-sub {
+  font-family: var(--font-en);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+}
+.quote {
+  font-family: var(--font-title);
+  font-size: 14px;
+  color: var(--mid);
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 18px;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 14px;
+  background: #fff;
+}
+.num {
+  font-family: var(--font-en);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.statlabel {
+  font-family: var(--font-zh);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mid);
+  margin-bottom: 3px;
+}
+.statsub {
+  font-family: var(--font-en);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.04em;
+}
+
+/* ── Section / Chapter ── */
+.section {
+  padding: 40px 56px;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+
+.eyebrow {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── Headings ── */
+h1 {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+h1 .subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 400;
+  font-family: var(--font-zh);
+  margin-left: 8px;
+}
+h2 {
+  font-family: var(--font-zh);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+h3 {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+h4 {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 16px 0 8px;
+}
+
+p { margin-bottom: 12px; }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0 20px;
+}
+thead tr {
+  background: #0B1220;
+}
+thead th {
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  padding: 8px 10px;
+  text-align: left;
+  letter-spacing: 0.04em;
+}
+tbody tr:nth-child(odd)  { background: #fff; }
+tbody tr:nth-child(even) { background: var(--bg-soft); }
+tbody td {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.55;
+}
+table.matrix tbody td:first-child {
+  font-family: var(--font-mono);
+  color: var(--purple);
+  font-size: 12px;
+}
+
+/* ── Callout ── */
+.callout {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout.core { border-left-color: var(--purple); }
+.callout.warn { border-left-color: #F59E0B; }
+.call-label {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.callout.core .call-label { color: var(--purple); }
+.callout.warn .call-label { color: #F59E0B; }
+
+/* ── Blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 14px 0;
+  font-size: 14px;
+  color: var(--mid);
+  font-family: var(--font-title);
+  line-height: 1.8;
+}
+
+/* ── Protocol Grid ── */
+.protocol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.protocol-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  background: #fff;
+}
+.pc-title {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ── Summary Grid ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.summary-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  background: var(--bg-soft);
+  font-size: 13px;
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  background: rgba(139,90,202,0.08);
+  border: 1px solid rgba(139,90,202,0.25);
+  border-radius: 3px;
+  padding: 2px 7px;
+  vertical-align: middle;
+}
+
+/* ── Code ── */
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+pre {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: #0B1220;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 14px 0;
+  line-height: 1.6;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ── Lists ── */
+ul, ol { padding-left: 20px; margin-bottom: 12px; }
+li { margin-bottom: 4px; line-height: 1.65; }
+
+/* ── Footer ── */
+.doc-footer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--faint);
+  text-align: center;
+  padding: 32px 56px 16px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .cover, .section { padding: 32px 24px; }
+  .statgrid { grid-template-columns: repeat(2, 1fr); }
+  .protocol-grid, .summary-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="section cover">
+  <div class="topline">SYNEXA · PANYI CANTEEN · INTERNAL SSOT</div>
+  <div class="cover-title">番医饭堂「人力管理台」</div>
+  <div class="cover-en">Panyi Canteen · Human Resource Management Station V0.1</div>
+  <div class="cover-sub">Physical & Digital workforce architecture for Panyi institutional meal operations.</div>
+  <div class="quote">每个物理岗位配给对应数智工具，工具放大个体效能，1人干3人的事。指挥链≤2层，情报先于行动。</div>
+  <div class="statgrid">
+    <div class="stat">
+      <div class="num">11</div>
+      <div class="statlabel">职能域</div>
+      <div class="statsub">Function Domains</div>
+    </div>
+    <div class="stat">
+      <div class="num">4</div>
+      <div class="statlabel">覆盖缺口</div>
+      <div class="statsub">Coverage Gaps</div>
+    </div>
+    <div class="stat">
+      <div class="num">11</div>
+      <div class="statlabel">物理岗位</div>
+      <div class="statsub">Physical Roles</div>
+    </div>
+    <div class="stat">
+      <div class="num">9</div>
+      <div class="statlabel">激活引擎</div>
+      <div class="statsub">Active Engines</div>
+    </div>
+  </div>
+</div>
+<div class="section chapter">
+  <div class="eyebrow">HUMAN RESOURCE MANAGEMENT · L3 STATION</div>
+  <h1 id="l3">番医饭堂·人力管理台「L3 专项台」</h1>
+<p><strong>Panyi Canteen · Human Resource Management Station V0.1</strong></p>
+<p><em>Physical &amp; Digital workforce architecture for Panyi institutional meal operations.</em></p>
+<hr />
+<h2 id="_1">台定位</h2>
+<ul>
+<li><strong>覆盖范围</strong>：番医饭堂全部物理岗位的岗责定义、数智配给矩阵、职能域覆盖分析及人员能力档案。</li>
+<li><strong>不覆盖</strong>：排班执行细节（归属运营推进台）、薪酬具体数字（待确认）、招聘流程（归属超智中台）。</li>
+<li><strong>与其他台的关系</strong>：与任务跟踪台共享「每日必交付物」字段；与运营推进台共享异常响应路径。</li>
+</ul>
+<hr />
+<h2 id="_2">当前状态总览</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>主题</th>
+<th>状态</th>
+<th>最近动作</th>
+<th>下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H1</td>
+<td>岗位职能域覆盖分析</td>
+<td>已完成</td>
+<td>识别11个职能域，标注4个缺口</td>
+<td>确认缺口应对方案</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>前线岗位×数智配给矩阵</td>
+<td>已完成</td>
+<td>完成11个岗位配给设计</td>
+<td>正式化并告知各岗位</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>食堂经理·偏专项厨房 入职</td>
+<td>待启动</td>
+<td>已离职，需超智方申请再入职</td>
+<td>提交申请</td>
+</tr>
+<tr>
+<td>H4</td>
+<td>人员能力档案建立</td>
+<td>待启动</td>
+<td>—</td>
+<td>D+5内完成初版</td>
+</tr>
+<tr>
+<td>H5</td>
+<td>新员工/调岗接入协议</td>
+<td>待启动</td>
+<td>—</td>
+<td>D+5内完成模板</td>
+</tr>
+<tr>
+<td>H6</td>
+<td>数智员工效能评估机制</td>
+<td>待启动</td>
+<td>—</td>
+<td>首次评估在D+30</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch01-architecture-layer">CH01｜架构定位 Architecture Layer</h2>
+<h3 id="synexa-is">Synexa iS 六层映射</h3>
+<table>
+<thead>
+<tr>
+<th>iS 层级</th>
+<th>番医对应</th>
+<th>核心职责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0 人智定向层</td>
+<td>你</td>
+<td>战略方向、边界设定、成功标准、最终裁决</td>
+</tr>
+<tr>
+<td>L1 场景感知层</td>
+<td>前线现场信号（iS-Proxima 近场接入）</td>
+<td>实时录入、问题上报、现场执行</td>
+</tr>
+<tr>
+<td>L2 协同智能核心</td>
+<td>数智员工团队（Proxima→Vena→Cortex 串行）</td>
+<td>数据清洗、推演、生成文档</td>
+</tr>
+<tr>
+<td>L3 引擎执行层</td>
+<td>Nex·EC 激活子集（9个引擎）</td>
+<td>具体业务引擎执行</td>
+</tr>
+<tr>
+<td>L4 人智决策层</td>
+<td>中台管理岗（运营经理 + 客服经理）</td>
+<td>审查、裁决、协调、异常处理</td>
+</tr>
+<tr>
+<td>L5 输出与进化层</td>
+<td>台账/日志/报告自动生成 + 经验资产沉淀</td>
+<td>知识沉淀、复盘、Project-to-Skill</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4">番医专项精简4层指挥链</h3>
+<pre><code>L0  你（人智定向）
+     ↓ 战略裁决 / 边界设定
+L1  中台协同层（运营经理 + 客服经理）
+     ↓ 审查 / 协调 / 异常裁决
+L2  数智引擎层（Nex·EC 激活9个引擎）
+     ↓ 推演 / 生成 / 分析
+L3  前线感知层（iS-Proxima 近场接入，前线10个岗位）
+     ↓ 录入 / 上报 / 执行
+</code></pre>
+<blockquote>
+<p><strong>设计原则</strong>：指挥链≤2层（日常运营：你→中台→前线）；数智员工由你主导，各单元配合；工具放大个体效能，1人干3人的事。</p>
+</blockquote>
+<hr />
+<h2 id="ch02-function-domain-coverage">CH02｜职能域覆盖分析 Function Domain Coverage</h2>
+<h3 id="11">团餐行业11个标准职能域 × 番医覆盖情况</h3>
+<table>
+<thead>
+<tr>
+<th>职能域</th>
+<th>行业标准要求</th>
+<th>番医当前人员</th>
+<th>覆盖状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>食品安全管理</td>
+<td>持证上岗、晨检、留样、温控、消毒记录</td>
+<td>食安主管（宜源华调岗，年纪大）</td>
+<td>✅ 覆盖</td>
+</tr>
+<tr>
+<td>仓储管理</td>
+<td>入库验收、先进先出、库存盘点、报损记录</td>
+<td>仓管员</td>
+<td>✅ 覆盖</td>
+</tr>
+<tr>
+<td>采购管理</td>
+<td>供应商资质、比价、下单、验收、台账</td>
+<td>仓管员+行政文员协助（无专职）</td>
+<td>🔶 部分覆盖</td>
+</tr>
+<tr>
+<td>厨房生产管理</td>
+<td>排程、SOP、出品质量、设备维护</td>
+<td>厨师长（宜源华招聘，思路传统）+ 食堂经理·偏全面厨房 + 食堂经理·偏专项厨房</td>
+<td>✅ 覆盖（需SOP升级）</td>
+</tr>
+<tr>
+<td>专项餐食管理</td>
+<td>月子餐/手术室餐/感控餐专项</td>
+<td>食堂经理·偏专项厨房（先申请再入职）+ 行政文员·月子餐协同</td>
+<td>✅ 覆盖</td>
+</tr>
+<tr>
+<td>外场/配送服务</td>
+<td>路线、时效、温控、签收、投诉</td>
+<td>运营经理统筹（无专职配送管理岗）</td>
+<td>🔶 部分覆盖</td>
+</tr>
+<tr>
+<td>客户服务/院方沟通</td>
+<td>投诉受理、满意度、院方对接</td>
+<td>客服经理（超智外派）</td>
+<td>✅ 覆盖</td>
+</tr>
+<tr>
+<td>打单·专线管理</td>
+<td>订单打印、专线对账、配送单管理</td>
+<td>行政文员·打单专线</td>
+<td>✅ 覆盖</td>
+</tr>
+<tr>
+<td>台账管理</td>
+<td>日报、周报、月报、各类记录</td>
+<td>行政文员×2（标准化不足）</td>
+<td>🔶 部分覆盖（需数智支持升级）</td>
+</tr>
+<tr>
+<td>财务核控</td>
+<td>收入、成本、毛利、结算、对账</td>
+<td>无专职财务岗</td>
+<td>❌ 缺口（数智支持）</td>
+</tr>
+<tr>
+<td>整体运营统筹</td>
+<td>跨职能协调、节奏控制、院方关系</td>
+<td>运营经理（宜源华调岗）</td>
+<td>✅ 覆盖</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_3">职能域覆盖缺口及应对</h3>
+<table>
+<thead>
+<tr>
+<th>缺口职能域</th>
+<th>风险等级</th>
+<th>短期应对</th>
+<th>中期建议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>财务核控</td>
+<td>High</td>
+<td>D-NexFA数智承担台账生成，运营经理审查</td>
+<td>配置兼职财务或中台财务支持</td>
+</tr>
+<tr>
+<td>专职采购管理</td>
+<td>Medium</td>
+<td>D-NexSply支持采购预推演，仓管员执行</td>
+<td>考虑专职采购岗或采购职能并入仓管</td>
+</tr>
+<tr>
+<td>配送管理</td>
+<td>Medium</td>
+<td>D-NexOps配送模块+运营经理统筹</td>
+<td>配置配送主管或明确配送责任岗</td>
+</tr>
+<tr>
+<td>营养师/菜单专员</td>
+<td>Medium</td>
+<td>D-Nex2U数智承担营养分析</td>
+<td>考虑营养顾问合作（外部兼职）</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch03-role-definitions">CH03｜岗位职责详述 Role Definitions</h2>
+<h3 id="_4">前线岗位×职能域×数智配给矩阵</h3>
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>人员来源</th>
+<th>主职能域</th>
+<th>副职能域</th>
+<th>主配数智引擎</th>
+<th>每日必交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>你（L0）</td>
+<td>—</td>
+<td>战略裁决</td>
+<td>全局洞察</td>
+<td>D-NexLens + D-NexFlow</td>
+<td>每日简报审阅 + 关键裁决记录</td>
+</tr>
+<tr>
+<td>运营经理</td>
+<td>宜源华调岗</td>
+<td>整体运营统筹</td>
+<td>台账管理/活动配合</td>
+<td>D-NexFlow + D-NexTask + D-NexOps</td>
+<td>日运营简报 / 异常记录</td>
+</tr>
+<tr>
+<td>客服经理</td>
+<td>超智外派</td>
+<td>客户服务/院方沟通</td>
+<td>活动配合/投诉处理</td>
+<td>D-NexOps（客服模块）</td>
+<td>日客服日志 / 院方沟通记录</td>
+</tr>
+<tr>
+<td>食堂经理·偏运营</td>
+<td>超智招募</td>
+<td>现场运营管理/排班</td>
+<td>人力协调/外场</td>
+<td>D-NexMPC + D-NexOps</td>
+<td>当日出品记录 / 人力排班表</td>
+</tr>
+<tr>
+<td>食堂经理·偏全面厨房</td>
+<td>超智招募</td>
+<td>厨房生产全面管理</td>
+<td>采购验收协助</td>
+<td>D-NexChef + D-Nex2U</td>
+<td>日生产记录 / 出品质量记录</td>
+</tr>
+<tr>
+<td>食堂经理·偏专项厨房</td>
+<td>超智申请再入职</td>
+<td>专项厨房生产（月子/手术室）</td>
+<td>—</td>
+<td>D-NexChef（专项模块）</td>
+<td>专项餐食出品记录</td>
+</tr>
+<tr>
+<td>食安主管</td>
+<td>宜源华调岗（年纪大）</td>
+<td>食品安全管理</td>
+<td>晨检/留样/消毒</td>
+<td>D-NexOps（食安模块）</td>
+<td>食安日检记录 / 留样记录</td>
+</tr>
+<tr>
+<td>仓管员</td>
+<td>—</td>
+<td>仓储管理</td>
+<td>采购验收</td>
+<td>D-NexSply（库存模块）</td>
+<td>日库存台账 / 验收记录</td>
+</tr>
+<tr>
+<td>行政文员·打单专线</td>
+<td>—</td>
+<td>打单管理/专线协同</td>
+<td>月子餐协同</td>
+<td>D-NexChef（打单模块）</td>
+<td>日打单记录 / 专线对账</td>
+</tr>
+<tr>
+<td>行政文员·月子餐协同</td>
+<td>—</td>
+<td>月子餐专项协同</td>
+<td>客服协助</td>
+<td>D-Nex2U + D-NexChef</td>
+<td>月子餐日交付记录</td>
+</tr>
+<tr>
+<td>厨师长</td>
+<td>宜源华招聘（思路传统）</td>
+<td>菜单研发/出品质量</td>
+<td>厨房团队管理</td>
+<td>D-NexChef + D-Nex2U（营养模块）</td>
+<td>日菜单执行记录 / 出品评估</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch04-digital-engine-allocation">CH04｜数智引擎配给 Digital Engine Allocation</h2>
+<h3 id="9">激活引擎子集（9个）</h3>
+<table>
+<thead>
+<tr>
+<th>引擎代号</th>
+<th>职责</th>
+<th>主要服务对象</th>
+<th>激活状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Nex2U</td>
+<td>营养分析、菜单结构、特殊餐食方案</td>
+<td>厨师长/食堂经理</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexChef</td>
+<td>点餐/打单/订单履约/出品协同</td>
+<td>行政文员/厨房</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexSply</td>
+<td>采购预推演、库存跟踪、供应商管理</td>
+<td>仓管员/采购协助</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexOps</td>
+<td>现场运营支持、异常处理、食安记录、配送协调</td>
+<td>运营经理/食安主管</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexMPC</td>
+<td>排班建议、人效分析、岗位负荷监控</td>
+<td>食堂经理（偏运营）</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexFA</td>
+<td>收入/成本/毛利核算、财务台账生成</td>
+<td>运营经理/中台</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexTask</td>
+<td>任务分配、状态跟踪、待办管理、问题点跟进</td>
+<td>全员</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexFlow</td>
+<td>项目阶段管理、里程碑跟踪</td>
+<td>运营经理/你</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>D-NexLens</td>
+<td>多引擎数据串联、经营看板、预警、洞察</td>
+<td>你/运营经理</td>
+<td>✅ 激活</td>
+</tr>
+<tr>
+<td>~~NexGo~~</td>
+<td>全球供应网络</td>
+<td>—</td>
+<td>⛔ 暂不激活</td>
+</tr>
+<tr>
+<td>~~NexIMC~~</td>
+<td>营销传播</td>
+<td>—</td>
+<td>⛔ 暂不激活</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch05-scheduling-rules">CH05｜排班规则 Scheduling Rules</h2>
+<blockquote>
+<p>当前排班规则待确认，以下为初始框架。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>排班周期</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>轮班逻辑</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>特殊情况处理</td>
+<td>院方活动/节假日/人员缺勤，由食堂经理·偏运营协调，D-NexMPC提供排班建议</td>
+</tr>
+<tr>
+<td>最小在岗要求</td>
+<td>待确认</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch06-compensation-structure">CH06｜薪酬结构 Compensation Structure</h2>
+<blockquote>
+<p>具体数字待确认，以下为结构框架。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>岗位类型</th>
+<th>薪酬结构</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超智外派岗（客服经理）</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>宜源华调岗（运营经理、食安主管）</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>超智招募岗（食堂经理×2、食堂经理·偏专项厨房）</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>宜源华招聘岗（厨师长）</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>行政文员×2</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>仓管员</td>
+<td>待确认</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch07-issues-pending">CH07｜问题与待处理事项 Issues &amp; Pending</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>问题描述</th>
+<th>优先级</th>
+<th>负责人</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I-H01</td>
+<td>食堂经理·偏专项厨房需超智方申请再入职，流程未启动</td>
+<td>High</td>
+<td>你</td>
+<td>待启动</td>
+</tr>
+<tr>
+<td>I-H02</td>
+<td>厨师长思路传统，SOP升级可能遇阻力，需制定引导策略</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待启动</td>
+</tr>
+<tr>
+<td>I-H03</td>
+<td>食安主管年纪大，数智工具接入能力待评估</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待评估</td>
+</tr>
+<tr>
+<td>I-H04</td>
+<td>财务核控无专职岗，D-NexFA短期替代方案需正式化</td>
+<td>High</td>
+<td>你</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>I-H05</td>
+<td>行政文员×2台账标准化不足，需数智工具培训</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待启动</td>
+</tr>
+<tr>
+<td>I-H06</td>
+<td>人员能力档案尚未建立，无法精准优化配给</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待启动</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="a">附录 A｜新员工/调岗人员接入协议</h2>
+<p>每位新入职或调岗人员，必须完成以下接入清单后方可独立上岗：</p>
+<table>
+<thead>
+<tr>
+<th>接入项</th>
+<th>内容</th>
+<th>完成标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>岗责说明</td>
+<td>主职能域、副职能域、每日必交付物</td>
+<td>本人签认确认</td>
+</tr>
+<tr>
+<td>SOP培训</td>
+<td>对应岗位SOP（厨房/食安/配送/台账）</td>
+<td>考核通过</td>
+</tr>
+<tr>
+<td>数智工具培训</td>
+<td>对应数智引擎操作培训（飞书表单录入）</td>
+<td>独立完成首次录入</td>
+</tr>
+<tr>
+<td>权限开通</td>
+<td>飞书Base权限、对应引擎访问权限</td>
+<td>权限确认到位</td>
+</tr>
+<tr>
+<td>首周跟进</td>
+<td>运营经理每日跟进，D+7汇报状态</td>
+<td>首周日报提交</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<p><em>番医饭堂·人力管理台 V0.1 · 2026-06-24 · SYNEXA INTERNAL SSOT</em></p>
+</div>
+<div class="doc-footer">
+  番医饭堂「人力管理台」 · SYNEXA INTERNAL SSOT · 2026-06-24 · BBM V1.2
+</div>
+</div>
+</body>
+</html>

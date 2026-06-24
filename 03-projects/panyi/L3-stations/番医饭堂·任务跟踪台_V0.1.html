@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番医饭堂「任务跟踪台」</title>
+<style>
+
+@font-face { font-family: 'Space Grotesk'; font-weight: 400; src: url('fonts/space-grotesk/SpaceGrotesk-Regular.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 500; src: url('fonts/space-grotesk/SpaceGrotesk-Medium.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 600; src: url('fonts/space-grotesk/SpaceGrotesk-SemiBold.ttf') format('truetype'); }
+@font-face { font-family: 'Space Grotesk'; font-weight: 700; src: url('fonts/space-grotesk/SpaceGrotesk-Bold.ttf') format('truetype'); }
+@font-face { font-family: Mono; src: url('fonts/dejavu/JetBrainsMono-Regular.ttf') format('truetype'); }
+@font-face { font-family: Mono; font-weight:700; src: url('fonts/dejavu/JetBrainsMono-Bold.ttf') format('truetype'); }
+@font-face { font-family: EnCondensed; src: url('fonts/noto/NotoSans-Condensed.ttf') format('truetype'); }
+@font-face { font-family: EnCondensed; font-weight:700; src: url('fonts/noto/NotoSans-CondensedBold.ttf') format('truetype'); }
+@font-face { font-family: CJK; src: url('fonts/noto/NotoSansCJK-Regular.ttc') format('collection'); }
+@font-face { font-family: CJK; font-weight:700; src: url('fonts/noto/NotoSansCJK-Bold.ttc') format('collection'); }
+@font-face { font-family: SerifCJK; src: url('fonts/noto/NotoSerifCJK-Regular.ttc') format('collection'); }
+@font-face { font-family: SerifCJK; font-weight:700; src: url('fonts/noto/NotoSerifCJK-Bold.ttc') format('collection'); }
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+  --font-en: 'Space Grotesk', 'EnCondensed', sans-serif;
+  --font-zh: CJK, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-title: SerifCJK, 'Noto Serif CJK SC', serif;
+  --font-mono: Mono, 'JetBrains Mono', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  color: var(--dark);
+  background: #fff;
+  line-height: 1.7;
+}
+
+.page-wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 60px;
+}
+
+/* ── Cover ── */
+.cover {
+  padding: 64px 56px 48px;
+  border-bottom: 2px solid var(--border);
+  background: #fff;
+}
+.topline {
+  font-family: var(--font-en);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.cover-title {
+  font-family: var(--font-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 10px;
+}
+.cover-en {
+  font-family: var(--font-en);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+.cover-sub {
+  font-family: var(--font-en);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  letter-spacing: 0.04em;
+}
+.quote {
+  font-family: var(--font-title);
+  font-size: 14px;
+  color: var(--mid);
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 18px;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 14px;
+  background: #fff;
+}
+.num {
+  font-family: var(--font-en);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.statlabel {
+  font-family: var(--font-zh);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--mid);
+  margin-bottom: 3px;
+}
+.statsub {
+  font-family: var(--font-en);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.04em;
+}
+
+/* ── Section / Chapter ── */
+.section {
+  padding: 40px 56px;
+  border-bottom: 1px solid var(--border);
+}
+.section:last-child { border-bottom: none; }
+
+.eyebrow {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+/* ── Headings ── */
+h1 {
+  font-family: var(--font-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-bottom: 20px;
+  line-height: 1.35;
+}
+h1 .subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  font-weight: 400;
+  font-family: var(--font-zh);
+  margin-left: 8px;
+}
+h2 {
+  font-family: var(--font-zh);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+h3 {
+  font-family: var(--font-zh);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+h4 {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 16px 0 8px;
+}
+
+p { margin-bottom: 12px; }
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 16px 0 20px;
+}
+thead tr {
+  background: #0B1220;
+}
+thead th {
+  font-family: var(--font-en);
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  padding: 8px 10px;
+  text-align: left;
+  letter-spacing: 0.04em;
+}
+tbody tr:nth-child(odd)  { background: #fff; }
+tbody tr:nth-child(even) { background: var(--bg-soft); }
+tbody td {
+  padding: 7px 10px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.55;
+}
+table.matrix tbody td:first-child {
+  font-family: var(--font-mono);
+  color: var(--purple);
+  font-size: 12px;
+}
+
+/* ── Callout ── */
+.callout {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 18px;
+  margin: 16px 0;
+  border-radius: 0 4px 4px 0;
+}
+.callout.core { border-left-color: var(--purple); }
+.callout.warn { border-left-color: #F59E0B; }
+.call-label {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.callout.core .call-label { color: var(--purple); }
+.callout.warn .call-label { color: #F59E0B; }
+
+/* ── Blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 14px 0;
+  font-size: 14px;
+  color: var(--mid);
+  font-family: var(--font-title);
+  line-height: 1.8;
+}
+
+/* ── Protocol Grid ── */
+.protocol-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.protocol-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  background: #fff;
+}
+.pc-title {
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* ── Summary Grid ── */
+.summary-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin: 16px 0;
+}
+.summary-card {
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px;
+  background: var(--bg-soft);
+  font-size: 13px;
+}
+
+/* ── Badge ── */
+.badge {
+  display: inline-block;
+  font-family: var(--font-en);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--purple);
+  background: rgba(139,90,202,0.08);
+  border: 1px solid rgba(139,90,202,0.25);
+  border-radius: 3px;
+  padding: 2px 7px;
+  vertical-align: middle;
+}
+
+/* ── Code ── */
+code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+pre {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: #0B1220;
+  color: #e2e8f0;
+  border-radius: 6px;
+  padding: 18px 20px;
+  overflow-x: auto;
+  margin: 14px 0;
+  line-height: 1.6;
+}
+pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-size: inherit;
+}
+
+/* ── Lists ── */
+ul, ol { padding-left: 20px; margin-bottom: 12px; }
+li { margin-bottom: 4px; line-height: 1.65; }
+
+/* ── Footer ── */
+.doc-footer {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--faint);
+  text-align: center;
+  padding: 32px 56px 16px;
+  border-top: 1px solid var(--border);
+  letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 680px) {
+  .cover, .section { padding: 32px 24px; }
+  .statgrid { grid-template-columns: repeat(2, 1fr); }
+  .protocol-grid, .summary-grid { grid-template-columns: 1fr; }
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+<div class="section cover">
+  <div class="topline">SYNEXA · PANYI CANTEEN · INTERNAL SSOT</div>
+  <div class="cover-title">番医饭堂「任务跟踪台」</div>
+  <div class="cover-en">Panyi Canteen · Task Tracking Station V0.1</div>
+  <div class="cover-sub">Unified task board for daily operations, project milestones, issues, and knowledge assets.</div>
+  <div class="quote">通过任务整合分析，得出更高效高质量、损耗和成本降低的解决方案。全局观察→洞察→执行力三位一体。</div>
+  <div class="statgrid">
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="statlabel">任务类型</div>
+      <div class="statsub">Task Categories</div>
+    </div>
+    <div class="stat">
+      <div class="num">10</div>
+      <div class="statlabel">两周任务</div>
+      <div class="statsub">2-Week Tasks</div>
+    </div>
+    <div class="stat">
+      <div class="num">P0-P5</div>
+      <div class="statlabel">项目阶段</div>
+      <div class="statsub">Project Phases</div>
+    </div>
+    <div class="stat">
+      <div class="num">周一</div>
+      <div class="statlabel">洞察报告</div>
+      <div class="statsub">Weekly Insight</div>
+    </div>
+  </div>
+</div>
+<div class="section chapter">
+  <div class="eyebrow">TASK TRACKING · L3 STATION</div>
+  <h1 id="l3">番医饭堂·任务跟踪台「L3 专项台」</h1>
+<p><strong>Panyi Canteen · Task Tracking Station V0.1</strong></p>
+<p><em>Unified task board for daily operations, project milestones, issues, and knowledge assets.</em></p>
+<hr />
+<h2 id="_1">台定位</h2>
+<ul>
+<li><strong>覆盖范围</strong>：番医饭堂所有任务的统一追踪，含日常运营任务、项目推进任务、问题点/特情、跟进事项、知识沉淀任务。</li>
+<li><strong>不覆盖</strong>：任务的具体执行内容（归属运营推进台）、人员排班（归属人力管理台）。</li>
+<li><strong>与其他台的关系</strong>：是运营推进台和人力管理台的任务汇总入口；每周洞察报告输出给你和运营经理。</li>
+</ul>
+<hr />
+<h2 id="_2">当前状态总览</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>主题</th>
+<th>状态</th>
+<th>最近动作</th>
+<th>下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T1</td>
+<td>TASK_BOARD_PANYI 初始化</td>
+<td>待启动</td>
+<td>—</td>
+<td>D+1完成</td>
+</tr>
+<tr>
+<td>T2</td>
+<td>两周内执行清单（10项）启动</td>
+<td>进行中</td>
+<td>已列出清单</td>
+<td>逐项推进</td>
+</tr>
+<tr>
+<td>T3</td>
+<td>任务全局观察机制（周洞察报告）建立</td>
+<td>待启动</td>
+<td>—</td>
+<td>D+7首次输出</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>项目推进 P0→P1</td>
+<td>进行中</td>
+<td>已识别P0任务</td>
+<td>接收补录表</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>异常响应流（P0-P3）培训</td>
+<td>待启动</td>
+<td>—</td>
+<td>D+5完成</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch01-task-classification">CH01｜任务分类体系 Task Classification</h2>
+<h3 id="_3">五类任务前缀规则</h3>
+<table>
+<thead>
+<tr>
+<th>任务类型</th>
+<th>前缀</th>
+<th>说明</th>
+<th>典型示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>日常运营任务</td>
+<td>PANYI-OPS-xxx</td>
+<td>每日重复性运营任务</td>
+<td>日菜单确认、采购下单</td>
+</tr>
+<tr>
+<td>项目推进任务</td>
+<td>PANYI-PRJ-xxx</td>
+<td>阶段性项目任务（P0-P5）</td>
+<td>SKU映射、采购预推演</td>
+</tr>
+<tr>
+<td>问题点/特情</td>
+<td>PANYI-ISS-xxx</td>
+<td>当日发生的问题、异常、特情</td>
+<td>食材缺货、投诉事件</td>
+</tr>
+<tr>
+<td>跟进事项</td>
+<td>PANYI-FLW-xxx</td>
+<td>需要持续跟进的待决事项</td>
+<td>院方反馈跟进、供应商谈判</td>
+</tr>
+<tr>
+<td>知识沉淀任务</td>
+<td>PANYI-KNW-xxx</td>
+<td>经验/规则/SOP入库任务</td>
+<td>异常处理规则更新</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_4">任务状态枚举</h3>
+<p><code>待启动</code> / <code>进行中</code> / <code>暂停</code> / <code>已完成</code> / <code>已归档</code></p>
+<hr />
+<h2 id="ch02-task-list">CH02｜任务清单 Task List</h2>
+<h3 id="panyi-prj">项目推进任务（PANYI-PRJ）</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>任务名称</th>
+<th>负责人</th>
+<th>截止</th>
+<th>状态</th>
+<th>阻塞原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PANYI-PRJ-001</td>
+<td>P0：接收同事补录表（采购/营收/生产出品）</td>
+<td>运营经理+行政文员</td>
+<td>待确认</td>
+<td>进行中</td>
+<td>—</td>
+</tr>
+<tr>
+<td>PANYI-PRJ-002</td>
+<td>P1：产品SKU×营收映射</td>
+<td>D-NexChef+D-NexFA</td>
+<td>P0完成后</td>
+<td>待启动</td>
+<td>依赖P0</td>
+</tr>
+<tr>
+<td>PANYI-PRJ-003</td>
+<td>P2：结构点×食材/BOM初表</td>
+<td>D-NexSply+D-NexChef</td>
+<td>P1完成后</td>
+<td>待启动</td>
+<td>依赖P1</td>
+</tr>
+<tr>
+<td>PANYI-PRJ-004</td>
+<td>P3：采购预推演</td>
+<td>D-NexSply</td>
+<td>P2完成后</td>
+<td>待启动</td>
+<td>依赖P2</td>
+</tr>
+<tr>
+<td>PANYI-PRJ-005</td>
+<td>P4：生产与配送校验</td>
+<td>D-NexChef+D-NexOps</td>
+<td>P3完成后</td>
+<td>待启动</td>
+<td>依赖P3</td>
+</tr>
+<tr>
+<td>PANYI-PRJ-006</td>
+<td>P5：复盘与规则更新</td>
+<td>D-NexLens+你</td>
+<td>P4完成后</td>
+<td>待启动</td>
+<td>依赖P4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="panyi-opsprj">两周内优先执行清单（PANYI-OPS/PRJ）</h3>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>任务</th>
+<th>负责方</th>
+<th>截止</th>
+<th>状态</th>
+<th>交付物</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PANYI-OPS-001</td>
+<td>初始化TASK_BOARD_PANYI.md</td>
+<td>iS-Core</td>
+<td>D+1</td>
+<td>待启动</td>
+<td>任务板文件</td>
+</tr>
+<tr>
+<td>PANYI-OPS-002</td>
+<td>建立飞书Base日运营简报模板</td>
+<td>中台+D-NexOps</td>
+<td>D+3</td>
+<td>待启动</td>
+<td>模板文件</td>
+</tr>
+<tr>
+<td>PANYI-OPS-003</td>
+<td>建立食安日检记录模板</td>
+<td>食安主管+D-NexOps</td>
+<td>D+3</td>
+<td>待启动</td>
+<td>模板文件</td>
+</tr>
+<tr>
+<td>PANYI-OPS-004</td>
+<td>建立库存台账模板</td>
+<td>仓管员+D-NexSply</td>
+<td>D+3</td>
+<td>待启动</td>
+<td>模板文件</td>
+</tr>
+<tr>
+<td>PANYI-OPS-005</td>
+<td>建立日财务台账模板</td>
+<td>D-NexFA</td>
+<td>D+5</td>
+<td>待启动</td>
+<td>模板文件</td>
+</tr>
+<tr>
+<td>PANYI-OPS-006</td>
+<td>建立打单记录模板</td>
+<td>行政文员+D-NexChef</td>
+<td>D+3</td>
+<td>待启动</td>
+<td>模板文件</td>
+</tr>
+<tr>
+<td>PANYI-OPS-007</td>
+<td>前线晨会机制启动</td>
+<td>运营经理</td>
+<td>D+1</td>
+<td>待启动</td>
+<td>晨会记录</td>
+</tr>
+<tr>
+<td>PANYI-OPS-008</td>
+<td>异常响应流（P0-P3）培训</td>
+<td>运营经理</td>
+<td>D+5</td>
+<td>待启动</td>
+<td>培训记录</td>
+</tr>
+<tr>
+<td>PANYI-OPS-009</td>
+<td>日志运营自动化路径验证</td>
+<td>iS-Core+中台</td>
+<td>D+14</td>
+<td>待启动</td>
+<td>验证报告</td>
+</tr>
+<tr>
+<td>PANYI-OPS-010</td>
+<td>首份周运营报告生成</td>
+<td>D-NexLens</td>
+<td>D+7</td>
+<td>待启动</td>
+<td>周报</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch03-blocked-items">CH03｜暂停与阻塞记录 Blocked Items</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>任务</th>
+<th>阻塞原因</th>
+<th>恢复条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PANYI-PRJ-002至006</td>
+<td>P1-P5项目推进</td>
+<td>依赖P0补录表接收</td>
+<td>P0完成，数据到位</td>
+</tr>
+<tr>
+<td>PANYI-ISS-H01</td>
+<td>食堂经理·偏专项厨房入职</td>
+<td>需超智方申请流程</td>
+<td>申请提交并获批</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch04-global-task-intelligence">CH04｜任务全局观察机制 Global Task Intelligence</h2>
+<h3 id="_5">双层需求定义</h3>
+<table>
+<thead>
+<tr>
+<th>层次</th>
+<th>需求</th>
+<th>工具</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>执行层</td>
+<td>每个任务有ID/状态/负责人/截止/交付物，不散乱</td>
+<td>TASK_BOARD_PANYI.md</td>
+</tr>
+<tr>
+<td>洞察层</td>
+<td>跨任务整合分析，识别效率损耗/成本浪费/重复问题，输出优化建议</td>
+<td>D-NexLens「任务健康度分析」（每周）</td>
+</tr>
+</tbody>
+</table>
+<h3 id="0800">周任务洞察报告（每周一08:00前推送）</h3>
+<table>
+<thead>
+<tr>
+<th>分析维度</th>
+<th>分析内容</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务完成率</td>
+<td>本周任务完成/总任务，识别积压</td>
+<td>任务积压预警</td>
+</tr>
+<tr>
+<td>重复问题识别</td>
+<td>同类PANYI-ISS出现≥2次，标记为系统性问题</td>
+<td>系统性问题清单</td>
+</tr>
+<tr>
+<td>成本损耗识别</td>
+<td>采购浪费/报损/补产次数，识别成本漏点</td>
+<td>成本优化建议</td>
+</tr>
+<tr>
+<td>效率瓶颈识别</td>
+<td>哪个岗位/环节任务积压最多</td>
+<td>岗位负荷分析</td>
+</tr>
+<tr>
+<td>异常趋势</td>
+<td>异常类型分布，识别高频异常</td>
+<td>异常规律报告</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>核心价值</strong>：通过任务整合分析，得出更高效高质量、损耗和成本降低的解决方案。全局观察→洞察→执行力三位一体。</p>
+</blockquote>
+<hr />
+<h2 id="ch05-next-priority-actions">CH05｜下一步优先动作 Next Priority Actions</h2>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>动作</th>
+<th>负责方</th>
+<th>截止</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>初始化TASK_BOARD_PANYI，前线晨会机制启动</td>
+<td>iS-Core+运营经理</td>
+<td>D+1</td>
+</tr>
+<tr>
+<td>P0</td>
+<td>接收P0补录表，推进项目进入P1</td>
+<td>运营经理+行政文员</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>建立飞书Base日运营简报/食安/库存/打单四个模板</td>
+<td>中台+数智</td>
+<td>D+3</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>异常响应流（P0-P3）培训</td>
+<td>运营经理</td>
+<td>D+5</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>首份周运营报告+周任务洞察报告</td>
+<td>D-NexLens</td>
+<td>D+7</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="ch06-completed-archive">CH06｜已完成归档 Completed Archive</h2>
+<blockquote>
+<p>当前版本无已完成任务，后续完成后在此归档。</p>
+</blockquote>
+<hr />
+<p><em>番医饭堂·任务跟踪台 V0.1 · 2026-06-24 · SYNEXA INTERNAL SSOT</em></p>
+</div>
+<div class="doc-footer">
+  番医饭堂「任务跟踪台」 · SYNEXA INTERNAL SSOT · 2026-06-24 · BBM V1.2
+</div>
+</div>
+</body>
+</html>

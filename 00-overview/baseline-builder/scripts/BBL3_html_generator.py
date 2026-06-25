@@ -2,7 +2,7 @@
 """
 BBL3_html_generator.py
 Synexa iS · L3 专项台 HTML 生成器
-版本：V1.1
+版本：V1.2
 用法：python3 BBL3_html_generator.py <源md文件路径> <输出html文件路径>
 
 规范依据：
@@ -332,46 +332,60 @@ hr {
 # stat_rule 自动统计函数（BBM Section 16）
 # ─────────────────────────────────────────────
 def find_chapter_text(full_text, chapter_keyword):
-    """从 md 全文中提取包含指定关键词的章节内容"""
-    # 匹配 # CHxx 或 ## 开头的章节，直到下一个同级标题
-    pattern = rf'(^#{1,2} [^\n]*{re.escape(chapter_keyword)}[^\n]*\n)(.*?)(?=^#{1,2} |\Z)'
-    match = re.search(pattern, full_text, re.MULTILINE | re.DOTALL | re.IGNORECASE)
-    if match:
-        return match.group(0)
+    """从 md 全文中提取包含指定关键词的章节内容
+    
+    修复说明（V1.2）：原正则在 DOTALL 模式下 lookahead 的 ^ 无法正常锚定行首，
+    改用 re.split 按章节分割后逐章匹配，彻底解决章节截取失败问题。
+    """
+    # 在文本开头加 \n，确保第一个章节也能被 split 正确切割
+    # 支持 # ## ### 三级标题（包括子章节如 CH05.1）
+    text_with_prefix = '\n' + full_text
+    chapters = re.split(r'\n(?=#{1,3} )', text_with_prefix)
+    for chapter in chapters:
+        if re.match(r'^#{1,3} [^\n]*' + re.escape(chapter_keyword), chapter, re.IGNORECASE):
+            return chapter
     return ""
 
 
 def count_table_rows(full_text, chapter_keyword):
-    """统计指定章节中表格的数据行数（不含表头和分隔行）"""
+    """统计指定章节中表格的数据行数（不含表头和分隔行）
+    
+    修复说明（V1.2）：原逻辑把分隔行当成了第二行（header_passed=True），
+    导致数据行永远无法被计数。修复为：先判断是否是分隔行，再决定是表头还是数据行。
+    """
     chapter_text = find_chapter_text(full_text, chapter_keyword)
     if not chapter_text:
         return 0
-    # 匹配 | 开头的行，排除表头分隔行（|---|）
-    rows = re.findall(r'^\|(?![-:]+\|)', chapter_text, re.MULTILINE)
-    # 减去表头行（第一行）
-    table_count = 0
+    count = 0
     in_table = False
     header_passed = False
-    separator_passed = False
-    count = 0
+    sep_passed = False
     for line in chapter_text.split('\n'):
-        line = line.strip()
-        if line.startswith('|') and '|' in line[1:]:
-            if not in_table:
-                in_table = True
+        stripped = line.strip()
+        if not stripped:
+            if in_table:
+                in_table = False
                 header_passed = False
-                separator_passed = False
-            elif not header_passed:
+                sep_passed = False
+            continue
+        if stripped.startswith('|'):
+            # 先判断是否是分隔行（只含 - : 空格 |）
+            if re.match(r'^\|[\s\-:|]+\|$', stripped):
+                if in_table and header_passed and not sep_passed:
+                    sep_passed = True
+            elif not in_table:
+                # 第一行：表头
+                in_table = True
                 header_passed = True
-            elif not separator_passed and re.match(r'^\|[-:\s|]+\|$', line):
-                separator_passed = True
-            elif header_passed and separator_passed:
+                sep_passed = False
+            elif header_passed and sep_passed:
+                # 数据行
                 count += 1
         else:
             if in_table:
                 in_table = False
                 header_passed = False
-                separator_passed = False
+                sep_passed = False
     return count
 
 
@@ -585,7 +599,7 @@ def generate(md_path: str, html_path: str):
     today = datetime.now().strftime('%Y-%m-%d')
     footer_html = f"""
   <div class="doc-footer">
-    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBL3_HTML_GENERATOR V1.1
+    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBL3_HTML_GENERATOR V1.2
   </div>
 """
 

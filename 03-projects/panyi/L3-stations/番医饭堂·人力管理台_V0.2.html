@@ -1,0 +1,2097 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番医饭堂「人力管理台」</title>
+<style>
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+
+  /* L3 台系统字体降级栈（BBM Section 5.4）*/
+  --font-en-theme: 'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
+  --font-zh-title: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
+  --font-zh-body:  'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-data:     'JetBrains Mono', 'SF Mono', 'Consolas', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-soft);
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 页面容器 ── */
+.page-wrap {
+  max-width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 40px 0 80px;
+}
+
+/* ── 封面区域 ── */
+.cover {
+  background: #fff;
+  border-radius: 12px;
+  padding: 56px 64px 48px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.topline {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover-title {
+  font-family: var(--font-zh-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.cover-en {
+  font-family: var(--font-en-theme);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.cover-sub {
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.cover-quote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 20px;
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  color: var(--mid);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
+  background: #fff;
+}
+
+.stat .num {
+  font-family: var(--font-en-theme);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat .statlabel {
+  font-family: var(--font-zh-body);
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 4px;
+}
+
+.stat .statsub {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* ── 章节卡片 ── */
+.chapter {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px 48px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+.eyebrow {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ── 标题层级 ── */
+h1 {
+  font-family: var(--font-zh-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: var(--font-zh-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+
+h3 {
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+
+h4 {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 16px 0 8px;
+}
+
+/* ── 表格 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+th {
+  background: #F0F2F5;
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+tr:nth-child(even) td { background: var(--bg-soft); }
+
+/* ── 标签组件 ── */
+.tag {
+  display: inline-block;
+  background: rgba(40,204,131,.12);
+  color: #1a9e63;
+  border: 1px solid rgba(40,204,131,.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+/* ── 引言/blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: var(--mid);
+}
+
+/* ── 代码 ── */
+code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+
+pre {
+  background: #0B1220;
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+pre code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: #e2e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── 段落/列表 ── */
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 4px 0; line-height: 1.7; }
+
+strong { font-weight: 700; color: var(--dark); }
+em { color: var(--purple); font-style: normal; font-weight: 600; }
+
+/* ── 分隔线 ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* ── 页脚 ── */
+.doc-footer {
+  text-align: center;
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="cover">
+    <div class="topline">SYNEXA · PANYI CANTEEN · INTERNAL SSOT · L3 HUMAN RESOURCE MANAGEMENT STATION</div>
+    <div class="cover-title">番医饭堂「人力管理台」</div>
+    <div class="cover-en">Panyi Canteen · Human Resource Management Station V0.2</div>
+    <div class="cover-sub">Physical & Digital workforce architecture for Panyi institutional meal operations.</div>
+    <div class="cover-quote">主能定责，副能协同；可支援，不越责；通能保底，专项授权。每个物理岗位配置对应数智工具，工具放大岗位效能。指挥链 ≤ 2 层，情报先于行动。</div>
+    <div class="statgrid">
+      <div class="stat">
+        <div class="num">6</div>
+        <div class="statlabel">中台岗位</div>
+        <div class="statsub">Mid-tier Roles</div>
+      </div>
+      <div class="stat">
+        <div class="num">15</div>
+        <div class="statlabel">前线岗位</div>
+        <div class="statsub">Front-line Roles</div>
+      </div>
+      <div class="stat">
+        <div class="num">11</div>
+        <div class="statlabel">职能域</div>
+        <div class="statsub">Function Domains</div>
+      </div>
+      <div class="stat">
+        <div class="num">1</div>
+        <div class="statlabel">覆盖缺口</div>
+        <div class="statsub">Coverage Gaps</div>
+      </div>
+      <div class="stat">
+        <div class="num">9</div>
+        <div class="statlabel">数智引擎</div>
+        <div class="statsub">Active Engines</div>
+      </div>
+      <div class="stat">
+        <div class="num">25</div>
+        <div class="statlabel">可迁移精华</div>
+        <div class="statsub">Transferable Insights</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h1 id="_1">番医饭堂「人力管理台」</h1>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="_1">台定位</h2>
+<ul>
+<li><strong>覆盖范围</strong>：番医饭堂全部物理岗位的岗责定义、主能副能、机动支援范围、职业通能、专项培训、数智配给矩阵、职能域覆盖分析、人员能力档案、人力缺口与异常管理。</li>
+<li><strong>不覆盖</strong>：排班执行细节归属运营推进台；薪酬结构与具体数字归属财务管控台；招聘流程归属超智中台；任务全生命周期管理归属任务跟踪台。</li>
+<li><strong>与其他台的关系</strong>：</li>
+<li>与任务跟踪台共享：每日必交付物、异常事项、待处理事项。</li>
+<li>与运营推进台共享：排班执行、日常 SOP、异常响应路径。</li>
+<li>与财务管控台共享：人力成本、薪酬口径、绩效数据接口。</li>
+<li>与项目总基线共享：共同内核、高价值参照对象、可迁移精华。</li>
+<li><strong>本台定位</strong>：不是普通岗位表，也不是排班表，而是围绕"谁负责、谁协同、谁支援、谁复核、谁沉淀"建立的人力协同控制台。</li>
+</ul>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-1">CH(-1)｜治理协议</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>协议</td>
+<td>允许演化，但不允许失忆；允许压缩，但不允许失真；允许重排，但不允许暗删。</td>
+</tr>
+<tr>
+<td>严肃文本</td>
+<td>岗位名称、主能副能、物理配套、数智配套、任务追踪规则、异常分级、共同内核和迁移机制不得静默改写。</td>
+</tr>
+<tr>
+<td>回写要求</td>
+<td>任何关键变化必须回写项目总账、任务跟踪台和版本记录。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch00ssot">CH00｜文件定位、SSOT 与版本边界</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目基线层</td>
+<td>对齐 Nex2U·番医餐食运营项目上位基线。</td>
+</tr>
+<tr>
+<td>人力专项层</td>
+<td>定义岗位、主能副能、机动支援、培训、数智配给、能力档案与人力缺口。</td>
+</tr>
+<tr>
+<td>执行转译层</td>
+<td>支撑岗位手册、培训清单、排班参考、任务板、日报、异常记录。</td>
+</tr>
+<tr>
+<td>系统建设层</td>
+<td>支撑飞书 Base、NexTask、NexLens、岗位手册库、台账自动化和数智员工配给。</td>
+</tr>
+</tbody>
+</table>
+<p><strong>主源原则</strong>：Markdown 是事实主源；HTML / 可视化页面是人看表达层。任何事实级修改必须优先回到 Markdown。</p>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="executive-summary">Executive Summary｜专项本体概述</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>定位</td>
+<td>番医饭堂·人力管理台是 Nex2U 在医院餐食运营场景中的组织与人力协同专项基线。</td>
+</tr>
+<tr>
+<td>不是</td>
+<td>不是普通岗位表，也不是单纯排班表。</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>建立中台 6 岗、前线 15 岗、主能副能、机动支援、职业通能、专项培训、人员能力档案、物理 / 数智配套包和任务闭环机制。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">核心机制</h3>
+<table>
+<thead>
+<tr>
+<th>核心机制</th>
+<th>人力管理台中的含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人机双锚</td>
+<td>人定方向与裁决，数智工具做提醒、追踪、归档、分析和报告辅助。</td>
+</tr>
+<tr>
+<td>输出责任</td>
+<td>每个岗位、任务、台账和异常必须有明确最终负责人。</td>
+</tr>
+<tr>
+<td>经验资产</td>
+<td>判断、异常、复盘和岗位经验必须沉淀为可复用资产。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch01">CH01｜版头总览</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正式应用名</td>
+<td>番医饭堂·人力管理台</td>
+</tr>
+<tr>
+<td>项目名称</td>
+<td>番医饭堂·人力协同架构设计推进</td>
+</tr>
+<tr>
+<td>项目定位</td>
+<td>Nex2U 医院餐食运营场景 L3 项目级基线样板。</td>
+</tr>
+<tr>
+<td>一句话定位</td>
+<td>建立物理岗位与数智员工协同的人力架构、岗位能力、任务交付、培训接入和经验沉淀体系。</td>
+</tr>
+<tr>
+<td>当前重点</td>
+<td>人力协同专项基线、主能副能、机动支援、职业通能、专项培训、岗位配套包。</td>
+</tr>
+<tr>
+<td>主链路</td>
+<td>中台 6 岗 → 前线 15 岗 → 主能副能 → 职业通能 / 专项培训 → 数智配给 → 能力档案 → 复盘沉淀。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch02">CH02｜当前总览与人力推进链路</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>当前最重要目标</td>
+<td>完成人力管理台 V0.2 基线结构，明确岗位主责、协同边界、培训要求、数智配给和能力档案机制。</td>
+</tr>
+<tr>
+<td>当前阶段</td>
+<td>H0 基线确认 → H1 岗位结构确认 → H2 主能副能定义 → H3 职业通能与专项培训 → H4 数智配给 → H5 能力档案 → H6 缺口与异常管理 → H7 复盘沉淀。</td>
+</tr>
+<tr>
+<td>当前状态</td>
+<td>新版版头确认；旧版治理骨架保留；人力专项控制模型待融合成 V0.2。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">人力推进阶段</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>动作</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>H0</td>
+<td>基线确认</td>
+<td>确认人力管理台定位、边界、版头与主结构。</td>
+</tr>
+<tr>
+<td>H1</td>
+<td>岗位结构确认</td>
+<td>确认中台 6 岗、前线 15 岗及当前实际岗位状态。</td>
+</tr>
+<tr>
+<td>H2</td>
+<td>主能副能定义</td>
+<td>明确每个岗位主能、副能、可支援事项和不可替代事项。</td>
+</tr>
+<tr>
+<td>H3</td>
+<td>职业通能与专项培训</td>
+<td>建立六项职业通能与专项培训要求。</td>
+</tr>
+<tr>
+<td>H4</td>
+<td>数智配给</td>
+<td>建立岗位 × 引擎 × 输入 × 输出 × 复核点。</td>
+</tr>
+<tr>
+<td>H5</td>
+<td>人员能力档案</td>
+<td>建立每位员工的主能、副能、培训、工具熟练度和风险提醒。</td>
+</tr>
+<tr>
+<td>H6</td>
+<td>缺口与异常管理</td>
+<td>识别人力缺口、能力短板、补位风险和待处理事项。</td>
+</tr>
+<tr>
+<td>H7</td>
+<td>复盘沉淀</td>
+<td>将有效经验、异常案例、培训补丁沉淀为项目资产。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch03">CH03｜主题任务工作区</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>主题</th>
+<th>当前状态</th>
+<th>下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T0</td>
+<td>人力管理台 V0.2 总结构</td>
+<td>待融合</td>
+<td>按新版版头 + 旧版骨架 + 人力控制模型生成正式版</td>
+</tr>
+<tr>
+<td>T1</td>
+<td>台定位与治理协议</td>
+<td>已确认方向</td>
+<td>压缩旧版治理内容，保留防失忆、防失真、防暗删原则</td>
+</tr>
+<tr>
+<td>T2</td>
+<td>组织 / 人力 / 岗责</td>
+<td>核心推进中</td>
+<td>完成中台 6 岗、前线 15 岗主能副能表</td>
+</tr>
+<tr>
+<td>T3</td>
+<td>岗位协同与补位规则</td>
+<td>已形成原则</td>
+<td>写入"主能定责，副能协同；可支援，不越责"</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>职业通能与专项培训</td>
+<td>已形成六项能力</td>
+<td>写入任务、形象、底线、工具、协作、发现六项能力</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>数智员工 / 引擎配给</td>
+<td>9 个引擎已确认</td>
+<td>建立岗位 × 引擎 × 输入 × 输出表</td>
+</tr>
+<tr>
+<td>T6</td>
+<td>人员能力档案</td>
+<td>待启动</td>
+<td>建立员工能力档案字段和 D+7 / D+30 跟进机制</td>
+</tr>
+<tr>
+<td>T7</td>
+<td>人力缺口与异常事项</td>
+<td>部分识别</td>
+<td>整合问题与待处理事项</td>
+</tr>
+<tr>
+<td>T8</td>
+<td>经验资产与全域同步</td>
+<td>待同步</td>
+<td>保留 25 条可迁移精华，并标记全域同步状态</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch04">CH04｜架构定位、协同链条与原则</h2>
+<h3 id="ch041">CH04.1｜精简协同链条</h3>
+<pre><code>L0 项目负责人 / 最终裁决人
+   ↓ 方向、边界、关键裁决
+L1 中台协同层
+   ↓ 审查、协调、异常判断、培训推进
+L2 数智支持层
+   ↓ 提醒、记录、整理、分析、生成报告
+L3 前线执行层
+   ↓ 录入、上报、执行、反馈、服务交付
+</code></pre>
+<h3 id="ch042">CH04.2｜协同原则</h3>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>指挥链短</td>
+<td>日常协同尽量不超过两层，避免层层转述。</td>
+</tr>
+<tr>
+<td>人负责任</td>
+<td>数智工具可以提醒、整理、分析，但不替代岗位责任。</td>
+</tr>
+<tr>
+<td>前线简单</td>
+<td>前线动作要清楚、轻量，不让工具变成负担。</td>
+</tr>
+<tr>
+<td>中台复核</td>
+<td>中台负责判断、复核、异常协调和培训推进。</td>
+</tr>
+<tr>
+<td>情报先行</td>
+<td>重要动作前必须有数据、记录或现场信息支撑。</td>
+</tr>
+<tr>
+<td>经验沉淀</td>
+<td>异常、判断、有效做法必须进入档案或复盘记录。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch05t2">CH05｜T2 组织设计 / 人力协同专项基线</h2>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>专项基线</td>
+<td>番医饭堂·人力协同架构专项基线 V0.2</td>
+</tr>
+<tr>
+<td>中台岗位</td>
+<td>项目总控 / 项目统筹 / 信息专员 / 商务专员 / 财务主任 / 人力专员</td>
+</tr>
+<tr>
+<td>前线结构</td>
+<td>三经理制 + 专项餐双核心 + 专业主管群</td>
+</tr>
+<tr>
+<td>总原则</td>
+<td>主能定责，副能协同；可支援，不越责；通能保底，专项授权。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ch051-6">CH05.1｜中台 6 岗</h3>
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>主能</th>
+<th>副能</th>
+<th>物理配套</th>
+<th>数智配套</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目总控</td>
+<td>策略、合作资源、重大裁决</td>
+<td>外部关系、关键资源协调、项目边界确认</td>
+<td>授权清单、资源清单、裁决记录</td>
+<td>D-NexLens、D-NexFlow、Judgment Asset</td>
+</tr>
+<tr>
+<td>项目统筹</td>
+<td>运营统筹、执行裁决</td>
+<td>日常推进、关键执行资源协调、异常升级</td>
+<td>日运营节奏表、任务推进表、异常升级卡</td>
+<td>D-NexFlow、D-NexTask、D-NexOps</td>
+</tr>
+<tr>
+<td>信息专员</td>
+<td>信息管理、执行协同</td>
+<td>资料流转、会议纪要、任务跟进、数据收口</td>
+<td>纪要模板、归档目录、任务跟进表</td>
+<td>D-NexTask、D-NexLens、飞书 / Base</td>
+</tr>
+<tr>
+<td>商务专员</td>
+<td>采购、仓管、收入管理</td>
+<td>供应商、价格、物资、销售 / 收入口径协同</td>
+<td>供应商档案、采购价格表、物资流转表</td>
+<td>D-NexSply、D-NexFA</td>
+</tr>
+<tr>
+<td>财务主任</td>
+<td>财务数据整理、分析、执行</td>
+<td>对账、成本、毛利、经营分析、风险提示</td>
+<td>财务台账、对账表、成本毛利表</td>
+<td>D-NexFA、D-NexLens</td>
+</tr>
+<tr>
+<td>人力专员</td>
+<td>排班、人力配置、培训接入、能力档案</td>
+<td>轮值池、人员风险预警、岗位手册培训记录</td>
+<td>排班表、能力档案、培训记录</td>
+<td>D-NexMPC、D-NexTask、岗位手册库</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注：财务主任作为中台岗位可保留在组织图中，但薪酬结构与财务口径不在本台展开，归属财务管控台。</p>
+</blockquote>
+<h3 id="ch052-15">CH05.2｜前线 15 岗</h3>
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>主能</th>
+<th>副能</th>
+<th>物理配套</th>
+<th>数智配套</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>食堂经理·出品</td>
+<td>出品统筹、厨房协同、生产节奏</td>
+<td>支援堂食 / 配送现场协调</td>
+<td>出品排程表、生产异常记录、质量检查表</td>
+<td>D-NexChef、D-Nex2U、D-NexOps</td>
+</tr>
+<tr>
+<td>食堂经理·堂食</td>
+<td>堂食现场、服务秩序、收银协同</td>
+<td>支援出品 / 配送现场协调</td>
+<td>堂食巡检表、服务记录、收银异常记录</td>
+<td>D-NexOps、D-NexTask</td>
+</tr>
+<tr>
+<td>食堂经理·配送</td>
+<td>配送履约、路线时效、外勤协调</td>
+<td>支援出品 / 堂食现场协调</td>
+<td>配送路线表、签收记录、温控交接表</td>
+<td>D-NexOps、D-NexTask</td>
+</tr>
+<tr>
+<td>客服主任（专项餐主管）</td>
+<td>专项餐需求、交付、反馈闭环</td>
+<td>客服专员管理、院方专项沟通</td>
+<td>需求确认表、专项交付核对表、反馈记录</td>
+<td>D-NexOps、D-NexChef、D-NexTask</td>
+</tr>
+<tr>
+<td>客服专员A（打单 / 保障）</td>
+<td>打单、订单保障、履约记录</td>
+<td>客服 B、收银、专项餐协同</td>
+<td>打单记录、订单异常标记、配送单</td>
+<td>D-NexChef、D-NexTask</td>
+</tr>
+<tr>
+<td>客服专员B（项目财务 / 机动）</td>
+<td>项目财务协助、机动补位</td>
+<td>打单、收银、台账、专项餐协同</td>
+<td>项目财务协助表、机动补位记录</td>
+<td>D-NexFA、D-NexTask</td>
+</tr>
+<tr>
+<td>收银员</td>
+<td>收银、收入记录、交易异常反馈</td>
+<td>客服、打单、项目财务协助</td>
+<td>收银日报、异常收款记录</td>
+<td>D-NexFA、D-NexChef</td>
+</tr>
+<tr>
+<td>食安主管</td>
+<td>食安执行、留样、消毒、温控</td>
+<td>仓储卫生、食安培训、异常记录</td>
+<td>食安日检表、留样记录、消毒温控记录</td>
+<td>D-NexOps、Exception Asset</td>
+</tr>
+<tr>
+<td>仓储</td>
+<td>入库、库存、验收、报损</td>
+<td>商务采购协助、成本异常反馈</td>
+<td>入库验收单、库存盘点表、报损记录</td>
+<td>D-NexSply、D-NexFA</td>
+</tr>
+<tr>
+<td>厨师长·大众</td>
+<td>大众餐菜单、生产、出品质量</td>
+<td>与专项厨师长、切配主管协作</td>
+<td>菜单执行表、工艺标准卡、出品评估表</td>
+<td>D-NexChef、D-Nex2U</td>
+</tr>
+<tr>
+<td>厨师长·专项</td>
+<td>专项餐菜单、生产、出品质量</td>
+<td>与大众厨师长、客服主任协作</td>
+<td>专项工艺卡、出品检查表、标签核对表</td>
+<td>D-NexChef、D-Nex2U</td>
+</tr>
+<tr>
+<td>切配主管</td>
+<td>切配、备料、前处理</td>
+<td>厨房出品支持、库存反馈</td>
+<td>切配计划表、备料清单、损耗记录</td>
+<td>D-NexChef、D-NexSply</td>
+</tr>
+<tr>
+<td>配送主管</td>
+<td>配送排线、时效、签收</td>
+<td>外勤主管、食堂经理·配送协作</td>
+<td>排线表、时效记录、签收表</td>
+<td>D-NexOps、D-NexTask</td>
+</tr>
+<tr>
+<td>外勤主管</td>
+<td>院内外跑动、现场补位、临时事务</td>
+<td>配送支持、堂食支持</td>
+<td>外勤任务单、临时事务记录</td>
+<td>D-NexTask、D-NexOps</td>
+</tr>
+<tr>
+<td>清洁主管</td>
+<td>清洁、洗消、环境卫生</td>
+<td>食安支持、后勤保障</td>
+<td>清洁排班表、洗消记录、卫生巡检表</td>
+<td>D-NexOps、清洁检查记录</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch06-role-function-matrix">CH06｜岗位主责配置 Role Function Matrix</h2>
+<h3 id="ch061">CH06.1｜岗位表标准字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>岗位名称</td>
+<td>当前岗位正式名称</td>
+</tr>
+<tr>
+<td>岗位类别</td>
+<td>中台 / 前线 / 专项 / 支援</td>
+</tr>
+<tr>
+<td>人员来源</td>
+<td>超智外派 / 宜源华调岗 / 招募 / 待定</td>
+</tr>
+<tr>
+<td>主能</td>
+<td>本岗位必须稳定负责的核心工作</td>
+</tr>
+<tr>
+<td>副能</td>
+<td>与本岗位相近、可协助承担的辅助工作</td>
+</tr>
+<tr>
+<td>可支援事项</td>
+<td>在培训或确认后，可短期协助的事项</td>
+</tr>
+<tr>
+<td>不可替代事项</td>
+<td>专业性强、风险高、未经授权不得替代的事项</td>
+</tr>
+<tr>
+<td>最终负责人</td>
+<td>对结果承担确认责任的人</td>
+</tr>
+<tr>
+<td>每日必交付物</td>
+<td>每日必须形成的记录、表格、报告或动作</td>
+</tr>
+<tr>
+<td>物理配套</td>
+<td>表单、台账、工具、现场物料</td>
+</tr>
+<tr>
+<td>数智配套</td>
+<td>对应数智引擎、飞书 Base、看板或自动化工具</td>
+</tr>
+<tr>
+<td>培训要求</td>
+<td>职业通能、SOP、专项培训、数智工具培训</td>
+</tr>
+<tr>
+<td>风险提醒</td>
+<td>当前岗位可能存在的能力、合规、交付或替代风险</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ch062">CH06.2｜主能 / 副能定义</h3>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>主能</td>
+<td>本岗位必须稳定负责的核心工作，是岗位责任主体。</td>
+</tr>
+<tr>
+<td>副能</td>
+<td>与本岗位相近、可协助承担的辅助工作，是协同边界。</td>
+</tr>
+<tr>
+<td>可支援事项</td>
+<td>在培训或确认后，可短期协助的相近事项。</td>
+</tr>
+<tr>
+<td>不可替代事项</td>
+<td>专业性强、风险高、未经授权不得替代的事项。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch07">CH07｜机动支援与补位规则</h2>
+<h3 id="ch071">CH07.1｜总原则</h3>
+<table>
+<thead>
+<tr>
+<th>原则</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本岗为主</td>
+<td>每个人首先做好自己的主岗位工作。</td>
+</tr>
+<tr>
+<td>相近可补</td>
+<td>工作内容相近、风险较低的岗位，可培训后临时支援。</td>
+</tr>
+<tr>
+<td>专业不乱替</td>
+<td>食安、财务、专项餐、打单、院方沟通等不得随意替代。</td>
+</tr>
+<tr>
+<td>先培训再补位</td>
+<td>不是缺人就顶上，必须先培训、陪跑、确认。</td>
+</tr>
+<tr>
+<td>结果有人负责</td>
+<td>临时支援不等于最终负责，关键结果必须由负责人确认。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ch072">CH07.2｜典型边界</h3>
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>可支援</th>
+<th>不可随意替代</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>食堂经理·出品</td>
+<td>堂食现场协调、配送高峰协调</td>
+<td>客服打单、财务对账、专项餐营养判断</td>
+</tr>
+<tr>
+<td>客服打单岗</td>
+<td>订单核对、专线对账辅助</td>
+<td>厨房出品调度、食安裁决、菜单调整</td>
+</tr>
+<tr>
+<td>仓管员</td>
+<td>采购验收、库存盘点、缺货上报</td>
+<td>院方沟通、财务裁决、厨房生产管理</td>
+</tr>
+<tr>
+<td>食安主管</td>
+<td>留样、消毒、温控、食安提醒</td>
+<td>菜单研发、收银对账、客户承诺</td>
+</tr>
+<tr>
+<td>厨师长·专项</td>
+<td>专项餐生产、厨房工艺调整</td>
+<td>客服打单、配送签收、财务台账</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch08">CH08｜职业通能与专项培训</h2>
+<h3 id="ch081">CH08.1｜职业通能总句</h3>
+<blockquote>
+<p>任务有闭环，形象有标准，底线有天条，工具能上手，协作能接住，发现多一步。</p>
+</blockquote>
+<h3 id="ch082">CH08.2｜六项能力</h3>
+<table>
+<thead>
+<tr>
+<th>能力</th>
+<th>标准</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务能力</td>
+<td>任务有闭环</td>
+<td>有抓取、有提炼、有确认、有回应、有进度、有结果、有交代、有沉淀</td>
+</tr>
+<tr>
+<td>形象能力</td>
+<td>形象有标准</td>
+<td>干净、得体、精神、稳定</td>
+</tr>
+<tr>
+<td>底线能力</td>
+<td>底线有天条</td>
+<td>慎独自律、真诚可靠、不泄密、不作假、不贪腐、不传播敏感信息</td>
+</tr>
+<tr>
+<td>工具能力</td>
+<td>工具能上手</td>
+<td>会录入、会查询、会提交、会整理、会输出、会复核</td>
+</tr>
+<tr>
+<td>协作能力</td>
+<td>协作能接住</td>
+<td>积极听、听得懂、接得住、说得清、交得出</td>
+</tr>
+<tr>
+<td>发现能力</td>
+<td>发现多一步</td>
+<td>主动提醒、主动发现、主动改进、及时沉淀</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ch083">CH08.3｜专项培训事项</h3>
+<p>以下事项须专项培训后方可补位或参与关键动作：</p>
+<ul>
+<li>食品安全</li>
+<li>财务对账</li>
+<li>专项餐</li>
+<li>打单与专线管理</li>
+<li>院方沟通</li>
+<li>采购验收</li>
+<li>设备操作</li>
+<li>数智工具关键权限</li>
+</ul>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch09">CH09｜人员能力档案</h2>
+<h3 id="ch091">CH09.1｜能力档案目的</h3>
+<p>人员能力档案用于记录员工当前岗位状态、主能副能、职业通能、专项培训、数智工具熟练度、可支援事项、不可替代事项、风险提醒和后续培养方向。</p>
+<h3 id="ch092">CH09.2｜能力档案字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>员工姓名</td>
+<td>当前人员姓名</td>
+</tr>
+<tr>
+<td>当前岗位</td>
+<td>当前正式岗位</td>
+</tr>
+<tr>
+<td>岗位类别</td>
+<td>中台 / 前线 / 专项 / 支援</td>
+</tr>
+<tr>
+<td>主能状态</td>
+<td>对主能的掌握程度</td>
+</tr>
+<tr>
+<td>副能状态</td>
+<td>对副能的掌握程度</td>
+</tr>
+<tr>
+<td>职业通能状态</td>
+<td>六项能力综合状态</td>
+</tr>
+<tr>
+<td>专项培训状态</td>
+<td>食安、财务、专项餐、打单等专项培训情况</td>
+</tr>
+<tr>
+<td>数智工具熟练度</td>
+<td>对相关工具的使用能力</td>
+</tr>
+<tr>
+<td>可支援事项</td>
+<td>已确认可临时支援的事项</td>
+</tr>
+<tr>
+<td>不可替代事项</td>
+<td>未经授权不得替代的事项</td>
+</tr>
+<tr>
+<td>风险提醒</td>
+<td>当前观察到的风险</td>
+</tr>
+<tr>
+<td>培训建议</td>
+<td>后续应补充的培训</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ch093">CH09.3｜数智工具熟练度</h3>
+<table>
+<thead>
+<tr>
+<th>等级</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D0</td>
+<td>未接入，不会使用</td>
+</tr>
+<tr>
+<td>D1</td>
+<td>可在指导下录入</td>
+</tr>
+<tr>
+<td>D2</td>
+<td>可独立完成日常录入与查询</td>
+</tr>
+<tr>
+<td>D3</td>
+<td>可主动使用工具发现问题、提交改进建议</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch10">CH10｜职能域覆盖分析</h2>
+<table>
+<thead>
+<tr>
+<th>职能域</th>
+<th>当前人员 / 岗位</th>
+<th>覆盖状态</th>
+<th>风险说明</th>
+<th>应对</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>食品安全管理</td>
+<td>食安主管</td>
+<td>覆盖</td>
+<td>数智工具接入能力需评估</td>
+<td>培训 + 陪跑</td>
+</tr>
+<tr>
+<td>仓储管理</td>
+<td>仓管员</td>
+<td>覆盖</td>
+<td>与采购协同需标准化</td>
+<td>D-NexSply 支持</td>
+</tr>
+<tr>
+<td>采购管理</td>
+<td>仓管员 + 商务协助</td>
+<td>部分覆盖</td>
+<td>无专职采购岗</td>
+<td>短期由数智预推演支持</td>
+</tr>
+<tr>
+<td>厨房生产管理</td>
+<td>厨师长 + 食堂经理</td>
+<td>覆盖</td>
+<td>SOP 升级可能遇阻</td>
+<td>培训 + 分步导入</td>
+</tr>
+<tr>
+<td>专项餐食管理</td>
+<td>专项厨房 + 月子餐协同</td>
+<td>覆盖</td>
+<td>入职流程待启动</td>
+<td>提交申请</td>
+</tr>
+<tr>
+<td>外场 / 配送服务</td>
+<td>运营经理统筹</td>
+<td>部分覆盖</td>
+<td>无专职配送管理岗</td>
+<td>明确配送责任岗</td>
+</tr>
+<tr>
+<td>客户服务 / 院方沟通</td>
+<td>客服经理</td>
+<td>覆盖</td>
+<td>需稳定沟通记录</td>
+<td>日客服日志</td>
+</tr>
+<tr>
+<td>打单 / 专线管理</td>
+<td>行政文员·打单专线</td>
+<td>覆盖</td>
+<td>标准化待加强</td>
+<td>打单 SOP + 工具培训</td>
+</tr>
+<tr>
+<td>台账管理</td>
+<td>行政文员</td>
+<td>部分覆盖</td>
+<td>台账标准化不足</td>
+<td>数智工具培训</td>
+</tr>
+<tr>
+<td>财务核控</td>
+<td>无专职财务岗</td>
+<td>缺口</td>
+<td>高风险</td>
+<td>转财务管控台处理</td>
+</tr>
+<tr>
+<td>整体运营统筹</td>
+<td>运营经理</td>
+<td>覆盖</td>
+<td>需中台支持</td>
+<td>日运营简报</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch11">CH11｜数智员工 / 引擎配给</h2>
+<table>
+<thead>
+<tr>
+<th>引擎代号</th>
+<th>职责</th>
+<th>主要服务对象</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>D-Nex2U</td>
+<td>营养分析、菜单结构、特殊餐食方案</td>
+<td>厨师长 / 食堂经理</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexChef</td>
+<td>点餐、打单、订单履约、出品协同</td>
+<td>行政文员 / 厨房</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexSply</td>
+<td>采购预推演、库存跟踪、供应商管理</td>
+<td>仓管员 / 采购协助</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexOps</td>
+<td>现场运营、异常处理、食安记录、配送协调</td>
+<td>运营经理 / 食安主管</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexMPC</td>
+<td>排班建议、人效分析、岗位负荷监控</td>
+<td>食堂经理·偏运营</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexFA</td>
+<td>收入、成本、毛利、财务台账</td>
+<td>运营经理 / 中台</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexTask</td>
+<td>任务分配、状态跟踪、问题点跟进</td>
+<td>全员</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexFlow</td>
+<td>项目阶段管理、里程碑跟踪</td>
+<td>运营经理 / 项目负责人</td>
+<td>激活</td>
+</tr>
+<tr>
+<td>D-NexLens</td>
+<td>数据串联、经营看板、预警、洞察</td>
+<td>项目负责人 / 运营经理</td>
+<td>激活</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_1">岗位 × 引擎 × 输入 × 输出</h3>
+<table>
+<thead>
+<tr>
+<th>岗位</th>
+<th>配给引擎</th>
+<th>输入</th>
+<th>输出</th>
+<th>复核点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>食安主管</td>
+<td>D-NexOps</td>
+<td>晨检、留样、温控、消毒记录</td>
+<td>食安日检记录、异常提醒</td>
+<td>运营经理</td>
+</tr>
+<tr>
+<td>仓管员</td>
+<td>D-NexSply</td>
+<td>入库、库存、验收、报损</td>
+<td>库存台账、采购提醒</td>
+<td>商务 / 运营经理</td>
+</tr>
+<tr>
+<td>客服打单岗</td>
+<td>D-NexChef</td>
+<td>订单、专线、打单记录</td>
+<td>日打单记录、异常订单</td>
+<td>客服经理</td>
+</tr>
+<tr>
+<td>运营经理</td>
+<td>D-NexFlow / D-NexTask</td>
+<td>日运营事项、异常、任务</td>
+<td>日运营简报、任务状态</td>
+<td>项目负责人</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch12">CH12｜排班规则</h2>
+<p>本章只定义人力管理台需要提供给运营推进台的排班参考原则；具体排班执行归属运营推进台。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>规则</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>排班周期</td>
+<td>待运营推进台确认</td>
+</tr>
+<tr>
+<td>轮班逻辑</td>
+<td>基于岗位主能、副能和可支援事项，不做泛轮岗</td>
+</tr>
+<tr>
+<td>最小在岗要求</td>
+<td>按职能域和高峰期需求设定</td>
+</tr>
+<tr>
+<td>高峰期配置</td>
+<td>根据堂食、配送、专项餐高峰设置临时支援</td>
+</tr>
+<tr>
+<td>缺勤处理</td>
+<td>优先同类岗位补位，其次相近岗位支援，专业岗位不得随意替代</td>
+</tr>
+<tr>
+<td>节假日 / 院方活动</td>
+<td>由运营经理统筹，D-NexMPC 提供排班建议</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch13">CH13｜人力缺口、异常与待处理事项</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>问题描述</th>
+<th>优先级</th>
+<th>负责人</th>
+<th>状态</th>
+<th>下一步</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>I-H01</td>
+<td>食堂经理·偏专项厨房需申请再入职，流程未启动</td>
+<td>High</td>
+<td>项目负责人</td>
+<td>待启动</td>
+<td>提交申请</td>
+</tr>
+<tr>
+<td>I-H02</td>
+<td>厨师长思路传统，SOP 升级可能遇阻力</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待启动</td>
+<td>制定引导策略</td>
+</tr>
+<tr>
+<td>I-H03</td>
+<td>食安主管数智工具接入能力待评估</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待评估</td>
+<td>培训与陪跑</td>
+</tr>
+<tr>
+<td>I-H04</td>
+<td>财务核控无专职岗</td>
+<td>High</td>
+<td>项目负责人</td>
+<td>转出</td>
+<td>转财务管控台处理</td>
+</tr>
+<tr>
+<td>I-H05</td>
+<td>行政文员台账标准化不足</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待启动</td>
+<td>数智工具培训</td>
+</tr>
+<tr>
+<td>I-H06</td>
+<td>人员能力档案尚未建立</td>
+<td>Medium</td>
+<td>运营经理</td>
+<td>待启动</td>
+<td>D+5 完成初版</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch14">CH14｜新员工 / 调岗人员接入协议</h2>
+<table>
+<thead>
+<tr>
+<th>接入项</th>
+<th>内容</th>
+<th>完成标准</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>岗责说明</td>
+<td>主能、副能、可支援事项、不可替代事项</td>
+<td>本人签认确认</td>
+</tr>
+<tr>
+<td>职业通能培训</td>
+<td>六项能力：任务、形象、底线、工具、协作、发现</td>
+<td>完成培训确认</td>
+</tr>
+<tr>
+<td>SOP 培训</td>
+<td>对应岗位 SOP</td>
+<td>考核通过</td>
+</tr>
+<tr>
+<td>数智工具培训</td>
+<td>对应工具 / 飞书 / 表单 / 台账录入</td>
+<td>独立完成首次录入</td>
+</tr>
+<tr>
+<td>权限开通</td>
+<td>飞书 Base、对应引擎访问权限</td>
+<td>权限确认到位</td>
+</tr>
+<tr>
+<td>首周跟进</td>
+<td>运营经理每日跟进，D+7 汇报状态</td>
+<td>首周日报提交</td>
+</tr>
+<tr>
+<td>D+30 更新</td>
+<td>能力档案更新，确认可支援范围</td>
+<td>完成能力更新</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch15">CH15｜五个共同内核</h2>
+<table>
+<thead>
+<tr>
+<th>内核</th>
+<th>定义</th>
+<th>番医融合位置</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>情报先于行动</td>
+<td>所有执行动作前必须有数据或信息支撑</td>
+<td>每日简报、岗位记录、异常上报</td>
+</tr>
+<tr>
+<td>输出责任人制度</td>
+<td>每个岗位或任务有且只有一个最终负责人</td>
+<td>每个岗位设置每日必交付物</td>
+</tr>
+<tr>
+<td>知识强制沉淀</td>
+<td>经验、判断、异常、规则必须进入知识库</td>
+<td>日志、台账、能力档案、经验资产</td>
+</tr>
+<tr>
+<td>异常可视化 + 分级响应</td>
+<td>问题必须可见，响应必须分级</td>
+<td>P0-P3 异常响应</td>
+</tr>
+<tr>
+<td>工具放大岗位效能</td>
+<td>每个物理岗位配给对应数智工具</td>
+<td>岗位 × 引擎 × 输入 × 输出表</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch16">CH16｜高价值参照对象</h2>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>参照对象</th>
+<th>可迁移机制</th>
+<th>本台应用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>SOF 精英小队</td>
+<td>小团队、多能补位、指挥链短</td>
+<td>主能副能、机动支援</td>
+</tr>
+<tr>
+<td>2</td>
+<td>NASA 任务控制中心</td>
+<td>岗位监控域、状态面板、异常分级</td>
+<td>职能域覆盖、异常响应</td>
+</tr>
+<tr>
+<td>3</td>
+<td>麦肯锡 / 高盛项目组</td>
+<td>输出责任人、知识资产沉淀</td>
+<td>每日必交付物、复盘沉淀</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Pixar 创意工作室</td>
+<td>创意-执行-技术三角协同</td>
+<td>菜单、厨房、数智工具协作</td>
+</tr>
+<tr>
+<td>5</td>
+<td>丰田 TPS</td>
+<td>问题可视化、SOP 到动作</td>
+<td>培训、流程、异常记录</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Spotify Squad</td>
+<td>小队协作、每日站会</td>
+<td>前线小组、日沟通</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Netflix 数据驱动</td>
+<td>数据驱动产品决策</td>
+<td>菜单和岗位表现评估</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Amazon 逆向工作法</td>
+<td>从需求倒推组织和流程</td>
+<td>从院方 / 用户需求倒推岗位</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Apple 垂直整合</td>
+<td>简单化、体验一致性</td>
+<td>前线工具极简化</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Palantir 情景感知</td>
+<td>状态看板、任务追踪</td>
+<td>NexLens / NexTask</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch1725">CH17｜25 条可迁移精华</h2>
+<table>
+<thead>
+<tr>
+<th>精华条目</th>
+<th>来源</th>
+<th>人力台用途</th>
+<th>转化方式</th>
+<th>全域同步状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务三段式</td>
+<td>SOF</td>
+<td>日常任务闭环</td>
+<td>晨报 / 执行 / 复盘</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>多能岗位</td>
+<td>SOF</td>
+<td>主能副能设计</td>
+<td>岗位表字段</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>指挥链≤2层</td>
+<td>SOF</td>
+<td>管理链路压缩</td>
+<td>架构定位</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>岗位监控域精确化</td>
+<td>NASA</td>
+<td>职能域覆盖</td>
+<td>控制面板字段</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>异常分级响应</td>
+<td>NASA</td>
+<td>P0-P3 响应</td>
+<td>异常机制</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>决策留痕</td>
+<td>NASA + 麦肯锡</td>
+<td>关键判断留存</td>
+<td>经验资产</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>输出责任人制度</td>
+<td>麦肯锡</td>
+<td>岗位责任机制</td>
+<td>每日必交付物</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>知识资产强制沉淀</td>
+<td>麦肯锡</td>
+<td>培训与复盘</td>
+<td>档案字段</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>项目结束知识入库</td>
+<td>麦肯锡</td>
+<td>项目复盘</td>
+<td>经验库</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>创意×执行×技术三角</td>
+<td>Pixar</td>
+<td>菜单 / 出品 / 工具协同</td>
+<td>协作机制</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>问题可视化</td>
+<td>TPS</td>
+<td>异常上报</td>
+<td>看板字段</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>SOP 精确到动作</td>
+<td>TPS</td>
+<td>岗位培训</td>
+<td>SOP 培训</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>消除浪费</td>
+<td>TPS</td>
+<td>人效优化</td>
+<td>复盘规则</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>每日站会</td>
+<td>Spotify</td>
+<td>日常沟通</td>
+<td>晨会机制</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>自治小队</td>
+<td>Spotify</td>
+<td>前线小组协作</td>
+<td>授权边界</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>数据驱动决策</td>
+<td>Netflix</td>
+<td>岗位表现评估</td>
+<td>台账分析</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>个性化推荐引擎</td>
+<td>Netflix</td>
+<td>未来用户服务</td>
+<td>暂缓</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>小团队原则</td>
+<td>Amazon</td>
+<td>小组协同</td>
+<td>岗位组织</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>逆向工作法</td>
+<td>Amazon</td>
+<td>从需求倒推岗位</td>
+<td>服务设计</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>飞轮效应</td>
+<td>Amazon</td>
+<td>经验复利</td>
+<td>复盘沉淀</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>极致简单化</td>
+<td>Apple</td>
+<td>前线工具设计</td>
+<td>数智工具培训</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>垂直整合</td>
+<td>Apple</td>
+<td>关键环节掌控</td>
+<td>岗位边界</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>实时状态看板</td>
+<td>Palantir</td>
+<td>管理可视化</td>
+<td>NexLens / 看板</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>任务分解 + 责任追踪</td>
+<td>Palantir</td>
+<td>任务闭环</td>
+<td>NexTask</td>
+<td>待同步</td>
+</tr>
+<tr>
+<td>数据即武器</td>
+<td>Palantir</td>
+<td>情报先于行动</td>
+<td>决策依据</td>
+<td>待同步</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch18">CH18｜关键文件资产</h2>
+<table>
+<thead>
+<tr>
+<th>文件</th>
+<th>角色</th>
+<th>状态</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>番医饭堂·人力管理台基线文件.md</td>
+<td>人力管理台专项基线主源</td>
+<td>V0.2</td>
+<td>待补</td>
+</tr>
+<tr>
+<td>番医饭堂·人力管理台.html</td>
+<td>人看版本</td>
+<td>V0.2</td>
+<td>待补</td>
+</tr>
+<tr>
+<td>番医饭堂·人力协同架构专项基线.md</td>
+<td>T2 人力协同专项当前主基线</td>
+<td>V0.2</td>
+<td>待补</td>
+</tr>
+<tr>
+<td>T2-中台前线协同组织设计与岗位手册架构.md</td>
+<td>中台 / 前线协同主设计稿</td>
+<td>V0.1</td>
+<td>待补</td>
+</tr>
+<tr>
+<td>TASK_BOARD_PANYI.md</td>
+<td>执行层任务追踪板</td>
+<td>V0.1</td>
+<td>待补</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch19">CH19｜人工 / 数智分工</h2>
+<table>
+<thead>
+<tr>
+<th>分工</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>数智可做</td>
+<td>扫描源文件、整理岗位表、生成培训清单、提醒异常、生成日报、归档经验、辅助分析。</td>
+</tr>
+<tr>
+<td>人工必做</td>
+<td>确认真实业务事实、岗位人员、权限、供应商、食安口径、院方承诺与关键裁决。</td>
+</tr>
+<tr>
+<td>禁止事项</td>
+<td>AI 不得擅自确认岗位事实、替代人事裁决、承诺院方、修改薪酬或处理敏感事项。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch20">CH20｜快速恢复提示词</h2>
+<pre><code>你正在继续&quot;番医饭堂·人力管理台基线文件&quot;。
+请先读取：
+1. 番医饭堂·人力管理台基线文件.md
+2. 上位项目基线文件
+3. 任务跟踪台文件
+4. 相关岗位手册与 SOP 文件
+请继承：
+- 台定位与 SSOT 治理协议
+- CH02 当前总览与人力推进链路
+- CH03 主题任务工作区
+- CH04 架构定位、协同链条与原则
+- CH05 T2 组织设计 / 人力协同专项基线
+- CH06 岗位主责配置
+- CH07 机动支援与补位规则
+- CH08 职业通能与专项培训
+- CH09 人员能力档案
+- CH10 职能域覆盖分析
+- CH11 数智引擎配给
+- CH13 人力缺口、异常与待处理事项
+- 五个共同内核、高价值参照对象、25 条可迁移精华
+- 关键文件资产与版本记录
+如形成人力管理关键结论，请回写：
+- 项目总账
+- 任务跟踪台
+- 人力管理台 Markdown 主源
+- HTML 人看版本
+- 必要时同步全域基线文件
+</code></pre>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch21">CH21｜版本记录</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>版本</th>
+<th>变更摘要</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1</td>
+<td>建立人力管理台专项基线初版。</td>
+</tr>
+<tr>
+<td>2026-06-24</td>
+<td>V0.2</td>
+<td>融合新版版头、旧版治理骨架、人力推进链路、协同链条、主能副能、机动支援、职业通能、专项培训、能力档案、人力缺口、经验资产与快速恢复机制；薪酬结构移出至财务管控台。</td>
+</tr>
+</tbody>
+</table>
+  </div>
+
+
+  <div class="doc-footer">
+    SYNEXA · INTERNAL SSOT · GENERATED 2026-06-25 · BBL3_HTML_GENERATOR V1.2
+  </div>
+
+</div>
+</body>
+</html>

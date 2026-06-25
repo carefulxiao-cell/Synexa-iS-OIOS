@@ -189,6 +189,38 @@ fonts/
 @font-face { font-family: SerifCJK; font-weight:700; src: url('fonts/noto/NotoSerifCJK-Bold.ttc') format('collection'); }
 ```
 
+### 5.4 L3 台轻量字体方案（零依赖，系统字体降级）
+
+**适用范围**：L3 专项台 HTML（内部工作文件，不依赖 `fonts/` 文件夹）
+
+**原则**：字体接近目标字感即可，不追求完全一致，零存储成本，任何设备打开排版稳定。
+
+```css
+:root {
+  /* 英文/数字：机械感、几何感（Space Grotesk 方向）*/
+  --font-en-theme: 'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
+
+  /* 中文主标题：人文化、有衬线（思源宋体方向）*/
+  --font-zh-title: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
+
+  /* 中文正文/h2/h3：人文化、清晰易读（思源黑体方向）*/
+  --font-zh-body: 'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+
+  /* 等宽/代码 */
+  --font-data: 'JetBrains Mono', 'SF Mono', 'Consolas', 'Courier New', monospace;
+}
+```
+
+**各平台实际渲染**：
+
+| 用途 | Mac/iOS | Windows | Android |
+|---|---|---|---|
+| 英文/数字 | Helvetica Neue（接近几何感）| Arial | Roboto |
+| 中文主标题 | STSong（有衬线）| SimSun（有衬线）| Noto Serif SC |
+| 中文正文 | PingFang SC（最接近思源黑体）| Microsoft YaHei | Noto Sans SC |
+
+**L3 台 HTML 不使用 `@font-face` 声明，不引用 `fonts/` 路径。**
+
 ---
 
 ## 6. 颜色体系
@@ -410,6 +442,29 @@ fonts/
 # Step 4：组合 HTML = head + style + 封面 + 转换后正文 + 页脚
 # Step 5：验证（h1/h2/table 数量、残留 # 行数 = 0）
 ```
+
+### 12.4 L3 台 HTML 生成规则
+
+**L3 台使用独立的轻量生成脚本**，与 L2 生成流程不同：
+
+| 项目 | L2（Company Intro 级）| L3（专项台）|
+|---|---|---|
+| 字体方案 | 本地 `fonts/` 文件夹 | 系统字体降级栈（Section 5.4）|
+| 封面样式 | 完整封面（topline + title + en + sub + quote + statgrid）| 精简封面（topline + title + en + sub + quote + statgrid，宽度与正文等宽）|
+| 正文样式 | L2 section 卡片 | 白底圆角 section 卡片，浅灰 th，`.tag` `.chain` 组件 |
+| 生成脚本 | 从已验证 HTML 提取 CSS | `scripts/BBL3_html_generator.py` |
+
+**调用方式**：
+
+```bash
+# 在 baseline-builder/ 目录下
+python3 scripts/BBL3_html_generator.py <源md文件路径> <输出html文件路径>
+
+# 示例
+python3 scripts/BBL3_html_generator.py 番医饭堂·人力管理台_V0.2.md 番医饭堂·人力管理台_V0.2.html
+```
+
+**脚本位置**：`carefulxiao-cell/Synexa-iS-OIOS/00-overview/baseline-builder/scripts/BBL3_html_generator.py`
 
 ---
 

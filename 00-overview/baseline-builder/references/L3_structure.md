@@ -118,3 +118,43 @@
 4. **数字与数据**：原样保留，不做推断或估算
 5. **未明确的信息**：标注「待确认」，不猜测补全
 6. **对话中的讨论过程**：只保留结论，不保留讨论过程
+
+---
+
+## HTML 生成规范（L3 台专属）
+
+### 调用脚本
+
+```bash
+python3 scripts/BBL3_html_generator.py <源md文件路径> <输出html文件路径>
+```
+
+脚本位置：`baseline-builder/scripts/BBL3_html_generator.py`
+
+### 字体方案
+
+L3 台使用系统字体降级栈（BBM Section 5.4），零依赖，不需要 `fonts/` 文件夹。
+
+| 用途 | 字体栈 |
+|---|---|
+| 英文/数字（机械感）| `'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif` |
+| 中文主标题（人文化衬线）| `'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', serif` |
+| 中文正文（人文化无衬线）| `'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif` |
+| 等宽/代码 | `'JetBrains Mono', 'SF Mono', 'Consolas', monospace` |
+
+### 封面样式规则
+
+- 封面与正文等宽：`min(1280px, calc(100% - 48px))`，居中
+- topline：全大写英文，`·` 分隔，10px，颜色 `--muted`
+- 中文主标题：系统衬线字体，36px，font-weight 700
+- 英文副标题：几何感字体，20px，font-weight 600
+- quote 引言：左边框 3px `--green`，背景 `--bg-soft`
+- statgrid：4-6 列等宽卡片，数字 32px 几何感字体
+
+### 正文样式规则
+
+- 每个章节用白底圆角卡片包裹（`border-radius: 8px`，`box-shadow` 轻阴影）
+- 表格 `th`：浅灰背景 `#F0F2F5`，深色文字，非深黑底
+- 支持 `.tag`（绿色胶囊标签）和 `.chain`（链式标签组）组件
+- 页面背景：`#F7F9FC`（浅灰），卡片背景：白色
+

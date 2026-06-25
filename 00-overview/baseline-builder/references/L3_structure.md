@@ -158,3 +158,47 @@ L3 台使用系统字体降级栈（BBM Section 5.4），零依赖，不需要 `
 - 支持 `.tag`（绿色胶囊标签）和 `.chain`（链式标签组）组件
 - 页面背景：`#F7F9FC`（浅灰），卡片背景：白色
 
+
+---
+
+## L3 台 COVER 块 stat_rule 示例
+
+> stat_rule 语法规范详见 BBM Section 16。以下为各类 L3 专项台的推荐配置，按台类型选用。
+
+### 人力管理台
+
+```
+stat_rule: count_table_rows | CH03 | 中台岗位 | Mid-tier Roles
+stat_rule: count_table_rows | CH04 | 前线岗位 | Front-line Roles
+stat_rule: count_table_rows | CH05 | 职能域 | Function Domains
+stat_rule: count_keyword_rows | CH05 | 缺口 | 覆盖缺口 | Coverage Gaps
+stat_rule: count_table_rows | CH06 | 数智引擎 | Active Engines
+stat_rule: count_table_rows | CH09 | 可迁移精华 | Transferable Insights
+```
+
+### 任务跟踪台
+
+```
+stat_rule: count_keyword_rows | CH03 | 进行中 | 进行中任务 | Active Tasks
+stat_rule: count_keyword_rows | CH03 | 阻塞 | 阻塞任务 | Blocked Tasks
+stat_rule: count_keyword_rows | CH03 | 已完成 | 已完成任务 | Completed Tasks
+stat_rule: count_table_rows | CH04 | 两周清单 | Sprint Items
+stat_rule: static | 5 | 任务分类 | Task Categories
+```
+
+### 运营推进台
+
+```
+stat_rule: count_table_rows | CH03 | 工作流 | Workflows
+stat_rule: count_table_rows | CH04 | 文档体系 | Document Types
+stat_rule: count_table_rows | CH05 | SOP | SOPs
+stat_rule: count_keyword_rows | CH06 | P0 | 最高级异常 | P0 Incidents
+stat_rule: count_table_rows | CH07 | 补充模块 | Add-on Modules
+```
+
+### 通用原则
+
+- 每个台的 `stat_rule` 应体现该台**最核心的量化指标**，让封面一眼看出台的健康状态
+- 建议 4-6 个 statgrid 卡片，不超过 6 个
+- 优先选择**动态变化**的指标（任务数、岗位数），而非静态说明性字段
+- `static` 函数用于版本号、固定配置数等不需要统计的字段

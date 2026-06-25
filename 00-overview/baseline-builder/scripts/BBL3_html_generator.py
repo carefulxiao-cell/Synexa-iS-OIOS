@@ -2,13 +2,19 @@
 """
 BBL3_html_generator.py
 Synexa iS · L3 专项台 HTML 生成器
-版本：V1.0
+版本：V1.1
 用法：python3 BBL3_html_generator.py <源md文件路径> <输出html文件路径>
 
 规范依据：
 - BBM Section 5.4（L3 台轻量字体方案）
 - BBM Section 12.4（L3 台 HTML 生成规则）
+- BBM Section 16（COVER 块规范 + stat_rule 语法）
 - BBL3 references/L3_structure.md（HTML 生成规范节）
+
+stat_rule 语法（BBM Section 16）：
+  stat_rule: count_table_rows | <章节关键词> | <中文标签> | <英文标签>
+  stat_rule: count_keyword_rows | <章节关键词> | <关键词> | <中文标签> | <英文标签>
+  stat_rule: static | <固定值> | <中文标签> | <英文标签>
 """
 
 import sys
@@ -323,6 +329,103 @@ hr {
 """
 
 # ─────────────────────────────────────────────
+# stat_rule 自动统计函数（BBM Section 16）
+# ─────────────────────────────────────────────
+def find_chapter_text(full_text, chapter_keyword):
+    """从 md 全文中提取包含指定关键词的章节内容"""
+    # 匹配 # CHxx 或 ## 开头的章节，直到下一个同级标题
+    pattern = rf'(^#{1,2} [^\n]*{re.escape(chapter_keyword)}[^\n]*\n)(.*?)(?=^#{1,2} |\Z)'
+    match = re.search(pattern, full_text, re.MULTILINE | re.DOTALL | re.IGNORECASE)
+    if match:
+        return match.group(0)
+    return ""
+
+
+def count_table_rows(full_text, chapter_keyword):
+    """统计指定章节中表格的数据行数（不含表头和分隔行）"""
+    chapter_text = find_chapter_text(full_text, chapter_keyword)
+    if not chapter_text:
+        return 0
+    # 匹配 | 开头的行，排除表头分隔行（|---|）
+    rows = re.findall(r'^\|(?![-:]+\|)', chapter_text, re.MULTILINE)
+    # 减去表头行（第一行）
+    table_count = 0
+    in_table = False
+    header_passed = False
+    separator_passed = False
+    count = 0
+    for line in chapter_text.split('\n'):
+        line = line.strip()
+        if line.startswith('|') and '|' in line[1:]:
+            if not in_table:
+                in_table = True
+                header_passed = False
+                separator_passed = False
+            elif not header_passed:
+                header_passed = True
+            elif not separator_passed and re.match(r'^\|[-:\s|]+\|$', line):
+                separator_passed = True
+            elif header_passed and separator_passed:
+                count += 1
+        else:
+            if in_table:
+                in_table = False
+                header_passed = False
+                separator_passed = False
+    return count
+
+
+def count_keyword_rows(full_text, chapter_keyword, keyword):
+    """统计指定章节中包含特定关键词的表格行数"""
+    chapter_text = find_chapter_text(full_text, chapter_keyword)
+    if not chapter_text:
+        return 0
+    count = 0
+    for line in chapter_text.split('\n'):
+        if line.startswith('|') and keyword in line:
+            # 排除表头和分隔行
+            if not re.match(r'^\|[-:\s|]+\|$', line.strip()):
+                count += 1
+    return count
+
+
+def resolve_stat_rules(full_text, stat_rules):
+    """解析 stat_rule 列表，返回 stats 列表"""
+    stats = []
+    for rule in stat_rules:
+        parts = [p.strip() for p in rule.split('|')]
+        if not parts:
+            continue
+        func = parts[0].strip().lower()
+
+        if func == 'static':
+            # static | 固定值 | 中文标签 | 英文标签
+            num = parts[1] if len(parts) > 1 else '—'
+            label = parts[2] if len(parts) > 2 else ''
+            sub = parts[3] if len(parts) > 3 else ''
+            stats.append({'num': num, 'label': label, 'sub': sub})
+
+        elif func == 'count_table_rows':
+            # count_table_rows | 章节关键词 | 中文标签 | 英文标签
+            chapter_kw = parts[1] if len(parts) > 1 else ''
+            label = parts[2] if len(parts) > 2 else chapter_kw
+            sub = parts[3] if len(parts) > 3 else ''
+            num = count_table_rows(full_text, chapter_kw)
+            stats.append({'num': str(num), 'label': label, 'sub': sub})
+
+        elif func == 'count_keyword_rows':
+            # count_keyword_rows | 章节关键词 | 关键词 | 中文标签 | 英文标签
+            chapter_kw = parts[1] if len(parts) > 1 else ''
+            keyword = parts[2] if len(parts) > 2 else ''
+            label = parts[3] if len(parts) > 3 else keyword
+            sub = parts[4] if len(parts) > 4 else ''
+            num = count_keyword_rows(full_text, chapter_kw, keyword)
+            stats.append({'num': str(num), 'label': label, 'sub': sub})
+
+    return stats
+
+
+# ─────────────────────────────────────────────
 # 封面解析：从 md 文件头部提取封面字段
 # ─────────────────────────────────────────────
 def extract_cover_fields(text):
@@ -333,7 +436,8 @@ def extract_cover_fields(text):
         "en": "",
         "sub": "",
         "quote": "",
-        "stats": []
+        "stats": [],
+        "stat_rules": []
     }
 
     # 尝试解析 <!-- COVER --> 注释块
@@ -341,29 +445,41 @@ def extract_cover_fields(text):
     if cover_match:
         block = cover_match.group(1)
         for line in block.strip().split('\n'):
-            if ':' in line:
-                key, _, val = line.partition(':')
-                key = key.strip().lower()
-                val = val.strip()
-                if key == 'topline': cover['topline'] = val
-                elif key == 'title': cover['title'] = val
-                elif key == 'en': cover['en'] = val
-                elif key == 'sub': cover['sub'] = val
-                elif key == 'quote': cover['quote'] = val
-                elif key == 'stat':
-                    # 格式：stat: 数字 | 标签 | 英文说明
-                    parts = [p.strip() for p in val.split('|')]
-                    if len(parts) >= 2:
-                        cover['stats'].append({
-                            'num': parts[0],
-                            'label': parts[1],
-                            'sub': parts[2] if len(parts) > 2 else ''
-                        })
+            if ':' not in line:
+                continue
+            key, _, val = line.partition(':')
+            key = key.strip().lower()
+            val = val.strip()
+            if key == 'topline':
+                cover['topline'] = val
+            elif key == 'title':
+                cover['title'] = val
+            elif key == 'en':
+                cover['en'] = val
+            elif key == 'sub':
+                cover['sub'] = val
+            elif key == 'quote':
+                cover['quote'] = val
+            elif key == 'stat':
+                # 兼容旧格式：stat: 数字 | 标签 | 英文说明
+                parts = [p.strip() for p in val.split('|')]
+                if len(parts) >= 2:
+                    cover['stats'].append({
+                        'num': parts[0],
+                        'label': parts[1],
+                        'sub': parts[2] if len(parts) > 2 else ''
+                    })
+            elif key == 'stat_rule':
+                cover['stat_rules'].append(val)
     else:
         # 回退：从 h1 提取标题
         h1_match = re.search(r'^#\s+(.+)$', text, re.MULTILINE)
         if h1_match:
             cover['title'] = h1_match.group(1).strip()
+
+    # 如果有 stat_rule，自动统计（优先于静态 stat）
+    if cover['stat_rules']:
+        cover['stats'] = resolve_stat_rules(text, cover['stat_rules'])
 
     return cover
 
@@ -395,7 +511,7 @@ def build_cover_html(cover):
 
 
 # ─────────────────────────────────────────────
-# 正文解析：按 ## 章节分割，每章一个 section 卡片
+# 正文解析：按章节分割，每章一个 section 卡片
 # ─────────────────────────────────────────────
 def build_body_html(text):
     """将 md 正文转换为章节卡片 HTML"""
@@ -403,7 +519,6 @@ def build_body_html(text):
     text = re.sub(r'<!--\s*COVER\s*\n.*?\n-->', '', text, flags=re.DOTALL)
 
     # 按 # 开头的标题分割章节
-    # 每个 h1（#）或 h2（##）开头视为新章节
     chapters = re.split(r'\n(?=#{1,2} )', text.strip())
 
     md_ext = ['tables', 'fenced_code', 'toc', 'attr_list', 'nl2br']
@@ -416,13 +531,18 @@ def build_body_html(text):
 
         # 确定 eyebrow 标签
         eyebrow = "CORE CHAPTER"
-        if re.match(r'^# CH\(-1\)', chapter): eyebrow = "GOVERNANCE"
-        elif re.match(r'^# CH00', chapter): eyebrow = "BASELINE PROTOCOL"
+        if re.match(r'^# CH\(-1\)', chapter):   eyebrow = "GOVERNANCE"
+        elif re.match(r'^# CH00', chapter):      eyebrow = "BASELINE PROTOCOL"
         elif re.match(r'^# CH\d+.*版本', chapter): eyebrow = "VERSION RECORD"
         elif re.match(r'^# CH\d+.*快速恢复', chapter): eyebrow = "RECOVERY PROTOCOL"
         elif re.match(r'^# CH\d+.*附录', chapter): eyebrow = "APPENDIX"
-        elif re.match(r'^# 台定位', chapter): eyebrow = "STATION SCOPE"
+        elif re.match(r'^# 台定位', chapter):    eyebrow = "STATION SCOPE"
         elif re.match(r'^# Executive', chapter): eyebrow = "EXECUTIVE SUMMARY"
+        elif re.match(r'^# CH\d+.*数智', chapter): eyebrow = "DIGITAL INTELLIGENCE"
+        elif re.match(r'^# CH\d+.*岗位', chapter): eyebrow = "ROLES & RESPONSIBILITIES"
+        elif re.match(r'^# CH\d+.*任务', chapter): eyebrow = "TASK MANAGEMENT"
+        elif re.match(r'^# CH\d+.*工作流', chapter): eyebrow = "WORKFLOW"
+        elif re.match(r'^# CH\d+.*台账', chapter): eyebrow = "RECORDS & REPORTS"
 
         # 转换 markdown
         html_content = markdown.markdown(chapter, extensions=md_ext)
@@ -465,7 +585,7 @@ def generate(md_path: str, html_path: str):
     today = datetime.now().strftime('%Y-%m-%d')
     footer_html = f"""
   <div class="doc-footer">
-    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBL3_HTML_GENERATOR V1.0
+    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBL3_HTML_GENERATOR V1.1
   </div>
 """
 

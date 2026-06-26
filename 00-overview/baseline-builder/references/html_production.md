@@ -1,6 +1,12 @@
 # HTML 生产规范引用
 
-本文件指向 Synexa 基线文件 HTML 排版生产标准（SBHPS）。
+**文件代号**：HTML-PROD-REF  
+**版本**：V1.1  
+**上级规范**：BBM V1.3  
+**执行脚本**：`BBLx_html_generator.py`（全层级通用）  
+**最后更新**：2026-06-26  
+
+本文件为 HTML 生产执行入口说明。L1/L2/L3 全层级统一使用 `BBLx_html_generator.py` 生产 HTML。
 
 ## 调用方式
 

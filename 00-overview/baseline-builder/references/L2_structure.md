@@ -1,5 +1,11 @@
 # L2 项目级基线文件结构规范
 
+**文件代号**：BBL2（Baseline Builder L2）  
+**版本**：V1.0  
+**上级规范**：BBM V1.3  
+**执行脚本**：`BBLx_html_generator.py`  
+**最后更新**：2026-06-26  
+
 适用于：一个完整项目的全量基线文件（如番医饭堂、Nexsply、Bella Giornata 等）
 
 ---

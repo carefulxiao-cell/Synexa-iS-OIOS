@@ -1,15 +1,15 @@
 #!/usr/bin/env python3
 """
-BBL3_html_generator.py
-Synexa iS · L3 专项台 HTML 生成器
+BBLx_html_generator.py
+Synexa iS · 全层级通用 HTML 生成器（L1 / L2 / L3）
 版本：V1.3
-用法：python3 BBL3_html_generator.py <源md文件路径> <输出html文件路径>
+用法：python3 BBLx_html_generator.py <源md文件路径> <输出html文件路径>
 
 规范依据：
-- BBM Section 5.4（L3 台轻量字体方案）
-- BBM Section 12.4（L3 台 HTML 生成规则）
+- BBM V1.3（全局规范总纲）
 - BBM Section 16（COVER 块规范 + stat_auto/stat_override 语法）
-- BBL3 references/L3_structure.md（HTML 生成规范节）
+- BBL2 references/L2_structure.md（L2 层级细则）
+- BBL3 references/L3_structure.md（L3 层级细则）
 
 V1.3 升级说明：
   - 新增 stat_auto 支持：三步融合提取（规则匹配 → LLM 校验 → stat_override 覆盖）
@@ -880,7 +880,7 @@ def generate(md_path: str, html_path: str):
     today = datetime.now().strftime('%Y-%m-%d')
     footer_html = f"""
   <div class="doc-footer">
-    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBL3_HTML_GENERATOR V1.3
+    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBLx_HTML_GENERATOR V1.3
   </div>
 """
 
@@ -918,6 +918,6 @@ def generate(md_path: str, html_path: str):
 
 if __name__ == '__main__':
     if len(sys.argv) != 3:
-        print("用法：python3 BBL3_html_generator.py <源md文件路径> <输出html文件路径>")
+        print("用法：python3 BBLx_html_generator.py <源md文件路径> <输出html文件路径>")
         sys.exit(1)
     generate(sys.argv[1], sys.argv[2])

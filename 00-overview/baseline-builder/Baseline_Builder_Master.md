@@ -1,10 +1,12 @@
 # Synexa 基线文件构建主规范
 
 **文件代号**：BBM（Baseline Builder Master）  
-**版本**：V1.2  
+**版本**：V1.3  
 **对齐基准**：Synexa_Company_Intro_V3.10  
-**适用范围**：所有 Synexa 体系基线文件（L2 项目级 + L3 专项台）  
-**文件性质**：机器可执行规范，任何 AI Agent 持此文件即可生产视觉一致的 HTML
+**适用范围**：所有 Synexa 体系基线文件（L1 公司介绍 + L2 项目级 + L3 专项台）  
+**文件性质**：机器可执行规范，任何 AI Agent 持此文件即可生产视觉一致的 HTML  
+**执行脚本**：`BBLx_html_generator.py`（全层级通用，L1/L2/L3 统一使用）  
+**最后更新**：2026-06-26
 
 ---
 
@@ -452,19 +454,19 @@ fonts/
 | 字体方案 | 本地 `fonts/` 文件夹 | 系统字体降级栈（Section 5.4）|
 | 封面样式 | 完整封面（topline + title + en + sub + quote + statgrid）| 精简封面（topline + title + en + sub + quote + statgrid，宽度与正文等宽）|
 | 正文样式 | L2 section 卡片 | 白底圆角 section 卡片，浅灰 th，`.tag` `.chain` 组件 |
-| 生成脚本 | 从已验证 HTML 提取 CSS | `scripts/BBL3_html_generator.py` |
+| 生成脚本 | 从已验证 HTML 提取 CSS | `scripts/BBLx_html_generator.py` |
 
 **调用方式**：
 
 ```bash
 # 在 baseline-builder/ 目录下
-python3 scripts/BBL3_html_generator.py <源md文件路径> <输出html文件路径>
+python3 scripts/BBLx_html_generator.py <源md文件路径> <输出html文件路径>
 
 # 示例
-python3 scripts/BBL3_html_generator.py 番医饭堂·人力管理台_V0.2.md 番医饭堂·人力管理台_V0.2.html
+python3 scripts/BBLx_html_generator.py 番医饭堂·人力管理台_V0.2.md 番医饭堂·人力管理台_V0.2.html
 ```
 
-**脚本位置**：`carefulxiao-cell/Synexa-iS-OIOS/00-overview/baseline-builder/scripts/BBL3_html_generator.py`
+**脚本位置**：`carefulxiao-cell/Synexa-iS-OIOS/00-overview/baseline-builder/scripts/BBLx_html_generator.py`
 
 ---
 

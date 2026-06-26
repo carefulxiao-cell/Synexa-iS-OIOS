@@ -1,5 +1,11 @@
 # L3 专项台基线文件结构规范
 
+**文件代号**：BBL3（Baseline Builder L3）  
+**版本**：V1.1  
+**上级规范**：BBM V1.3  
+**执行脚本**：`BBLx_html_generator.py`  
+**最后更新**：2026-06-26  
+
 适用于：某一专项主题的运营台（任务跟踪台、人力管理台、餐食运营台、采购台等）
 
 ---
@@ -126,10 +132,10 @@
 ### 调用脚本
 
 ```bash
-python3 scripts/BBL3_html_generator.py <源md文件路径> <输出html文件路径>
+python3 scripts/BBLx_html_generator.py <源md文件路径> <输出html文件路径>
 ```
 
-脚本位置：`baseline-builder/scripts/BBL3_html_generator.py`
+脚本位置：`baseline-builder/scripts/BBLx_html_generator.py`
 
 ### 字体方案
 

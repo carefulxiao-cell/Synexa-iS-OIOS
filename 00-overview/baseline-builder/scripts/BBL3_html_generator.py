@@ -2,19 +2,20 @@
 """
 BBL3_html_generator.py
 Synexa iS · L3 专项台 HTML 生成器
-版本：V1.2
+版本：V1.3
 用法：python3 BBL3_html_generator.py <源md文件路径> <输出html文件路径>
 
 规范依据：
 - BBM Section 5.4（L3 台轻量字体方案）
 - BBM Section 12.4（L3 台 HTML 生成规则）
-- BBM Section 16（COVER 块规范 + stat_rule 语法）
+- BBM Section 16（COVER 块规范 + stat_auto/stat_override 语法）
 - BBL3 references/L3_structure.md（HTML 生成规范节）
 
-stat_rule 语法（BBM Section 16）：
-  stat_rule: count_table_rows | <章节关键词> | <中文标签> | <英文标签>
-  stat_rule: count_keyword_rows | <章节关键词> | <关键词> | <中文标签> | <英文标签>
-  stat_rule: static | <固定值> | <中文标签> | <英文标签>
+V1.3 升级说明：
+  - 新增 stat_auto 支持：三步融合提取（规则匹配 → LLM 校验 → stat_override 覆盖）
+  - 新增 stat_override 支持：人工覆盖，最高优先级
+  - stat_rule（旧字段）保留向后兼容，不再推荐
+  - 提取原则定义详见 BBM Section 16.5（P1-P4）
 """
 
 import sys
@@ -440,10 +441,270 @@ def resolve_stat_rules(full_text, stat_rules):
 
 
 # ─────────────────────────────────────────────
+# stat 自动提取：三步融合机制（BBM Section 16.6）
+# ─────────────────────────────────────────────
+def auto_extract_stats(full_text, cover_meta, stat_overrides=None):
+    """
+    三步融合提取（BBM Section 16.6）：
+    Step 1  规则匹配：按 P1-P4 原则正则扫描 md，生成候选列表
+    Step 2  LLM 校验：传入台定位 + 候选列表，返回最终 stat 列表
+    Step 3  stat_override 覆盖：人工指定优先级最高
+    """
+    # Step 1: 规则匹配，按 P1-P4 原则扫描候选数字
+    candidates = _rule_match_candidates(full_text)
+
+    # Step 2: LLM 校验 + 补充
+    stats = _llm_validate_stats(candidates, cover_meta, full_text)
+
+    # Step 3: stat_override 覆盖（最高优先级）
+    if stat_overrides:
+        override_stats = resolve_stat_rules(full_text, stat_overrides)
+        if override_stats:
+            stats = override_stats
+
+    return stats
+
+
+def _rule_match_candidates(full_text):
+    """
+    Step 1: 规则匹配——按 P1-P4 原则扫描 md，返回候选数字列表
+    返回格式：[{‘chapter’: str, ‘count’: int, ‘type’: str, ‘keyword’: str}, ...]
+    """
+    candidates = []
+    text_with_prefix = '\n' + full_text
+    chapters = re.split(r'\n(?=#{1,3} )', text_with_prefix)
+
+    # P3 关键词：缺口/阻塞/待处理/异常
+    P3_KEYWORDS = ['缺口', '阻塞', '待处理', '异常', '待解决', 'P0']
+
+    for chapter in chapters:
+        chapter = chapter.strip()
+        if not chapter:
+            continue
+        # 提取章节标题
+        title_match = re.match(r'^(#{1,3})\s+(.+)', chapter)
+        if not title_match:
+            continue
+        chapter_title = title_match.group(2).strip()
+
+        # 统计表格行数（P1/P2/P4）
+        row_count = _count_rows_in_chapter(chapter)
+        if row_count > 0:
+            # 根据章节标题关键词判断类型
+            stat_type = _classify_chapter(chapter_title)
+            candidates.append({
+                'chapter': chapter_title,
+                'count': row_count,
+                'type': stat_type,
+                'keyword': None
+            })
+
+        # P3: 关键词行统计
+        for kw in P3_KEYWORDS:
+            kw_count = _count_keyword_in_chapter(chapter, kw)
+            if kw_count > 0:
+                candidates.append({
+                    'chapter': chapter_title,
+                    'count': kw_count,
+                    'type': 'P3',
+                    'keyword': kw
+                })
+
+    return candidates
+
+
+def _count_rows_in_chapter(chapter_text):
+    """统计章节内第一个表格的数据行数"""
+    count = 0
+    in_table = False
+    header_passed = False
+    sep_passed = False
+    for line in chapter_text.split('\n'):
+        stripped = line.strip()
+        if not stripped:
+            if in_table:
+                in_table = False
+                header_passed = False
+                sep_passed = False
+            continue
+        if stripped.startswith('|'):
+            if re.match(r'^\|[\s\-:|]+\|$', stripped):
+                if in_table and header_passed and not sep_passed:
+                    sep_passed = True
+            elif not in_table:
+                in_table = True
+                header_passed = True
+                sep_passed = False
+            elif header_passed and sep_passed:
+                count += 1
+        else:
+            if in_table:
+                in_table = False
+                header_passed = False
+                sep_passed = False
+    return count
+
+
+def _count_keyword_in_chapter(chapter_text, keyword):
+    """统计章节内包含关键词的表格行数"""
+    count = 0
+    for line in chapter_text.split('\n'):
+        if line.startswith('|') and keyword in line:
+            if not re.match(r'^\|[-:\s|]+\|$', line.strip()):
+                count += 1
+    return count
+
+
+def _classify_chapter(chapter_title):
+    """根据章节标题关键词判断 P1-P4 类型"""
+    P1_KEYWORDS = ['岗位', '人员', '任务', '条目', '数量', '清单', '名单']
+    P2_KEYWORDS = ['模块', '域', '层级', '引擎', '类型', '结构', '分类']
+    P3_KEYWORDS = ['缺口', '阻塞', '待处理', '异常', '待解决']
+    P4_KEYWORDS = ['精华', '资产', 'SOP', '文件', '规则', '基准', '定义']
+    for kw in P1_KEYWORDS:
+        if kw in chapter_title: return 'P1'
+    for kw in P2_KEYWORDS:
+        if kw in chapter_title: return 'P2'
+    for kw in P3_KEYWORDS:
+        if kw in chapter_title: return 'P3'
+    for kw in P4_KEYWORDS:
+        if kw in chapter_title: return 'P4'
+    return 'P2'  # 默认归入 P2
+
+
+def _llm_validate_stats(candidates, cover_meta, full_text):
+    """
+    Step 2: LLM 校验 + 补充
+    输入：候选列表 + 台定位描述（title + sub + quote）
+    输出：最终 stat 列表，最多 6 个，优先 P1
+    """
+    import os
+    import json
+
+    # 如果没有候选，直接返回空
+    if not candidates:
+        return []
+
+    # 尝试调用 LLM
+    api_key = os.environ.get('OPENAI_API_KEY')
+    api_base = os.environ.get('OPENAI_API_BASE', 'https://api.openai.com/v1')
+
+    if not api_key:
+        # 无 API Key，降级为规则优先排序
+        print('⚠️  未配置 OPENAI_API_KEY，降级为规则匹配模式')
+        return _fallback_sort_candidates(candidates)
+
+    # 构建输入（仅传候选列表，不读整个 md）
+    station_context = (
+        f"台名称：{cover_meta.get('title', '')}"
+        f"。台定位：{cover_meta.get('sub', '')}"
+        f"。核心原则：{cover_meta.get('quote', '')}"
+    )
+    candidates_text = json.dumps(candidates, ensure_ascii=False, indent=2)
+
+    prompt = f"""你是一个业务分析専家。以下是一个运营管理台的定位和候选数字列表。
+
+台定位：{station_context}
+
+候选数字（规则匹配结果）：
+{candidates_text}
+
+请从中选出最重要的 4-6 个指标，要求：
+1. 优先选 P1（规模类），依次补充 P2/P3/P4
+2. 不超过 6 个
+3. 为每个指标生成简洁的中英文标签（中文不超过 6 字，英文不超过 4 词）
+4. 排除版本号、日期、百分比、金额类数字
+
+以 JSON 数组返回，格式：
+[
+  {{"num": "数字", "label": "中文标签", "sub": "英文标签"}},
+  ...
+]
+只返回 JSON，不要其他内容。"""
+
+    try:
+        import urllib.request
+        payload = json.dumps({
+            'model': 'gpt-4.1-mini',
+            'messages': [{'role': 'user', 'content': prompt}],
+            'temperature': 0.1,
+            'max_tokens': 500
+        }).encode('utf-8')
+        req = urllib.request.Request(
+            f'{api_base}/chat/completions',
+            data=payload,
+            headers={
+                'Content-Type': 'application/json',
+                'Authorization': f'Bearer {api_key}'
+            }
+        )
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            result = json.loads(resp.read().decode('utf-8'))
+            content = result['choices'][0]['message']['content'].strip()
+            # 提取 JSON 数组
+            json_match = re.search(r'\[.*\]', content, re.DOTALL)
+            if json_match:
+                stats = json.loads(json_match.group())
+                # 确保格式正确
+                return [{
+                    'num': str(s.get('num', '?')),
+                    'label': s.get('label', ''),
+                    'sub': s.get('sub', '')
+                } for s in stats if isinstance(s, dict)]
+    except Exception as e:
+        print(f'⚠️  LLM 校验失败，降级为规则匹配模式：{e}')
+
+    return _fallback_sort_candidates(candidates)
+
+
+def _fallback_sort_candidates(candidates):
+    """降级模式：按 P1>P2>P3>P4 排序，取前 6 个，生成 stat 列表"""
+    priority = {'P1': 0, 'P2': 1, 'P3': 2, 'P4': 3}
+    sorted_candidates = sorted(candidates, key=lambda x: priority.get(x['type'], 9))
+    stats = []
+    # 去重：同一章节的表格行统计只保留一条
+    seen_chapters = set()
+    for c in sorted_candidates:
+        if len(stats) >= 6:
+            break
+        kw = c.get('keyword')
+        chapter_key = c['chapter'] + (kw or '')
+        if chapter_key in seen_chapters:
+            continue
+        seen_chapters.add(chapter_key)
+        if kw:
+            label = f"{kw}数"
+            sub = f"{kw} Count"
+        else:
+            # 从章节标题中提取有意义的关键词作为标签
+            title = c['chapter']
+            # 移除 CH数字、全角竖线、编号前缀
+            clean = re.sub(r'^CH\d+[\.\d]*[｜|\s]+', '', title)
+            clean = re.sub(r'^#+\s*', '', clean)
+            # 取前 5 个字作为标签
+            label = clean[:5] if len(clean) > 5 else clean
+            # 英文标签：提取章节标题中的英文单词
+            en_words = re.findall(r'[A-Za-z]+', title)
+            sub = ' '.join(en_words[:3]) if en_words else label
+        stats.append({
+            'num': str(c['count']),
+            'label': label,
+            'sub': sub
+        })
+    return stats
+
+
+# ─────────────────────────────────────────────
 # 封面解析：从 md 文件头部提取封面字段
 # ─────────────────────────────────────────────
 def extract_cover_fields(text):
-    """从 md 文本中提取封面字段（<!-- COVER ... --> 注释块）"""
+    """从 md 文本中提取封面字段（<!-- COVER ... --> 注释块）
+    
+    V1.3 新增支持：
+    - stat_auto: true  → 触发三步融合自动提取
+    - stat_override: ... → 人工覆盖，最高优先级
+    - stat_rule: ...（旧字段）→ 向后兼容，仍可使用
+    """
     cover = {
         "topline": "SYNEXA · INTERNAL SSOT · L3 STATION",
         "title": "",
@@ -451,7 +712,9 @@ def extract_cover_fields(text):
         "sub": "",
         "quote": "",
         "stats": [],
-        "stat_rules": []
+        "stat_rules": [],
+        "stat_auto": False,
+        "stat_overrides": []
     }
 
     # 尝试解析 <!-- COVER --> 注释块
@@ -474,6 +737,10 @@ def extract_cover_fields(text):
                 cover['sub'] = val
             elif key == 'quote':
                 cover['quote'] = val
+            elif key == 'stat_auto':
+                cover['stat_auto'] = val.lower() == 'true'
+            elif key == 'stat_override':
+                cover['stat_overrides'].append(val)
             elif key == 'stat':
                 # 兼容旧格式：stat: 数字 | 标签 | 英文说明
                 parts = [p.strip() for p in val.split('|')]
@@ -484,6 +751,7 @@ def extract_cover_fields(text):
                         'sub': parts[2] if len(parts) > 2 else ''
                     })
             elif key == 'stat_rule':
+                # 旧字段，向后兼容
                 cover['stat_rules'].append(val)
     else:
         # 回退：从 h1 提取标题
@@ -491,8 +759,21 @@ def extract_cover_fields(text):
         if h1_match:
             cover['title'] = h1_match.group(1).strip()
 
-    # 如果有 stat_rule，自动统计（优先于静态 stat）
-    if cover['stat_rules']:
+    # 优先级：stat_auto（三步融合）> stat_rule（旧字段）> 静态 stat
+    if cover['stat_auto']:
+        # 新机制：三步融合提取
+        cover_meta = {
+            'title': cover['title'],
+            'sub': cover['sub'],
+            'quote': cover['quote']
+        }
+        cover['stats'] = auto_extract_stats(
+            text,
+            cover_meta,
+            stat_overrides=cover['stat_overrides'] if cover['stat_overrides'] else None
+        )
+    elif cover['stat_rules']:
+        # 旧机制：手写 stat_rule（向后兼容）
         cover['stats'] = resolve_stat_rules(text, cover['stat_rules'])
 
     return cover
@@ -599,7 +880,7 @@ def generate(md_path: str, html_path: str):
     today = datetime.now().strftime('%Y-%m-%d')
     footer_html = f"""
   <div class="doc-footer">
-    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBL3_HTML_GENERATOR V1.2
+    SYNEXA · INTERNAL SSOT · GENERATED {today} · BBL3_HTML_GENERATOR V1.3
   </div>
 """
 

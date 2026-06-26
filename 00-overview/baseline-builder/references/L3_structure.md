@@ -161,44 +161,34 @@ L3 台使用系统字体降级栈（BBM Section 5.4），零依赖，不需要 `
 
 ---
 
-## L3 台 COVER 块 stat_rule 示例
+## L3 台 COVER 块规范
 
-> stat_rule 语法规范详见 BBM Section 16。以下为各类 L3 专项台的推荐配置，按台类型选用。
+> COVER 块完整规范详见 BBM Section 16。以下为 L3 台的标准 COVER 块格式和各台类型的核心数字类型说明。
 
-### 人力管理台
-
-```
-stat_rule: count_table_rows | CH03 | 中台岗位 | Mid-tier Roles
-stat_rule: count_table_rows | CH04 | 前线岗位 | Front-line Roles
-stat_rule: count_table_rows | CH05 | 职能域 | Function Domains
-stat_rule: count_keyword_rows | CH05 | 缺口 | 覆盖缺口 | Coverage Gaps
-stat_rule: count_table_rows | CH06 | 数智引擎 | Active Engines
-stat_rule: count_table_rows | CH09 | 可迁移精华 | Transferable Insights
-```
-
-### 任务跟踪台
+### L3 台标准 COVER 块格式
 
 ```
-stat_rule: count_keyword_rows | CH03 | 进行中 | 进行中任务 | Active Tasks
-stat_rule: count_keyword_rows | CH03 | 阻塞 | 阻塞任务 | Blocked Tasks
-stat_rule: count_keyword_rows | CH03 | 已完成 | 已完成任务 | Completed Tasks
-stat_rule: count_table_rows | CH04 | 两周清单 | Sprint Items
-stat_rule: static | 5 | 任务分类 | Task Categories
+<!-- COVER
+topline: SYNEXA · [项目代号] · INTERNAL SSOT · L3 [台类型]
+title: [中文主标题]
+en: [English Title V0.x]
+sub: [One-sentence English description.]
+quote: [核心原则，中文]
+stat_auto: true
+-->
 ```
 
-### 运营推进台
+> `stat_rule`（旧字段）已废除。md 文件作者只需写 `stat_auto: true`，脚本自动提取核心数字。若需例外覆盖，使用 `stat_override`，详见 BBM Section 16.4。
 
-```
-stat_rule: count_table_rows | CH03 | 工作流 | Workflows
-stat_rule: count_table_rows | CH04 | 文档体系 | Document Types
-stat_rule: count_table_rows | CH05 | SOP | SOPs
-stat_rule: count_keyword_rows | CH06 | P0 | 最高级异常 | P0 Incidents
-stat_rule: count_table_rows | CH07 | 补充模块 | Add-on Modules
-```
+### 各台类型的核心数字类型（供 LLM 语义判断参考）
 
-### 通用原则
+脚本执行自动提取时，LLM 校验层将参考以下类型说明进行语义判断，确保提取结果符合该台实际业务语义。
 
-- 每个台的 `stat_rule` 应体现该台**最核心的量化指标**，让封面一眼看出台的健康状态
-- 建议 4-6 个 statgrid 卡片，不超过 6 个
-- 优先选择**动态变化**的指标（任务数、岗位数），而非静态说明性字段
-- `static` 函数用于版本号、固定配置数等不需要统计的字段
+| 台类型 | P1 规模类 | P2 结构类 | P3 缺口/异常类 | P4 资产类 |
+|---|---|---|---|---|
+| **人力管理台** | 中台岗位数、前线岗位数 | 职能域数、数智引擎数 | 覆盖缺口数、人力异常数 | 可迁移精华数 |
+| **任务跟踪台** | 总任务数、进行中任务数 | 任务分类数 | 阻塞任务数、待处理数 | 已完成任务数 |
+| **运营推进台** | 工作流数、当期主题数 | SOP 数、文档类型数 | P0 异常数、待解决问题数 | 决策记录条数 |
+| **采购管理台** | 供应商数、品类数 | 采购规则数 | 采购异常数、缺货数 | 价格基准条数 |
+
+> 以上为参考语义方向，不是固定章节号。实际提取的数字和标签由脚本根据具体 md 内容自动判断，不预设章节号。

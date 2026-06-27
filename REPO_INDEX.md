@@ -1,7 +1,7 @@
 # REPO_INDEX · 仓库全局文件地图
 
-> **版本**：v1.0
-> **更新日期**：2026-05-03
+> **版本**：v1.1
+> **更新日期**：2026-06-27
 > **维护主体**：iS-Core（智核中枢）
 > **定位**：Synexa iS 体系全局文件索引，供 AI 快速定位活跃文件，避免读取历史版本噪音。
 
@@ -35,6 +35,16 @@
 | `Synexa_Architecture_Definition_v1.1.md` | v1.1 | Synexa 体系架构定义 | 🟢 活跃 |
 | `Synexa_iS_Overview.md` | - | 体系前置说明文件 | 🟢 活跃 |
 | *其他历史版本及推演草案* | - | 历史归档 | ⚪️ 废弃待清理 |
+
+## 00-overview/domain-baselines/dic / 数智协同基线
+
+| 文件名 | 版本 | 功能说明 | 状态 |
+|---|---|---|---|
+| `Synexa_DIC_Baseline_BBM_V0.1.md` | V0.1 | DIC·BBM 数智协同基线蓝图地图（Step2） | 🟡 Working Draft |
+| `Synexa_DIC_Baseline_BBLx_V0.1.md` | V0.1 | DIC·BBLx 章节展开逻辑（Step3） | 🟡 Working Draft |
+| `Synexa_DIC_Baseline_V0.1.md` | — | DICB Markdown 主源（Step4，待生产） | ⚪️ 待生产 |
+| `Synexa_DIC_Baseline_Render_V0.1.py` | — | 渲染脚本（Step5，待生产） | ⚪️ 待生产 |
+| `Synexa_DIC_Baseline_V0.1.html` | — | HTML 阅读版（Step6，待生产） | ⚪️ 待生产 |
 
 ## 01-master-blueprint / 蓝图
 

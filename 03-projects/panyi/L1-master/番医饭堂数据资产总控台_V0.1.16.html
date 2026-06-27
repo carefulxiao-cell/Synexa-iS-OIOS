@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番医饭堂数据资产总控台</title>
+<style>
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+
+  /* L3 台系统字体降级栈（BBM Section 5.4）*/
+  --font-en-theme: 'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
+  --font-zh-title: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
+  --font-zh-body:  'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-data:     'JetBrains Mono', 'SF Mono', 'Consolas', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-soft);
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 页面容器 ── */
+.page-wrap {
+  max-width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 40px 0 80px;
+}
+
+/* ── 封面区域 ── */
+.cover {
+  background: #fff;
+  border-radius: 12px;
+  padding: 56px 64px 48px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.topline {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover-title {
+  font-family: var(--font-zh-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.cover-en {
+  font-family: var(--font-en-theme);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.cover-sub {
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.cover-quote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 20px;
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  color: var(--mid);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
+  background: #fff;
+}
+
+.stat .num {
+  font-family: var(--font-en-theme);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat .statlabel {
+  font-family: var(--font-zh-body);
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 4px;
+}
+
+.stat .statsub {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* ── 章节卡片 ── */
+.chapter {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px 48px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+.eyebrow {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ── 标题层级 ── */
+h1 {
+  font-family: var(--font-zh-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: var(--font-zh-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+
+h3 {
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+
+h4 {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 16px 0 8px;
+}
+
+/* ── 表格 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+th {
+  background: #F0F2F5;
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+tr:nth-child(even) td { background: var(--bg-soft); }
+
+/* ── 标签组件 ── */
+.tag {
+  display: inline-block;
+  background: rgba(40,204,131,.12);
+  color: #1a9e63;
+  border: 1px solid rgba(40,204,131,.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+/* ── 引言/blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: var(--mid);
+}
+
+/* ── 代码 ── */
+code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+
+pre {
+  background: #0B1220;
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+pre code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: #e2e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── 段落/列表 ── */
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 4px 0; line-height: 1.7; }
+
+strong { font-weight: 700; color: var(--dark); }
+em { color: var(--purple); font-style: normal; font-weight: 600; }
+
+/* ── 分隔线 ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* ── 页脚 ── */
+.doc-footer {
+  text-align: center;
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="cover">
+    <div class="topline">SYNEXA · PANYI · INTERNAL SSOT</div>
+    <div class="cover-title">番医饭堂数据资产总控台</div>
+    <div class="cover-en">Panyi Data Asset Master Station V0.1.16</div>
+    <div class="cover-sub">番医饭堂项目的长期上下文锚点、资产导航、主题任务总控台和跨对话框恢复入口</div>
+    <div class="cover-quote">允许演化，但不允许失忆；允许压缩，但不允许失真；允许重排，但不允许暗删。</div>
+    <div class="statgrid">
+      <div class="stat">
+        <div class="num">11</div>
+        <div class="statlabel">主题任务</div>
+        <div class="statsub">Theme Tasks</div>
+      </div>
+      <div class="stat">
+        <div class="num">6</div>
+        <div class="statlabel">工作台</div>
+        <div class="statsub">Workstations</div>
+      </div>
+      <div class="stat">
+        <div class="num">10</div>
+        <div class="statlabel">核心资产</div>
+        <div class="statsub">Core Assets</div>
+      </div>
+      <div class="stat">
+        <div class="num">4</div>
+        <div class="statlabel">恢复提示词</div>
+        <div class="statsub">Recovery Prompts</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h1 id="_1">番医饭堂数据资产总控台</h1>
+<p>版本：V0.1.16<br />
+重建日期：2026-06-23<br />
+项目目录：<code>/Users/carefulsiu/Documents/番医饭堂项目</code><br />
+总账定位：番医饭堂项目的长期上下文锚点、资产导航、主题任务总控台和跨对话框恢复入口。</p>
+<blockquote>
+<p>允许演化，但不允许失忆；允许压缩，但不允许失真；允许重排，但不允许暗删。</p>
+</blockquote>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="0">0. 使用规则</h2>
+<ol>
+<li>新 Codex 对话框启动时，先读取本文件，再读取对应主题的恢复提示词。</li>
+<li>本文件只记录已确认或可追溯的信息。无法从源文件确认的内容必须标注“待确认”。</li>
+<li>任何主题任务产生关键结论后，必须回写本总账的主题状态、资产清单、已确认原则、待确认事项或下一步。</li>
+<li>原始数据、原始品名、原始场景、原始字段、原始价格描述不得覆盖；清洗、判断、映射字段只能作为派生字段追加。</li>
+<li>Markdown 总账是结构主源；HTML 导航页是人看的总览表达层。事实更新优先回到本总账。</li>
+<li>各级 HTML 工作台 / 导航页应启用“重点文件清单”结构，直接说明有什么、对应功能是什么、当前缺什么；日常推进记录按从近到远倒序排列。</li>
+<li>工作台正式应用命名集中表达：L1=总控台，L2=任务跟踪台 / 餐食运营台 / 人力管理台 / 财务分析台 / 系统工具台；同一工作台的 Markdown 与 HTML 入口放在同一表格单元格内，不拆成多行。</li>
+<li>HTML 视觉统一采用超智 CI 规范：白底、细灰线、深灰字、低面积点缀色；字体优先使用本地 Noto Sans CJK，英文/数字可用 Space Grotesk，代码/路径可用 JetBrains Mono。</li>
+<li>各工作台应有“核心工作”版块，按“核心工作 → 核心内容”两层表达，先呈现专项工作的核心逻辑、任务节点和路径规划，再承接表格清洗与执行任务。</li>
+<li>全局 HTML 工作台优先采用同构模块顺序：顶部身份区、四大入口导航、指标卡 / 当前状态、主链路、主链路明细、关键字典、核心场景 / 任务、专项看板、重点文件清单、核心工作列表、日常推进记录、恢复提示词。</li>
+<li>全局 HTML 顶部导航统一只保留四大入口按钮：L1·总控台、L2·餐食运营台、L2·人力管理台、L2·任务跟踪台；页面内部锚点、Markdown、项目总账、基线文件等放入重点文件清单或正文，不放在顶部导航区。</li>
+</ol>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="1">1. 项目定位</h2>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目名称</td>
+<td>番医饭堂 / Nex2U·番医餐食运营项目</td>
+</tr>
+<tr>
+<td>项目本体定位</td>
+<td>Nex2U 在医院餐食运营场景中的项目级基线样板；不是单一菜单优化、采购分析或饭堂管理表格。</td>
+</tr>
+<tr>
+<td>一句话定义</td>
+<td>在真实医院多场景、多对象、多路线、多价格、多风险的餐食服务中，验证并沉淀从餐食需求识别、产品 SKU、结构点 SKU、食材 SKU、采购、生产、配送、营收、复盘、人机协同决策到经验资产进化的完整运营机制。</td>
+</tr>
+<tr>
+<td>当前阶段</td>
+<td>重建总控台、任务跟踪台、餐食运营台与人力管理台；恢复 V0.5 基线、旧续接包、SKU、采购、营收、菜单、系统等资产索引。</td>
+</tr>
+<tr>
+<td>当前最重要目标</td>
+<td>把总控台恢复为项目 SSOT：统一正式应用入口、资产主账、任务状态、暂停点、恢复提示词和回写规则。</td>
+</tr>
+<tr>
+<td>项目运营主链路</td>
+<td>餐食需求识别 → 产品 SKU 定义 → 结构点 SKU 生产 → 食材 SKU 与采购支撑 → 配送履约 → 营收核算 → 现场反馈 → 复盘修正 → 人机协同决策 → 规则更新 → 经验资产进化。</td>
+</tr>
+<tr>
+<td>总控台主链路</td>
+<td>V0.5 基线 / 旧续接包 → 数据资产登记 → 工作台矩阵 → 任务跟踪台 → 专项工作台 / 子对话框 → 关键结论回写 → 版本记录与恢复提示词更新。</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="2">2. 总控台层级设计</h2>
+<table>
+<thead>
+<tr>
+<th>层级</th>
+<th>名称</th>
+<th>作用</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L0</td>
+<td>Codex 项目群总控台</td>
+<td>管理多个项目入口。番医项目未来应登记到项目群总控台。</td>
+<td>待接入</td>
+</tr>
+<tr>
+<td>L1</td>
+<td>番医饭堂·总控台</td>
+<td>管理本项目资产、目标、任务、状态、恢复提示词、回写规则。</td>
+<td>已重建 V0.1.16</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>番医饭堂·任务跟踪台</td>
+<td>追踪 T0-T10 的状态、暂停点、下一步、所属工作台和回写要求。</td>
+<td>已建立 V0.1</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>番医饭堂·餐食运营台</td>
+<td>承接餐食运营专项，面向 SKU、菜单、采购、营收、生产配送与系统。</td>
+<td>已修正采购应用数量表 V0.1.13</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>番医饭堂·人力管理台</td>
+<td>承接组织、人力、岗责、协同架构专项推进。</td>
+<td>已建立专项基线 V0.1</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>番医饭堂·财务分析台</td>
+<td>承接营收、损益、成本、利润、预算和财务口径专项。</td>
+<td>规划中</td>
+</tr>
+<tr>
+<td>L2</td>
+<td>番医饭堂·系统工具台</td>
+<td>承接点餐系统、打单系统、Base、自动化、插件和工具链专项。</td>
+<td>规划中</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="3">3. 数据资产清单</h2>
+<p>说明：总控台 HTML 中展示为“关键入口”，不是只放单个文件。每个主题可以同时挂 Markdown 主源、HTML 导航、外部表格、PDF、系统包、原始路径或派生文件；不同入口代表不同进入方式，关键结论仍回写本总账。</p>
+<table>
+<thead>
+<tr>
+<th>文件名称</th>
+<th>文件路径</th>
+<th>类型</th>
+<th>文件角色</th>
+<th>什么时候调用</th>
+<th>当前状态</th>
+<th>源文件</th>
+<th>可编辑</th>
+<th>需回写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>L1 总控台</td>
+<td>Markdown：<code>/Users/carefulsiu/Documents/番医饭堂项目/总控台/番医饭堂Codex数据资产总账.md</code><br>HTML：<code>/Users/carefulsiu/Documents/番医饭堂项目/总控台/番医饭堂Codex数据资产导航.html</code></td>
+<td>Markdown + HTML</td>
+<td>L1 主源与人看总览页</td>
+<td>任意新对话框启动、主题结论回写、截图、沟通、快速浏览</td>
+<td>已重建</td>
+<td>Markdown 是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>L2 任务跟踪台</td>
+<td>Markdown：<code>/Users/carefulsiu/Documents/番医饭堂项目/工作台/番医饭堂·任务跟踪台.md</code><br>HTML：<code>/Users/carefulsiu/Documents/番医饭堂项目/工作台/番医饭堂·任务跟踪台.html</code></td>
+<td>Markdown + HTML</td>
+<td>任务状态主源与看板</td>
+<td>追踪 T0-T10 状态、暂停点、下一步和回写要求</td>
+<td>已建立</td>
+<td>Markdown 是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>L2 餐食运营台</td>
+<td>Markdown：<code>/Users/carefulsiu/Documents/番医饭堂项目/工作台/番医饭堂·餐食运营推进工作台.md</code><br>HTML：<code>/Users/carefulsiu/Documents/番医饭堂项目/工作台/番医饭堂·餐食运营推进工作台.html</code></td>
+<td>Markdown + HTML</td>
+<td>L2 餐食运营主源与驾驶台</td>
+<td>餐食运营专项推进、截图、沟通、进入任务</td>
+<td>已重建</td>
+<td>Markdown 是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>L2 人力管理台</td>
+<td>HTML：<code>/Users/carefulsiu/Documents/番医饭堂项目/总控台/专项导航/番医饭堂·人力协同架构设计推进Codex数据资产导航.html</code><br>内容母版：<code>/Users/carefulsiu/Documents/Codex/2026-06-22/users-carefulsiu-documents-codex-2026-06-2/outputs/番医饭堂-人力协同架构设计推进/番医饭堂·人力协同架构设计推进Codex数据资产导航.md</code></td>
+<td>Markdown + HTML</td>
+<td>人力管理台 HTML 与最新内容母版</td>
+<td>组织、人力、岗责、协同架构专项推进</td>
+<td>已按 MD V0.2 重渲染</td>
+<td>Markdown 是</td>
+<td>是</td>
+<td>随 T7 回写</td>
+</tr>
+<tr>
+<td>人力管理台基线文件</td>
+<td>Markdown：<code>/Users/carefulsiu/Documents/番医饭堂项目/基线文件/番医饭堂·人力管理台基线文件.md</code><br>HTML：<code>/Users/carefulsiu/Documents/番医饭堂项目/基线文件/番医饭堂·人力管理台基线文件.html</code></td>
+<td>Markdown + HTML</td>
+<td>人力管理台专项基线主源与人看版本</td>
+<td>组织设计、人力协同专项基线、岗位矩阵、共同内核、参照对象、迁移精华</td>
+<td>已建立 V0.1</td>
+<td>Markdown 是</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>组织设计 / 人力协同专项基线</td>
+<td><code>/Users/carefulsiu/Documents/Codex/2026-06-22/users-carefulsiu-documents-codex-2026-06-2/outputs/番医饭堂-人力协同架构设计推进/番医饭堂·人力协同架构专项基线.md</code></td>
+<td>Markdown</td>
+<td>T2 人力协同专项当前主基线</td>
+<td>中台 6 岗、前线 15 岗、主次能、轮值边界、物理/数智配套包</td>
+<td>已上移为关键文件资产</td>
+<td>是</td>
+<td>谨慎</td>
+<td>随 T7 回写</td>
+</tr>
+<tr>
+<td>超智 CI 色系规范</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/综合应用指南/超智·系统CI色系规范_V0.1.json</code></td>
+<td>JSON</td>
+<td>全局视觉规范</td>
+<td>HTML 工作台配色统一、状态色、低面积点缀</td>
+<td>已读取</td>
+<td>是</td>
+<td>否</td>
+<td>视觉规则回写</td>
+</tr>
+<tr>
+<td>超智字体目录</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/超智基线/Synexa_Company_Intro_V.x/fonts</code></td>
+<td>Fonts</td>
+<td>全局字体规范</td>
+<td>HTML 工作台字体统一</td>
+<td>已读取</td>
+<td>是</td>
+<td>否</td>
+<td>视觉规则回写</td>
+</tr>
+<tr>
+<td>启动口令模板</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/综合应用指南/新项目Codex数据资产总控台启动口令模板.md</code></td>
+<td>Markdown</td>
+<td>总控台创建模板</td>
+<td>新项目建总账时调用</td>
+<td>已读取</td>
+<td>是</td>
+<td>否</td>
+<td>否</td>
+</tr>
+<tr>
+<td>跨机器续接包 V0.1</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/番医餐食项目基线管理/番医基线历史/番医餐食结构基线管理V.0.1/Nex2U·番医项目跨机器Codex续接包.V0.1.md</code></td>
+<td>Markdown</td>
+<td>旧上下文锚点</td>
+<td>恢复核心定义、原则、场景线</td>
+<td>已读取</td>
+<td>是</td>
+<td>否</td>
+<td>重要结论已迁入</td>
+</tr>
+<tr>
+<td>项目基线 V0.5</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/番医餐食项目基线管理/Nex2U_Panyi_Ops_Baseline_Vx/Nex2U_Panyi_Ops_Baseline_V0.5.md</code></td>
+<td>Markdown</td>
+<td>项目基线主源候选</td>
+<td>深入恢复治理协议、项目目标、场景线</td>
+<td>已部分读取</td>
+<td>是</td>
+<td>否</td>
+<td>待继续抽取</td>
+</tr>
+<tr>
+<td>周 SKU 完整矩阵 V26.2.2</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/推演参考/超智-番医周SKU完整矩阵.V26.2.2.xlsx</code></td>
+<td>Excel</td>
+<td>SKU 最新核心文件</td>
+<td>产品/结构点 SKU 对齐、菜单推演</td>
+<td>已登记，待读取工作簿</td>
+<td>是</td>
+<td>谨慎</td>
+<td>是</td>
+</tr>
+<tr>
+<td>经营数据专项字典 v0.3</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/推演参考/@Nex₂U｜番医饭堂经营数据专项字典与管理链路基线 v0.3.xlsx</code></td>
+<td>Excel</td>
+<td>字段字典 / 管理链路</td>
+<td>数据治理、营收、采购、Base 字段</td>
+<td>已登记</td>
+<td>是</td>
+<td>谨慎</td>
+<td>是</td>
+</tr>
+<tr>
+<td>采购营养本体总控表 V1.8.1</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/推演参考/@番医采购营养本体总控表.V1.8.1.xlsx</code></td>
+<td>Excel</td>
+<td>食材/采购本体</td>
+<td>食材 SKU、单位、规格、出成率</td>
+<td>已登记</td>
+<td>是</td>
+<td>谨慎</td>
+<td>是</td>
+</tr>
+<tr>
+<td>2026年05月番医供应商采购明细表 V1.0</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/源数据参考/2026年05月番医供应商采购明细表.V.1.0.260623.xlsx</code></td>
+<td>Excel</td>
+<td>采购明细 / 规格换算</td>
+<td>T3 供应商汇总、采购流水、产品规格换算、库存盘点、产品明细、品类占比</td>
+<td>已读取结构</td>
+<td>是</td>
+<td>否</td>
+<td>派生结论回写</td>
+</tr>
+<tr>
+<td>2026年05月采购项应用数量核算表 V0.3</td>
+<td><code>/Users/carefulsiu/Documents/番医饭堂项目/工作台/派生输出/番医饭堂·2026年05月采购项应用数量核算表.V0.3.260623.xlsx</code></td>
+<td>Excel</td>
+<td>T3 派生核算表</td>
+<td>上月采购项应用数量、采购流水应用数量、核算状态缺口、换算口径审计；区分整件/整箱基数与单包/单瓶基数</td>
+<td>已修正</td>
+<td>否</td>
+<td>是</td>
+<td>是</td>
+</tr>
+<tr>
+<td>番医营养饭堂营收表</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/源数据参考/番医营养饭堂营收表.V26.05.1.0.xlsx</code></td>
+<td>Excel</td>
+<td>营收源数据</td>
+<td>月营收、点位营收、销售项次</td>
+<td>已登记</td>
+<td>是</td>
+<td>否</td>
+<td>派生结论回写</td>
+</tr>
+<tr>
+<td>番医运营损益表</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/源数据参考/番医运营损益表.V.1.0.xlsx</code></td>
+<td>Excel</td>
+<td>损益/成本源数据</td>
+<td>财务、成本、利润分析</td>
+<td>已登记</td>
+<td>是</td>
+<td>否</td>
+<td>派生结论回写</td>
+</tr>
+<tr>
+<td>历史周菜单 Excel</td>
+<td><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/番医饭堂·5月4日-5月10日菜单20260503.xlsx</code><br><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/番医饭堂·5月11日-5月17日菜单20260510.1.0(1).xlsx</code><br><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/番医饭堂·5月18日-5月24日菜单.260517.1.0.xlsx</code><br><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/番医饭堂·5月25日-5月31日菜单.260524.1.0.xlsx</code><br><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/番医饭堂·6月1日-6月7日菜单.260531.2.0.xlsx</code><br><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/番医饭堂·6月8日-6月14日菜单.260606.1.0.xlsx</code></td>
+<td>Excel</td>
+<td>历史终端菜单源数据</td>
+<td>T4 菜单审核、T2 SKU 反推、T3 食材线索、T6 场景履约线索</td>
+<td>已接入，待结构化抽取</td>
+<td>是</td>
+<td>否</td>
+<td>派生结论回写</td>
+</tr>
+<tr>
+<td>0622-0628 菜单图片</td>
+<td><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/0622~28·职工线上菜单.png</code><br><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/0622~28·职工堂食菜单.png</code><br><code>/Users/carefulsiu/Desktop/桌面·蓝/饭堂项目/菜单推演/菜单管理/0622~28·手术室餐厅菜单.png</code></td>
+<td>PNG</td>
+<td>最新周菜单截图</td>
+<td>0622-0628 职工线上、职工堂食、中心手术室餐厅菜单审核</td>
+<td>已接入，待 OCR / 人工校对</td>
+<td>是</td>
+<td>否</td>
+<td>派生结论回写</td>
+</tr>
+<tr>
+<td>人力结构与岗责管理</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/Nex2U·智食引擎/推演参考/Nex₂U·番医餐食项目人力结构与岗责管理.md</code></td>
+<td>Markdown</td>
+<td>组织与岗责资产</td>
+<td>人力协同、数字员工接口</td>
+<td>已读取</td>
+<td>是</td>
+<td>否</td>
+<td>关键岗责已迁入</td>
+</tr>
+<tr>
+<td>点餐系统开发进展</td>
+<td><code>/Users/carefulsiu/Desktop/智核矩阵/NexChef/医院饭堂点餐系统 — 开发进展更新汇总.260610.V.1.0.md</code></td>
+<td>Markdown</td>
+<td>系统工程状态</td>
+<td>点餐系统、RBAC、退款、部署事项</td>
+<td>已读取</td>
+<td>是</td>
+<td>否</td>
+<td>系统主题引用</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="4">4. 主题任务工作区</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>主题名称</th>
+<th>对话框性质</th>
+<th>当前状态</th>
+<th>关联资产</th>
+<th>核心问题</th>
+<th>当前暂停点</th>
+<th>下一步动作</th>
+<th>Codex 可做</th>
+<th>人工必做</th>
+<th>回写要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T0</td>
+<td>总控台 / 资产总账</td>
+<td>L1 管理</td>
+<td>进行中</td>
+<td>本总账、HTML、模板、旧续接包</td>
+<td>如何不再丢上下文</td>
+<td>V0.1 已重建</td>
+<td>校对资产清单并补文件</td>
+<td>建目录、建索引、写恢复词</td>
+<td>确认项目优先级</td>
+<td>所有主题状态回写</td>
+</tr>
+<tr>
+<td>T1</td>
+<td>项目基线 / 治理协议</td>
+<td>L1/L2 规则</td>
+<td>待深化</td>
+<td>基线 V0.5、续接包</td>
+<td>哪些原则已确认，哪些待确认</td>
+<td>只迁入核心原则</td>
+<td>继续读取 V0.5 后续章节</td>
+<td>抽取规则、版本边界、禁改项</td>
+<td>确认严肃文本边界</td>
+<td>写入已确认原则</td>
+</tr>
+<tr>
+<td>T2</td>
+<td>产品 SKU / 结构点 SKU</td>
+<td>L2 实战</td>
+<td>待启动</td>
+<td>SKU V26.2.2、结构点母表</td>
+<td>产品 SKU 和结构点 SKU 如何稳定映射</td>
+<td>工作簿未读取</td>
+<td>读取工作簿 sheet 并建映射审查表</td>
+<td>扫表、查缺、标冲突</td>
+<td>裁决产品定位与定价</td>
+<td>回写映射原则和缺口</td>
+</tr>
+<tr>
+<td>T3</td>
+<td>食材 SKU / 采购 / BOM</td>
+<td>L2 实战</td>
+<td>已修正采购项应用数量表 V0.3</td>
+<td>采购本体表、2026年05月供应商采购明细表、采购项应用数量核算表 V0.3</td>
+<td>食材、单位、规格、出成率如何支撑 BOM</td>
+<td>规格换算口径存在混用：整件/整箱基数与单包/单瓶基数并存；498 项缺换算基数待补</td>
+<td>校验缺换算基数、缺应用单价项，并交叉采购本体</td>
+<td>清洗字段、识别单位冲突</td>
+<td>确认规格换算是否为最新正式口径，补真实出成率</td>
+<td>回写采购字段字典</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>菜单审核 / 周菜单落地</td>
+<td>L2 实战</td>
+<td>已接入菜单资产</td>
+<td>历史周菜单 Excel、0622-0628 菜单图片、周 SKU</td>
+<td>菜单是否符合结构点、生产和体验原则</td>
+<td>菜单已接入，待结构化抽取</td>
+<td>生成终端菜单结构排布表</td>
+<td>对照结构点审查</td>
+<td>确认院方沟通口径</td>
+<td>回写审核结论</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>营收 / 损益 / 财务口径</td>
+<td>L2 实战</td>
+<td>待启动</td>
+<td>营收表、损益表、专项字典</td>
+<td>营收、成本、利润如何按场景和 SKU 拆解</td>
+<td>已知月金额，未读取细表</td>
+<td>读取营收/损益表结构</td>
+<td>建字段字典、查金额口径</td>
+<td>确认退款、折扣、补贴口径</td>
+<td>回写财务字段原则</td>
+</tr>
+<tr>
+<td>T6</td>
+<td>生产 / 配送 / 温控 / 标签</td>
+<td>L2 执行</td>
+<td>待启动</td>
+<td>续接包、打单系统、地址主数据线索</td>
+<td>场景线和路线如何绑定履约单元</td>
+<td>address-master 未在本目录</td>
+<td>找回打单系统地址主数据</td>
+<td>梳理路线规则、标签字段</td>
+<td>确认现场路线和时效</td>
+<td>回写履约规则</td>
+</tr>
+<tr>
+<td>T7</td>
+<td>组织 / 人力 / 岗责</td>
+<td>L2 管理</td>
+<td>已接入专项导航</td>
+<td>人力岗责文档、人力协同架构设计推进导航</td>
+<td>谁负责裁决、清洗、采购、生产、配送</td>
+<td>专项 HTML 已纳入总控台</td>
+<td>转为 RACI / 日常动作表</td>
+<td>整理岗责和数字员工接口</td>
+<td>确认真实人员与岗位</td>
+<td>回写岗位责任</td>
+</tr>
+<tr>
+<td>T8</td>
+<td>点餐系统 / 工具 / 自动化</td>
+<td>L2 系统</td>
+<td>初步恢复</td>
+<td>NexChef 进展、代码包、RBAC</td>
+<td>系统如何支撑餐食运营中台</td>
+<td>当前代码不在本目录</td>
+<td>找到代码包或仓库入口</td>
+<td>整理功能状态、风险</td>
+<td>确认部署与权限策略</td>
+<td>回写系统状态</td>
+</tr>
+<tr>
+<td>T9</td>
+<td>方法论 / 版本治理 / Skill 化</td>
+<td>L1 治理</td>
+<td>待启动</td>
+<td>基线 V0.5、采购 Skill PDFs</td>
+<td>如何把番医经验沉淀成可迁移能力</td>
+<td>PDF 未读取</td>
+<td>提取可复用模板</td>
+<td>蒸馏规则、建版本记录</td>
+<td>裁决哪些可产品化</td>
+<td>回写方法论</td>
+</tr>
+<tr>
+<td>T10</td>
+<td>迁移 / 交接 / 多对话框协同</td>
+<td>L1 协同</td>
+<td>进行中</td>
+<td>本总账、续接包</td>
+<td>如何跨机器、跨对话框继续推进</td>
+<td>新目录已重建</td>
+<td>建每主题恢复提示词</td>
+<td>维护恢复词、交接清单</td>
+<td>确认下一主题</td>
+<td>回写暂停点</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="5">5. 当前核心推进路径</h2>
+<ol>
+<li>T0 先恢复总控台，建立本总账、HTML 导航页和餐食运营推进工作台。</li>
+<li>T1 读取旧基线与续接包，锁定治理协议和不得丢失的严肃文本。</li>
+<li>T2 对齐产品 SKU 与结构点 SKU，这是菜单、采购、生产、营收拆解的前置条件。</li>
+<li>T3 建立食材 SKU、采购字段、单位换算、出成率与 BOM 准备链路。</li>
+<li>T4 基于 T2/T3 审核周菜单，不把菜单当菜名集合，而是当结构运营结果。</li>
+<li>T5 把营收、成本、损益按场景线、产品 SKU、结构点和时段拆解。</li>
+<li>T6 把生产、配送、标签、温控、路线和场景线绑定成履约单元。</li>
+<li>T7/T8 把人力岗责和点餐系统接入，形成现实执行闭环。</li>
+<li>T9/T10 将所有结论沉淀为版本、模板、Skill、跨对话框恢复包。</li>
+</ol>
+<p>依赖关系：T2 是 T3/T4/T5/T6 的核心前置；T1 是所有主题的规则边界；T0/T10 是全项目记忆保护层。</p>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="6">6. 当前已确认原则</h2>
+<ul>
+<li>产品 SKU 是可独立售卖、结算、沟通、上菜单、上系统的产品单位。</li>
+<li>结构点 SKU 是厨房最小生产 / 出品任务单位；A/B/C/D 套餐不是结构点 SKU。</li>
+<li>食材 SKU 是采购、库存、供应商和成本管理对象，不能与结构点 SKU 混用。</li>
+<li>BOM 是结构点 SKU 与食材 SKU、用量、单位、出成率、成本之间的桥。</li>
+<li>SOP = BOM + 备料过程 + 烹饪过程 + 出品标准 + 装盒/打包标准 + 器皿 + 温控 + 标签 + 生产节点 + 风险点 + 质量验收。</li>
+<li>场景线回答“谁吃、按什么产品和服务规则履约”；配送路线回答“送到哪里、按什么路径履约”；二者通过履约单元绑定。</li>
+<li>原始数据不得覆盖，清洗字段、判断字段、映射字段必须追加。</li>
+<li>菜单不是菜名集合，而是结构点、产品 SKU、食材供应、厨房能力、配送路线、价格策略和用户体验共同作用的结果。</li>
+<li>金额展示必须带 <code>￥</code>；数值类带千位符。</li>
+<li><code>99</code> 是排序码，不是价格；日月潭茶叶蛋价格锚定为 <code>￥3</code>。</li>
+<li>旧状态“暂缓”不用；新版状态为：上线、待上·1周内、研发·3周内、待研发·3周后。</li>
+<li>月子餐需要区分 VIP 和普通病房；月子一日餐不是一个全日套餐，每个餐点都是独立结算项。</li>
+<li>手术室、介入手术室、行政专家餐、志愿者餐、爱心餐、感控 / 特殊限制膳食应作为独立场景线处理。</li>
+<li>指挥与策略层、中台运营与支持层、前线执行与履约层是当前人力结构的三层框架。</li>
+<li>L2 餐食运营台的核心工作骨架为双向推演链：现实反推线从终端菜单拆到 SKU、结构点、食材、成本、营收和复盘；设计正推线从人群需求、营养结构点、产品策略推到菜单、采购、成本和营收。</li>
+<li>“人力协同专项导航”是旧文件名 / 旧入口称谓；当前统一定位为“人力管理台”。二者当前指向同一 HTML 入口，不是两个独立工作台。</li>
+<li>正式应用命名统一使用“台”：总控台、任务跟踪台、餐食运营台、人力管理台、财务分析台、系统工具台。旧文件名暂不强改，避免破坏已有链接。</li>
+<li>菜单审核线已接入 5/4-6/14 历史周菜单 Excel 和 0622-0628 三张菜单图片；当前状态是“已接入，待结构化抽取 / OCR / 人工校对”，不是“待收集”。</li>
+<li>L2 餐食运营台主链路统一为短词节点：场景线 → 终端菜单 → 产品 SKU → 结构点池 → 结构点 SKU → 食材 SKU → BOM → SOP → 菜单模型 → 采购模型 → 生产配送 → 营收营利 → 复盘。</li>
+<li>全系统页面应逐步同构为：顶部身份区、四大入口导航、指标卡 / 当前状态、主链路、主链路明细、关键字典、核心场景 / 任务、专项看板、重点文件清单、核心工作列表、日常推进记录、恢复提示词。</li>
+<li>2026年05月番医供应商采购明细表已接入 T3，已确认其包含供应商采购汇总、采购明细、产品规格换算、库存盘点、产品明细和产品明细占比 6 个 sheet；规格换算字段已存在，但是否为最新正式口径仍待人工确认。</li>
+<li>已生成并修正 2026年05月采购项应用数量核算表 V0.3：采购项汇总 651 项、采购流水 2,904 行；V0.3 区分整件/整箱基数与单包/单瓶基数。示例：<code>900g*10包*1=9000g</code>、<code>800g*10包*3=24000g</code>，同时保留 <code>250ml*12瓶*9=27000ml</code> 等单瓶基数类核算。</li>
+<li>规格换算表存在全面口径混用：当前自动判定 54 项按采购数量×整件基数，92 项按建议展示数量×单包/单瓶基数，4 项源数量匹配建议展示数量×基数，3 项源数量匹配采购数量×基数，498 项缺换算基数或口径待人工补齐。</li>
+</ul>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="7-codex">7. Codex / 人工分工</h2>
+<table>
+<thead>
+<tr>
+<th>事项</th>
+<th>Codex 可做</th>
+<th>人工必做</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资产恢复</td>
+<td>扫描文件、建立索引、识别版本</td>
+<td>确认哪些是最新、哪些废弃</td>
+</tr>
+<tr>
+<td>SKU 对齐</td>
+<td>读取表格、比对字段、发现冲突</td>
+<td>裁决产品定位、结构点名称、定价</td>
+</tr>
+<tr>
+<td>采购治理</td>
+<td>清洗单位、找缺项、准备 BOM 字段</td>
+<td>补真实规格、出成率、供应商与价格</td>
+</tr>
+<tr>
+<td>菜单审核</td>
+<td>按规则审查结构、风险、重复、缺口</td>
+<td>确认院方、现场、厨房真实可执行性</td>
+</tr>
+<tr>
+<td>营收分析</td>
+<td>建字段字典、做透视、查异常</td>
+<td>确认退款、补贴、折扣、合同口径</td>
+</tr>
+<tr>
+<td>生产配送</td>
+<td>设计记录表、标签字段、路线映射</td>
+<td>确认真实路线、人力、时间节点</td>
+</tr>
+<tr>
+<td>系统推进</td>
+<td>梳理代码状态、测试风险、功能缺口</td>
+<td>决定上线、权限、生产环境变更</td>
+</tr>
+<tr>
+<td>方法论沉淀</td>
+<td>生成模板、恢复词、版本记录</td>
+<td>裁决哪些进入公司级基线</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="8">8. 待确认事项</h2>
+<ul>
+<li>当前项目是否统一命名为“番医饭堂”还是“Nex2U·番医餐食运营项目”。</li>
+<li>周 SKU 完整矩阵 V26.2.2 是否仍是最新主源。</li>
+<li>基线 V0.5 是否已经替代 V0.1 续接包，还是二者并行引用。</li>
+<li>餐食运营推进工作台是否需要拆成多个独立 HTML 看板。</li>
+<li>0622 至 0628 菜单截图是否需要复制进本项目目录，还是继续引用桌面菜单管理目录。</li>
+<li>点餐系统代码包或 Git 仓库是否需要迁入本工作区。</li>
+<li>营收表与损益表的最新版本，以 <code>V26.05.1.0</code>、<code>1.0.V.0622.1.0</code> 还是其他版本为准。</li>
+<li>采购表、营收表、SKU 表是否允许在源文件上编辑，还是只允许生成派生清洗表。</li>
+<li>2026年05月供应商采购明细表中的产品规格换算是否已完成最终人工确认；应用核算单位、应用核算单价、换算基数是否可直接进入 BOM 口径。</li>
+</ul>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="9">9. 快速恢复提示词</h2>
+<h3 id="_1">通用恢复</h3>
+<pre><code class="language-text">你正在继续协助“番医饭堂 / Nex2U·番医餐食运营项目”。请先读取：
+/Users/carefulsiu/Documents/番医饭堂项目/总控台/番医饭堂Codex数据资产总账.md
+
+不要从零开始。请继承其中的项目定位、资产清单、T0-T10 主题任务、已确认原则、待确认事项和回写规则。
+本项目不是普通菜单设计，而是 Nex2U 在医院餐食运营场景中的项目级基线样板。项目运营主链路是：餐食需求识别 → 产品 SKU 定义 → 结构点 SKU 生产 → 食材 SKU 与采购支撑 → 配送履约 → 营收核算 → 现场反馈 → 复盘修正 → 人机协同决策 → 规则更新 → 经验资产进化。
+所有关键结论必须回写总账；不确定内容标注“待确认”，不要伪装成已确认事实。
+</code></pre>
+<h3 id="t0">T0 总控台恢复</h3>
+<pre><code class="language-text">请进入 T0｜总控台 / 资产总账。目标是维护 /Users/carefulsiu/Documents/番医饭堂项目/总控台/番医饭堂Codex数据资产总账.md 和 HTML 导航页，更新资产清单、主题状态、暂停点、下一步和恢复提示词。
+</code></pre>
+<h3 id="t2-sku">T2 SKU 恢复</h3>
+<pre><code class="language-text">请进入 T2｜产品 SKU / 结构点 SKU。先读取总账，再读取周 SKU 完整矩阵 V26.2.2。重点检查产品 SKU、结构点 SKU、状态、定价、映射关系、缺价项和旧状态口径。不要覆盖原始字段，输出派生审查表并回写总账。
+</code></pre>
+<h3 id="t5">T5 营收恢复</h3>
+<pre><code class="language-text">请进入 T5｜营收 / 损益 / 财务口径。先读取总账，再读取营收表和损益表。重点确认金额字段、场景线、点位、产品 SKU、数量 / 项次、退款 / 折扣 / 补贴口径。金额展示必须带 ￥，不确定口径写入待确认。
+</code></pre>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="10">10. 版本记录</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>版本</th>
+<th>变更</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1</td>
+<td>重建番医饭堂·项目推进总控台、餐食运营推进工作台、资产清单、T0-T10 主题任务、核心原则和恢复提示词。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.1</td>
+<td>接入“番医饭堂·人力协同架构设计推进”HTML 作为 T7 专项导航页。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.2</td>
+<td>补建“番医饭堂·餐食运营推进工作台.html”，并加入总控台关键入口。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.3</td>
+<td>回写通用 HTML 工作台经验：各级 HTML 启用重点文件清单，说明文件功能与缺口；日常推进记录改为从近到远倒序。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.4</td>
+<td>统一 L1/L2 命名；MD/HTML 入口同框展示；接入超智 CI 色彩与字体规范，HTML 整体字号收紧。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.5</td>
+<td>L2 餐食运营台新增“核心工作”版块，纳入双向推演链、八大阶段、九步主链线和专业校正线。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.6</td>
+<td>新增“番医饭堂·任务跟踪台”；优化正式应用命名为总控台、任务跟踪台、餐食运营台、人力管理台、财务分析台、系统工具台。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.7</td>
+<td>L2 餐食运营台接入 5/4-6/14 历史周菜单 Excel 与 0622-0628 菜单图片；主链路补“场景线 / 人群需求”和“终端菜单”；业务对象改为分层字典；场景线工作池补齐并标注菜单资产状态。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.8</td>
+<td>校正当前定位与总控台主链路：区分项目运营主链路和总控台管理主链路；确认各“台”为正式应用命名而非展示名。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.9</td>
+<td>L2 餐食运营台标题统一为“核心工作”，删除人力旧称谓消歧行；运营主链路改为短词版；接入 2026年05月供应商采购明细表并登记规格换算为 T3 采购 BOM 资产。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.10</td>
+<td>以“番医饭堂·人力协同架构设计推进Codex数据资产导航.md”作为人力管理台最新内容母版，按总控台统一模板重渲染 HTML；上移“组织设计 / 人力协同专项基线”为关键文件资产。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.11</td>
+<td>基于 2026年05月供应商采购明细表与产品规格换算表生成“采购项应用数量核算表 V0.1”，输出采购项汇总应用数量、采购流水行应用数量和核算状态缺口。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.12</td>
+<td>修正“采购项应用数量核算表”为 V0.2：不再直接沿用源表“应用核算数量”，改按“采购数量 × 换算基数×应用核算单位”计算，修正克重类物料多乘 10 的问题。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.13</td>
+<td>修正“采购项应用数量核算表”为 V0.3：识别整件/整箱基数与单包/单瓶基数混用问题，新增换算口径审计，并将 V0.1/V0.2 标为过渡审计版。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.14</td>
+<td>按 V0.5 基线文件标准建立“番医饭堂·人力管理台基线文件”MD 主源与 HTML 人看版本，并接入总账和总控台入口。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.15</td>
+<td>全系统工作台骨架目标对齐：任务跟踪台改为 L2；餐食运营台正式命名固化；确立四大入口导航和同构模块顺序；餐食运营主链路改为 13 个短词节点。</td>
+</tr>
+<tr>
+<td>2026-06-23</td>
+<td>V0.1.16</td>
+<td>统一总控台、餐食运营台、人力管理台、任务跟踪台 HTML 顶部导航：只保留四大入口按钮；层级、版本、定位归入顶部身份区；指标卡统一为“层级 / 核心规模或主题 / 当前状态 / 版本”口径。</td>
+</tr>
+</tbody>
+</table>
+  </div>
+
+
+  <div class="doc-footer">
+    SYNEXA · INTERNAL SSOT · GENERATED 2026-06-27 · BBLx_HTML_GENERATOR V1.3
+  </div>
+
+</div>
+</body>
+</html>

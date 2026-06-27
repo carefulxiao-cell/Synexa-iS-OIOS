@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>番医饭堂·任务跟踪台</title>
+<style>
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+
+  /* L3 台系统字体降级栈（BBM Section 5.4）*/
+  --font-en-theme: 'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
+  --font-zh-title: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
+  --font-zh-body:  'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-data:     'JetBrains Mono', 'SF Mono', 'Consolas', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-soft);
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 页面容器 ── */
+.page-wrap {
+  max-width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 40px 0 80px;
+}
+
+/* ── 封面区域 ── */
+.cover {
+  background: #fff;
+  border-radius: 12px;
+  padding: 56px 64px 48px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.topline {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover-title {
+  font-family: var(--font-zh-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.cover-en {
+  font-family: var(--font-en-theme);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.cover-sub {
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.cover-quote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 20px;
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  color: var(--mid);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
+  background: #fff;
+}
+
+.stat .num {
+  font-family: var(--font-en-theme);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat .statlabel {
+  font-family: var(--font-zh-body);
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 4px;
+}
+
+.stat .statsub {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* ── 章节卡片 ── */
+.chapter {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px 48px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+.eyebrow {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ── 标题层级 ── */
+h1 {
+  font-family: var(--font-zh-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: var(--font-zh-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+
+h3 {
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+
+h4 {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 16px 0 8px;
+}
+
+/* ── 表格 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+th {
+  background: #F0F2F5;
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+tr:nth-child(even) td { background: var(--bg-soft); }
+
+/* ── 标签组件 ── */
+.tag {
+  display: inline-block;
+  background: rgba(40,204,131,.12);
+  color: #1a9e63;
+  border: 1px solid rgba(40,204,131,.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+/* ── 引言/blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: var(--mid);
+}
+
+/* ── 代码 ── */
+code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+
+pre {
+  background: #0B1220;
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+pre code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: #e2e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── 段落/列表 ── */
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 4px 0; line-height: 1.7; }
+
+strong { font-weight: 700; color: var(--dark); }
+em { color: var(--purple); font-style: normal; font-weight: 600; }
+
+/* ── 分隔线 ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* ── 页脚 ── */
+.doc-footer {
+  text-align: center;
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="cover">
+    <div class="topline">SYNEXA · PANYI · INTERNAL SSOT</div>
+    <div class="cover-title">番医饭堂·任务跟踪台</div>
+    <div class="cover-en">Panyi Task Tracking Station V0.2</div>
+    <div class="cover-sub">追踪 T0-T10 状态、暂停点、下一步和回写要求</div>
+    <div class="cover-quote">任务跟踪台回答四个问题：当前有哪些主题在推进、每个主题现在卡在哪里、下一步谁来做做什么、产出应该回写到哪里。</div>
+    <div class="statgrid">
+      <div class="stat">
+        <div class="num">11</div>
+        <div class="statlabel">追踪主题</div>
+        <div class="statsub">Tracked Topics</div>
+      </div>
+      <div class="stat">
+        <div class="num">4</div>
+        <div class="statlabel">核心工作台</div>
+        <div class="statsub">Core Stations</div>
+      </div>
+      <div class="stat">
+        <div class="num">2</div>
+        <div class="statlabel">进行中</div>
+        <div class="statsub">In Progress</div>
+      </div>
+      <div class="stat">
+        <div class="num">1</div>
+        <div class="statlabel">已接入</div>
+        <div class="statsub">Connected</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h1 id="_1">番医饭堂·任务跟踪台</h1>
+<p>版本：V0.2<br />
+建立日期：2026-06-23<br />
+上级总账：<code>/Users/carefulsiu/Documents/番医饭堂项目/总控台/番医饭堂Codex数据资产总账.md</code></p>
+<p>本台是 L2·任务跟踪台，不替代餐食运营台、人力管理台或财务分析台。它负责追踪所有主题任务的状态、暂停点、下一步、入口和回写要求。</p>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="1">1. 定位</h2>
+<p>任务跟踪台回答四个问题：</p>
+<ol>
+<li>当前有哪些主题在推进。</li>
+<li>每个主题现在卡在哪里。</li>
+<li>下一步谁来做、做什么。</li>
+<li>产出应该回写到哪里。</li>
+</ol>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="2">2. 工作台命名矩阵</h2>
+<table>
+<thead>
+<tr>
+<th>台名</th>
+<th>层级 / 性质</th>
+<th>承接主题</th>
+<th>当前状态</th>
+<th>入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>番医饭堂·总控台</td>
+<td>L1 主控台</td>
+<td>T0-T10 总览</td>
+<td>已重建</td>
+<td>总控台 MD / HTML</td>
+</tr>
+<tr>
+<td>番医饭堂·任务跟踪台</td>
+<td>L2 任务管理台</td>
+<td>T0-T10 状态、暂停点、下一步</td>
+<td>已建立 V0.1</td>
+<td>本文件 / HTML</td>
+</tr>
+<tr>
+<td>番医饭堂·餐食运营台</td>
+<td>L2 业务推进台</td>
+<td>T2-T6、T8</td>
+<td>已建立，旧文件名仍含“餐食运营推进工作台”</td>
+<td>餐食运营台 MD / HTML</td>
+</tr>
+<tr>
+<td>番医饭堂·人力管理台</td>
+<td>L2 专项台</td>
+<td>T7</td>
+<td>已接入，旧文件名仍含“人力协同架构设计推进”</td>
+<td>人力 HTML / 岗责 MD</td>
+</tr>
+<tr>
+<td>番医饭堂·财务分析台</td>
+<td>L2 专项台</td>
+<td>T5</td>
+<td>规划中</td>
+<td>待建立</td>
+</tr>
+<tr>
+<td>番医饭堂·系统工具台</td>
+<td>L2 专项台</td>
+<td>T8</td>
+<td>规划中</td>
+<td>待建立</td>
+</tr>
+</tbody>
+</table>
+<p>命名规则：展示命名优先使用“某某台”，旧文件名暂不强制改名，避免破坏已有链接。后续如果需要，可另做一次文件迁移和链接重定向。</p>
+<p>顶部导航规则：HTML 顶部导航只保留四大入口，即 L1·总控台、L2·餐食运营台、L2·人力管理台、L2·任务跟踪台；Markdown、项目总账、专项基线等入口放入表格或重点文件清单，不放入顶部导航。</p>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="3">3. 任务跟踪表</h2>
+<table>
+<thead>
+<tr>
+<th>编号</th>
+<th>主题</th>
+<th>所属台</th>
+<th>当前状态</th>
+<th>当前暂停点</th>
+<th>下一步</th>
+<th>产出 / 回写</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>T0</td>
+<td>总控台 / 资产总账</td>
+<td>总控台、任务跟踪台</td>
+<td>进行中</td>
+<td>总控台与关键入口持续优化</td>
+<td>维护资产清单、入口矩阵和版本记录</td>
+<td>回写总账</td>
+</tr>
+<tr>
+<td>T1</td>
+<td>项目基线 / 治理协议</td>
+<td>总控台</td>
+<td>待深化</td>
+<td>V0.5 后续章节未完整抽取</td>
+<td>继续读取并抽取治理规则</td>
+<td>回写已确认原则</td>
+</tr>
+<tr>
+<td>T2</td>
+<td>产品 SKU / 结构点 SKU</td>
+<td>餐食运营台</td>
+<td>待启动</td>
+<td>工作簿未读取</td>
+<td>读取 V26.2.2 并做映射审查</td>
+<td>SKU 映射审查表</td>
+</tr>
+<tr>
+<td>T3</td>
+<td>食材 SKU / 采购 / BOM</td>
+<td>餐食运营台</td>
+<td>待启动</td>
+<td>采购本体表未读取</td>
+<td>建采购字段缺口与 BOM 准备清单</td>
+<td>采购/BOM 字段字典</td>
+</tr>
+<tr>
+<td>T4</td>
+<td>菜单审核 / 周菜单落地</td>
+<td>餐食运营台</td>
+<td>待启动</td>
+<td>0622-0628 菜单文件未纳入</td>
+<td>收集菜单截图/文件</td>
+<td>周菜单审核清单</td>
+</tr>
+<tr>
+<td>T5</td>
+<td>营收 / 损益 / 财务口径</td>
+<td>财务分析台、餐食运营台</td>
+<td>待启动</td>
+<td>细表未读取，口径待确认</td>
+<td>读取营收表与损益表</td>
+<td>财务字段口径表</td>
+</tr>
+<tr>
+<td>T6</td>
+<td>生产 / 配送 / 温控 / 标签</td>
+<td>餐食运营台</td>
+<td>待启动</td>
+<td>地址主数据未找回</td>
+<td>找回 address-master 或打单系统数据</td>
+<td>履约单元规则表</td>
+</tr>
+<tr>
+<td>T7</td>
+<td>组织 / 人力 / 岗责</td>
+<td>人力管理台</td>
+<td>已接入专项导航</td>
+<td>真实人员与岗位待确认</td>
+<td>转为 RACI / 日常动作表</td>
+<td>岗责执行表</td>
+</tr>
+<tr>
+<td>T8</td>
+<td>点餐系统 / 工具 / 自动化</td>
+<td>系统工具台、餐食运营台</td>
+<td>初步恢复</td>
+<td>代码包 / 仓库入口未接入</td>
+<td>找到代码包或仓库</td>
+<td>系统状态与缺口表</td>
+</tr>
+<tr>
+<td>T9</td>
+<td>方法论 / 版本治理 / Skill 化</td>
+<td>总控台</td>
+<td>待启动</td>
+<td>PDF / Skill 资产未抽取</td>
+<td>提取可复用模板</td>
+<td>方法论基线</td>
+</tr>
+<tr>
+<td>T10</td>
+<td>迁移 / 交接 / 多对话框协同</td>
+<td>总控台、任务跟踪台</td>
+<td>进行中</td>
+<td>新线程已分拆餐食运营台</td>
+<td>维护恢复提示词和回写规则</td>
+<td>交接清单</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="4">4. 推进记录</h2>
+<table>
+<thead>
+<tr>
+<th>日期</th>
+<th>事项</th>
+<th>结果</th>
+<th>回写状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2026-06-23</td>
+<td>新增任务跟踪台</td>
+<td>建立任务跟踪 MD / HTML，并更新总控台入口</td>
+<td>已回写</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="5">5. 恢复提示词</h2>
+<pre><code class="language-text">你正在继续“番医饭堂·任务跟踪台”。请先读取：
+/Users/carefulsiu/Documents/番医饭堂项目/总控台/番医饭堂Codex数据资产总账.md
+/Users/carefulsiu/Documents/番医饭堂项目/工作台/番医饭堂·任务跟踪台.md
+
+你的任务不是深推某个专项，而是维护 T0-T10 的状态、暂停点、下一步、所属工作台、入口和回写要求。
+所有关键结论必须回写总账；不要把规划中工作台写成已完成。
+</code></pre>
+  </div>
+
+
+  <div class="doc-footer">
+    SYNEXA · INTERNAL SSOT · GENERATED 2026-06-27 · BBLx_HTML_GENERATOR V1.3
+  </div>
+
+</div>
+</body>
+</html>

@@ -168,7 +168,7 @@
 
 | 代号 | 名称 | 当前进展 | 下一步 | 路径 |
 | :--- | :--- | :--- | :--- | :--- |
-| **DIC** | 数智协同基线 | Step2 BBM ✅ / Step3 BBLx ✅ / Step4 DICB ✅ | Step5 渲染脚本待生产，再启动 Step6 HTML + 翻医三台 | `00-overview/domain-baselines/dic/` |
+| **DIC** | 数智协同基线 | Step1–Step6 全部✅ 全链条完成 | 翻医三台建设待启动，DIC V0.2 等 Nex₂U 验证后触发 | `00-overview/domain-baselines/dic/` |
 
 ---
 

@@ -4,7 +4,7 @@
 **中文名**：数智协同基线
 **轻主名称**：DICB（DIC Baseline）
 **维护入口**：智核中枢·iS-Core
-**最后更新**：2026-06-27（Step4 落盘）
+**最后更新**：2026-06-27（Step6 全链条完成）
 
 ---
 
@@ -19,9 +19,9 @@ Step3  DIC·BBLx｜数智协同章节展开逻辑          → Synexa_DIC_Baseli
   ↓
 Step4  DICB｜Markdown 主源                    → Synexa_DIC_Baseline_V0.1.md ✅
   ↓
-Step5  py｜渲染脚本                           → Synexa_DIC_Baseline_Render_V0.1.py 🔜
+Step5  py｜渲染脚本                           → Synexa_Baseline_Render_Core_V0.1.py ✅
   ↓
-Step6  html｜阅读版                           → Synexa_DIC_Baseline_V0.1.html 🔜
+Step6  html｜阅读版                           → Synexa_DIC_Baseline_V0.1.html ✅
 ```
 
 ---
@@ -33,8 +33,8 @@ Step6  html｜阅读版                           → Synexa_DIC_Baseline_V0.1.h
 | `Synexa_DIC_Baseline_BBM_V0.1.md` | V0.1 | ✅ 已落盘 | Step2 蓝图地图，18章节 |
 | `Synexa_DIC_Baseline_BBLx_V0.1.md` | V0.1 | ✅ 已落盘 | Step3 章节展开逻辑，32章节 |
 | `Synexa_DIC_Baseline_V0.1.md` | V0.1 | ✅ 已落盘 | Step4 Markdown 主源，15章节+8附录 |
-| `Synexa_DIC_Baseline_Render_V0.1.py` | — | 🔜 待生产 | Step5 渲染脚本 |
-| `Synexa_DIC_Baseline_V0.1.html` | — | 🔜 待生产 | Step6 HTML 阅读版 |
+| `Synexa_Baseline_Render_Core_V0.1.py` | V0.1 | ✅ 已落盘（全局渲染器，存放于 scripts/） | Step5 渲染脚本，全局通用 |
+| `Synexa_DIC_Baseline_V0.1.html` | V0.1 | ✅ 已生成 | Step6 HTML 阅读版，53KB |
 
 ---
 

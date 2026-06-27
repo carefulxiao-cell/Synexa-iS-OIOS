@@ -1,5 +1,5 @@
 ---
-文件代号: DIC-BBM
+文件代号: DIC-BBMap
 文件类型: Baseline Blueprint Map｜基线蓝图地图
 版本: V0.1
 状态: Working Draft
@@ -10,19 +10,22 @@
 创建日期: 2026-06-27
 ---
 
-BBM｜超智科技·数智协同基线蓝图地图 V0.1
+BBMap｜超智科技·数智协同基线蓝图地图 V0.1
 
-BBM｜Synexa DIC Baseline Blueprint Map V0.1
+BBMap｜Synexa DIC Baseline Blueprint Map V0.1
 
 文件类型：Baseline Blueprint Map｜基线蓝图地图
 目标文件：超智科技·数智协同基线 V0.1
 英文名：Synexa Digital-Intelligence Collaboration Baseline V0.1
 对外轻主名称：DIC Baseline V0.1
-当前阶段：Step2｜DIC·BBM
+当前阶段：Step2｜DIC·BBMap
 文件状态：Working Draft / Blueprint
 维护入口：智核中枢·iS-Core
-后续生产链条：DIC·BBM → DIC·BBL → DICB
-主源建议文件名：Synexa_DIC_Baseline_BBM_V0.1.md
+后续生产链条：DIC·BBMap → DIC·BBLx → DICB
+
+> **定位说明**：本文件是 DIC 领域认知蓝图（BBMap），定义术语、关系、机制与生产链条。
+> HTML 生产规范（COVER 块、stat 提取、脚本调用）继承全局 BBM（Baseline_Builder_Master.md），本文件不重复定义。
+主源建议文件名：Synexa_DIC_Baseline_BBMap_V0.1.md
 
 ⸻
 

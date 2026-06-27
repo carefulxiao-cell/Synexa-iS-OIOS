@@ -1,4 +1,18 @@
-超智科技·数智协同基线 V0.1
+<!-- COVER
+topline: SYNEXA · DIC BASELINE · INTERNAL SSOT · DOMAIN BASELINE
+title: 超智科技·数智协同基线
+en: Synexa Digital-Intelligence Collaboration Baseline V0.1
+sub: Defining the operating logic of human-AI collaboration within the Synexa ecosystem.
+quote: 先让规则成文，再让 GitHub 和项目台按规则运行。V3.10 定义超智的总图，DIC Baseline 定义超智的走法。
+stat_override:
+  - 13 | 质量门 | Quality Gates
+  - 6 | 触发条件 | Trigger Conditions
+  - 10 | 路径节点 | Path Nodes
+  - 4 | 协同主体 | Agent Types
+  - 3 | 核心机制层 | Core Mechanisms
+-->
+
+---
 
 Synexa Digital-Intelligence Collaboration Baseline V0.1
 
@@ -16,15 +30,15 @@ DIC Baseline V0.1
 文件主源建议名：Synexa_DIC_Baseline_V0.1.md
 后续输出：Synexa_DIC_Baseline_Render_V0.1.py / Synexa_DIC_Baseline_V0.1.html
 生产链条：DIC·BBM → DIC·BBL → DICB
-当前阶段：Step4｜DICB md｜Markdown 主源
+当前阶段：Step4|DICB md|Markdown 主源
 
 ⸻
 
-CH(-1)｜Human-Machine-Digital Baseline Protocol
+## CH(-1)｜Human-Machine-Digital Baseline Protocol
 
 人机数智共识协议
 
-CH(-1).1 文件共识
+### CH(-1).1 文件共识
 
 《超智科技·数智协同基线｜DIC Baseline》是一份面向人类协作者、AI 智能体、数字工具、代码执行体、业务系统、项目执行体与组织经验资产共同读取的运行基线文件。
 
@@ -44,7 +58,7 @@ DIC Baseline 的目标不是把所有 AI 工具写得最多，而是在最小冗
 
 ⸻
 
-CH(-1).2 文件主源规则
+### CH(-1).2 文件主源规则
 
 本文件采用 Markdown 作为事实主源。
 
@@ -67,7 +81,7 @@ ZIP	完整交付包	否
 
 ⸻
 
-CH(-1).3 人机共读原则
+### CH(-1).3 人机共读原则
 
 本文件需要同时服务四类读者。
 
@@ -207,9 +221,9 @@ Nex₂U 当前不应先追求完整大系统，而应先跑通最小闭环：
 
 ⸻
 
-CH 00｜文件定位与使用边界
+## CH 00｜文件定位与使用边界
 
-CH00.1 文件身份
+### CH00.1 文件身份
 
 《超智科技·数智协同基线｜DIC Baseline》是《超智科技认知基线 V3.10》之下的专题运行基线。
 
@@ -230,7 +244,7 @@ First Application	Nex₂U
 
 ⸻
 
-CH00.2 不替代原则
+### CH00.2 不替代原则
 
 DIC Baseline 不替代以下文件或机制：
 
@@ -247,7 +261,7 @@ DIC 定义协同运行规则；具体项目状态仍由 PCS 管理，具体操�
 
 ⸻
 
-CH00.3 适用对象
+### CH00.3 适用对象
 
 DIC Baseline 适用于：
 
@@ -263,7 +277,7 @@ DIC Baseline 适用于：
 
 ⸻
 
-CH00.4 不适用对象
+### CH00.4 不适用对象
 
 DIC Baseline 不适用于：
 
@@ -281,9 +295,9 @@ DIC Baseline 不适用于：
 
 ⸻
 
-CH 01｜数智协同总定义
+## CH 01｜数智协同总定义
 
-CH01.1 正式定义
+### CH01.1 正式定义
 
 数智协同，是指在人的方向设定与责任承担之下，将 AI、Agent、数据、代码、工具、业务系统、供应网络、现场执行与经验资产组织成可执行、可反馈、可优化的协同运行机制。
 
@@ -302,7 +316,7 @@ Agent 执行动作；
 
 ⸻
 
-CH01.2 数智协同不是什么
+### CH01.2 数智协同不是什么
 
 误解	正确理解
 AI 工具使用	数智协同运行机制
@@ -315,7 +329,7 @@ AI 工具使用	数智协同运行机制
 
 ⸻
 
-CH01.3 数智协同的构成要素
+### CH01.3 数智协同的构成要素
 
 要素	作用
 人智判断	方向、价值、责任、裁决
@@ -331,7 +345,7 @@ Python / Code	计算、清洗、自动化、文件生成
 
 ⸻
 
-CH01.4 DIC 与 Synexa iS 的关系
+### CH01.4 DIC 与 Synexa iS 的关系
 
 Synexa iS 是组织级智能操作系统，是超智体系中负责治理、认知、规则、能力、Agent、项目与经验资产协同的系统承载。
 
@@ -348,9 +362,9 @@ DIC Baseline
 
 ⸻
 
-CH 02｜人、机器与系统的角色关系
+## CH 02｜人、机器与系统的角色关系
 
-CH02.1 主体与能力体
+### CH02.1 主体与能力体
 
 DIC Baseline 中，必须区分主体与能力体。
 
@@ -370,7 +384,7 @@ Experience Asset	经验沉淀	复用判断、规则、异常	停留在散乱记�
 
 ⸻
 
-CH02.2 人智判断 Human Judgment
+### CH02.2 人智判断 Human Judgment
 
 人智判断，是人在方向、价值、责任、裁决、例外处理和高风险取舍中的不可替代作用。
 
@@ -388,7 +402,7 @@ DIC 中的人智至少承担五类职责：
 
 ⸻
 
-CH02.3 AI / LLM
+### CH02.3 AI / LLM
 
 AI / LLM 是认知发动机，适合理解、生成、推演、总结、结构化与草案生成。
 
@@ -415,7 +429,7 @@ AI / LLM 是认知发动机，适合理解、生成、推演、总结、结构�
 
 ⸻
 
-CH02.4 Agent
+### CH02.4 Agent
 
 Agent 是带有目标、工具、边界、上下文和输出要求的任务执行单元。
 
@@ -435,7 +449,7 @@ Agent 必须接受任务边界、输入材料、输出要求、暂停条件和�
 
 ⸻
 
-CH02.5 SOP / Skill / Agent / Digital Employee 区分
+### CH02.5 SOP / Skill / Agent / Digital Employee 区分
 
 类型	核心问题	成熟条件
 SOP	标准流程怎么做	流程稳定、可培训
@@ -447,9 +461,9 @@ Skill 不是文档说明，而是可触发、可复用、可组合、可审计�
 
 ⸻
 
-CH 03｜任务归位机制
+## CH 03｜任务归位机制
 
-CH03.1 为什么需要任务归位
+### CH03.1 为什么需要任务归位
 
 任务不先归位，就不应直接执行；未归位的执行，往往会造成重复劳动、责任模糊和经验流失。
 
@@ -457,7 +471,7 @@ DIC 的任务归位不是行政分工，而是为了确保每个任务都有正�
 
 ⸻
 
-CH03.2 任务归位类型
+### CH03.2 任务归位类型
 
 归位类型	触发条件	典型输出
 iS-Core	全局基线、项目归位、战略裁决、优先级冲突	裁决、Step 0A、全局同步
@@ -471,7 +485,7 @@ New Project	出现新业务对象、长期机制或独立项目域	项目最小�
 
 ⸻
 
-CH03.3 任务归位输出字段
+### CH03.3 任务归位输出字段
 
 字段	说明
 Task ID	任务编号
@@ -497,7 +511,7 @@ Feedback Destination	回流位置
 
 ⸻
 
-CH03.4 新项目触发条件
+### CH03.4 新项目触发条件
 
 当一个任务具备以下任一特征，应考虑进入 Step 0A 项目最小定义：
 
@@ -511,9 +525,9 @@ CH03.4 新项目触发条件
 
 ⸻
 
-CH 04｜标准协同路径
+## CH 04｜标准协同路径
 
-CH04.1 全局主流程
+### CH04.1 全局主流程
 
 DIC 的标准协同路径如下：
 
@@ -547,7 +561,7 @@ DIC 的标准协同路径，不是为了增加流程，而是为了让每一次�
 
 ⸻
 
-CH04.2 路径展开
+### CH04.2 路径展开
 
 阶段	核心动作	主责	输出
 目标提出	提出任务意图	人 / 项目负责人	初始目标
@@ -566,7 +580,7 @@ SSOT / PCS 回写	回写主源或项目账本	Manus / PCS	Updated File
 
 ⸻
 
-CH04.3 人智定向
+### CH04.3 人智定向
 
 人智定向必须至少回答：
 
@@ -582,7 +596,7 @@ CH04.3 人智定向
 
 ⸻
 
-CH04.4 人智裁决
+### CH04.4 人智裁决
 
 人智裁决包括：
 
@@ -599,9 +613,9 @@ CH04.4 人智裁决
 
 ⸻
 
-CH 05｜任务节点设计机制
+## CH 05｜任务节点设计机制
 
-CH05.1 任务节点定义
+### CH05.1 任务节点定义
 
 任务节点，是从目标到交付过程中可识别、可分派、可执行、可检查、可回流的工作单元。
 
@@ -610,7 +624,7 @@ CH05.1 任务节点定义
 
 ⸻
 
-CH05.2 Task Node 标准字段
+### CH05.2 Task Node 标准字段
 
 字段	说明
 Node ID	节点编号
@@ -631,7 +645,7 @@ Asset Candidate	是否可沉淀资产
 
 ⸻
 
-CH05.3 节点状态枚举
+### CH05.3 节点状态枚举
 
 状态	含义
 Draft	待确认
@@ -646,7 +660,7 @@ Assetized	已资产化
 
 ⸻
 
-CH05.4 节点质量门
+### CH05.4 节点质量门
 
 每个节点必须至少具备一个质量门。
 
@@ -663,9 +677,9 @@ CH05.4 节点质量门
 
 ⸻
 
-CH 06｜不同任务类型的节点模板
+## CH 06｜不同任务类型的节点模板
 
-CH06.1 战略推演任务节点
+### CH06.1 战略推演任务节点
 
 节点	输入	输出	主责
 背景识别	事件 / 问题 / 机会	背景说明	SCO
@@ -677,7 +691,7 @@ CH06.1 战略推演任务节点
 
 ⸻
 
-CH06.2 项目推进任务节点
+### CH06.2 项目推进任务节点
 
 节点	输入	输出
 项目归位	任务目标 / 业务对象	PCS / 项目定义
@@ -691,7 +705,7 @@ PCS 回写	复盘结果	更新 PCS
 
 ⸻
 
-CH06.3 文档生产任务节点
+### CH06.3 文档生产任务节点
 
 节点	输入	输出
 BBM	目标与关系锚定	蓝图地图
@@ -704,7 +718,7 @@ QA	全部输出	质检记录
 
 ⸻
 
-CH06.4 工具选型任务节点
+### CH06.4 工具选型任务节点
 
 节点	输入	输出
 需求定义	业务目标	工具需求说明
@@ -717,7 +731,7 @@ PoC 验证	候选工具	最小验证结果
 
 ⸻
 
-CH06.5 代码执行任务节点
+### CH06.5 代码执行任务节点
 
 节点	输入	输出
 需求包	业务需求	Codex / Claude Code Package
@@ -730,7 +744,7 @@ CH06.5 代码执行任务节点
 
 ⸻
 
-CH06.6 Nex₂U 业务任务节点
+### CH06.6 Nex₂U 业务任务节点
 
 节点	输入	输出
 用户需求识别	用户 / 患者 / 场景	需求标签
@@ -745,7 +759,7 @@ CH06.6 Nex₂U 业务任务节点
 
 ⸻
 
-CH06.7 异常处理任务节点
+### CH06.7 异常处理任务节点
 
 节点	输入	输出
 异常发现	现场 / 数据 / 工具反馈	异常记录
@@ -758,7 +772,7 @@ CH06.7 异常处理任务节点
 
 ⸻
 
-CH06.8 外部 Agent 执行任务节点
+### CH06.8 外部 Agent 执行任务节点
 
 节点	输入	输出
 任务包生成	目标 / 材料 / 边界	Handoff Package
@@ -771,9 +785,9 @@ QA 检查	返回结果	Review Item
 
 ⸻
 
-CH 07｜AI / Agent / 工具能力归位
+## CH 07｜AI / Agent / 工具能力归位
 
-CH07.1 工具归位原则
+### CH07.1 工具归位原则
 
 DIC 不是工具说明书，但必须定义工具的协同位置。
 
@@ -785,7 +799,7 @@ DIC 不是工具说明书，但必须定义工具的协同位置。
 
 ⸻
 
-CH07.2 工具能力归位表
+### CH07.2 工具能力归位表
 
 工具 / 能力体	DIC 角色	适合任务	禁止事项
 ChatGPT	中枢推演与结构化	战略整理、文件结构、执行包、审校	替代最终 SSOT
@@ -801,7 +815,7 @@ Digital Employee	长期履职角色	稳定职责运行	超授权行动
 
 ⸻
 
-CH07.3 工具调用基本规则
+### CH07.3 工具调用基本规则
 
 1. 模糊任务先回到 iS-Core / SCO / Matrix，不直接交给外部 Agent；
 2. 工程任务必须有执行包；
@@ -814,9 +828,9 @@ CH07.3 工具调用基本规则
 
 ⸻
 
-CH 08｜执行包机制
+## CH 08｜执行包机制
 
-CH08.1 执行包定义
+### CH08.1 执行包定义
 
 执行包，是将人智目标和系统任务转化为外部 Agent 或工具可执行指令的结构化任务包。
 
@@ -824,7 +838,7 @@ CH08.1 执行包定义
 
 ⸻
 
-CH08.2 执行包标准字段
+### CH08.2 执行包标准字段
 
 字段	说明
 Mission Name	任务名称
@@ -843,7 +857,7 @@ Review Items	待裁决项
 
 ⸻
 
-CH08.3 常见执行包类型
+### CH08.3 常见执行包类型
 
 类型	适用对象
 Manus Handoff Package	文件工程、页面、PPT、GitHub 整理
@@ -855,7 +869,7 @@ ChatGPT Structuring Package	结构推演、文档主稿、审校
 
 ⸻
 
-CH08.4 暂停条件
+### CH08.4 暂停条件
 
 执行体遇到以下情况必须暂停并返回 Review Item：
 
@@ -870,9 +884,9 @@ CH08.4 暂停条件
 
 ⸻
 
-CH 09｜小步快跑与快速试错机制
+## CH 09｜小步快跑与快速试错机制
 
-CH09.1 试错定义
+### CH09.1 试错定义
 
 试错闭环，是在明确方向与边界后，以最小可验证动作进行快速验证、记录结果、复盘判断、沉淀经验并决定继续、修正、暂停或升级的机制。
 
@@ -882,7 +896,7 @@ CH09.1 试错定义
 
 ⸻
 
-CH09.2 Trial Loop 标准字段
+### CH09.2 Trial Loop 标准字段
 
 字段	说明
 Trial ID	试错编号
@@ -898,7 +912,7 @@ Asset Destination	资产归位
 
 ⸻
 
-CH09.3 试错动作结论
+### CH09.3 试错动作结论
 
 动作	含义
 Continue	继续扩大验证
@@ -908,7 +922,7 @@ Escalate	升级至 Core / SCO / Matrix / PCS
 
 ⸻
 
-CH09.4 可试错与不可试错
+### CH09.4 可试错与不可试错
 
 类型	可否试错	要求
 页面原型	可	明确不作为正式系统
@@ -922,9 +936,9 @@ CH09.4 可试错与不可试错
 
 ⸻
 
-CH 10｜问题、异常与经验沉淀机制
+## CH 10｜问题、异常与经验沉淀机制
 
-CH10.1 问题到资产的路径
+### CH10.1 问题到资产的路径
 
 问题出现
   ↓
@@ -944,7 +958,7 @@ SOP / Skill / Agent / Engine 更新
 
 ⸻
 
-CH10.2 问题分类表
+### CH10.2 问题分类表
 
 问题类型	示例	资产方向
 任务问题	责任不清、节点遗漏	Pattern / Field
@@ -960,7 +974,7 @@ CH10.2 问题分类表
 
 ⸻
 
-CH10.3 经验资产类型
+### CH10.3 经验资产类型
 
 资产类型	核心字段
 Pattern Asset	场景、对象、流程、角色、输入、输出、成功条件
@@ -974,7 +988,7 @@ DE Candidate	长期职责、授权边界、运行频率
 
 ⸻
 
-CH10.4 经验沉淀原则
+### CH10.4 经验沉淀原则
 
 1. 重复出现的流程进入 Pattern Asset；
 2. 异常、错误、延误、投诉进入 Exception Asset；
@@ -988,9 +1002,9 @@ CH10.4 经验沉淀原则
 
 ⸻
 
-CH 11｜Project-to-Skill 数智蒸馏机制
+## CH 11｜Project-to-Skill 数智蒸馏机制
 
-CH11.1 定义
+### CH11.1 定义
 
 Project-to-Skill，是从真实项目中提取可复用能力的过程。
 
@@ -998,7 +1012,7 @@ Project-to-Skill，是从真实项目中提取可复用能力的过程。
 
 ⸻
 
-CH11.2 标准蒸馏路径
+### CH11.2 标准蒸馏路径
 
 真实项目运行
   ↓
@@ -1020,7 +1034,7 @@ Nex·EC 模块候选
 
 ⸻
 
-CH11.3 Project-to-Skill 蒸馏表
+### CH11.3 Project-to-Skill 蒸馏表
 
 步骤	输入	输出
 真实项目运行	项目任务 / 现场数据	真实样本
@@ -1034,7 +1048,7 @@ Agent 配置	稳定任务角色	Agent / DE
 
 ⸻
 
-CH11.4 Skill 成熟条件
+### CH11.4 Skill 成熟条件
 
 一个 Skill 至少应满足：
 
@@ -1051,9 +1065,9 @@ CH11.4 Skill 成熟条件
 
 ⸻
 
-CH 12｜人智决策与风险权限
+## CH 12｜人智决策与风险权限
 
-CH12.1 风险权限原则
+### CH12.1 风险权限原则
 
 越是高风险、强不确定、涉及外部承诺或责任承担的事项，越不能绕过人智裁决。
 
@@ -1061,7 +1075,7 @@ CH12.1 风险权限原则
 
 ⸻
 
-CH12.2 风险权限表
+### CH12.2 风险权限表
 
 风险等级	机器权限	人智要求	记录要求
 Low	可建议并自动执行	事后抽查	自动记录
@@ -1071,7 +1085,7 @@ Critical / Red	不得自动执行	Core / 指定负责人确认	完整决策记�
 
 ⸻
 
-CH12.3 升级触发条件
+### CH12.3 升级触发条件
 
 触发条件	升级对象
 改变全局基线	iS-Core
@@ -1083,7 +1097,7 @@ CH12.3 升级触发条件
 
 ⸻
 
-CH12.4 Judgment Asset
+### CH12.4 Judgment Asset
 
 当一个决策涉及明显取舍、风险、拒绝、暂停、升级或高价值判断时，应形成 Judgment Asset。
 
@@ -1101,9 +1115,9 @@ Judgment Asset 至少包含：
 
 ⸻
 
-CH 13｜面向 Nex₂U 的应用示范
+## CH 13｜面向 Nex₂U 的应用示范
 
-CH13.1 为什么以 Nex₂U 作为首个样板
+### CH13.1 为什么以 Nex₂U 作为首个样板
 
 Nex₂U 是超智体系当前推进中的重要实战样板，涉及用户需求、营养规则、菜品结构、订单履约、供应协同、现场反馈与经验沉淀。
 
@@ -1111,13 +1125,13 @@ Nex₂U 是超智体系当前推进中的重要实战样板，涉及用户需求
 
 ⸻
 
-CH13.2 Nex₂U 当前关键判断
+### CH13.2 Nex₂U 当前关键判断
 
 Nex₂U 当前关键不是先做漂亮前端，而是跑通规则、菜品、订单、履约、供应、反馈和经验沉淀的最小闭环。
 
 ⸻
 
-CH13.3 Nex₂U 最小闭环
+### CH13.3 Nex₂U 最小闭环
 
 10 道菜品
   ↓
@@ -1139,7 +1153,7 @@ CH13.3 Nex₂U 最小闭环
 
 ⸻
 
-CH13.4 Nex₂U 最小闭环节点
+### CH13.4 Nex₂U 最小闭环节点
 
 节点	输出	对应引擎
 用户需求	用户标签	Nex2U
@@ -1153,7 +1167,7 @@ CH13.4 Nex₂U 最小闭环节点
 
 ⸻
 
-CH13.5 首批 Skill 候选
+### CH13.5 首批 Skill 候选
 
 Skill	来源
 营养规则转译 Skill	医学 / 营养建议
@@ -1164,7 +1178,7 @@ Skill	来源
 
 ⸻
 
-CH13.6 与番医项目的关系
+### CH13.6 与番医项目的关系
 
 番医项目可作为 DIC 从 Nex₂U 规则走向真实项目功能台的启动场景。
 
@@ -1185,9 +1199,9 @@ GitHub / 文件归位规则明确
 
 ⸻
 
-CH 14｜阶段路线图
+## CH 14｜阶段路线图
 
-CH14.1 阶段总览
+### CH14.1 阶段总览
 
 阶段	目标	输出
 0-30 天	建立 DIC 主源与最小协同机制	DICB、模板、执行包
@@ -1197,7 +1211,7 @@ CH14.1 阶段总览
 
 ⸻
 
-CH14.2 阶段优先级
+### CH14.2 阶段优先级
 
 优先级	事项
 P0	DIC 主源完成、HTML 输出、基础模板
@@ -1207,7 +1221,7 @@ P3	系统化后台、小程序、自动化集成
 
 ⸻
 
-CH14.3 当前建议推进顺序
+### CH14.3 当前建议推进顺序
 
 当前阶段建议按以下顺序执行：
 
@@ -1231,9 +1245,9 @@ GitHub 全仓整理
 
 ⸻
 
-CH 15｜DIC 版本治理与后续升级
+## CH 15｜DIC 版本治理与后续升级
 
-CH15.1 版本路径
+### CH15.1 版本路径
 
 版本	状态	触发条件
 V0.1	Working Draft	首版主源完成
@@ -1244,7 +1258,7 @@ V1.0	Stable Baseline	经 2-3 个项目验证稳定
 
 ⸻
 
-CH15.2 更新归位规则
+### CH15.2 更新归位规则
 
 更新类型	归位
 公司定位变化	V3.10
@@ -1257,7 +1271,7 @@ DIC 协同机制变化	DIC Baseline
 
 ⸻
 
-CH15.3 V3.10 反向补丁原则
+### CH15.3 V3.10 反向补丁原则
 
 DIC V0.1 完成后，不建议立即升级 V3.10。
 
@@ -1270,7 +1284,7 @@ DIC V0.1 完成后，不建议立即升级 V3.10。
 
 ⸻
 
-Appendix A｜AI / Agent / Tool Capability Matrix
+## Appendix A｜AI / Agent / Tool Capability Matrix
 
 Tool Name	Tool Type	Best Use	Forbidden Use	Required Input	Output Type	QA Gate	Owner	Status	Registry Destination
 ChatGPT	LLM / Structuring	战略整理、文件主稿、执行包	替代 SSOT 裁决	背景、目标、边界	文档 / 结构	人智审校	iS-Core	Active	Tool Registry
@@ -1283,7 +1297,7 @@ Kimi	Research Agent	中文长资料、政策、供应商资料	最终裁决	资�
 
 ⸻
 
-Appendix B｜Task Routing Table
+## Appendix B｜Task Routing Table
 
 Task Type	Trigger	Target Workspace	Required Output	Risk Level	Feedback Destination
 全局基线变更	影响 SSOT / Context OS	iS-Core	裁决 / Patch	High	Master SSOT / Context OS
@@ -1297,7 +1311,7 @@ SOP / Skill 生产	高频流程沉淀	iS-Matrix	SOP / Skill Draft	Medium	SOP / S
 
 ⸻
 
-Appendix C｜Task Node Template
+## Appendix C｜Task Node Template
 
 node_id:
 node_name:
@@ -1318,7 +1332,7 @@ review_items:
 
 ⸻
 
-Appendix D｜Execution Package Template
+## Appendix D｜Execution Package Template
 
 # Execution Package
 ## 1. Mission Name
@@ -1337,7 +1351,7 @@ Appendix D｜Execution Package Template
 
 ⸻
 
-Appendix E｜Trial Loop Record Template
+## Appendix E｜Trial Loop Record Template
 
 trial_id:
 hypothesis:
@@ -1357,7 +1371,7 @@ review_items:
 
 ⸻
 
-Appendix F｜Experience Asset Capture Template
+## Appendix F｜Experience Asset Capture Template
 
 F.1 Pattern Asset
 
@@ -1460,7 +1474,7 @@ source_project:
 
 ⸻
 
-Appendix G｜Machine-Readable Index
+## Appendix G｜Machine-Readable Index
 
 {
   "document_id": "Synexa_DIC_Baseline_V0.1",
@@ -1500,7 +1514,7 @@ Appendix G｜Machine-Readable Index
 
 ⸻
 
-Appendix H｜Version Register & Change Log
+## Appendix H｜Version Register & Change Log
 
 Version	Date	Change Summary	Impact Scope	Owner
 V0.1	2026-06-27	首版 DIC Baseline Markdown 主源草案	DIC Baseline / Nex₂U / GitHub 后续治理	iS-Core

@@ -721,12 +721,21 @@ def extract_cover_fields(text):
     cover_match = re.search(r'<!--\s*COVER\s*\n(.*?)\n-->', text, re.DOTALL)
     if cover_match:
         block = cover_match.group(1)
+        last_key = None
         for line in block.strip().split('\n'):
+            # 支持 YAML 列表格式：  - value
+            stripped = line.strip()
+            if stripped.startswith('- ') and last_key == 'stat_override':
+                item_val = stripped[2:].strip()
+                if item_val:
+                    cover['stat_overrides'].append(item_val)
+                continue
             if ':' not in line:
                 continue
             key, _, val = line.partition(':')
             key = key.strip().lower()
             val = val.strip()
+            last_key = key
             if key == 'topline':
                 cover['topline'] = val
             elif key == 'title':
@@ -740,7 +749,9 @@ def extract_cover_fields(text):
             elif key == 'stat_auto':
                 cover['stat_auto'] = val.lower() == 'true'
             elif key == 'stat_override':
-                cover['stat_overrides'].append(val)
+                # 单行格式：stat_override: 13 | 质量门 | Quality Gates
+                if val:
+                    cover['stat_overrides'].append(val)
             elif key == 'stat':
                 # 兼容旧格式：stat: 数字 | 标签 | 英文说明
                 parts = [p.strip() for p in val.split('|')]
@@ -759,8 +770,18 @@ def extract_cover_fields(text):
         if h1_match:
             cover['title'] = h1_match.group(1).strip()
 
-    # 优先级：stat_auto（三步融合）> stat_rule（旧字段）> 静态 stat
-    if cover['stat_auto']:
+    # 优先级：stat_overrides（直接覆盖）> stat_auto（三步融合）> stat_rule（旧字段）> 静态 stat
+    if cover['stat_overrides'] and not cover['stat_auto']:
+        # 直接使用 stat_override 数字，无需三步融合
+        for item in cover['stat_overrides']:
+            parts = [p.strip() for p in item.split('|')]
+            if len(parts) >= 2:
+                cover['stats'].append({
+                    'num': parts[0],
+                    'label': parts[1],
+                    'sub': parts[2] if len(parts) > 2 else ''
+                })
+    elif cover['stat_auto']:
         # 新机制：三步融合提取
         cover_meta = {
             'title': cover['title'],

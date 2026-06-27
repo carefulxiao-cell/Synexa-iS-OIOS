@@ -1513,3 +1513,64 @@ V0.1	2026-06-27	首版 BBLx 章节展开逻辑	DIC Baseline	iS-Core
 V3.10 定义超智的总图，DIC Baseline 定义超智的走法。
 BBM 定蓝图，BBLx 定章节逻辑，DICB 定正式主源。
 先让规则成文，再让 GitHub 和项目台按规则运行。
+---
+
+## 33. HTML 生成规范（DIC 基线专属）
+
+> 本章节依据全局 BBM Section 16 制定，DIC 基线 HTML 生产标准与 L2/L3 台统一，不另立规范。
+
+### 33.1 调用脚本
+
+```bash
+python3 baseline-builder/scripts/BBLx_html_generator.py \
+  00-overview/domain-baselines/dic/Synexa_DIC_Baseline_V0.1.md \
+  00-overview/domain-baselines/dic/Synexa_DIC_Baseline_V0.1.html
+```
+
+脚本位置：`baseline-builder/scripts/BBLx_html_generator.py`（全局通用，L1/L2/L3/领域基线均适用）
+
+### 33.2 字体与样式
+
+与 L3 台一致，使用系统字体降级栈，零依赖，不需要 `fonts/` 文件夹。详见 BBM Section 5.4 和 L3_structure.md HTML 生成规范章节。
+
+### 33.3 封面结构
+
+DIC 基线封面包含以下元素：
+- `topline`：`SYNEXA · DIC BASELINE · INTERNAL SSOT · DOMAIN BASELINE`
+- 中文主标题（衬线字体 36px）
+- 英文副标题（几何感字体 20px）
+- `quote` 引言块（绿色左边框）
+- `statgrid`：4-6 个核心指标卡片（由 `stat_auto: true` 自动提取）
+
+---
+
+## 34. DIC 基线 COVER 块规范
+
+> COVER 块完整规范详见 BBM Section 16。以下为 DIC 领域基线的标准 COVER 块格式。
+
+### 34.1 标准 COVER 块格式
+
+```
+<!-- COVER
+topline: SYNEXA · DIC BASELINE · INTERNAL SSOT · DOMAIN BASELINE
+title: 超智科技·数智协同基线
+en: Synexa Digital-Intelligence Collaboration Baseline V0.1
+sub: Defining the operating logic of human-AI collaboration within the Synexa ecosystem.
+quote: [核心原则，中文，显示为引言块]
+stat_auto: true
+-->
+```
+
+### 34.2 DIC 基线核心数字类型（供 LLM 语义判断参考）
+
+脚本执行 `stat_auto: true` 时，LLM 校验层将参考以下类型说明进行语义判断：
+
+| 类型 | P1 规模类 | P2 结构类 | P3 缺口/异常类 | P4 资产类 |
+|---|---|---|---|---|
+| **DIC 领域基线** | 协同路径数、任务节点数、数智员工类型数 | 协同层级数、机制模块数、工具类型数 | 待验证机制数、阻塞节点数 | 可迁移经验条数、SOP 数、Skill 数 |
+
+> 以上为参考语义方向，不是固定章节号。实际提取的数字和标签由脚本根据具体 md 内容自动判断。
+
+---
+
+*DIC-BBLx V0.1 · 2026-06 · SYNEXA INTERNAL SSOT*

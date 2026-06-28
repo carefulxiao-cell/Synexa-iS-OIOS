@@ -4,9 +4,9 @@
 版本: V0.1
 状态: Working Draft
 维护入口: 智核中枢·iS-Core
-上一步: Step2｜DIC·BBM 基线蓝图地图
+上一步: Step2｜DIC·BBMap 基线蓝图地图
 下一步: Step4｜DICB Markdown 主源
-生产链条: DIC·BBM → DIC·BBL → DICB
+生产链条: DIC·BBMap → DIC·BBL → DICB
 创建日期: 2026-06-27
 ---
 
@@ -22,7 +22,7 @@ BBLx｜Synexa DIC Baseline Build Logic Extended V0.1
 当前阶段：Step3｜DIC·BBL
 文件状态：Working Draft / Build Logic
 维护入口：智核中枢·iS-Core
-后续生产链条：DIC·BBM → DIC·BBL → DICB
+后续生产链条：DIC·BBMap → DIC·BBL → DICB
 主源建议文件名：Synexa_DIC_Baseline_BBLx_V0.1.md
 
 ⸻
@@ -31,7 +31,7 @@ BBLx｜Synexa DIC Baseline Build Logic Extended V0.1
 
 本文件不是《超智科技·数智协同基线》的正式正文，而是基于 Synexa_DIC_Baseline_BBM_V0.1.md 进一步展开正式基线各章节的生产逻辑。
 
-BBM 解决的是：
+BBMap 解决的是：
 
 这份基线为什么要建、和 V3.10 什么关系、边界在哪里、整体结构是什么。
 
@@ -49,7 +49,7 @@ DIC Baseline 生产链条如下：
 
 Step1 先锚定关系与术语
   ↓
-Step2 生产专用 BBM｜数智协同基线蓝图地图
+Step2 生产专用 BBMap｜数智协同基线蓝图地图
   ↓
 Step3 基于「数智协同专项 BBM」生产 BBLx｜数智协同章节展开逻辑
   ↓
@@ -61,7 +61,7 @@ Step6 输出 html｜阅读版 / 检查版 / 后续 PDF 预览基础
 
 快速触发简称：
 
-DIC·BBM  →  生产《数智协同基线蓝图地图》
+DIC·BBMap  →  生产《数智协同基线蓝图地图》
 DIC·BBL  →  生产《数智协同章节展开逻辑》
 DICB     →  生产《超智科技·数智协同基线》正式主源与交付包
 
@@ -714,8 +714,8 @@ Assetized	已资产化
 表 2｜文档生产任务节点
 
 节点	输入	输出
-BBM	目标与关系锚定	蓝图地图
-BBLx	BBM	章节展开逻辑
+BBMap	目标与关系锚定	蓝图地图
+BBLx	BBMap	章节展开逻辑
 md	BBLx	Markdown 主源
 py	md + 渲染规范	渲染脚本
 html	md + py	阅读版
@@ -1511,7 +1511,7 @@ V0.1	2026-06-27	首版 BBLx 章节展开逻辑	DIC Baseline	iS-Core
 最终锚定句：
 
 V3.10 定义超智的总图，DIC Baseline 定义超智的走法。
-BBM 定蓝图，BBLx 定章节逻辑，DICB 定正式主源。
+BBMap 定蓝图，BBLx 定章节逻辑，DICB 定正式主源。
 先让规则成文，再让 GitHub 和项目台按规则运行。
 ---
 

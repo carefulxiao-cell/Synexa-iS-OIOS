@@ -664,8 +664,8 @@ SSOT / PCS 回写<br />
 </thead>
 <tbody>
 <tr>
-<td>Master SSOT</td>
-<td>V3.10 仍是公司级最高认知源</td>
+<td>超智认知基线（SCI V3.10）</td>
+<td><code>Synexa_Company_Intro_V3.10.md</code> 是公司级最高认知源，DICB 在其上位框架下展开协同运行机制</td>
 </tr>
 <tr>
 <td>Context OS</td>
@@ -704,7 +704,7 @@ SSOT / PCS 回写<br />
 <li>iS-Hub：用于维护 Tool / Agent Registry；</li>
 <li>iS-Lab：用于未成熟想法的最小验证；</li>
 <li>PCS 项目组：用于项目任务、节点、反馈和经验沉淀；</li>
-<li>Manus / Codex / Claude Code / Kimi 等外部执行体：用于接收结构化执行包；</li>
+<li>外部执行体（对话型 AI / 代码执行平台 / 自动化集成）：用于接收结构化执行包，具体工具分工详见 CH07.2；</li>
 <li>人类项目负责人：用于判断方向、审核结果、裁决风险；</li>
 <li>GitHub / Registry 管理者：用于文件归位、版本追踪、索引维护。</li>
 </ol>
@@ -1849,11 +1849,15 @@ SSOT / PCS 回写<br />
 模型可以替换，协同秩序不能漂移。<br />
 外部 Agent 只能执行任务包，不应直接接收模糊战略任务。</p>
 <p>⸻</p>
-<h3 id="ch072">CH07.2 工具能力归位表</h3>
+<h4 id="ch072">CH07.2 工具能力归位表</h4>
+<blockquote>
+<p>外部执行体按接入类型分组，具体产品为参考，不写死。产品迭代不影响分工逻辑。</p>
+</blockquote>
 <table>
 <thead>
 <tr>
-<th>工具 / 能力体</th>
+<th>接入类型</th>
+<th>工具 / 平台</th>
 <th>DIC 角色</th>
 <th>适合任务</th>
 <th>禁止事项</th>
@@ -1861,63 +1865,94 @@ SSOT / PCS 回写<br />
 </thead>
 <tbody>
 <tr>
-<td>ChatGPT</td>
+<td><strong>对话型 AI · 中枢推演</strong></td>
+<td>ChatGPT（GPT-4o/o1）</td>
 <td>中枢推演与结构化</td>
-<td>战略整理、文件结构、执行包、审校</td>
+<td>战略整理、文件结构、执行包生成、审校、跨对话状态管理</td>
 <td>替代最终 SSOT</td>
 </tr>
 <tr>
-<td>Claude</td>
-<td>长文档复核</td>
-<td>长文审校、结构对照</td>
+<td><strong>对话型 AI · 中枢推演</strong></td>
+<td>Gemini（Google）</td>
+<td>多模态推演与搜索增强</td>
+<td>需要实时信息、多模态输入、Google 生态集成的任务</td>
+<td>单独裁决业务逻辑</td>
+</tr>
+<tr>
+<td><strong>对话型 AI · 长文处理</strong></td>
+<td>Claude（Anthropic）</td>
+<td>长文档复核与结构对照</td>
+<td>长文审校、结构对照、高密度内容分析</td>
 <td>单独裁决业务</td>
 </tr>
 <tr>
-<td>Codex</td>
-<td>工程执行</td>
-<td>代码、脚本、测试</td>
-<td>决定业务规则</td>
-</tr>
-<tr>
-<td>Claude Code</td>
-<td>工程协作</td>
-<td>代码库理解、开发任务</td>
-<td>替代产品判断</td>
-</tr>
-<tr>
-<td>Python</td>
-<td>计算与自动化</td>
-<td>数据处理、渲染、表格、模型</td>
-<td>价值判断</td>
-</tr>
-<tr>
-<td>Manus</td>
-<td>文件工程与执行落地</td>
-<td>页面、PPT、HTML、文件包、GitHub 整理</td>
-<td>自行改写上位定义</td>
-</tr>
-<tr>
-<td>Kimi</td>
+<td><strong>对话型 AI · 中文增强</strong></td>
+<td>Kimi（Moonshot）</td>
 <td>中文资料初筛</td>
 <td>长资料、政策、投标、供应商材料</td>
 <td>最终裁决</td>
 </tr>
 <tr>
+<td><strong>对话型 AI · 中文增强</strong></td>
+<td>文心一言 / 通义千问</td>
+<td>中文场景辅助</td>
+<td>中文内容生成、本地化表达、国内合规场景</td>
+<td>替代结构化推演</td>
+</tr>
+<tr>
+<td><strong>代码执行平台</strong></td>
+<td>Manus</td>
+<td>文件工程与执行落地</td>
+<td>页面、HTML、PPT、文件包、GitHub 整理、自动化脚本</td>
+<td>自行改写上位定义</td>
+</tr>
+<tr>
+<td><strong>代码执行平台</strong></td>
+<td>Codex（OpenAI）</td>
+<td>工程执行</td>
+<td>代码、脚本、测试、API 集成</td>
+<td>决定业务规则</td>
+</tr>
+<tr>
+<td><strong>代码执行平台</strong></td>
+<td>Claude Code</td>
+<td>工程协作</td>
+<td>代码库理解、大型开发任务、代码审查</td>
+<td>替代产品判断</td>
+</tr>
+<tr>
+<td><strong>计算与自动化</strong></td>
+<td>Python / 脚本</td>
+<td>计算与数据处理</td>
+<td>数据处理、渲染、表格、模型、批量操作</td>
+<td>价值判断</td>
+</tr>
+<tr>
+<td><strong>自动化集成</strong></td>
+<td>n8n / Zapier / Make</td>
+<td>流程自动化</td>
+<td>触发器、跨系统数据同步、定时任务</td>
+<td>自行定义业务目标</td>
+</tr>
+<tr>
+<td><strong>体系内能力</strong></td>
 <td>Skill</td>
-<td>能力资产</td>
-<td>高频可复用能力</td>
+<td>可复用能力资产</td>
+<td>高频标准化任务</td>
 <td>临时内容堆放</td>
 </tr>
 <tr>
+<td><strong>体系内能力</strong></td>
 <td>Agent</td>
-<td>任务角色</td>
+<td>角色化任务执行体</td>
 <td>带边界执行任务</td>
 <td>自行定义目标</td>
 </tr>
 <tr>
+<td><strong>体系内能力</strong></td>
 <td>Digital Employee</td>
 <td>长期履职角色</td>
-<td>稳定职责运行</td>
+<td>稳定职责持续运行</td>
 <td>超授权行动</td>
 </tr>
 </tbody>

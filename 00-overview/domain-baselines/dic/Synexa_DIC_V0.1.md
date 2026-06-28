@@ -17,23 +17,7 @@ stat_override:
 
 ---
 
-Synexa Digital-Intelligence Collaboration Baseline V0.1
-
-DICB V0.1
-
-文件类型：Domain / Operational Baseline｜专题运行基线
-中文正式名：超智科技·数智协同基线
-英文正式名：Synexa Digital-Intelligence Collaboration Baseline
-对外轻主名称：DICB
-当前版本：V0.1
-当前状态：Working Draft / Markdown Master Source
-上位文件：超智科技认知基线 V3.10
-维护入口：智核中枢·iS-Core
-首个应用样板：Nex₂U / 番医项目功能台预备
-文件主源建议名：Synexa_DIC_Baseline_V0.1.md
-后续输出：Synexa_DIC_Baseline_Render_V0.1.py / Synexa_DIC_Baseline_V0.1.html
-生产链条：DIC·BBMap → DIC·BBL → DICB
-当前阶段：Step4|DICB md|Markdown 主源
+> 本文件身份、版本、上位文件及维护入口详见 CH00.1。
 
 ⸻
 
@@ -167,33 +151,7 @@ DICB 至少承担十项核心功能：
 
 ES.4 DIC 的主流程
 
-DICB 的标准协同路径如下：
-
-目标提出
-  ↓
-人智定向
-  ↓
-任务归位
-  ↓
-路径推演
-  ↓
-节点拆解
-  ↓
-角色分工
-  ↓
-工具 / Agent 调用
-  ↓
-执行交付
-  ↓
-质量检查
-  ↓
-人智裁决
-  ↓
-SSOT / PCS 回写
-  ↓
-经验资产沉淀
-  ↓
-下一轮优化
+DICB 的标准协同路径（13 步）详见 CH04.1。
 
 这条路径不是为了增加流程，而是为了让每一次执行都能被理解、被分派、被检查、被复盘、被沉淀。
 
@@ -205,11 +163,7 @@ DICB 的首个应用样板是 Nex₂U。
 
 Nex₂U 涉及营养规则、用户需求、菜品结构、点餐履约、供应协同、现场执行、数据反馈和经验沉淀，天然适合作为数智协同的真实验证场。
 
-Nex₂U 当前不应先追求完整大系统，而应先跑通最小闭环：
-
-点餐体验 → 生产保障 → 服务运维 → 采购支持 → 人力管理 → 财务管控 → 经验沉淀
-
-详见 CH13.3 最小闭环节点表。
+Nex₂U 当前不应先追求完整大系统，而应先跑通最小闭环（详见 CH13.3）。
 
 ⸻
 
@@ -295,18 +249,7 @@ DICB 不适用于：
 
 数智协同，是指在人的方向设定与责任承担之下，将 AI、Agent、数据、代码、工具、业务系统、供应网络、现场执行与经验资产组织成可执行、可反馈、可优化的协同运行机制。
 
-它不是单纯 AI 使用，不是自动化替代人，也不是做一个软件系统。
-
-它的核心是：
-
-人设方向；
-机器出方案；
-系统组织任务；
-Agent 执行动作；
-工具提供能力；
-项目验证结果；
-经验沉淀资产；
-下一轮持续优化。
+> **核心逻辑**：人设方向 → 机器出方案 → 系统组织任务 → Agent 执行动作 → 工具提供能力 → 项目验证结果 → 经验沉淀资产 → 持续优化。
 
 ⸻
 
@@ -383,11 +326,7 @@ DICB 中，必须区分主体与能力体。
 
 ### CH02.2 人智判断 Human Judgment
 
-人智判断，是人在方向、价值、责任、裁决、例外处理和高风险取舍中的不可替代作用。
-
-人智不是系统补丁，而是方向锚与责任锚。
-
-DIC 中的人智至少承担五类职责：
+人智判断是方向锚与责任锚，在 DIC 中至少承担五类职责：
 
 1. 定义目标；
 2. 设定边界；
@@ -463,13 +402,13 @@ Skill 不是文档说明，而是可触发、可复用、可组合、可审计�
 
 ### CH03.1 为什么需要任务归位
 
-任务不先归位，就不应直接执行；未归位的执行，往往会造成重复劳动、责任模糊和经验流失。
-
-DIC 的任务归位不是行政分工，而是为了确保每个任务都有正确的认知层级、执行角色、质量门和回流位置。
+> **核心逻辑**：任务不先归位，就不应直接执行。归位是为了确保每个任务都有正确的认知层级、执行角色、质量门和回流位置。
 
 ⸻
 
 ### CH03.2 任务归位类型
+
+> 完整任务路由表（含风险等级与回流位置）详见 **Appendix B｜Task Routing Table**。
 
 | 归位类型 | 触发条件 | 典型输出 |
 |---|---|---|
@@ -479,8 +418,6 @@ DIC 的任务归位不是行政分工，而是为了确保每个任务都有正�
 | iS-Hub | 工具、Agent、平台、外部案例评估 | Tool Registry、情报清单 |
 | iS-Lab | 未成熟想法、轻量验证 | 可行性判断、立项建议 |
 | PCS | 已归属具体项目的执行推进 | 项目任务、里程碑、复盘 |
-| External Agent | 需要文件操作、代码、页面、资料整理 | 执行包、文件产出 |
-| New Project | 出现新业务对象、长期机制或独立项目域 | 项目最小定义、PCS |
 
 ⸻
 
@@ -907,11 +844,7 @@ DIC 不是工具说明书，但必须定义工具的协同位置。
 
 ### CH09.1 试错定义
 
-试错闭环，是在明确方向与边界后，以最小可验证动作进行快速验证、记录结果、复盘判断、沉淀经验并决定继续、修正、暂停或升级的机制。
-
-小步快跑不是无边界试错，而是在明确方向、风险和记录机制之后，用最小闭环验证真实世界反馈。
-
-没有记录、没有复盘、没有回流的试错，只是消耗，不是学习。
+> **核心逻辑**：小步快跑不是无边界试错，而是在明确方向、风险和记录机制之后，用最小闭环验证真实世界反馈。没有记录、没有复盘、没有回流的试错，只是消耗，不是学习。
 
 ⸻
 
@@ -1144,17 +1077,11 @@ Judgment Asset 至少包含：
 
 ## CH 13｜面向 Nex₂U 的应用示范
 
-### CH13.1 为什么以 Nex₂U 作为首个样板
+### CH13.1 Nex₂U 作为首个样板的定位
 
-Nex₂U 是超智体系当前推进中的重要实战样板，涉及用户需求、营养规则、菜品结构、订单履约、供应协同、现场反馈与经验沉淀。
+Nex₂U 涉及用户需求、营养规则、菜品结构、订单履约、供应协同、现场反馈与经验沉淀，天然适合作为 DICB 的首个真实验证场。
 
-因此，Nex₂U 适合作为 DICB 的首个真实验证场。
-
-⸻
-
-### CH13.2 Nex₂U 当前关键判断
-
-Nex₂U 当前关键不是先做漂亮前端，而是跑通规则、菜品、订单、履约、供应、反馈和经验沉淀的最小闭环。
+> **当前关键判断**：Nex₂U 当前关键不是先做漂亮前端，而是跑通规则、菜品、订单、履约、供应、反馈和经验沉淀的最小闭环。
 
 ⸻
 
@@ -1321,15 +1248,7 @@ DIC V0.1 完成后，不建议立即升级 V3.10。
 
 ## Appendix A｜AI / Agent / Tool Capability Matrix
 
-| Tool Name | Tool Type | Best Use | Forbidden Use | Required Input | Output Type | QA Gate | Owner | Status | Registry Destination |
-|---|---|---|---|---|---|---|---|---|---|
-| ChatGPT | LLM / Structuring | 战略整理、文件主稿、执行包 | 替代 SSOT 裁决 | 背景、目标、边界 | 文档 / 结构 | 人智审校 | iS-Core | Active | Tool Registry |
-| Claude | LLM / Review | 长文档复核、第二视角 | 单独业务裁决 | 文档、审校目标 | Review Note | 结构一致性 | iS-Matrix | Candidate | Tool Registry |
-| Codex | Code Agent | 代码、脚本、测试 | 业务规则裁决 | 执行包、仓库路径 | Code / PR | 测试通过 | Codex Owner | Candidate | Agent Registry |
-| Claude Code | Code Agent | 工程理解、代码库协作 | 替代产品判断 | 仓库、任务说明 | Code / Review | 工程审查 | Dev Owner | Candidate | Agent Registry |
-| Python | Automation | 表格、清洗、渲染、计算 | 价值判断 | 数据、脚本需求 | CSV / HTML / JSON | 输出校验 | iS-Matrix / Manus | Active | Tool Registry |
-| Manus | Execution Agent | 文件工程、HTML、PPT、GitHub整理 | 自行改写上位定义 | Handoff Package | 文件包 | iS-Core QA | Manus | Active | Agent Registry |
-| Kimi | Research Agent | 中文长资料、政策、供应商资料 | 最终裁决 | 资料与问题 | Research Note | 事实核查 | iS-Hub | Candidate | Tool Registry |
+> 本表已合并至正文，详见 **CH07.2 工具能力归位表**。
 
 ⸻
 
@@ -1517,7 +1436,7 @@ source_project:
 ## Appendix G｜Machine-Readable Index
 
 {
-  "document_id": "Synexa_DIC_Baseline_V0.1",
+  "document_id": "Synexa_DIC_V0.1",
   "zh_name": "超智科技·数智协同基线",
   "en_name": "Synexa Digital-Intelligence Collaboration Baseline",
   "short_name": "DICB",
@@ -1539,9 +1458,9 @@ source_project:
     "Project-to-Skill"
   ],
   "output_files": {
-    "markdown": "Synexa_DIC_Baseline_V0.1.md",
-    "render_script": "Synexa_DIC_Baseline_Render_V0.1.py",
-    "html": "Synexa_DIC_Baseline_V0.1.html"
+    "markdown": "Synexa_DIC_V0.1.md",
+    "render_script": "Synexa_DIC_Render_V0.1.py",
+    "html": "Synexa_DIC_V0.1.html"
   },
   "next_steps": [
     "Generate render script",
@@ -1564,14 +1483,6 @@ source_project:
 
 Closing Statement｜结语
 
-V3.10 定义超智的总图，DICB 定义超智的走法。
-
-BBMap 定蓝图，BBLx 定章节逻辑，DICB 定正式主源。
-
-先让规则成文，再让 GitHub 和项目台按规则运行。
-
-DICB 的核心价值，不是把工具列全，而是让人和机器在真实项目中形成共同协同秩序，并把问题、规则、判断和经验持续沉淀为可复用资产。
-
-⸻
-
-本文件为《超智科技·数智协同基线 V0.1》Markdown 主源草案。后续所有事实性修改应回到本 Markdown 主源进行。HTML / PDF / JSON / ZIP 均为输出形态，不替代主源。
+> **V3.10 定义超智的总图，DICB 定义超智的走法。**
+> 
+> DICB 的核心价值，不是把工具列全，而是让人和机器在真实项目中形成共同协同秩序，并把问题、规则、判断和经验持续沉淀为可复用资产。

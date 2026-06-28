@@ -13,15 +13,15 @@
 ```
 Step1  关系与术语锚定（已完成，存于 iS-Core 对话记录）
   ↓
-Step2  DIC·BBM｜数智协同基线蓝图地图          → Synexa_DIC_Baseline_BBM_V0.1.md ✅
+Step2  DIC·BBMap｜数智协同基线蓝图地图          → Synexa_DIC_BBMap_V0.1.md ✅
   ↓
-Step3  DIC·BBLx｜数智协同章节展开逻辑          → Synexa_DIC_Baseline_BBLx_V0.1.md ✅
+Step3  DIC·BBLx｜数智协同章节展开逻辑          → Synexa_DIC_BBLx_V0.1.md ✅
   ↓
-Step4  DICB｜Markdown 主源                    → Synexa_DIC_Baseline_V0.1.md ✅
+Step4  DICB｜Markdown 主源                    → Synexa_DIC_V0.1.md ✅
   ↓
-Step5  py｜渲染脚本                           → Synexa_Baseline_Render_Core_V0.1.py ✅
+Step5  py｜渲染脚本                           → Synexa_DIC_Render_V0.1.py ✅
   ↓
-Step6  html｜阅读版                           → Synexa_DIC_Baseline_V0.1.html ✅
+Step6  html｜阅读版                           → Synexa_DIC_V0.1.html ✅
 ```
 
 ---
@@ -30,17 +30,17 @@ Step6  html｜阅读版                           → Synexa_DIC_Baseline_V0.1.h
 
 | 文件 | 版本 | 状态 | 说明 |
 |---|---|---|---|
-| `Synexa_DIC_Baseline_BBM_V0.1.md` | V0.1 | ✅ 已落盘 | Step2 蓝图地图，18章节 |
-| `Synexa_DIC_Baseline_BBLx_V0.1.md` | V0.1 | ✅ 已落盘 | Step3 章节展开逻辑，32章节 |
-| `Synexa_DIC_Baseline_V0.1.md` | V0.1 | ✅ 已落盘 | Step4 Markdown 主源，15章节+8附录 |
-| `Synexa_Baseline_Render_Core_V0.1.py` | V0.1 | ✅ 已落盘（全局渲染器，存放于 scripts/） | Step5 渲染脚本，全局通用 |
-| `Synexa_DIC_Baseline_V0.1.html` | V0.1 | ✅ 已生成 | Step6 HTML 阅读版，53KB |
+| `Synexa_DIC_BBMap_V0.1.md` | V0.1 | ✅ 已落盘 | Step2 蓝图地图，18章节 |
+| `Synexa_DIC_BBLx_V0.1.md` | V0.1 | ✅ 已落盘 | Step3 章节展开逻辑，32章节 |
+| `Synexa_DIC_V0.1.md` | V0.1 | ✅ 已落盘 | Step4 Markdown 主源，15章节+8附录 |
+| `Synexa_DIC_Render_V0.1.py` | V0.1 | ✅ 已落盘 | Step5 渲染脚本，全局通用 |
+| `Synexa_DIC_V0.1.html` | V0.1 | ✅ 已生成 | Step6 HTML 阅读版 |
 
 ---
 
 ## 上下位关系
 
-- **上位**：《超智科技认知基线 V3.10》（Master SSOT，不替代，继承展开）
+- **上位**：《超智科技认知基线 V3.10》（SCI V3.10，不替代，继承展开）
 - **下位**：各项目 PCS、SOP、Skill、Experience Asset
 - **首个验证场**：Nex₂U（见 BBLx CH13）
 

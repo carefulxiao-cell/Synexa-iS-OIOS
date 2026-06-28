@@ -1,524 +1,379 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>超智科技·数智协同基线｜DICB V0.1</title>
-  <style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超智科技·数智协同基线｜DICB V0.1</title>
+<style>
 
 :root {
-  --bg: #f7f7f4;
-  --paper: #ffffff;
-  --ink: #1d1d1f;
-  --muted: #6b6b6f;
-  --line: #e7e3dc;
-  --accent: #8a5a44;
-  --accent-deep: #5a392b;
-  --accent-soft: #f1e8df;
-  --code-bg: #1f2430;
-  --code-ink: #f3f4f6;
-  --table-head: #f5efe8;
-  --shadow: 0 10px 30px rgba(0,0,0,0.055);
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+
+  /* L3 台系统字体降级栈（BBM Section 5.4）*/
+  --font-en-theme: 'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
+  --font-zh-title: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
+  --font-zh-body:  'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-data:     'JetBrains Mono', 'SF Mono', 'Consolas', 'Courier New', monospace;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--ink);
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    "PingFang SC",
-    "Hiragino Sans GB",
-    "Microsoft YaHei",
-    Arial,
-    sans-serif;
-  line-height: 1.75;
-  font-size: 16px;
+  background: var(--bg-soft);
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
 }
 
-.layout {
-  display: grid;
-  grid-template-columns: 310px minmax(0, 1fr);
-  min-height: 100vh;
-}
-
-.sidebar {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  overflow: auto;
-  padding: 28px 22px;
-  background: #fbfaf7;
-  border-right: 1px solid var(--line);
-}
-
-.sidebar .brand {
-  font-size: 13px;
-  color: var(--accent);
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-  font-weight: 700;
-}
-
-.sidebar h1 {
-  font-size: 20px;
-  line-height: 1.35;
-  margin: 0 0 8px 0;
-}
-
-.sidebar .subtitle {
-  font-size: 13px;
-  color: var(--muted);
-  margin-bottom: 22px;
-}
-
-.toc {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.toc a {
-  color: #3b3b3f;
-  text-decoration: none;
-  border-radius: 8px;
-  padding: 5px 8px;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-.toc a:hover {
-  background: var(--accent-soft);
-  color: var(--accent);
-}
-
-.toc-l1 {
-  font-weight: 700;
-  margin-top: 10px;
-}
-
-.toc-l2 {
-  padding-left: 18px !important;
-}
-
-.toc-l3 {
-  padding-left: 32px !important;
-  color: var(--muted) !important;
-}
-
-.main {
-  padding: 48px 56px 80px;
-}
-
-.paper {
-  max-width: 1120px;
+/* ── 页面容器 ── */
+.page-wrap {
+  max-width: min(1280px, calc(100% - 48px));
   margin: 0 auto;
-  background: var(--paper);
-  box-shadow: var(--shadow);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  padding: 56px 68px;
+  padding: 40px 0 80px;
 }
 
+/* ── 封面区域 ── */
 .cover {
-  border-bottom: 1px solid var(--line);
-  margin-bottom: 36px;
-  padding-bottom: 28px;
-}
-
-.cover .kicker {
-  color: var(--accent);
-  font-weight: 800;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  font-size: 13px;
-}
-
-.cover h1 {
-  margin: 8px 0 6px;
-  font-size: 34px;
-  line-height: 1.2;
-}
-
-.cover .subtitle {
-  color: var(--muted);
-  font-size: 17px;
-}
-
-.cover .meta {
-  margin-top: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent-deep);
-  font-size: 12px;
-  font-weight: 700;
-}
-
-.notice {
-  margin-top: 18px;
-  padding: 14px 16px;
-  background: #fff8ea;
-  border: 1px solid #ead9aa;
+  background: #fff;
   border-radius: 12px;
-  color: #5c4822;
+  padding: 56px 64px 48px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
 }
 
-.stats {
-  margin-top: 14px;
+.topline {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
   color: var(--muted);
-  font-size: 13px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  line-height: 1.35;
-  margin-top: 1.7em;
-  margin-bottom: .65em;
-  color: #151515;
+.cover-title {
+  font-family: var(--font-zh-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 12px;
 }
 
-h1 {
-  font-size: 30px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--line);
-}
-
-h2 {
-  font-size: 24px;
-}
-
-h3 {
+.cover-en {
+  font-family: var(--font-en-theme);
   font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
 }
 
-h4 {
-  font-size: 17px;
+.cover-sub {
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
 }
 
-p {
-  margin: .75em 0;
+.cover-quote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 20px;
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  color: var(--mid);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 32px;
+  line-height: 1.8;
 }
 
-a {
-  color: var(--accent-deep);
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
 }
 
-a.anchor {
-  text-decoration: none;
-  color: #c9b7aa;
-  font-weight: 400;
-  margin-right: 2px;
-}
-
-a.anchor:hover {
-  color: var(--accent);
-}
-
-blockquote {
-  margin: 20px 0;
-  padding: 14px 18px;
-  border-left: 4px solid var(--accent);
-  background: var(--accent-soft);
-  color: #3d332d;
-  border-radius: 0 10px 10px 0;
-}
-
-code {
-  font-family:
-    "SFMono-Regular",
-    Consolas,
-    "Liberation Mono",
-    Menlo,
-    monospace;
-  background: #f0eee9;
-  color: #3b2c24;
-  padding: 2px 5px;
-  border-radius: 5px;
-  font-size: .92em;
-}
-
-pre {
-  background: var(--code-bg);
-  color: var(--code-ink);
-  padding: 18px 20px;
-  border-radius: 14px;
-  overflow: auto;
-  line-height: 1.55;
-  margin: 20px 0;
-}
-
-pre code {
-  background: transparent;
-  color: inherit;
-  padding: 0;
-}
-
-.table-wrap {
-  width: 100%;
-  overflow-x: auto;
-  margin: 20px 0 26px;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-}
-
-table {
-  border-collapse: collapse;
-  width: 100%;
-  min-width: 720px;
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
   background: #fff;
 }
 
-th, td {
-  padding: 10px 12px;
-  border-bottom: 1px solid var(--line);
-  border-right: 1px solid var(--line);
-  text-align: left;
-  vertical-align: top;
-}
-
-th:last-child, td:last-child {
-  border-right: 0;
-}
-
-tr:last-child td {
-  border-bottom: 0;
-}
-
-thead th {
-  background: var(--table-head);
-  color: #2d241f;
+.stat .num {
+  font-family: var(--font-en-theme);
+  font-size: 32px;
   font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
 }
 
-ul, ol {
-  padding-left: 1.45em;
+.stat .statlabel {
+  font-family: var(--font-zh-body);
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 4px;
 }
 
-li {
-  margin: .25em 0;
+.stat .statsub {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
 }
 
-hr {
-  border: 0;
-  border-top: 1px solid var(--line);
-  margin: 34px 0;
+/* ── 章节卡片 ── */
+.chapter {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px 48px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
 }
 
-.footer {
-  margin-top: 52px;
-  padding-top: 24px;
-  border-top: 1px solid var(--line);
-  color: var(--muted);
+.eyebrow {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ── 标题层级 ── */
+h1 {
+  font-family: var(--font-zh-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: var(--font-zh-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+
+h3 {
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+
+h4 {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 16px 0 8px;
+}
+
+/* ── 表格 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
   font-size: 13px;
 }
 
-@media print {
-  .sidebar {
-    display: none;
-  }
-
-  .layout {
-    display: block;
-  }
-
-  .main {
-    padding: 0;
-  }
-
-  .paper {
-    box-shadow: none;
-    border: 0;
-    max-width: none;
-    padding: 24px;
-  }
+th {
+  background: #F0F2F5;
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
 }
 
-@media (max-width: 980px) {
-  .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .sidebar {
-    position: relative;
-    height: auto;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .main {
-    padding: 24px 16px 48px;
-  }
-
-  .paper {
-    padding: 32px 22px;
-    border-radius: 14px;
-  }
-
-  .cover h1 {
-    font-size: 26px;
-  }
+td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
 }
 
-  </style>
+tr:nth-child(even) td { background: var(--bg-soft); }
+
+/* ── 标签组件 ── */
+.tag {
+  display: inline-block;
+  background: rgba(40,204,131,.12);
+  color: #1a9e63;
+  border: 1px solid rgba(40,204,131,.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+/* ── 引言/blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: var(--mid);
+}
+
+/* ── 代码 ── */
+code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+
+pre {
+  background: #0B1220;
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+pre code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: #e2e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── 段落/列表 ── */
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 4px 0; line-height: 1.7; }
+
+strong { font-weight: 700; color: var(--dark); }
+em { color: var(--purple); font-style: normal; font-weight: 600; }
+
+/* ── 分隔线 ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* ── 页脚 ── */
+.doc-footer {
+  text-align: center;
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+</style>
 </head>
 <body>
-  <div class="layout">
-    <aside class="sidebar">
-      <div class="brand">Synexa Baseline Renderer</div>
-      <h1>超智科技·数智协同基线｜DICB V0.1</h1>
-      <div class="subtitle">Synexa Digital-Intelligence Collaboration Baseline</div>
-      <nav class="toc">
-        <a class="toc-l1" href="#超智科技数智协同基线-DICB-V0.1">超智科技·数智协同基线｜DICB V0.1</a>
-<a class="toc-l2" href="#CH-1-Human-Machine-Digital-Baseline-Protocol">CH(-1)｜Human-Machine-Digital Baseline Protocol</a>
-<a class="toc-l3" href="#CH-1.1-文件共识">CH(-1).1 文件共识</a>
-<a class="toc-l3" href="#CH-1.2-文件主源规则">CH(-1).2 文件主源规则</a>
-<a class="toc-l3" href="#CH-1.3-人机共读原则">CH(-1).3 人机共读原则</a>
-<a class="toc-l2" href="#CH-00-文件定位与使用边界">CH 00｜文件定位与使用边界</a>
-<a class="toc-l3" href="#CH00.1-文件身份">CH00.1 文件身份</a>
-<a class="toc-l3" href="#CH00.2-不替代原则">CH00.2 不替代原则</a>
-<a class="toc-l3" href="#CH00.3-适用对象">CH00.3 适用对象</a>
-<a class="toc-l3" href="#CH00.4-不适用对象">CH00.4 不适用对象</a>
-<a class="toc-l2" href="#CH-01-数智协同总定义">CH 01｜数智协同总定义</a>
-<a class="toc-l3" href="#CH01.1-正式定义">CH01.1 正式定义</a>
-<a class="toc-l3" href="#CH01.2-数智协同不是什么">CH01.2 数智协同不是什么</a>
-<a class="toc-l3" href="#CH01.3-数智协同的构成要素">CH01.3 数智协同的构成要素</a>
-<a class="toc-l3" href="#CH01.4-DIC-与-Synexa-iS-的关系">CH01.4 DIC 与 Synexa iS 的关系</a>
-<a class="toc-l2" href="#CH-02-人机器与系统的角色关系">CH 02｜人、机器与系统的角色关系</a>
-<a class="toc-l3" href="#CH02.1-主体与能力体">CH02.1 主体与能力体</a>
-<a class="toc-l3" href="#CH02.2-人智判断-Human-Judgment">CH02.2 人智判断 Human Judgment</a>
-<a class="toc-l3" href="#CH02.3-AI--LLM">CH02.3 AI / LLM</a>
-<a class="toc-l3" href="#CH02.4-Agent">CH02.4 Agent</a>
-<a class="toc-l3" href="#CH02.5-SOP--Skill--Agent--Digital-Employee-区分">CH02.5 SOP / Skill / Agent / Digital Employee 区分</a>
-<a class="toc-l2" href="#CH-03-任务归位机制">CH 03｜任务归位机制</a>
-<a class="toc-l3" href="#CH03.1-为什么需要任务归位">CH03.1 为什么需要任务归位</a>
-<a class="toc-l3" href="#CH03.2-任务归位类型">CH03.2 任务归位类型</a>
-<a class="toc-l3" href="#CH03.3-任务归位输出字段">CH03.3 任务归位输出字段</a>
-<a class="toc-l3" href="#CH03.4-新项目触发条件">CH03.4 新项目触发条件</a>
-<a class="toc-l2" href="#CH-04-标准协同路径">CH 04｜标准协同路径</a>
-<a class="toc-l3" href="#CH04.1-全局主流程">CH04.1 全局主流程</a>
-<a class="toc-l3" href="#CH04.2-路径展开">CH04.2 路径展开</a>
-<a class="toc-l3" href="#CH04.3-人智定向">CH04.3 人智定向</a>
-<a class="toc-l3" href="#CH04.4-人智裁决">CH04.4 人智裁决</a>
-<a class="toc-l2" href="#CH-05-任务节点设计机制">CH 05｜任务节点设计机制</a>
-<a class="toc-l3" href="#CH05.1-任务节点定义">CH05.1 任务节点定义</a>
-<a class="toc-l3" href="#CH05.2-Task-Node-标准字段">CH05.2 Task Node 标准字段</a>
-<a class="toc-l3" href="#CH05.3-节点状态枚举">CH05.3 节点状态枚举</a>
-<a class="toc-l3" href="#CH05.4-节点质量门">CH05.4 节点质量门</a>
-<a class="toc-l2" href="#CH-06-不同任务类型的节点模板">CH 06｜不同任务类型的节点模板</a>
-<a class="toc-l3" href="#CH06.1-战略推演任务节点">CH06.1 战略推演任务节点</a>
-<a class="toc-l3" href="#CH06.2-项目推进任务节点">CH06.2 项目推进任务节点</a>
-<a class="toc-l3" href="#CH06.3-文档生产任务节点">CH06.3 文档生产任务节点</a>
-<a class="toc-l3" href="#CH06.4-工具选型任务节点">CH06.4 工具选型任务节点</a>
-<a class="toc-l3" href="#CH06.5-代码执行任务节点">CH06.5 代码执行任务节点</a>
-<a class="toc-l3" href="#CH06.6-Nex₂U-业务任务节点">CH06.6 Nex₂U 业务任务节点</a>
-<a class="toc-l3" href="#CH06.7-异常处理任务节点">CH06.7 异常处理任务节点</a>
-<a class="toc-l3" href="#CH06.8-外部-Agent-执行任务节点">CH06.8 外部 Agent 执行任务节点</a>
-<a class="toc-l2" href="#CH-07-AI--Agent--工具能力归位">CH 07｜AI / Agent / 工具能力归位</a>
-<a class="toc-l3" href="#CH07.1-工具归位原则">CH07.1 工具归位原则</a>
-<a class="toc-l3" href="#CH07.3-工具调用基本规则">CH07.3 工具调用基本规则</a>
-<a class="toc-l2" href="#CH-08-执行包机制">CH 08｜执行包机制</a>
-<a class="toc-l3" href="#CH08.1-执行包定义">CH08.1 执行包定义</a>
-<a class="toc-l3" href="#CH08.2-执行包标准字段">CH08.2 执行包标准字段</a>
-<a class="toc-l3" href="#CH08.3-常见执行包类型">CH08.3 常见执行包类型</a>
-<a class="toc-l3" href="#CH08.4-暂停条件">CH08.4 暂停条件</a>
-<a class="toc-l2" href="#CH-09-小步快跑与快速试错机制">CH 09｜小步快跑与快速试错机制</a>
-<a class="toc-l3" href="#CH09.1-试错定义">CH09.1 试错定义</a>
-<a class="toc-l3" href="#CH09.2-Trial-Loop-标准字段">CH09.2 Trial Loop 标准字段</a>
-<a class="toc-l3" href="#CH09.3-试错动作结论">CH09.3 试错动作结论</a>
-<a class="toc-l3" href="#CH09.4-可试错与不可试错">CH09.4 可试错与不可试错</a>
-<a class="toc-l2" href="#CH-10-问题异常与经验沉淀机制">CH 10｜问题、异常与经验沉淀机制</a>
-<a class="toc-l3" href="#CH10.1-问题到资产的路径">CH10.1 问题到资产的路径</a>
-<a class="toc-l3" href="#CH10.2-问题分类表">CH10.2 问题分类表</a>
-<a class="toc-l3" href="#CH10.3-经验资产类型">CH10.3 经验资产类型</a>
-<a class="toc-l3" href="#CH10.4-经验沉淀原则">CH10.4 经验沉淀原则</a>
-<a class="toc-l2" href="#CH-11-Project-to-Skill-数智蒸馏机制">CH 11｜Project-to-Skill 数智蒸馏机制</a>
-<a class="toc-l3" href="#CH11.1-定义">CH11.1 定义</a>
-<a class="toc-l3" href="#CH11.2-标准蒸馏路径">CH11.2 标准蒸馏路径</a>
-<a class="toc-l3" href="#CH11.3-Project-to-Skill-蒸馏表">CH11.3 Project-to-Skill 蒸馏表</a>
-<a class="toc-l3" href="#CH11.4-Skill-成熟条件">CH11.4 Skill 成熟条件</a>
-<a class="toc-l2" href="#CH-12-人智决策与风险权限">CH 12｜人智决策与风险权限</a>
-<a class="toc-l3" href="#CH12.1-风险权限原则">CH12.1 风险权限原则</a>
-<a class="toc-l3" href="#CH12.2-风险权限表">CH12.2 风险权限表</a>
-<a class="toc-l3" href="#CH12.3-升级触发条件">CH12.3 升级触发条件</a>
-<a class="toc-l3" href="#CH12.4-Judgment-Asset">CH12.4 Judgment Asset</a>
-<a class="toc-l2" href="#CH-13-面向-Nex₂U-的应用示范">CH 13｜面向 Nex₂U 的应用示范</a>
-<a class="toc-l3" href="#CH13.1-Nex₂U-作为首个样板的定位">CH13.1 Nex₂U 作为首个样板的定位</a>
-<a class="toc-l3" href="#CH13.3-Nex₂U-最小闭环">CH13.3 Nex₂U 最小闭环</a>
-<a class="toc-l3" href="#CH13.4-Nex₂U-最小闭环节点">CH13.4 Nex₂U 最小闭环节点</a>
-<a class="toc-l3" href="#CH13.5-首批-Skill-候选">CH13.5 首批 Skill 候选</a>
-<a class="toc-l3" href="#CH13.6-与番医项目的关系">CH13.6 与番医项目的关系</a>
-<a class="toc-l2" href="#CH-14-阶段路线图">CH 14｜阶段路线图</a>
-<a class="toc-l3" href="#CH14.1-阶段总览">CH14.1 阶段总览</a>
-<a class="toc-l3" href="#CH14.2-阶段优先级">CH14.2 阶段优先级</a>
-<a class="toc-l3" href="#CH14.3-当前建议推进顺序">CH14.3 当前建议推进顺序</a>
-<a class="toc-l2" href="#CH-15-DIC-版本治理与后续升级">CH 15｜DIC 版本治理与后续升级</a>
-<a class="toc-l3" href="#CH15.1-版本路径">CH15.1 版本路径</a>
-<a class="toc-l3" href="#CH15.2-更新归位规则">CH15.2 更新归位规则</a>
-<a class="toc-l3" href="#CH15.3-V3.10-反向补丁原则">CH15.3 V3.10 反向补丁原则</a>
-<a class="toc-l2" href="#Appendix-A-AI--Agent--Tool-Capability-Matrix">Appendix A｜AI / Agent / Tool Capability Matrix</a>
-<a class="toc-l2" href="#Appendix-B-Task-Routing-Table">Appendix B｜Task Routing Table</a>
-<a class="toc-l2" href="#Appendix-C-Task-Node-Template">Appendix C｜Task Node Template</a>
-<a class="toc-l2" href="#Appendix-D-Execution-Package-Template">Appendix D｜Execution Package Template</a>
-<a class="toc-l2" href="#Appendix-E-Trial-Loop-Record-Template">Appendix E｜Trial Loop Record Template</a>
-<a class="toc-l2" href="#Appendix-F-Experience-Asset-Capture-Template">Appendix F｜Experience Asset Capture Template</a>
-<a class="toc-l2" href="#Appendix-G-Machine-Readable-Index">Appendix G｜Machine-Readable Index</a>
-<a class="toc-l2" href="#Appendix-H-Version-Register--Change-Log">Appendix H｜Version Register &amp; Change Log</a>
-      </nav>
-    </aside>
+<div class="page-wrap">
 
-    <main class="main">
-      <article class="paper">
-        <section class="cover">
-          <div class="kicker">Domain / Operational Baseline</div>
-          <h1>超智科技·数智协同基线｜DICB V0.1</h1>
-          <div class="subtitle">Synexa Digital-Intelligence Collaboration Baseline</div>
-          <div class="meta">
-            <span class="badge">V0.1</span>
-            <span class="badge">Working Draft</span>
-            <span class="badge">Markdown → HTML</span>
-            <span class="badge">Source: Synexa_DIC_V0.1.md</span>
-          </div>
-          <div class="notice">
-            本 HTML 为阅读版 / 检查版，不是事实主源。事实性修改必须回到 Markdown 主源：
-            <strong>Synexa_DIC_V0.1.md</strong>
-          </div>
-          <div class="stats">Headings: 96 · Tables: 41 · Code Blocks: 3 · Paragraphs: 180</div>
-        </section>
+  <div class="cover">
+    <div class="topline">SYNEXA · DIC BASELINE · INTERNAL SSOT · DOMAIN BASELINE</div>
+    <div class="cover-title">超智科技·数智协同基线</div>
+    <div class="cover-en">Synexa Digital-Intelligence Collaboration Baseline V0.1</div>
+    <div class="cover-sub">Defining the operating logic of human-AI collaboration within the Synexa ecosystem.</div>
+    <div class="cover-quote">先让规则成文，再让 GitHub 和项目台按规则运行。V3.10 定义超智的总图，DICB 定义超智的走法。</div>
+    <div class="statgrid">
+      <div class="stat">
+        <div class="num">13</div>
+        <div class="statlabel">质量门</div>
+        <div class="statsub">Quality Gates</div>
+      </div>
+      <div class="stat">
+        <div class="num">6</div>
+        <div class="statlabel">触发条件</div>
+        <div class="statsub">Trigger Conditions</div>
+      </div>
+      <div class="stat">
+        <div class="num">10</div>
+        <div class="statlabel">路径节点</div>
+        <div class="statsub">Path Nodes</div>
+      </div>
+      <div class="stat">
+        <div class="num">4</div>
+        <div class="statlabel">协同主体</div>
+        <div class="statsub">Agent Types</div>
+      </div>
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="statlabel">核心机制层</div>
+        <div class="statsub">Core Mechanisms</div>
+      </div>
+    </div>
+  </div>
 
-        <p>&lt;!-- COVER topline: SYNEXA · DIC BASELINE · INTERNAL SSOT · DOMAIN BASELINE title: 超智科技·数智协同基线 en: Synexa Digital-Intelligence Collaboration Baseline V0.1 sub: Defining the operating logic of human-AI collaboration within the Synexa ecosystem. quote: 先让规则成文，再让 GitHub 和项目台按规则运行。V3.10 定义超智的总图，DICB 定义超智的走法。 stat_override:</p>
-<ul>
-<li>13 | 质量门 | Quality Gates</li>
-<li>6 | 触发条件 | Trigger Conditions</li>
-<li>10 | 路径节点 | Path Nodes</li>
-<li>4 | 协同主体 | Agent Types</li>
-<li>3 | 核心机制层 | Core Mechanisms</li>
-<p>--&gt;</p>
-</ul>
-<h1 id="超智科技数智协同基线-DICB-V0.1"><a class="anchor" href="#超智科技数智协同基线-DICB-V0.1">#</a> 超智科技·数智协同基线｜DICB V0.1</h1>
-<hr>
-<blockquote>本文件身份、版本、上位文件及维护入口详见 CH00.1。</blockquote>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h1 id="dicb-v01">超智科技·数智协同基线｜DICB V0.1</h1>
+<hr />
+<p>Synexa Digital-Intelligence Collaboration Baseline V0.1</p>
+<p>DICB V0.1</p>
+<p>文件类型：Domain / Operational Baseline｜专题运行基线<br />
+中文正式名：超智科技·数智协同基线<br />
+英文正式名：Synexa Digital-Intelligence Collaboration Baseline<br />
+对外轻主名称：DICB<br />
+当前版本：V0.1<br />
+当前状态：Working Draft / Markdown Master Source<br />
+上位文件：超智科技认知基线 V3.10<br />
+维护入口：智核中枢·iS-Core<br />
+首个应用样板：Nex₂U / 番医项目功能台预备<br />
+文件主源建议名：Synexa_DIC_Baseline_V0.1.md<br />
+后续输出：Synexa_DIC_Baseline_Render_V0.1.py / Synexa_DIC_Baseline_V0.1.html<br />
+生产链条：DIC·BBMap → DIC·BBL → DICB<br />
+当前阶段：Step4|DICB md|Markdown 主源</p>
 <p>⸻</p>
-<h2 id="CH-1-Human-Machine-Digital-Baseline-Protocol"><a class="anchor" href="#CH-1-Human-Machine-Digital-Baseline-Protocol">#</a> CH(-1)｜Human-Machine-Digital Baseline Protocol</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-1human-machine-digital-baseline-protocol">CH(-1)｜Human-Machine-Digital Baseline Protocol</h2>
 <p>人机数智共识协议</p>
-<h3 id="CH-1.1-文件共识"><a class="anchor" href="#CH-1.1-文件共识">#</a> CH(-1).1 文件共识</h3>
+<h3 id="ch-11">CH(-1).1 文件共识</h3>
 <p>《超智科技·数智协同基线｜DICB》是一份面向人类协作者、AI 智能体、数字工具、代码执行体、业务系统、项目执行体与组织经验资产共同读取的运行基线文件。</p>
 <p>它不是普通说明书，也不是 AI 工具清单，而是用于统一以下事项的共识协议：</p>
 <ol>
@@ -534,16 +389,23 @@ hr {
 </ol>
 <p>DICB 的目标不是把所有 AI 工具写得最多，而是在最小冗余下统一人类判断、机器执行、系统调度与经验沉淀的协同秩序。</p>
 <p>⸻</p>
-<h3 id="CH-1.2-文件主源规则"><a class="anchor" href="#CH-1.2-文件主源规则">#</a> CH(-1).2 文件主源规则</h3>
+<h3 id="ch-12">CH(-1).2 文件主源规则</h3>
 <p>本文件采用 Markdown 作为事实主源。</p>
-<p>Markdown 是事实主源； Python 是渲染工具； HTML 是阅读输出； PDF 是归档形态； JSON / YAML 是机器索引； ZIP 是完整交付包。</p>
+<p>Markdown 是事实主源；<br />
+Python 是渲染工具；<br />
+HTML 是阅读输出；<br />
+PDF 是归档形态；<br />
+JSON / YAML 是机器索引；<br />
+ZIP 是完整交付包。</p>
 <p>所有事实性修改必须回到 Markdown 主源，不应在 HTML、PDF 或临时聊天记录中直接修改事实内容。</p>
-<div class="table-wrap"><table>
-<thead><tr>
+<table>
+<thead>
+<tr>
 <th>文件形态</th>
 <th>作用</th>
 <th>是否事实主源</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Markdown</td>
@@ -576,16 +438,18 @@ hr {
 <td>否</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH-1.3-人机共读原则"><a class="anchor" href="#CH-1.3-人机共读原则">#</a> CH(-1).3 人机共读原则</h3>
+<h3 id="ch-13">CH(-1).3 人机共读原则</h3>
 <p>本文件需要同时服务四类读者。</p>
-<div class="table-wrap"><table>
-<thead><tr>
+<table>
+<thead>
+<tr>
 <th>读者类型</th>
 <th>读取目标</th>
 <th>使用入口</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Human</td>
@@ -608,7 +472,7 @@ hr {
 <td>CH10 / CH11 / CH15</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>因此，本文件的写法必须同时满足：</p>
 <ol>
 <li>人类可以读懂；</li>
@@ -639,12 +503,14 @@ hr {
 <p>ES.2 DIC 与《超智科技认知基线》的关系</p>
 <p>《超智科技认知基线》定方向、结构与边界；《超智科技·数智协同基线｜DICB》定路径、节点与协同动作。</p>
 <p>前者是总图，后者是走法；前者让体系不漂，后者让行动不散。</p>
-<div class="table-wrap"><table>
-<thead><tr>
+<table>
+<thead>
+<tr>
 <th>维度</th>
 <th>超智科技认知基线 V3.10</th>
 <th>DICB</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>核心问题</td>
@@ -677,7 +543,7 @@ hr {
 <td>走法与机制</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>DICB 不替代《超智科技认知基线 V3.10》，而是在其上位框架下，进一步展开人、AI、Agent、工具、代码、业务系统与真实项目之间的协同运行机制。</p>
 <p>⸻</p>
 <p>ES.3 DIC 的核心功能</p>
@@ -696,24 +562,57 @@ hr {
 </ol>
 <p>⸻</p>
 <p>ES.4 DIC 的主流程</p>
-<p>DICB 的标准协同路径（13 步）详见 CH04.1。</p>
+<p>DICB 的标准协同路径如下：</p>
+<p>目标提出<br />
+  ↓<br />
+人智定向<br />
+  ↓<br />
+任务归位<br />
+  ↓<br />
+路径推演<br />
+  ↓<br />
+节点拆解<br />
+  ↓<br />
+角色分工<br />
+  ↓<br />
+工具 / Agent 调用<br />
+  ↓<br />
+执行交付<br />
+  ↓<br />
+质量检查<br />
+  ↓<br />
+人智裁决<br />
+  ↓<br />
+SSOT / PCS 回写<br />
+  ↓<br />
+经验资产沉淀<br />
+  ↓<br />
+下一轮优化</p>
 <p>这条路径不是为了增加流程，而是为了让每一次执行都能被理解、被分派、被检查、被复盘、被沉淀。</p>
 <p>⸻</p>
 <p>ES.5 首个应用样板</p>
 <p>DICB 的首个应用样板是 Nex₂U。</p>
 <p>Nex₂U 涉及营养规则、用户需求、菜品结构、点餐履约、供应协同、现场执行、数据反馈和经验沉淀，天然适合作为数智协同的真实验证场。</p>
-<p>Nex₂U 当前不应先追求完整大系统，而应先跑通最小闭环（详见 CH13.3）。</p>
+<p>Nex₂U 当前不应先追求完整大系统，而应先跑通最小闭环：</p>
+<p>点餐体验 → 生产保障 → 服务运维 → 采购支持 → 人力管理 → 财务管控 → 经验沉淀</p>
+<p>详见 CH13.3 最小闭环节点表。</p>
 <p>⸻</p>
-<h2 id="CH-00-文件定位与使用边界"><a class="anchor" href="#CH-00-文件定位与使用边界">#</a> CH 00｜文件定位与使用边界</h2>
-<h3 id="CH00.1-文件身份"><a class="anchor" href="#CH00.1-文件身份">#</a> CH00.1 文件身份</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-00">CH 00｜文件定位与使用边界</h2>
+<h3 id="ch001">CH00.1 文件身份</h3>
 <p>《超智科技·数智协同基线｜DICB》是《超智科技认知基线 V3.10》之下的专题运行基线。</p>
 <p>它的核心任务不是重新定义超智，而是回答：</p>
 <p>在超智已经有公司定位、系统架构、项目组合和能力体系的前提下，人、机器、工具、Agent、代码、业务系统与真实项目如何协同把事情做成？</p>
-<div class="table-wrap"><table>
-<thead><tr>
+<table>
+<thead>
+<tr>
 <th>项目</th>
 <th>定义</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Document Type</td>
@@ -752,15 +651,17 @@ hr {
 <td>Nex₂U</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH00.2-不替代原则"><a class="anchor" href="#CH00.2-不替代原则">#</a> CH00.2 不替代原则</h3>
+<h3 id="ch002">CH00.2 不替代原则</h3>
 <p>DICB 不替代以下文件或机制：</p>
-<div class="table-wrap"><table>
-<thead><tr>
+<table>
+<thead>
+<tr>
 <th>不替代对象</th>
 <th>原因</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>超智认知基线（SCI V3.10）</td>
@@ -791,10 +692,10 @@ hr {
 <td>高风险决策仍需人智裁决</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>DIC 定义协同运行规则；具体项目状态仍由 PCS 管理，具体操作流程由 SOP 固化，可复用能力由 Skill 承载。</p>
 <p>⸻</p>
-<h3 id="CH00.3-适用对象"><a class="anchor" href="#CH00.3-适用对象">#</a> CH00.3 适用对象</h3>
+<h3 id="ch003">CH00.3 适用对象</h3>
 <p>DICB 适用于：</p>
 <ol>
 <li>iS-Core：用于裁决任务归位、基线关系与版本治理；</li>
@@ -808,7 +709,7 @@ hr {
 <li>GitHub / Registry 管理者：用于文件归位、版本追踪、索引维护。</li>
 </ol>
 <p>⸻</p>
-<h3 id="CH00.4-不适用对象"><a class="anchor" href="#CH00.4-不适用对象">#</a> CH00.4 不适用对象</h3>
+<h3 id="ch004">CH00.4 不适用对象</h3>
 <p>DICB 不适用于：</p>
 <ol>
 <li>对外客户宣传；</li>
@@ -823,17 +724,32 @@ hr {
 </ol>
 <p>如需面向外部表达，应由 iS-Synexa 或对应项目组基于 DIC 进行转译，不应直接以本文件作为对外文件。</p>
 <p>⸻</p>
-<h2 id="CH-01-数智协同总定义"><a class="anchor" href="#CH-01-数智协同总定义">#</a> CH 01｜数智协同总定义</h2>
-<h3 id="CH01.1-正式定义"><a class="anchor" href="#CH01.1-正式定义">#</a> CH01.1 正式定义</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-01">CH 01｜数智协同总定义</h2>
+<h3 id="ch011">CH01.1 正式定义</h3>
 <p>数智协同，是指在人的方向设定与责任承担之下，将 AI、Agent、数据、代码、工具、业务系统、供应网络、现场执行与经验资产组织成可执行、可反馈、可优化的协同运行机制。</p>
-<blockquote><strong>核心逻辑</strong>：人设方向 → 机器出方案 → 系统组织任务 → Agent 执行动作 → 工具提供能力 → 项目验证结果 → 经验沉淀资产 → 持续优化。</blockquote>
+<p>它不是单纯 AI 使用，不是自动化替代人，也不是做一个软件系统。</p>
+<p>它的核心是：</p>
+<p>人设方向；<br />
+机器出方案；<br />
+系统组织任务；<br />
+Agent 执行动作；<br />
+工具提供能力；<br />
+项目验证结果；<br />
+经验沉淀资产；<br />
+下一轮持续优化。</p>
 <p>⸻</p>
-<h3 id="CH01.2-数智协同不是什么"><a class="anchor" href="#CH01.2-数智协同不是什么">#</a> CH01.2 数智协同不是什么</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch012">CH01.2 数智协同不是什么</h3>
+<table>
+<thead>
+<tr>
 <th>误解</th>
 <th>正确理解</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>AI 工具使用</td>
@@ -856,15 +772,17 @@ hr {
 <td>真实场景中的可交付能力</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>数智协同不是让机器替代人，而是让人的方向、机器的执行、系统的反馈和经验的沉淀形成持续进化的协同秩序。</p>
 <p>⸻</p>
-<h3 id="CH01.3-数智协同的构成要素"><a class="anchor" href="#CH01.3-数智协同的构成要素">#</a> CH01.3 数智协同的构成要素</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch013">CH01.3 数智协同的构成要素</h3>
+<table>
+<thead>
+<tr>
 <th>要素</th>
 <th>作用</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>人智判断</td>
@@ -899,26 +817,37 @@ hr {
 <td>将一次执行变成长期能力</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>工具可以借力，判断必须自有；代码可以生成，规则必须沉淀；Agent 可以执行，责任必须归人。</p>
 <p>⸻</p>
-<h3 id="CH01.4-DIC-与-Synexa-iS-的关系"><a class="anchor" href="#CH01.4-DIC-与-Synexa-iS-的关系">#</a> CH01.4 DIC 与 Synexa iS 的关系</h3>
+<h3 id="ch014-dic-synexa-is">CH01.4 DIC 与 Synexa iS 的关系</h3>
 <p>Synexa iS 是组织级智能操作系统，是超智体系中负责治理、认知、规则、能力、Agent、项目与经验资产协同的系统承载。</p>
 <p>DICB 是 Synexa iS 在“数智协同运行层”的专题基线。</p>
 <p>两者关系如下：</p>
-<p>Synexa iS ↓ 定义系统如何组织能力、任务、Agent、项目与经验资产 DICB ↓ 定义人、AI、Agent、工具、代码、系统与真实项目如何协同推进任务</p>
+<p>Synexa iS<br />
+  ↓<br />
+定义系统如何组织能力、任务、Agent、项目与经验资产<br />
+DICB<br />
+  ↓<br />
+定义人、AI、Agent、工具、代码、系统与真实项目如何协同推进任务</p>
 <p>⸻</p>
-<h2 id="CH-02-人机器与系统的角色关系"><a class="anchor" href="#CH-02-人机器与系统的角色关系">#</a> CH 02｜人、机器与系统的角色关系</h2>
-<h3 id="CH02.1-主体与能力体"><a class="anchor" href="#CH02.1-主体与能力体">#</a> CH02.1 主体与能力体</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-02">CH 02｜人、机器与系统的角色关系</h2>
+<h3 id="ch021">CH02.1 主体与能力体</h3>
 <p>DICB 中，必须区分主体与能力体。</p>
 <p>主体拥有目标、判断与责任；能力体响应目标、执行任务并返回结果。</p>
-<div class="table-wrap"><table>
-<thead><tr>
+<table>
+<thead>
+<tr>
 <th>角色</th>
 <th>定义</th>
 <th>可做</th>
 <th>不可做</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Human Judgment</td>
@@ -981,10 +910,12 @@ hr {
 <td>停留在散乱记录</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH02.2-人智判断-Human-Judgment"><a class="anchor" href="#CH02.2-人智判断-Human-Judgment">#</a> CH02.2 人智判断 Human Judgment</h3>
-<p>人智判断是方向锚与责任锚，在 DIC 中至少承担五类职责：</p>
+<h3 id="ch022-human-judgment">CH02.2 人智判断 Human Judgment</h3>
+<p>人智判断，是人在方向、价值、责任、裁决、例外处理和高风险取舍中的不可替代作用。</p>
+<p>人智不是系统补丁，而是方向锚与责任锚。</p>
+<p>DIC 中的人智至少承担五类职责：</p>
 <ol>
 <li>定义目标；</li>
 <li>设定边界；</li>
@@ -994,7 +925,7 @@ hr {
 </ol>
 <p>机器可以提供方案、选项、对比、风险提示与执行结果，但不能替代人类承担最终责任。</p>
 <p>⸻</p>
-<h3 id="CH02.3-AI--LLM"><a class="anchor" href="#CH02.3-AI--LLM">#</a> CH02.3 AI / LLM</h3>
+<h3 id="ch023-ai-llm">CH02.3 AI / LLM</h3>
 <p>AI / LLM 是认知发动机，适合理解、生成、推演、总结、结构化与草案生成。</p>
 <p>适合：</p>
 <ol>
@@ -1018,7 +949,7 @@ hr {
 <li>未经审核的正式发布。</li>
 </ol>
 <p>⸻</p>
-<h3 id="CH02.4-Agent"><a class="anchor" href="#CH02.4-Agent">#</a> CH02.4 Agent</h3>
+<h3 id="ch024-agent">CH02.4 Agent</h3>
 <p>Agent 是带有目标、工具、边界、上下文和输出要求的任务执行单元。</p>
 <p>Agent 不是万能助手，而是角色化执行体。</p>
 <p>DIC 中应区分：</p>
@@ -1033,13 +964,15 @@ hr {
 </ol>
 <p>Agent 必须接受任务边界、输入材料、输出要求、暂停条件和质量门约束。</p>
 <p>⸻</p>
-<h3 id="CH02.5-SOP--Skill--Agent--Digital-Employee-区分"><a class="anchor" href="#CH02.5-SOP--Skill--Agent--Digital-Employee-区分">#</a> CH02.5 SOP / Skill / Agent / Digital Employee 区分</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch025-sop-skill-agent-digital-employee">CH02.5 SOP / Skill / Agent / Digital Employee 区分</h3>
+<table>
+<thead>
+<tr>
 <th>类型</th>
 <th>核心问题</th>
 <th>成熟条件</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>SOP</td>
@@ -1062,21 +995,27 @@ hr {
 <td>稳定职责 + 持续运行 + 质量门</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>Skill 不是文档说明，而是可触发、可复用、可组合、可审计的能力资产。</p>
 <p>⸻</p>
-<h2 id="CH-03-任务归位机制"><a class="anchor" href="#CH-03-任务归位机制">#</a> CH 03｜任务归位机制</h2>
-<h3 id="CH03.1-为什么需要任务归位"><a class="anchor" href="#CH03.1-为什么需要任务归位">#</a> CH03.1 为什么需要任务归位</h3>
-<blockquote><strong>核心逻辑</strong>：任务不先归位，就不应直接执行。归位是为了确保每个任务都有正确的认知层级、执行角色、质量门和回流位置。</blockquote>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-03">CH 03｜任务归位机制</h2>
+<h3 id="ch031">CH03.1 为什么需要任务归位</h3>
+<p>任务不先归位，就不应直接执行；未归位的执行，往往会造成重复劳动、责任模糊和经验流失。</p>
+<p>DIC 的任务归位不是行政分工，而是为了确保每个任务都有正确的认知层级、执行角色、质量门和回流位置。</p>
 <p>⸻</p>
-<h3 id="CH03.2-任务归位类型"><a class="anchor" href="#CH03.2-任务归位类型">#</a> CH03.2 任务归位类型</h3>
-<blockquote>完整任务路由表（含风险等级与回流位置）详见 <strong>Appendix B｜Task Routing Table</strong>。</blockquote>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch032">CH03.2 任务归位类型</h3>
+<table>
+<thead>
+<tr>
 <th>归位类型</th>
 <th>触发条件</th>
 <th>典型输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>iS-Core</td>
@@ -1108,15 +1047,27 @@ hr {
 <td>已归属具体项目的执行推进</td>
 <td>项目任务、里程碑、复盘</td>
 </tr>
+<tr>
+<td>External Agent</td>
+<td>需要文件操作、代码、页面、资料整理</td>
+<td>执行包、文件产出</td>
+</tr>
+<tr>
+<td>New Project</td>
+<td>出现新业务对象、长期机制或独立项目域</td>
+<td>项目最小定义、PCS</td>
+</tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH03.3-任务归位输出字段"><a class="anchor" href="#CH03.3-任务归位输出字段">#</a> CH03.3 任务归位输出字段</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch033">CH03.3 任务归位输出字段</h3>
+<table>
+<thead>
+<tr>
 <th>字段</th>
 <th>说明</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Task ID</td>
@@ -1159,7 +1110,7 @@ hr {
 <td>回流位置</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>每一个任务必须知道：</p>
 <ol>
 <li>归哪里；</li>
@@ -1171,7 +1122,7 @@ hr {
 <li>是否可能沉淀为资产。</li>
 </ol>
 <p>⸻</p>
-<h3 id="CH03.4-新项目触发条件"><a class="anchor" href="#CH03.4-新项目触发条件">#</a> CH03.4 新项目触发条件</h3>
+<h3 id="ch034">CH03.4 新项目触发条件</h3>
 <p>当一个任务具备以下任一特征，应考虑进入 Step 0A 项目最小定义：</p>
 <ol>
 <li>出现新的业务对象；</li>
@@ -1183,20 +1134,50 @@ hr {
 <li>出现可沉淀为独立引擎或模块的能力。</li>
 </ol>
 <p>⸻</p>
-<h2 id="CH-04-标准协同路径"><a class="anchor" href="#CH-04-标准协同路径">#</a> CH 04｜标准协同路径</h2>
-<h3 id="CH04.1-全局主流程"><a class="anchor" href="#CH04.1-全局主流程">#</a> CH04.1 全局主流程</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-04">CH 04｜标准协同路径</h2>
+<h3 id="ch041">CH04.1 全局主流程</h3>
 <p>DIC 的标准协同路径如下：</p>
-<p>目标提出 ↓ 人智定向 ↓ 任务归位 ↓ 路径推演 ↓ 节点拆解 ↓ 角色分工 ↓ 工具 / Agent 调用 ↓ 执行交付 ↓ 质量检查 ↓ 人智裁决 ↓ SSOT / PCS 回写 ↓ 经验资产沉淀 ↓ 下一轮优化</p>
+<p>目标提出<br />
+  ↓<br />
+人智定向<br />
+  ↓<br />
+任务归位<br />
+  ↓<br />
+路径推演<br />
+  ↓<br />
+节点拆解<br />
+  ↓<br />
+角色分工<br />
+  ↓<br />
+工具 / Agent 调用<br />
+  ↓<br />
+执行交付<br />
+  ↓<br />
+质量检查<br />
+  ↓<br />
+人智裁决<br />
+  ↓<br />
+SSOT / PCS 回写<br />
+  ↓<br />
+经验资产沉淀<br />
+  ↓<br />
+下一轮优化</p>
 <p>DIC 的标准协同路径，不是为了增加流程，而是为了让每一次执行都能被理解、被分派、被检查、被复盘、被沉淀。</p>
 <p>⸻</p>
-<h3 id="CH04.2-路径展开"><a class="anchor" href="#CH04.2-路径展开">#</a> CH04.2 路径展开</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch042">CH04.2 路径展开</h3>
+<table>
+<thead>
+<tr>
 <th>阶段</th>
 <th>核心动作</th>
 <th>主责</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>目标提出</td>
@@ -1277,9 +1258,9 @@ hr {
 <td>Patch / Version</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH04.3-人智定向"><a class="anchor" href="#CH04.3-人智定向">#</a> CH04.3 人智定向</h3>
+<h3 id="ch043">CH04.3 人智定向</h3>
 <p>人智定向必须至少回答：</p>
 <ol>
 <li>为什么做；</li>
@@ -1292,7 +1273,7 @@ hr {
 </ol>
 <p>没有定向的任务，不应直接进入外部 Agent 执行。</p>
 <p>⸻</p>
-<h3 id="CH04.4-人智裁决"><a class="anchor" href="#CH04.4-人智裁决">#</a> CH04.4 人智裁决</h3>
+<h3 id="ch044">CH04.4 人智裁决</h3>
 <p>人智裁决包括：</p>
 <ol>
 <li>接受；</li>
@@ -1306,17 +1287,24 @@ hr {
 </ol>
 <p>通过不是唯一出口，退回修正是人类保留真实控制权的关键路径。</p>
 <p>⸻</p>
-<h2 id="CH-05-任务节点设计机制"><a class="anchor" href="#CH-05-任务节点设计机制">#</a> CH 05｜任务节点设计机制</h2>
-<h3 id="CH05.1-任务节点定义"><a class="anchor" href="#CH05.1-任务节点定义">#</a> CH05.1 任务节点定义</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-05">CH 05｜任务节点设计机制</h2>
+<h3 id="ch051">CH05.1 任务节点定义</h3>
 <p>任务节点，是从目标到交付过程中可识别、可分派、可执行、可检查、可回流的工作单元。</p>
-<p>任务节点不是普通待办事项。 它必须具备输入、动作、主责、工具、输出、质量门、风险等级与回流位置。</p>
+<p>任务节点不是普通待办事项。<br />
+它必须具备输入、动作、主责、工具、输出、质量门、风险等级与回流位置。</p>
 <p>⸻</p>
-<h3 id="CH05.2-Task-Node-标准字段"><a class="anchor" href="#CH05.2-Task-Node-标准字段">#</a> CH05.2 Task Node 标准字段</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch052-task-node">CH05.2 Task Node 标准字段</h3>
+<table>
+<thead>
+<tr>
 <th>字段</th>
 <th>说明</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Node ID</td>
@@ -1379,14 +1367,16 @@ hr {
 <td>是否可沉淀资产</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH05.3-节点状态枚举"><a class="anchor" href="#CH05.3-节点状态枚举">#</a> CH05.3 节点状态枚举</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch053">CH05.3 节点状态枚举</h3>
+<table>
+<thead>
+<tr>
 <th>状态</th>
 <th>含义</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Draft</td>
@@ -1425,9 +1415,9 @@ hr {
 <td>已资产化</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH05.4-节点质量门"><a class="anchor" href="#CH05.4-节点质量门">#</a> CH05.4 节点质量门</h3>
+<h3 id="ch054">CH05.4 节点质量门</h3>
 <p>每个节点必须至少具备一个质量门。</p>
 <p>常见质量门包括：</p>
 <ol>
@@ -1441,15 +1431,21 @@ hr {
 <li>是否需要版本记录。</li>
 </ol>
 <p>⸻</p>
-<h2 id="CH-06-不同任务类型的节点模板"><a class="anchor" href="#CH-06-不同任务类型的节点模板">#</a> CH 06｜不同任务类型的节点模板</h2>
-<h3 id="CH06.1-战略推演任务节点"><a class="anchor" href="#CH06.1-战略推演任务节点">#</a> CH06.1 战略推演任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-06">CH 06｜不同任务类型的节点模板</h2>
+<h3 id="ch061">CH06.1 战略推演任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
 <th>主责</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>背景识别</td>
@@ -1488,15 +1484,17 @@ hr {
 <td>Core / Manus</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH06.2-项目推进任务节点"><a class="anchor" href="#CH06.2-项目推进任务节点">#</a> CH06.2 项目推进任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch062">CH06.2 项目推进任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>项目归位</td>
@@ -1539,15 +1537,17 @@ hr {
 <td>更新 PCS</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH06.3-文档生产任务节点"><a class="anchor" href="#CH06.3-文档生产任务节点">#</a> CH06.3 文档生产任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch063">CH06.3 文档生产任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>BBMap</td>
@@ -1585,15 +1585,17 @@ hr {
 <td>GitHub / Index</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH06.4-工具选型任务节点"><a class="anchor" href="#CH06.4-工具选型任务节点">#</a> CH06.4 工具选型任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch064">CH06.4 工具选型任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>需求定义</td>
@@ -1631,15 +1633,17 @@ hr {
 <td>Tool Review Asset</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH06.5-代码执行任务节点"><a class="anchor" href="#CH06.5-代码执行任务节点">#</a> CH06.5 代码执行任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch065">CH06.5 代码执行任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>需求包</td>
@@ -1677,15 +1681,17 @@ hr {
 <td>SOP / Skill / Exception</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH06.6-Nex₂U-业务任务节点"><a class="anchor" href="#CH06.6-Nex₂U-业务任务节点">#</a> CH06.6 Nex₂U 业务任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch066-nex2u">CH06.6 Nex₂U 业务任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>用户需求识别</td>
@@ -1733,15 +1739,17 @@ hr {
 <td>Asset / SOP / Skill</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH06.7-异常处理任务节点"><a class="anchor" href="#CH06.7-异常处理任务节点">#</a> CH06.7 异常处理任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch067">CH06.7 异常处理任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>异常发现</td>
@@ -1779,15 +1787,17 @@ hr {
 <td>Exception Asset</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH06.8-外部-Agent-执行任务节点"><a class="anchor" href="#CH06.8-外部-Agent-执行任务节点">#</a> CH06.8 外部 Agent 执行任务节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch068-agent">CH06.8 外部 Agent 执行任务节点</h3>
+<table>
+<thead>
+<tr>
 <th>节点</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>任务包生成</td>
@@ -1825,24 +1835,34 @@ hr {
 <td>SOP / Skill / Exception</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h2 id="CH-07-AI--Agent--工具能力归位"><a class="anchor" href="#CH-07-AI--Agent--工具能力归位">#</a> CH 07｜AI / Agent / 工具能力归位</h2>
-<h3 id="CH07.1-工具归位原则"><a class="anchor" href="#CH07.1-工具归位原则">#</a> CH07.1 工具归位原则</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-07ai-agent">CH 07｜AI / Agent / 工具能力归位</h2>
+<h3 id="ch071">CH07.1 工具归位原则</h3>
 <p>DIC 不是工具说明书，但必须定义工具的协同位置。</p>
 <p>核心原则：</p>
-<p>工具可以借力，判断必须自有。 模型可以替换，协同秩序不能漂移。 外部 Agent 只能执行任务包，不应直接接收模糊战略任务。</p>
+<p>工具可以借力，判断必须自有。<br />
+模型可以替换，协同秩序不能漂移。<br />
+外部 Agent 只能执行任务包，不应直接接收模糊战略任务。</p>
 <p>⸻</p>
-<h4 id="CH07.2-工具能力归位表"><a class="anchor" href="#CH07.2-工具能力归位表">#</a> CH07.2 工具能力归位表</h4>
-<blockquote>外部执行体按接入类型分组，具体产品为参考，不写死。产品迭代不影响分工逻辑。</blockquote>
-<div class="table-wrap"><table>
-<thead><tr>
+<h4 id="ch072">CH07.2 工具能力归位表</h4>
+<blockquote>
+<p>外部执行体按接入类型分组，具体产品为参考，不写死。产品迭代不影响分工逻辑。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
 <th>接入类型</th>
 <th>工具 / 平台</th>
 <th>DIC 角色</th>
 <th>适合任务</th>
 <th>禁止事项</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td><strong>对话型 AI · 中枢推演</strong></td>
@@ -1936,9 +1956,9 @@ hr {
 <td>超授权行动</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH07.3-工具调用基本规则"><a class="anchor" href="#CH07.3-工具调用基本规则">#</a> CH07.3 工具调用基本规则</h3>
+<h3 id="ch073">CH07.3 工具调用基本规则</h3>
 <ol>
 <li>模糊任务先回到 iS-Core / SCO / Matrix，不直接交给外部 Agent；</li>
 <li>工程任务必须有执行包；</li>
@@ -1950,17 +1970,23 @@ hr {
 <li>工具输出不得直接覆盖上位基线。</li>
 </ol>
 <p>⸻</p>
-<h2 id="CH-08-执行包机制"><a class="anchor" href="#CH-08-执行包机制">#</a> CH 08｜执行包机制</h2>
-<h3 id="CH08.1-执行包定义"><a class="anchor" href="#CH08.1-执行包定义">#</a> CH08.1 执行包定义</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-08">CH 08｜执行包机制</h2>
+<h3 id="ch081">CH08.1 执行包定义</h3>
 <p>执行包，是将人智目标和系统任务转化为外部 Agent 或工具可执行指令的结构化任务包。</p>
 <p>外部执行体不是项目负责人；外部执行体必须接收清晰任务包，并按输入、边界、输出、质量门和返回格式执行。</p>
 <p>⸻</p>
-<h3 id="CH08.2-执行包标准字段"><a class="anchor" href="#CH08.2-执行包标准字段">#</a> CH08.2 执行包标准字段</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch082">CH08.2 执行包标准字段</h3>
+<table>
+<thead>
+<tr>
 <th>字段</th>
 <th>说明</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Mission Name</td>
@@ -2015,14 +2041,16 @@ hr {
 <td>待裁决项</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH08.3-常见执行包类型"><a class="anchor" href="#CH08.3-常见执行包类型">#</a> CH08.3 常见执行包类型</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch083">CH08.3 常见执行包类型</h3>
+<table>
+<thead>
+<tr>
 <th>类型</th>
 <th>适用对象</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Manus Handoff Package</td>
@@ -2049,9 +2077,9 @@ hr {
 <td>结构推演、文档主稿、审校</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH08.4-暂停条件"><a class="anchor" href="#CH08.4-暂停条件">#</a> CH08.4 暂停条件</h3>
+<h3 id="ch084">CH08.4 暂停条件</h3>
 <p>执行体遇到以下情况必须暂停并返回 Review Item：</p>
 <ol>
 <li>上位定义冲突；</li>
@@ -2064,16 +2092,24 @@ hr {
 <li>缺少必要输入材料。</li>
 </ol>
 <p>⸻</p>
-<h2 id="CH-09-小步快跑与快速试错机制"><a class="anchor" href="#CH-09-小步快跑与快速试错机制">#</a> CH 09｜小步快跑与快速试错机制</h2>
-<h3 id="CH09.1-试错定义"><a class="anchor" href="#CH09.1-试错定义">#</a> CH09.1 试错定义</h3>
-<blockquote><strong>核心逻辑</strong>：小步快跑不是无边界试错，而是在明确方向、风险和记录机制之后，用最小闭环验证真实世界反馈。没有记录、没有复盘、没有回流的试错，只是消耗，不是学习。</blockquote>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-09">CH 09｜小步快跑与快速试错机制</h2>
+<h3 id="ch091">CH09.1 试错定义</h3>
+<p>试错闭环，是在明确方向与边界后，以最小可验证动作进行快速验证、记录结果、复盘判断、沉淀经验并决定继续、修正、暂停或升级的机制。</p>
+<p>小步快跑不是无边界试错，而是在明确方向、风险和记录机制之后，用最小闭环验证真实世界反馈。</p>
+<p>没有记录、没有复盘、没有回流的试错，只是消耗，不是学习。</p>
 <p>⸻</p>
-<h3 id="CH09.2-Trial-Loop-标准字段"><a class="anchor" href="#CH09.2-Trial-Loop-标准字段">#</a> CH09.2 Trial Loop 标准字段</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch092-trial-loop">CH09.2 Trial Loop 标准字段</h3>
+<table>
+<thead>
+<tr>
 <th>字段</th>
 <th>说明</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Trial ID</td>
@@ -2116,14 +2152,16 @@ hr {
 <td>资产归位</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH09.3-试错动作结论"><a class="anchor" href="#CH09.3-试错动作结论">#</a> CH09.3 试错动作结论</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch093">CH09.3 试错动作结论</h3>
+<table>
+<thead>
+<tr>
 <th>动作</th>
 <th>含义</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Continue</td>
@@ -2142,15 +2180,17 @@ hr {
 <td>升级至 Core / SCO / Matrix / PCS</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH09.4-可试错与不可试错"><a class="anchor" href="#CH09.4-可试错与不可试错">#</a> CH09.4 可试错与不可试错</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch094">CH09.4 可试错与不可试错</h3>
+<table>
+<thead>
+<tr>
 <th>类型</th>
 <th>可否试错</th>
 <th>要求</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>页面原型</td>
@@ -2193,19 +2233,39 @@ hr {
 <td>必须人智裁决</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h2 id="CH-10-问题异常与经验沉淀机制"><a class="anchor" href="#CH-10-问题异常与经验沉淀机制">#</a> CH 10｜问题、异常与经验沉淀机制</h2>
-<h3 id="CH10.1-问题到资产的路径"><a class="anchor" href="#CH10.1-问题到资产的路径">#</a> CH10.1 问题到资产的路径</h3>
-<p>问题出现 ↓ 问题归类 ↓ 风险判断 ↓ 处理动作 ↓ 结果记录 ↓ 复盘结论 ↓ 资产归档 ↓ SOP / Skill / Agent / Engine 更新</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-10">CH 10｜问题、异常与经验沉淀机制</h2>
+<h3 id="ch101">CH10.1 问题到资产的路径</h3>
+<p>问题出现<br />
+  ↓<br />
+问题归类<br />
+  ↓<br />
+风险判断<br />
+  ↓<br />
+处理动作<br />
+  ↓<br />
+结果记录<br />
+  ↓<br />
+复盘结论<br />
+  ↓<br />
+资产归档<br />
+  ↓<br />
+SOP / Skill / Agent / Engine 更新</p>
 <p>⸻</p>
-<h3 id="CH10.2-问题分类表"><a class="anchor" href="#CH10.2-问题分类表">#</a> CH10.2 问题分类表</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch102">CH10.2 问题分类表</h3>
+<table>
+<thead>
+<tr>
 <th>问题类型</th>
 <th>示例</th>
 <th>资产方向</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>任务问题</td>
@@ -2258,14 +2318,16 @@ hr {
 <td>Judgment</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH10.3-经验资产类型"><a class="anchor" href="#CH10.3-经验资产类型">#</a> CH10.3 经验资产类型</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch103">CH10.3 经验资产类型</h3>
+<table>
+<thead>
+<tr>
 <th>资产类型</th>
 <th>核心字段</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Pattern Asset</td>
@@ -2300,9 +2362,9 @@ hr {
 <td>长期职责、授权边界、运行频率</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH10.4-经验沉淀原则"><a class="anchor" href="#CH10.4-经验沉淀原则">#</a> CH10.4 经验沉淀原则</h3>
+<h3 id="ch104">CH10.4 经验沉淀原则</h3>
 <ol>
 <li>重复出现的流程进入 Pattern Asset；</li>
 <li>异常、错误、延误、投诉进入 Exception Asset；</li>
@@ -2315,21 +2377,43 @@ hr {
 <li>可模块化功能进入 Nex·EC Engine Module Candidate。</li>
 </ol>
 <p>⸻</p>
-<h2 id="CH-11-Project-to-Skill-数智蒸馏机制"><a class="anchor" href="#CH-11-Project-to-Skill-数智蒸馏机制">#</a> CH 11｜Project-to-Skill 数智蒸馏机制</h2>
-<h3 id="CH11.1-定义"><a class="anchor" href="#CH11.1-定义">#</a> CH11.1 定义</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-11project-to-skill">CH 11｜Project-to-Skill 数智蒸馏机制</h2>
+<h3 id="ch111">CH11.1 定义</h3>
 <p>Project-to-Skill，是从真实项目中提取可复用能力的过程。</p>
 <p>它不是把项目总结写成文章，而是把真实任务中的对象、规则、异常、字段、判断和流程沉淀为可复用资产。</p>
 <p>⸻</p>
-<h3 id="CH11.2-标准蒸馏路径"><a class="anchor" href="#CH11.2-标准蒸馏路径">#</a> CH11.2 标准蒸馏路径</h3>
-<p>真实项目运行 ↓ 对象识别 ↓ 规则抽取 ↓ 异常归档 ↓ 模板化 ↓ Skill 化 ↓ Agent / DE 配置 ↓ Nex·EC 模块候选 ↓ 经验资产库</p>
+<h3 id="ch112">CH11.2 标准蒸馏路径</h3>
+<p>真实项目运行<br />
+  ↓<br />
+对象识别<br />
+  ↓<br />
+规则抽取<br />
+  ↓<br />
+异常归档<br />
+  ↓<br />
+模板化<br />
+  ↓<br />
+Skill 化<br />
+  ↓<br />
+Agent / DE 配置<br />
+  ↓<br />
+Nex·EC 模块候选<br />
+  ↓<br />
+经验资产库</p>
 <p>⸻</p>
-<h3 id="CH11.3-Project-to-Skill-蒸馏表"><a class="anchor" href="#CH11.3-Project-to-Skill-蒸馏表">#</a> CH11.3 Project-to-Skill 蒸馏表</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch113-project-to-skill">CH11.3 Project-to-Skill 蒸馏表</h3>
+<table>
+<thead>
+<tr>
 <th>步骤</th>
 <th>输入</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>真实项目运行</td>
@@ -2372,9 +2456,9 @@ hr {
 <td>Nex·EC Candidate</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH11.4-Skill-成熟条件"><a class="anchor" href="#CH11.4-Skill-成熟条件">#</a> CH11.4 Skill 成熟条件</h3>
+<h3 id="ch114-skill">CH11.4 Skill 成熟条件</h3>
 <p>一个 Skill 至少应满足：</p>
 <ol>
 <li>有明确触发条件；</li>
@@ -2389,19 +2473,25 @@ hr {
 <li>有真实项目验证来源。</li>
 </ol>
 <p>⸻</p>
-<h2 id="CH-12-人智决策与风险权限"><a class="anchor" href="#CH-12-人智决策与风险权限">#</a> CH 12｜人智决策与风险权限</h2>
-<h3 id="CH12.1-风险权限原则"><a class="anchor" href="#CH12.1-风险权限原则">#</a> CH12.1 风险权限原则</h3>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-12">CH 12｜人智决策与风险权限</h2>
+<h3 id="ch121">CH12.1 风险权限原则</h3>
 <p>越是高风险、强不确定、涉及外部承诺或责任承担的事项，越不能绕过人智裁决。</p>
 <p>机器可以推演、建议、整理、模拟、执行低风险任务，但不能替代人承担高风险决策责任。</p>
 <p>⸻</p>
-<h3 id="CH12.2-风险权限表"><a class="anchor" href="#CH12.2-风险权限表">#</a> CH12.2 风险权限表</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch122">CH12.2 风险权限表</h3>
+<table>
+<thead>
+<tr>
 <th>风险等级</th>
 <th>机器权限</th>
 <th>人智要求</th>
 <th>记录要求</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>Low</td>
@@ -2428,14 +2518,16 @@ hr {
 <td>完整决策记录</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH12.3-升级触发条件"><a class="anchor" href="#CH12.3-升级触发条件">#</a> CH12.3 升级触发条件</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch123">CH12.3 升级触发条件</h3>
+<table>
+<thead>
+<tr>
 <th>触发条件</th>
 <th>升级对象</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>改变全局基线</td>
@@ -2462,9 +2554,9 @@ hr {
 <td>Core / PCS</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH12.4-Judgment-Asset"><a class="anchor" href="#CH12.4-Judgment-Asset">#</a> CH12.4 Judgment Asset</h3>
+<h3 id="ch124-judgment-asset">CH12.4 Judgment Asset</h3>
 <p>当一个决策涉及明显取舍、风险、拒绝、暂停、升级或高价值判断时，应形成 Judgment Asset。</p>
 <p>Judgment Asset 至少包含：</p>
 <ol>
@@ -2479,21 +2571,42 @@ hr {
 <li>是否回写 Context OS / PCS / Master SSOT。</li>
 </ol>
 <p>⸻</p>
-<h2 id="CH-13-面向-Nex₂U-的应用示范"><a class="anchor" href="#CH-13-面向-Nex₂U-的应用示范">#</a> CH 13｜面向 Nex₂U 的应用示范</h2>
-<h3 id="CH13.1-Nex₂U-作为首个样板的定位"><a class="anchor" href="#CH13.1-Nex₂U-作为首个样板的定位">#</a> CH13.1 Nex₂U 作为首个样板的定位</h3>
-<p>Nex₂U 涉及用户需求、营养规则、菜品结构、订单履约、供应协同、现场反馈与经验沉淀，天然适合作为 DICB 的首个真实验证场。</p>
-<blockquote><strong>当前关键判断</strong>：Nex₂U 当前关键不是先做漂亮前端，而是跑通规则、菜品、订单、履约、供应、反馈和经验沉淀的最小闭环。</blockquote>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-13-nex2u">CH 13｜面向 Nex₂U 的应用示范</h2>
+<h3 id="ch131-nex2u">CH13.1 为什么以 Nex₂U 作为首个样板</h3>
+<p>Nex₂U 是超智体系当前推进中的重要实战样板，涉及用户需求、营养规则、菜品结构、订单履约、供应协同、现场反馈与经验沉淀。</p>
+<p>因此，Nex₂U 适合作为 DICB 的首个真实验证场。</p>
 <p>⸻</p>
-<h3 id="CH13.3-Nex₂U-最小闭环"><a class="anchor" href="#CH13.3-Nex₂U-最小闭环">#</a> CH13.3 Nex₂U 最小闭环</h3>
-<p>点餐体验 ↓ 生产保障 ↓ 服务运维 ↓ 采购支持 ↓ 人力管理 ↓ 财务管控 ↓ 经验沉淀</p>
+<h3 id="ch132-nex2u">CH13.2 Nex₂U 当前关键判断</h3>
+<p>Nex₂U 当前关键不是先做漂亮前端，而是跑通规则、菜品、订单、履约、供应、反馈和经验沉淀的最小闭环。</p>
 <p>⸻</p>
-<h3 id="CH13.4-Nex₂U-最小闭环节点"><a class="anchor" href="#CH13.4-Nex₂U-最小闭环节点">#</a> CH13.4 Nex₂U 最小闭环节点</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch133-nex2u">CH13.3 Nex₂U 最小闭环</h3>
+<p>点餐体验<br />
+  ↓<br />
+生产保障<br />
+  ↓<br />
+服务运维<br />
+  ↓<br />
+采购支持<br />
+  ↓<br />
+人力管理<br />
+  ↓<br />
+财务管控<br />
+  ↓<br />
+经验沉淀</p>
+<p>⸻</p>
+<h3 id="ch134-nex2u">CH13.4 Nex₂U 最小闭环节点</h3>
+<table>
+<thead>
+<tr>
 <th>业务闭环层</th>
 <th>操作链条层</th>
 <th>对应引擎</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>点餐体验</td>
@@ -2531,17 +2644,19 @@ hr {
 <td>iS-Cortex / Project-to-Skill</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH13.5-首批-Skill-候选"><a class="anchor" href="#CH13.5-首批-Skill-候选">#</a> CH13.5 首批 Skill 候选</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch135-skill">CH13.5 首批 Skill 候选</h3>
+<table>
+<thead>
+<tr>
 <th>#</th>
 <th>Skill</th>
 <th>使用者</th>
 <th>核心职责</th>
 <th>当前状态</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>1</td>
@@ -2614,22 +2729,41 @@ hr {
 <td>储备规划</td>
 </tr>
 </tbody>
-</table></div>
-<blockquote><strong>打单系统归位说明</strong>：当前打单系统定位为 Skill（点单保障的一部分）。其演进路径为：Skill（打单格式生成）→ System（订单数据持久化与规则引擎）→ Agent（自动监听与触发）。</blockquote>
+</table>
+<blockquote>
+<p><strong>打单系统归位说明</strong>：当前打单系统定位为 Skill（点单保障的一部分）。其演进路径为：Skill（打单格式生成）→ System（订单数据持久化与规则引擎）→ Agent（自动监听与触发）。</p>
+</blockquote>
 <p>⸻</p>
-<h3 id="CH13.6-与番医项目的关系"><a class="anchor" href="#CH13.6-与番医项目的关系">#</a> CH13.6 与番医项目的关系</h3>
+<h3 id="ch136">CH13.6 与番医项目的关系</h3>
 <p>番医项目可作为 DIC 从 Nex₂U 规则走向真实项目功能台的启动场景。</p>
-<p>但番医任务台、餐食台、人力台不应先于 DIC 主源完成而盲目搭建。 正确顺序应为：</p>
-<p>DIC 主源完成 ↓ GitHub / 文件归位规则明确 ↓ 项目台机制确认 ↓ 番医三台启动 ↓ 任务 / 餐食 / 人力最小闭环 ↓ 试运行与经验回流</p>
+<p>但番医任务台、餐食台、人力台不应先于 DIC 主源完成而盲目搭建。<br />
+正确顺序应为：</p>
+<p>DIC 主源完成<br />
+  ↓<br />
+GitHub / 文件归位规则明确<br />
+  ↓<br />
+项目台机制确认<br />
+  ↓<br />
+番医三台启动<br />
+  ↓<br />
+任务 / 餐食 / 人力最小闭环<br />
+  ↓<br />
+试运行与经验回流</p>
 <p>⸻</p>
-<h2 id="CH-14-阶段路线图"><a class="anchor" href="#CH-14-阶段路线图">#</a> CH 14｜阶段路线图</h2>
-<h3 id="CH14.1-阶段总览"><a class="anchor" href="#CH14.1-阶段总览">#</a> CH14.1 阶段总览</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-14">CH 14｜阶段路线图</h2>
+<h3 id="ch141">CH14.1 阶段总览</h3>
+<table>
+<thead>
+<tr>
 <th>阶段</th>
 <th>目标</th>
 <th>输出</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>0-30 天</td>
@@ -2652,14 +2786,16 @@ hr {
 <td>DIC V1.0</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH14.2-阶段优先级"><a class="anchor" href="#CH14.2-阶段优先级">#</a> CH14.2 阶段优先级</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch142">CH14.2 阶段优先级</h3>
+<table>
+<thead>
+<tr>
 <th>优先级</th>
 <th>事项</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>P0</td>
@@ -2678,21 +2814,41 @@ hr {
 <td>系统化后台、小程序、自动化集成</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH14.3-当前建议推进顺序"><a class="anchor" href="#CH14.3-当前建议推进顺序">#</a> CH14.3 当前建议推进顺序</h3>
+<h3 id="ch143">CH14.3 当前建议推进顺序</h3>
 <p>当前阶段建议按以下顺序执行：</p>
-<p>DIC·BBMap ↓ DIC·BBL ↓ DICB Markdown 主源 ↓ py 渲染脚本 ↓ html 阅读版 ↓ GitHub 全仓整理 ↓ 项目台机制 ↓ 番医任务台 / 餐食台 / 人力台</p>
+<p>DIC·BBMap<br />
+  ↓<br />
+DIC·BBL<br />
+  ↓<br />
+DICB Markdown 主源<br />
+  ↓<br />
+py 渲染脚本<br />
+  ↓<br />
+html 阅读版<br />
+  ↓<br />
+GitHub 全仓整理<br />
+  ↓<br />
+项目台机制<br />
+  ↓<br />
+番医任务台 / 餐食台 / 人力台</p>
 <p>先让规则成文，再让 GitHub 和项目台按规则运行。</p>
 <p>⸻</p>
-<h2 id="CH-15-DIC-版本治理与后续升级"><a class="anchor" href="#CH-15-DIC-版本治理与后续升级">#</a> CH 15｜DIC 版本治理与后续升级</h2>
-<h3 id="CH15.1-版本路径"><a class="anchor" href="#CH15.1-版本路径">#</a> CH15.1 版本路径</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-15dic">CH 15｜DIC 版本治理与后续升级</h2>
+<h3 id="ch151">CH15.1 版本路径</h3>
+<table>
+<thead>
+<tr>
 <th>版本</th>
 <th>状态</th>
 <th>触发条件</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>V0.1</td>
@@ -2720,14 +2876,16 @@ hr {
 <td>经 2-3 个项目验证稳定</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH15.2-更新归位规则"><a class="anchor" href="#CH15.2-更新归位规则">#</a> CH15.2 更新归位规则</h3>
-<div class="table-wrap"><table>
-<thead><tr>
+<h3 id="ch152">CH15.2 更新归位规则</h3>
+<table>
+<thead>
+<tr>
 <th>更新类型</th>
 <th>归位</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>公司定位变化</td>
@@ -2758,9 +2916,9 @@ hr {
 <td>Experience Asset</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h3 id="CH15.3-V3.10-反向补丁原则"><a class="anchor" href="#CH15.3-V3.10-反向补丁原则">#</a> CH15.3 V3.10 反向补丁原则</h3>
+<h3 id="ch153-v310">CH15.3 V3.10 反向补丁原则</h3>
 <p>DIC V0.1 完成后，不建议立即升级 V3.10。</p>
 <p>待 DIC 经 Nex₂U / 番医最小闭环验证后，再考虑给 V3.10 增加轻量引用补丁，例如：</p>
 <ol>
@@ -2770,19 +2928,130 @@ hr {
 <li>在版本日志中记录 DIC 的形成。</li>
 </ol>
 <p>⸻</p>
-<h2 id="Appendix-A-AI--Agent--Tool-Capability-Matrix"><a class="anchor" href="#Appendix-A-AI--Agent--Tool-Capability-Matrix">#</a> Appendix A｜AI / Agent / Tool Capability Matrix</h2>
-<blockquote>本表已合并至正文，详见 <strong>CH07.2 工具能力归位表</strong>。</blockquote>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-aai-agent-tool-capability-matrix">Appendix A｜AI / Agent / Tool Capability Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Tool Type</th>
+<th>Best Use</th>
+<th>Forbidden Use</th>
+<th>Required Input</th>
+<th>Output Type</th>
+<th>QA Gate</th>
+<th>Owner</th>
+<th>Status</th>
+<th>Registry Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT</td>
+<td>LLM / Structuring</td>
+<td>战略整理、文件主稿、执行包</td>
+<td>替代 SSOT 裁决</td>
+<td>背景、目标、边界</td>
+<td>文档 / 结构</td>
+<td>人智审校</td>
+<td>iS-Core</td>
+<td>Active</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>Claude</td>
+<td>LLM / Review</td>
+<td>长文档复核、第二视角</td>
+<td>单独业务裁决</td>
+<td>文档、审校目标</td>
+<td>Review Note</td>
+<td>结构一致性</td>
+<td>iS-Matrix</td>
+<td>Candidate</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>Code Agent</td>
+<td>代码、脚本、测试</td>
+<td>业务规则裁决</td>
+<td>执行包、仓库路径</td>
+<td>Code / PR</td>
+<td>测试通过</td>
+<td>Codex Owner</td>
+<td>Candidate</td>
+<td>Agent Registry</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>Code Agent</td>
+<td>工程理解、代码库协作</td>
+<td>替代产品判断</td>
+<td>仓库、任务说明</td>
+<td>Code / Review</td>
+<td>工程审查</td>
+<td>Dev Owner</td>
+<td>Candidate</td>
+<td>Agent Registry</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Automation</td>
+<td>表格、清洗、渲染、计算</td>
+<td>价值判断</td>
+<td>数据、脚本需求</td>
+<td>CSV / HTML / JSON</td>
+<td>输出校验</td>
+<td>iS-Matrix / Manus</td>
+<td>Active</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>Manus</td>
+<td>Execution Agent</td>
+<td>文件工程、HTML、PPT、GitHub整理</td>
+<td>自行改写上位定义</td>
+<td>Handoff Package</td>
+<td>文件包</td>
+<td>iS-Core QA</td>
+<td>Manus</td>
+<td>Active</td>
+<td>Agent Registry</td>
+</tr>
+<tr>
+<td>Kimi</td>
+<td>Research Agent</td>
+<td>中文长资料、政策、供应商资料</td>
+<td>最终裁决</td>
+<td>资料与问题</td>
+<td>Research Note</td>
+<td>事实核查</td>
+<td>iS-Hub</td>
+<td>Candidate</td>
+<td>Tool Registry</td>
+</tr>
+</tbody>
+</table>
 <p>⸻</p>
-<h2 id="Appendix-B-Task-Routing-Table"><a class="anchor" href="#Appendix-B-Task-Routing-Table">#</a> Appendix B｜Task Routing Table</h2>
-<div class="table-wrap"><table>
-<thead><tr>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-btask-routing-table">Appendix B｜Task Routing Table</h2>
+<table>
+<thead>
+<tr>
 <th>Task Type</th>
 <th>Trigger</th>
 <th>Target Workspace</th>
 <th>Required Output</th>
 <th>Risk Level</th>
 <th>Feedback Destination</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>全局基线变更</td>
@@ -2849,31 +3118,115 @@ hr {
 <td>Repo / Review Log</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
-<h2 id="Appendix-C-Task-Node-Template"><a class="anchor" href="#Appendix-C-Task-Node-Template">#</a> Appendix C｜Task Node Template</h2>
-<p>node_id: node_name: path_stage: project_or_domain: input: action: owner_role: support_role: tool_or_agent: output: qa_gate: risk_level: status: feedback_destination: asset_candidate: review_items:</p>
-<p>⸻</p>
-<h2 id="Appendix-D-Execution-Package-Template"><a class="anchor" href="#Appendix-D-Execution-Package-Template">#</a> Appendix D｜Execution Package Template</h2>
-<pre><code class=" language-markdown"># Execution Package
-## 1. Mission Name
-## 2. Background
-## 3. Goal
-## 4. Input Materials
-## 5. Scope
-## 6. Non-Goals
-## 7. Output Requirements
-## 8. File Naming
-## 9. Version Strategy
-## 10. QA Criteria
-## 11. Pause Conditions
-## 12. Return Format
-## 13. Review Items
+  </div>
 
-⸻</code></pre>
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-ctask-node-template">Appendix C｜Task Node Template</h2>
+<p>node_id:<br />
+node_name:<br />
+path_stage:<br />
+project_or_domain:<br />
+input:<br />
+action:<br />
+owner_role:<br />
+support_role:<br />
+tool_or_agent:<br />
+output:<br />
+qa_gate:<br />
+risk_level:<br />
+status:<br />
+feedback_destination:<br />
+asset_candidate:<br />
+review_items:</p>
 <p>⸻</p>
-<h2 id="Appendix-E-Trial-Loop-Record-Template"><a class="anchor" href="#Appendix-E-Trial-Loop-Record-Template">#</a> Appendix E｜Trial Loop Record Template</h2>
-<pre><code class=" language-yaml">trial_id:
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-dexecution-package-template">Appendix D｜Execution Package Template</h2>
+<p>```markdown</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h1 id="execution-package">Execution Package</h1>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="1-mission-name">1. Mission Name</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="2-background">2. Background</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="3-goal">3. Goal</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="4-input-materials">4. Input Materials</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="5-scope">5. Scope</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="6-non-goals">6. Non-Goals</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="7-output-requirements">7. Output Requirements</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="8-file-naming">8. File Naming</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="9-version-strategy">9. Version Strategy</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="10-qa-criteria">10. QA Criteria</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="11-pause-conditions">11. Pause Conditions</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="12-return-format">12. Return Format</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="13-review-items">13. Review Items</h2>
+<p>⸻<br />
+```<br />
+⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-etrial-loop-record-template">Appendix E｜Trial Loop Record Template</h2>
+<pre><code class="language-yaml">trial_id:
 hypothesis:
 goal:
 minimum_action:
@@ -2889,10 +3242,15 @@ owner:
 date:
 review_items:
 
-⸻</code></pre>
+⸻
+</code></pre>
 <p>⸻</p>
-<h2 id="Appendix-F-Experience-Asset-Capture-Template"><a class="anchor" href="#Appendix-F-Experience-Asset-Capture-Template">#</a> Appendix F｜Experience Asset Capture Template</h2>
-<pre><code class=" language-yaml">F.1 Pattern Asset
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-fexperience-asset-capture-template">Appendix F｜Experience Asset Capture Template</h2>
+<pre><code class="language-yaml">F.1 Pattern Asset
 
 asset_type: Pattern
 scenario:
@@ -2991,19 +3349,64 @@ dependency:
 validation:
 source_project:
 
-⸻</code></pre>
-<h2 id="Appendix-G-Machine-Readable-Index"><a class="anchor" href="#Appendix-G-Machine-Readable-Index">#</a> Appendix G｜Machine-Readable Index</h2>
-<p>{ &quot;document_id&quot;: &quot;Synexa_DIC_V0.1&quot;, &quot;zh_name&quot;: &quot;超智科技·数智协同基线&quot;, &quot;en_name&quot;: &quot;Synexa Digital-Intelligence Collaboration Baseline&quot;, &quot;short_name&quot;: &quot;DICB&quot;, &quot;version&quot;: &quot;V0.1&quot;, &quot;status&quot;: &quot;Working Draft&quot;, &quot;upper_source&quot;: &quot;Synexa_Company_Intro_V3.10&quot;, &quot;maintainer&quot;: &quot;iS-Core&quot;, &quot;first_application&quot;: &quot;Nex2U&quot;, &quot;core_concepts&quot;: [ &quot;Digital-Intelligence Collaboration&quot;, &quot;Human Judgment&quot;, &quot;Digital Intelligence&quot;, &quot;Decision Bridge&quot;, &quot;Task Routing&quot;, &quot;Task Node&quot;, &quot;Execution Package&quot;, &quot;Trial Loop&quot;, &quot;Experience Asset&quot;, &quot;Project-to-Skill&quot; ], &quot;output_files&quot;: { &quot;markdown&quot;: &quot;Synexa_DIC_V0.1.md&quot;, &quot;render_script&quot;: &quot;Synexa_DIC_Render_V0.1.py&quot;, &quot;html&quot;: &quot;Synexa_DIC_V0.1.html&quot; }, &quot;next_steps&quot;: [ &quot;Generate render script&quot;, &quot;Generate HTML reading version&quot;, &quot;Review with Manus&quot;, &quot;Prepare GitHub governance&quot;, &quot;Prepare Fanyi project workbench&quot; ] }</p>
+⸻
+</code></pre>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-gmachine-readable-index">Appendix G｜Machine-Readable Index</h2>
+<p>{<br />
+  "document_id": "Synexa_DIC_Baseline_V0.1",<br />
+  "zh_name": "超智科技·数智协同基线",<br />
+  "en_name": "Synexa Digital-Intelligence Collaboration Baseline",<br />
+  "short_name": "DICB",<br />
+  "version": "V0.1",<br />
+  "status": "Working Draft",<br />
+  "upper_source": "Synexa_Company_Intro_V3.10",<br />
+  "maintainer": "iS-Core",<br />
+  "first_application": "Nex2U",<br />
+  "core_concepts": [<br />
+    "Digital-Intelligence Collaboration",<br />
+    "Human Judgment",<br />
+    "Digital Intelligence",<br />
+    "Decision Bridge",<br />
+    "Task Routing",<br />
+    "Task Node",<br />
+    "Execution Package",<br />
+    "Trial Loop",<br />
+    "Experience Asset",<br />
+    "Project-to-Skill"<br />
+  ],<br />
+  "output_files": {<br />
+    "markdown": "Synexa_DIC_Baseline_V0.1.md",<br />
+    "render_script": "Synexa_DIC_Baseline_Render_V0.1.py",<br />
+    "html": "Synexa_DIC_Baseline_V0.1.html"<br />
+  },<br />
+  "next_steps": [<br />
+    "Generate render script",<br />
+    "Generate HTML reading version",<br />
+    "Review with Manus",<br />
+    "Prepare GitHub governance",<br />
+    "Prepare Fanyi project workbench"<br />
+  ]<br />
+}</p>
 <p>⸻</p>
-<h2 id="Appendix-H-Version-Register--Change-Log"><a class="anchor" href="#Appendix-H-Version-Register--Change-Log">#</a> Appendix H｜Version Register &amp; Change Log</h2>
-<div class="table-wrap"><table>
-<thead><tr>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-hversion-register-change-log">Appendix H｜Version Register &amp; Change Log</h2>
+<table>
+<thead>
+<tr>
 <th>Version</th>
 <th>Date</th>
 <th>Change Summary</th>
 <th>Impact Scope</th>
 <th>Owner</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr>
 <td>V0.1</td>
@@ -3013,22 +3416,22 @@ source_project:
 <td>iS-Core</td>
 </tr>
 </tbody>
-</table></div>
+</table>
 <p>⸻</p>
 <p>Closing Statement｜结语</p>
-<blockquote><strong>V3.10 定义超智的总图，DICB 定义超智的走法。</strong></blockquote>
-<blockquote></blockquote>
-<blockquote>DICB 的核心价值，不是把工具列全，而是让人和机器在真实项目中形成共同协同秩序，并把问题、规则、判断和经验持续沉淀为可复用资产。</blockquote>
-
-        <footer class="footer">
-          <p>Rendered at: 2026-06-28 01:42:57</p>
-          <p>Source file: Synexa_DIC_V0.1.md</p>
-          <p>Output file: Synexa_DIC_V0.1.html</p>
-          <p>Renderer: Synexa_Baseline_Render_Core_V0.1.py</p>
-          <p>Rule: Markdown is the factual master source. HTML is a reading output.</p>
-        </footer>
-      </article>
-    </main>
+<p>V3.10 定义超智的总图，DICB 定义超智的走法。</p>
+<p>BBMap 定蓝图，BBLx 定章节逻辑，DICB 定正式主源。</p>
+<p>先让规则成文，再让 GitHub 和项目台按规则运行。</p>
+<p>DICB 的核心价值，不是把工具列全，而是让人和机器在真实项目中形成共同协同秩序，并把问题、规则、判断和经验持续沉淀为可复用资产。</p>
+<p>⸻</p>
+<p>本文件为《超智科技·数智协同基线 V0.1》Markdown 主源草案。后续所有事实性修改应回到本 Markdown 主源进行。HTML / PDF / JSON / ZIP 均为输出形态，不替代主源。</p>
   </div>
+
+
+  <div class="doc-footer">
+    SYNEXA · INTERNAL SSOT · GENERATED 2026-06-28 · BBLx_HTML_GENERATOR V1.3
+  </div>
+
+</div>
 </body>
 </html>

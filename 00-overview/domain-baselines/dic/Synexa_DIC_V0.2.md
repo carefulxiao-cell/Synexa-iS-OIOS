@@ -17,26 +17,6 @@ stat_override:
 
 ---
 
-Synexa Digital-Intelligence Collaboration Baseline V0.1
-
-DICB V0.1
-
-文件类型：Domain / Operational Baseline｜专题运行基线
-中文正式名：超智科技·数智协同基线
-英文正式名：Synexa Digital-Intelligence Collaboration Baseline
-对外轻主名称：DICB
-当前版本：V0.1
-当前状态：Working Draft / Markdown Master Source
-上位文件：超智科技认知基线 V3.10
-维护入口：智核中枢·iS-Core
-首个应用样板：Nex₂U / 番医项目功能台预备
-文件主源建议名：Synexa_DIC_Baseline_V0.1.md
-后续输出：Synexa_DIC_Baseline_Render_V0.1.py / Synexa_DIC_Baseline_V0.1.html
-生产链条：DIC·BBMap → DIC·BBL → DICB
-当前阶段：Step4|DICB md|Markdown 主源
-
-⸻
-
 ## CH(-1)｜Human-Machine-Digital Baseline Protocol
 
 人机数智共识协议
@@ -165,37 +145,7 @@ DICB 至少承担十项核心功能：
 
 ⸻
 
-ES.4 DIC 的主流程
-
-DICB 的标准协同路径如下：
-
-目标提出
-  ↓
-人智定向
-  ↓
-任务归位
-  ↓
-路径推演
-  ↓
-节点拆解
-  ↓
-角色分工
-  ↓
-工具 / Agent 调用
-  ↓
-执行交付
-  ↓
-质量检查
-  ↓
-人智裁决
-  ↓
-SSOT / PCS 回写
-  ↓
-经验资产沉淀
-  ↓
-下一轮优化
-
-这条路径不是为了增加流程，而是为了让每一次执行都能被理解、被分派、被检查、被复盘、被沉淀。
+ES.4 DIC 的主流程详见 CH04.1。
 
 ⸻
 
@@ -295,19 +245,6 @@ DICB 不适用于：
 
 数智协同，是指在人的方向设定与责任承担之下，将 AI、Agent、数据、代码、工具、业务系统、供应网络、现场执行与经验资产组织成可执行、可反馈、可优化的协同运行机制。
 
-它不是单纯 AI 使用，不是自动化替代人，也不是做一个软件系统。
-
-它的核心是：
-
-人设方向；
-机器出方案；
-系统组织任务；
-Agent 执行动作；
-工具提供能力；
-项目验证结果；
-经验沉淀资产；
-下一轮持续优化。
-
 ⸻
 
 ### CH01.2 数智协同不是什么
@@ -385,8 +322,6 @@ DICB 中，必须区分主体与能力体。
 
 人智判断，是人在方向、价值、责任、裁决、例外处理和高风险取舍中的不可替代作用。
 
-人智不是系统补丁，而是方向锚与责任锚。
-
 DIC 中的人智至少承担五类职责：
 
 1. 定义目标；
@@ -401,28 +336,7 @@ DIC 中的人智至少承担五类职责：
 
 ### CH02.3 AI / LLM
 
-AI / LLM 是认知发动机，适合理解、生成、推演、总结、结构化与草案生成。
-
-适合：
-
-1. 文档理解；
-2. 方案生成；
-3. 结构化整理；
-4. 任务拆解；
-5. 会议纪要；
-6. SOP 草案；
-7. 规则抽取；
-8. 执行包生成；
-9. 复盘归纳。
-
-不适合：
-
-1. 最终战略裁决；
-2. 医疗责任判断；
-3. 财务付款动作；
-4. 对外合同承诺；
-5. 供应商最终选择；
-6. 未经审核的正式发布。
+AI / LLM 是认知发动机，适合理解、生成、推演、总结、结构化与草案生成。具体适用场景详见 CH07.2。
 
 ⸻
 
@@ -461,15 +375,7 @@ Skill 不是文档说明，而是可触发、可复用、可组合、可审计�
 
 ## CH 03｜任务归位机制
 
-### CH03.1 为什么需要任务归位
-
-任务不先归位，就不应直接执行；未归位的执行，往往会造成重复劳动、责任模糊和经验流失。
-
-DIC 的任务归位不是行政分工，而是为了确保每个任务都有正确的认知层级、执行角色、质量门和回流位置。
-
-⸻
-
-### CH03.2 任务归位类型
+### CH03.1 任务归位类型
 
 | 归位类型 | 触发条件 | 典型输出 |
 |---|---|---|
@@ -618,10 +524,7 @@ DIC 的标准协同路径，不是为了增加流程，而是为了让每一次�
 
 ### CH05.1 任务节点定义
 
-任务节点，是从目标到交付过程中可识别、可分派、可执行、可检查、可回流的工作单元。
-
-任务节点不是普通待办事项。
-它必须具备输入、动作、主责、工具、输出、质量门、风险等级与回流位置。
+任务节点，是从目标到交付过程中可识别、可分派、可执行、可检查、可回流的工作单元，必须具备输入、动作、主责、工具、输出、质量门、风险等级与回流位置。
 
 ⸻
 
@@ -962,21 +865,7 @@ DIC 不是工具说明书，但必须定义工具的协同位置。
 
 ### CH10.1 问题到资产的路径
 
-问题出现
-  ↓
-问题归类
-  ↓
-风险判断
-  ↓
-处理动作
-  ↓
-结果记录
-  ↓
-复盘结论
-  ↓
-资产归档
-  ↓
-SOP / Skill / Agent / Engine 更新
+问题出现 → 归类 → 风险判断 → 处理动作 → 结果记录 → 复盘结论 → 资产归档 → SOP / Skill / Agent / Engine 更新
 
 ⸻
 
@@ -1038,23 +927,7 @@ Project-to-Skill，是从真实项目中提取可复用能力的过程。
 
 ### CH11.2 标准蒸馏路径
 
-真实项目运行
-  ↓
-对象识别
-  ↓
-规则抽取
-  ↓
-异常归档
-  ↓
-模板化
-  ↓
-Skill 化
-  ↓
-Agent / DE 配置
-  ↓
-Nex·EC 模块候选
-  ↓
-经验资产库
+详见 CH11.3 Project-to-Skill 蒸馏表。
 
 ⸻
 
@@ -1160,19 +1033,7 @@ Nex₂U 当前关键不是先做漂亮前端，而是跑通规则、菜品、订
 
 ### CH13.3 Nex₂U 最小闭环
 
-点餐体验
-  ↓
-生产保障
-  ↓
-服务运维
-  ↓
-采购支持
-  ↓
-人力管理
-  ↓
-财务管控
-  ↓
-经验沉淀
+点餐体验 → 生产保障 → 服务运维 → 采购支持 → 人力管理 → 财务管控 → 经验沉淀（详见 CH13.4）
 
 ⸻
 
@@ -1256,25 +1117,7 @@ GitHub / 文件归位规则明确
 
 ### CH14.3 当前建议推进顺序
 
-当前阶段建议按以下顺序执行：
-
-DIC·BBMap
-  ↓
-DIC·BBL
-  ↓
-DICB Markdown 主源
-  ↓
-py 渲染脚本
-  ↓
-html 阅读版
-  ↓
-GitHub 全仓整理
-  ↓
-项目台机制
-  ↓
-番医任务台 / 餐食台 / 人力台
-
-先让规则成文，再让 GitHub 和项目台按规则运行。
+详见 CH14.1 阶段路径表和 CH14.2 当前阶段下一步。
 
 ⸻
 
@@ -1517,7 +1360,7 @@ source_project:
 ## Appendix G｜Machine-Readable Index
 
 {
-  "document_id": "Synexa_DIC_Baseline_V0.1",
+  "document_id": "Synexa_DIC_V0.1",
   "zh_name": "超智科技·数智协同基线",
   "en_name": "Synexa Digital-Intelligence Collaboration Baseline",
   "short_name": "DICB",
@@ -1539,9 +1382,9 @@ source_project:
     "Project-to-Skill"
   ],
   "output_files": {
-    "markdown": "Synexa_DIC_Baseline_V0.1.md",
-    "render_script": "Synexa_DIC_Baseline_Render_V0.1.py",
-    "html": "Synexa_DIC_Baseline_V0.1.html"
+    "markdown": "Synexa_DIC_V0.1.md",
+    "render_script": "Synexa_Baseline_Render_Core_V0.1.py",
+    "html": "Synexa_DIC_V0.1.html"
   },
   "next_steps": [
     "Generate render script",

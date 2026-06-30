@@ -238,6 +238,10 @@ SOURCE RULE
 
 Markdown / YAML 是主源，HTML 是枝，PDF 是花，JSON 是种子。HTML 可以改样式，不直接改内容；内容修改必须回到 Master Source。
 
+**体系版本：** SSADS V1.4 · Master Blueprint v1.4
+
+**主源仓库：** GitHub `carefulxiao-cell/Synexa-iS-OIOS`（OIOS = Open Intelligence Operating System），由 iS-Core 维护，为全体系唯一真相源（SSOT）。
+
 </div>
 
 </div>
@@ -502,6 +506,18 @@ CORE SENTENCE
 
 超智通过 Synexa iS、Nex·EC 与 Nex·PVC，将场景认知、供应网络、智能集群、业务引擎、数据反馈与经验沉淀组织成可持续进化的协同系统。
 
+## 旗下品牌与终端场景
+
+超智旗下拥有两个终端场景品牌，为系统能力提供真实运营验证回路：
+
+| 品牌 | 英文名 | 定位 | 业务线 |
+|---|---|---|---|
+| **Bella Giornata（美好的一天）** | BG | 生活方式导向的现代意餐与轻社交复合空间 | 面向 C 端用户的品牌场景与社交体验 |
+| **小四喜** | — | 面向健康营养与功能性饮食的标准化产品体系 | 健康餐食标准化产品与功能性饮食 |
+
+两个品牌均属于超智终端场景验证层，通过真实经营数据与用户反馈，持续校验品牌逻辑、供应链能力、营养结构设计与运营模型。
+
+**命名说明：**子品牌命名带中文（如 NexSply·意臻国际）表示商业主体层（品牌 / 公司）；不带中文（如 NexSply）表示系统引擎层（Nex·EC 引擎代号）。
 </div>
 
 <div class="section chapter">
@@ -509,7 +525,6 @@ CORE SENTENCE
 <div class="eyebrow">
 
 CAPABILITY LAYERS
-
 </div>
 
 # CH 02｜能力体系
@@ -1242,6 +1257,8 @@ Nex·EC 模块成熟度状态标签：concept｜概念期；prototype｜原型�
 | F｜全球贸易与跨境协同引擎 | NexGo                              |
 
 ## 12.2 标准引擎表
+
+> **命名区分规则：** 引擎代号不带中文（如 `NexSply`）表示 Nex·EC 系统引擎层；引擎代号带中文（如 `NexSply·意臻国际`）表示商业主体层（品牌 / 公司）。两者在命名上共享同一前缀，但层级不同，不得混用。
 
 | 商业命名 | 商业组合名               | 内部功能名                 | 核心职责                                                                                                                 |
 |----------|--------------------------|----------------------------|--------------------------------------------------------------------------------------------------------------------------|
@@ -3168,6 +3185,44 @@ AI 在处理长文件时具有两个内置倾向：压缩倾向（上下文越�
 ## 26.14.5 未来演进方向
 
 本章及 CH26 系列治理章节，在体系成熟到一定阶段后，可独立分拆为《Synexa iS 生态治理经验手册》，与内容基线分开维护。当前阶段合并保留，留好分拆接口。
+</div>
+
+<div class="section chapter">
+
+<div class="eyebrow">
+
+WORKSPACE ARCHITECTURE
+
+</div>
+
+# CH 26.15｜Workspace Architecture Overview <span class="subtitle">工作空间与对话组架构总览</span>
+
+本章提供 Synexa iS 体系工作空间（Manus 对话组）的分层架构总览。完整注册表详见 `00-master/WORKSPACE_REGISTRY_v2.1.md`，本章为认知基线层入口。
+
+## 26.15.1 分层架构
+
+| 层级 | 定位 | 代表工作空间 |
+|---|---|---|
+| **L1 全局枢纽** | 体系治理与战略层 | iS-Core（智核中枢）、iS-SCO（枢机经纬）、iS-Matrix（智核矩阵）、iS-Hub（智权枢纽）、iS-Lab（智核实验） |
+| **L2 核心业务引擎** | 业务协同层 | iS-NexFlow（超级项管）、Nex₂U（智食引擎）、iS-NexChef、iS-NexMPC、iS-NexFA、iS-Nexsply（供应链智能中台）、iS-Synexa（超智建设） |
+| **L3 垂直场景与应用项目** | 项目执行层 | 膳食同行·NTogether、空港供链·AeroLink、语言巴别塔·Lingua Babel 等 |
+| **L4 独立探索与个人效能** | 个人效能层 | 更好的自己·DSA、金钱拼图·Money Mosaic 等 |
+
+## 26.15.2 核心工作空间定位
+
+| 代号 | 中文名 | 定位 | 层级 |
+|---|---|---|---|
+| iS-Core | 智核中枢 | 董事会主控入口，全局裁决、项目孵化、体系治理 | L1 |
+| iS-SCO | 枢机经纬 | 策略室，战略推演、需求定义、价值锚定 | L1 |
+| iS-Matrix | 智核矩阵 | 研究培训室，SOP / 规程 / 模板 / 数字员工指令生产 | L1 |
+| iS-Hub | 智权枢纽 | 情报室，内外部 Agent 案例、工具与平台汇聚 | L1 |
+| iS-Lab | 智核实验 | 灵感前测室，未成熟想法最小验证 | L1 |
+| iS-NexFlow | 超级项管 | 全局项目管理引擎，重组资源结构、提升履约效能 | L2 |
+| iS-Nexsply | 供应链智能中台 | 全球优质原材料采购与供应链整合智能中台 | L2 |
+
+## 26.15.3 工作空间命名规则
+
+工作空间命名格式：`[iS-代号]·[Nex·EC引擎代号]`，如 `超级项管·iS-NexFlow`。L1 工作空间使用 `iS-[Nex·EC引擎代号]` 格式，L2 工作空间对应具体引擎。完整注册表详见 `WORKSPACE_REGISTRY_v2.1.md`。
 
 </div>
 
@@ -3435,7 +3490,7 @@ SYNEXA / V3.3 / SSOT / 11 ENGINES
 | PPT / 投资人材料           | Space Grotesk                                         | 思源宋体 Heavy             | 思源黑体 Regular           | 少字、高对比、结构锐利。                 |
 | Dashboard / 系统界面       | Space Grotesk / Mono for code only                    | 思源黑体 Medium            | 思源黑体 / 苹方            | 少宋体，重效率，强调数据密度与操作清晰。 |
 | Contract / 报价 / 商务文件 | Space Grotesk / Arial / Aptos                         | 思源黑体 / Microsoft YaHei | 思源黑体 / Microsoft YaHei | 稳定兼容优先，降低实验感。               |
-| NexSply / 意臻国际         | Cormorant Garamond / Playfair Display / Space Grotesk | 思源宋体 Bold              | 思源黑体 Regular           | 保留产地、人文、精品供应气质。           |
+| NexSply·意臻国际         | Cormorant Garamond / Playfair Display / Space Grotesk | 思源宋体 Bold              | 思源黑体 Regular           | 保留产地、人文、精品供应气质。           |
 
 ## E.7 Layout Tokens｜布局令牌
 

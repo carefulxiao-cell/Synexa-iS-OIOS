@@ -1,7 +1,7 @@
 <!-- COVER
 topline: SYNEXA · DIC BASELINE · INTERNAL SSOT · DOMAIN BASELINE
 title: 超智科技·数智协同基线
-en: Synexa Digital-Intelligence Collaboration Baseline V0.1
+en: Synexa Digital-Intelligence Collaboration Baseline V0.3
 sub: Defining the operating logic of human-AI collaboration within the Synexa ecosystem.
 quote: 先让规则成文，再让 GitHub 和项目台按规则运行。V3.10 定义超智的总图，DICB 定义超智的走法。
 stat_override:
@@ -12,7 +12,7 @@ stat_override:
   - 3 | 核心机制层 | Core Mechanisms
 -->
 
-# 超智科技·数智协同基线｜DICB V0.1
+# 超智科技·数智协同基线｜DICB V0.3
 
 
 ---
@@ -1149,7 +1149,15 @@ GitHub / 文件归位规则明确
 
 ⸻
 
-### CH15.3 V3.10 反向补丁原则
+### CH15.3 经验触发升级机制
+DICB 必须通过真实项目的经验沉淀（PER）实现自我进化。当满足以下条件时，必须触发 DICB 的版本升级：
+1. **新协同 Pattern 跑通**：当某个项目（如 Nex₂U）跑通了新的「人-机-系统」协同闭环，且该闭环具有跨项目复用价值时，应将其提炼为新的协同路径写入 CH04。
+2. **工具/Agent 边界突破**：当发现某类 Agent 或工具能够稳定承担原定由人承担的某项工作，或发现其存在系统性风险时，必须修改 CH02 角色关系表。
+3. **治理机制失效**：当发现现有的任务归位（CH03）或版本治理（CH15）机制导致严重认知负荷或效率瓶颈时，必须重构对应章节。
+
+⸻
+
+### CH15.4 V3.10 反向补丁原则
 
 DIC V0.1 完成后，不建议立即升级 V3.10。
 
@@ -1394,6 +1402,21 @@ source_project:
     "Prepare Fanyi project workbench"
   ]
 }
+
+⸻
+
+## Appendix I｜工作空间映射表 (Workspace Mapping)
+本表将 DIC 定义的协同角色与 Synexa iS 体系中实际存在的 Manus 对话组（工作空间）进行映射，确保新接入的 Agent 明确自己的物理归属。
+
+| DIC 角色层级 | 角色定位 | 对应实际工作空间 (Workspace) |
+|---|---|---|
+| **L1 治理层** | 全局裁决、战略推演、基线维护 | iS-Core（智核中枢）、iS-SCO（枢机经纬）、iS-Matrix（智核矩阵） |
+| **L2 引擎层** | 核心业务协同与能力输出 | iS-NexFlow（超级项管）、Nex₂U（智食引擎）、iS-NexChef 等 |
+| **L3 项目层** | 垂直场景与具体项目执行 | 各项目专属 PCS 对话组（如 NTogether、AeroLink） |
+| **L4 个人层** | 个人效能与独立探索 | 更好的自己·DSA、金钱拼图·Money Mosaic 等 |
+| **支撑层** | 情报收集、灵感前测 | iS-Hub（智权枢纽）、iS-Lab（智核实验） |
+
+*注：完整工作空间注册表详见 `00-master/WORKSPACE_REGISTRY_v2.1.md`。*
 
 ⸻
 

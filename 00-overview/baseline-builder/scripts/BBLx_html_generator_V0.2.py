@@ -38,11 +38,11 @@ CSS = """
   --border:  #D9DEE7;
   --bg-soft: #F7F9FC;
 
-  /* L3 台系统字体降级栈（BBM Section 5.4）*/
-  --font-en-theme: 'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
-  --font-zh-title: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
-  --font-zh-body:  'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
-  --font-data:     'JetBrains Mono', 'SF Mono', 'Consolas', 'Courier New', monospace;
+  /* 纯系统字体栈（零外部依赖，跨平台兼容）*/
+  --font-en-theme: 'Helvetica Neue', 'Arial', sans-serif;
+  --font-zh-title: 'PingFang SC', 'STSong', 'SimSun', Georgia, serif;
+  --font-zh-body:  'PingFang SC', 'Microsoft YaHei', 'STHeiti', Arial, sans-serif;
+  --font-data:     'SF Mono', 'Consolas', 'Courier New', monospace;
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -889,7 +889,9 @@ def generate(md_path: str, html_path: str):
 
     # 提取文件标题（用于 <title>）
     title_match = re.search(r'^#\s+(.+)$', text, re.MULTILINE)
-    page_title = title_match.group(1).strip() if title_match else src.stem
+    page_title_raw = title_match.group(1).strip() if title_match else src.stem
+    # 剥离标题中可能混入的 HTML 标签，确保 <title> 是纯文本
+    page_title = re.sub(r'<[^>]+>', '', page_title_raw).strip()
 
     # 构建封面
     cover_fields = extract_cover_fields(text)

@@ -1,0 +1,3347 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>超智科技·数智协同基线｜DICB V0.3</title>
+<style>
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+
+  /* L3 台系统字体降级栈（BBM Section 5.4）*/
+  --font-en-theme: 'Space Grotesk', 'DIN Alternate', 'Helvetica Neue', Arial, sans-serif;
+  --font-zh-title: 'Noto Serif SC', 'Source Han Serif SC', 'STSong', 'SimSun', Georgia, serif;
+  --font-zh-body:  'PingFang SC', 'Noto Sans SC', 'Source Han Sans SC', 'Microsoft YaHei', sans-serif;
+  --font-data:     'JetBrains Mono', 'SF Mono', 'Consolas', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-soft);
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 页面容器 ── */
+.page-wrap {
+  max-width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 40px 0 80px;
+}
+
+/* ── 封面区域 ── */
+.cover {
+  background: #fff;
+  border-radius: 12px;
+  padding: 56px 64px 48px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.topline {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover-title {
+  font-family: var(--font-zh-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.cover-en {
+  font-family: var(--font-en-theme);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.cover-sub {
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.cover-quote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 20px;
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  color: var(--mid);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
+  background: #fff;
+}
+
+.stat .num {
+  font-family: var(--font-en-theme);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat .statlabel {
+  font-family: var(--font-zh-body);
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 4px;
+}
+
+.stat .statsub {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* ── 章节卡片 ── */
+.chapter {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px 48px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+.eyebrow {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ── 标题层级 ── */
+h1 {
+  font-family: var(--font-zh-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: var(--font-zh-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+
+h3 {
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+
+h4 {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 16px 0 8px;
+}
+
+/* ── 表格 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+th {
+  background: #F0F2F5;
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+tr:nth-child(even) td { background: var(--bg-soft); }
+
+/* ── 标签组件 ── */
+.tag {
+  display: inline-block;
+  background: rgba(40,204,131,.12);
+  color: #1a9e63;
+  border: 1px solid rgba(40,204,131,.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+/* ── 引言/blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: var(--mid);
+}
+
+/* ── 代码 ── */
+code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+
+pre {
+  background: #0B1220;
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+pre code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: #e2e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── 段落/列表 ── */
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 4px 0; line-height: 1.7; }
+
+strong { font-weight: 700; color: var(--dark); }
+em { color: var(--purple); font-style: normal; font-weight: 600; }
+
+/* ── 分隔线 ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* ── 页脚 ── */
+.doc-footer {
+  text-align: center;
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="cover">
+    <div class="topline">SYNEXA · DIC BASELINE · INTERNAL SSOT · DOMAIN BASELINE</div>
+    <div class="cover-title">超智科技·数智协同基线</div>
+    <div class="cover-en">Synexa Digital-Intelligence Collaboration Baseline V0.3</div>
+    <div class="cover-sub">Defining the operating logic of human-AI collaboration within the Synexa ecosystem.</div>
+    <div class="cover-quote">先让规则成文，再让 GitHub 和项目台按规则运行。V3.10 定义超智的总图，DICB 定义超智的走法。</div>
+    <div class="statgrid">
+      <div class="stat">
+        <div class="num">13</div>
+        <div class="statlabel">质量门</div>
+        <div class="statsub">Quality Gates</div>
+      </div>
+      <div class="stat">
+        <div class="num">6</div>
+        <div class="statlabel">触发条件</div>
+        <div class="statsub">Trigger Conditions</div>
+      </div>
+      <div class="stat">
+        <div class="num">10</div>
+        <div class="statlabel">路径节点</div>
+        <div class="statsub">Path Nodes</div>
+      </div>
+      <div class="stat">
+        <div class="num">4</div>
+        <div class="statlabel">协同主体</div>
+        <div class="statsub">Agent Types</div>
+      </div>
+      <div class="stat">
+        <div class="num">3</div>
+        <div class="statlabel">核心机制层</div>
+        <div class="statsub">Core Mechanisms</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-1human-machine-digital-baseline-protocol">CH(-1)｜Human-Machine-Digital Baseline Protocol</h2>
+<p>人机数智共识协议</p>
+<h3 id="ch-11">CH(-1).1 文件共识</h3>
+<p>《超智科技·数智协同基线｜DICB》是一份面向人类协作者、AI 智能体、数字工具、代码执行体、业务系统、项目执行体与组织经验资产共同读取的运行基线文件。</p>
+<p>它不是普通说明书，也不是 AI 工具清单，而是用于统一以下事项的共识协议：</p>
+<ol>
+<li>人如何设定方向；</li>
+<li>机器如何执行任务；</li>
+<li>Agent 如何接收边界；</li>
+<li>工具如何被调用；</li>
+<li>系统如何承载流程；</li>
+<li>项目如何形成闭环；</li>
+<li>问题如何被复盘；</li>
+<li>经验如何沉淀为资产；</li>
+<li>资产如何回流到 SOP、Skill、Agent Matrix、PCS 与 Master SSOT。</li>
+</ol>
+<p>DICB 的目标不是把所有 AI 工具写得最多，而是在最小冗余下统一人类判断、机器执行、系统调度与经验沉淀的协同秩序。</p>
+<p>⸻</p>
+<h3 id="ch-12">CH(-1).2 文件主源规则</h3>
+<p>本文件采用 Markdown 作为事实主源。</p>
+<p>Markdown 是事实主源；<br />
+Python 是渲染工具；<br />
+HTML 是阅读输出；<br />
+PDF 是归档形态；<br />
+JSON / YAML 是机器索引；<br />
+ZIP 是完整交付包。</p>
+<p>所有事实性修改必须回到 Markdown 主源，不应在 HTML、PDF 或临时聊天记录中直接修改事实内容。</p>
+<table>
+<thead>
+<tr>
+<th>文件形态</th>
+<th>作用</th>
+<th>是否事实主源</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markdown</td>
+<td>正式内容主源</td>
+<td>是</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>渲染脚本</td>
+<td>否</td>
+</tr>
+<tr>
+<td>HTML</td>
+<td>阅读版 / 检查版</td>
+<td>否</td>
+</tr>
+<tr>
+<td>PDF</td>
+<td>后续归档版</td>
+<td>否</td>
+</tr>
+<tr>
+<td>JSON / YAML</td>
+<td>机器索引 / 字段映射</td>
+<td>否，除非专门声明</td>
+</tr>
+<tr>
+<td>ZIP</td>
+<td>完整交付包</td>
+<td>否</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch-13">CH(-1).3 人机共读原则</h3>
+<p>本文件需要同时服务四类读者。</p>
+<table>
+<thead>
+<tr>
+<th>读者类型</th>
+<th>读取目标</th>
+<th>使用入口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Human</td>
+<td>理解协同规则、任务路径、责任边界</td>
+<td>Executive Summary / CH01-CH05</td>
+</tr>
+<tr>
+<td>Machine</td>
+<td>解析字段、节点、路径、状态</td>
+<td>Appendix G / 表格 / 机器锚点</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>按任务归位、执行包、质量门推进</td>
+<td>CH03 / CH08 / Appendix D</td>
+</tr>
+<tr>
+<td>Organization</td>
+<td>用于项目治理、经验沉淀、版本升级</td>
+<td>CH10 / CH11 / CH15</td>
+</tr>
+</tbody>
+</table>
+<p>因此，本文件的写法必须同时满足：</p>
+<ol>
+<li>人类可以读懂；</li>
+<li>机器可以解析；</li>
+<li>Agent 可以调用；</li>
+<li>项目可以执行；</li>
+<li>经验可以沉淀；</li>
+<li>GitHub 可以回写；</li>
+<li>后续可以渲染为 HTML / PDF；</li>
+<li>可拆分为 SOP、Skill、Registry、PCS Patch 与 Experience Asset。</li>
+</ol>
+<p>⸻</p>
+<p>Executive Summary｜执行摘要</p>
+<p>ES.1 为什么需要 DICB</p>
+<p>超智科技正在从单点项目推进，进入多项目、多工具、多 Agent、多文件、多业务引擎协同的阶段。</p>
+<p>在这个阶段，如果没有统一的数智协同基线，容易出现：</p>
+<ol>
+<li>人和机器理解不一致；</li>
+<li>不同工具各自执行，无法回流；</li>
+<li>项目任务缺少路径和节点；</li>
+<li>文件版本散落在聊天记录、HTML、PDF、临时表格中；</li>
+<li>Agent 快速执行但偏离上位基线；</li>
+<li>经验没有沉淀为 SOP、Skill、Agent 或项目资产；</li>
+<li>GitHub、PCS、Context OS 与 Master SSOT 之间缺少清晰同步关系。</li>
+</ol>
+<p>因此，DICB 的核心作用，是将人的方向、机器的执行、系统的反馈、项目的推进和经验的沉淀，组织成可执行、可追踪、可复盘、可升级的协同秩序。</p>
+<p>⸻</p>
+<p>ES.2 DIC 与《超智科技认知基线》的关系</p>
+<p>《超智科技认知基线》定方向、结构与边界；《超智科技·数智协同基线｜DICB》定路径、节点与协同动作。</p>
+<p>前者是总图，后者是走法；前者让体系不漂，后者让行动不散。</p>
+<table>
+<thead>
+<tr>
+<th>维度</th>
+<th>超智科技认知基线 V3.10</th>
+<th>DICB</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核心问题</td>
+<td>超智是什么</td>
+<td>人和机器如何协同把事做成</td>
+</tr>
+<tr>
+<td>文件性质</td>
+<td>Master SSOT</td>
+<td>数智协同运行基线</td>
+</tr>
+<tr>
+<td>关注重点</td>
+<td>定位、架构、能力、项目组合</td>
+<td>任务、路径、节点、试错、经验</td>
+</tr>
+<tr>
+<td>作用</td>
+<td>统一认知</td>
+<td>统一行动</td>
+</tr>
+<tr>
+<td>更新逻辑</td>
+<td>审慎升级</td>
+<td>小步迭代</td>
+</tr>
+<tr>
+<td>输出方向</td>
+<td>总图与边界</td>
+<td>走法与机制</td>
+</tr>
+</tbody>
+</table>
+<p>DICB 不替代《超智科技认知基线 V3.10》，而是在其上位框架下，进一步展开人、AI、Agent、工具、代码、业务系统与真实项目之间的协同运行机制。</p>
+<p>⸻</p>
+<p>ES.3 DIC 的核心功能</p>
+<p>DICB 至少承担十项核心功能：</p>
+<ol>
+<li>统一数智协同定义；</li>
+<li>明确人、AI、Agent、工具、代码、系统、项目之间的角色关系；</li>
+<li>建立任务从目标到交付的标准路径链条；</li>
+<li>建立任务归位机制；</li>
+<li>建立不同任务类型的节点模板；</li>
+<li>建立工具与 Agent 的调用原则；</li>
+<li>建立外部执行包机制；</li>
+<li>建立小步快跑与快速试错机制；</li>
+<li>建立问题 / 异常 / 经验沉淀机制；</li>
+<li>建立从任务到 SOP、Skill、Digital Employee、Experience Asset 的转化机制。</li>
+</ol>
+<p>⸻</p>
+<p>ES.4 DIC 的主流程详见 CH04.1。</p>
+<p>⸻</p>
+<p>ES.5 首个应用样板</p>
+<p>DICB 的首个应用样板是 Nex₂U。</p>
+<p>Nex₂U 涉及营养规则、用户需求、菜品结构、点餐履约、供应协同、现场执行、数据反馈和经验沉淀，天然适合作为数智协同的真实验证场。</p>
+<p>Nex₂U 当前不应先追求完整大系统，而应先跑通最小闭环：</p>
+<p>点餐体验 → 生产保障 → 服务运维 → 采购支持 → 人力管理 → 财务管控 → 经验沉淀</p>
+<p>详见 CH13.3 最小闭环节点表。</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-00">CH 00｜文件定位与使用边界</h2>
+<h3 id="ch001">CH00.1 文件身份</h3>
+<p>《超智科技·数智协同基线｜DICB》是《超智科技认知基线 V3.10》之下的专题运行基线。</p>
+<p>它的核心任务不是重新定义超智，而是回答：</p>
+<p>在超智已经有公司定位、系统架构、项目组合和能力体系的前提下，人、机器、工具、Agent、代码、业务系统与真实项目如何协同把事情做成？</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>定义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Document Type</td>
+<td>Domain / Operational Baseline</td>
+</tr>
+<tr>
+<td>Chinese Name</td>
+<td>超智科技·数智协同基线</td>
+</tr>
+<tr>
+<td>English Name</td>
+<td>Synexa Digital-Intelligence Collaboration Baseline</td>
+</tr>
+<tr>
+<td>Short Name</td>
+<td>DICB</td>
+</tr>
+<tr>
+<td>Version</td>
+<td>V0.1</td>
+</tr>
+<tr>
+<td>Upper Source</td>
+<td>Synexa Company Intro V3.10</td>
+</tr>
+<tr>
+<td>Maintainer</td>
+<td>iS-Core</td>
+</tr>
+<tr>
+<td>Implementation Roles</td>
+<td>iS-Matrix / Manus / Codex / Project PCS</td>
+</tr>
+<tr>
+<td>First Application</td>
+<td>Nex₂U</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch002">CH00.2 不替代原则</h3>
+<p>DICB 不替代以下文件或机制：</p>
+<table>
+<thead>
+<tr>
+<th>不替代对象</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>超智认知基线（SCI V3.10）</td>
+<td><code>Synexa_Company_Intro_V3.10.md</code> 是公司级最高认知源，DICB 在其上位框架下展开协同运行机制</td>
+</tr>
+<tr>
+<td>Context OS</td>
+<td>Context OS 记录动态状态与待同步事项</td>
+</tr>
+<tr>
+<td>PCS</td>
+<td>PCS 管具体项目执行状态</td>
+</tr>
+<tr>
+<td>SOP</td>
+<td>SOP 管稳定流程</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>Skill 管可复用能力封装</td>
+</tr>
+<tr>
+<td>GitHub Registry</td>
+<td>Registry 管索引与文件状态</td>
+</tr>
+<tr>
+<td>Human Judgment</td>
+<td>高风险决策仍需人智裁决</td>
+</tr>
+</tbody>
+</table>
+<p>DIC 定义协同运行规则；具体项目状态仍由 PCS 管理，具体操作流程由 SOP 固化，可复用能力由 Skill 承载。</p>
+<p>⸻</p>
+<h3 id="ch003">CH00.3 适用对象</h3>
+<p>DICB 适用于：</p>
+<ol>
+<li>iS-Core：用于裁决任务归位、基线关系与版本治理；</li>
+<li>iS-SCO：用于战略推演、路径判断与复杂任务拆解；</li>
+<li>iS-Matrix：用于生产 SOP、Skill、模板、执行包；</li>
+<li>iS-Hub：用于维护 Tool / Agent Registry；</li>
+<li>iS-Lab：用于未成熟想法的最小验证；</li>
+<li>PCS 项目组：用于项目任务、节点、反馈和经验沉淀；</li>
+<li>外部执行体（对话型 AI / 代码执行平台 / 自动化集成）：用于接收结构化执行包，具体工具分工详见 CH07.2；</li>
+<li>人类项目负责人：用于判断方向、审核结果、裁决风险；</li>
+<li>GitHub / Registry 管理者：用于文件归位、版本追踪、索引维护。</li>
+</ol>
+<p>⸻</p>
+<h3 id="ch004">CH00.4 不适用对象</h3>
+<p>DICB 不适用于：</p>
+<ol>
+<li>对外客户宣传；</li>
+<li>投资人版路演；</li>
+<li>单个产品介绍；</li>
+<li>单次项目报价；</li>
+<li>临时任务备忘；</li>
+<li>纯 AI 工具排行；</li>
+<li>纯代码开发说明；</li>
+<li>纯设计视觉规范；</li>
+<li>法律、医疗、财务责任文件。</li>
+</ol>
+<p>如需面向外部表达，应由 iS-Synexa 或对应项目组基于 DIC 进行转译，不应直接以本文件作为对外文件。</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-01">CH 01｜数智协同总定义</h2>
+<h3 id="ch011">CH01.1 正式定义</h3>
+<p>数智协同，是指在人的方向设定与责任承担之下，将 AI、Agent、数据、代码、工具、业务系统、供应网络、现场执行与经验资产组织成可执行、可反馈、可优化的协同运行机制。</p>
+<p>⸻</p>
+<h3 id="ch012">CH01.2 数智协同不是什么</h3>
+<table>
+<thead>
+<tr>
+<th>误解</th>
+<th>正确理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AI 工具使用</td>
+<td>数智协同运行机制</td>
+</tr>
+<tr>
+<td>自动化替代人</td>
+<td>人智定向 + 数智执行 + 人智裁决</td>
+</tr>
+<tr>
+<td>做一个系统</td>
+<td>形成可迭代的协同秩序</td>
+</tr>
+<tr>
+<td>项目管理表</td>
+<td>任务、节点、工具、反馈、经验闭环</td>
+</tr>
+<tr>
+<td>模型能力展示</td>
+<td>真实场景中的可交付能力</td>
+</tr>
+</tbody>
+</table>
+<p>数智协同不是让机器替代人，而是让人的方向、机器的执行、系统的反馈和经验的沉淀形成持续进化的协同秩序。</p>
+<p>⸻</p>
+<h3 id="ch013">CH01.3 数智协同的构成要素</h3>
+<table>
+<thead>
+<tr>
+<th>要素</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>人智判断</td>
+<td>方向、价值、责任、裁决</td>
+</tr>
+<tr>
+<td>AI / LLM</td>
+<td>理解、推演、生成、结构化</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>任务执行与角色化推进</td>
+</tr>
+<tr>
+<td>Python / Code</td>
+<td>计算、清洗、自动化、文件生成</td>
+</tr>
+<tr>
+<td>业务系统</td>
+<td>承接流程、状态、履约</td>
+</tr>
+<tr>
+<td>供应网络</td>
+<td>真实资源与履约能力</td>
+</tr>
+<tr>
+<td>现场执行</td>
+<td>将方案变成真实服务</td>
+</tr>
+<tr>
+<td>经验资产</td>
+<td>将一次执行变成长期能力</td>
+</tr>
+</tbody>
+</table>
+<p>工具可以借力，判断必须自有；代码可以生成，规则必须沉淀；Agent 可以执行，责任必须归人。</p>
+<p>⸻</p>
+<h3 id="ch014-dic-synexa-is">CH01.4 DIC 与 Synexa iS 的关系</h3>
+<p>Synexa iS 是组织级智能操作系统，是超智体系中负责治理、认知、规则、能力、Agent、项目与经验资产协同的系统承载。</p>
+<p>DICB 是 Synexa iS 在“数智协同运行层”的专题基线。</p>
+<p>两者关系如下：</p>
+<p>Synexa iS<br />
+  ↓<br />
+定义系统如何组织能力、任务、Agent、项目与经验资产<br />
+DICB<br />
+  ↓<br />
+定义人、AI、Agent、工具、代码、系统与真实项目如何协同推进任务</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-02">CH 02｜人、机器与系统的角色关系</h2>
+<h3 id="ch021">CH02.1 主体与能力体</h3>
+<p>DICB 中，必须区分主体与能力体。</p>
+<p>主体拥有目标、判断与责任；能力体响应目标、执行任务并返回结果。</p>
+<table>
+<thead>
+<tr>
+<th>角色</th>
+<th>定义</th>
+<th>可做</th>
+<th>不可做</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Human Judgment</td>
+<td>方向、价值、责任与裁决主体</td>
+<td>定方向、审方案、承担责任</td>
+<td>被机器替代</td>
+</tr>
+<tr>
+<td>AI / LLM</td>
+<td>认知发动机</td>
+<td>理解、生成、推演、结构化</td>
+<td>独立承担高风险决策</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>任务执行单元</td>
+<td>按边界执行任务</td>
+<td>自行定义目标</td>
+</tr>
+<tr>
+<td>Tool</td>
+<td>能力工具</td>
+<td>提供特定功能</td>
+<td>替代系统治理</td>
+</tr>
+<tr>
+<td>Python / Code</td>
+<td>计算与自动化手臂</td>
+<td>数据处理、脚本、渲染</td>
+<td>价值判断</td>
+</tr>
+<tr>
+<td>Business System</td>
+<td>业务承载系统</td>
+<td>状态、流程、记录、履约</td>
+<td>自行决定战略</td>
+</tr>
+<tr>
+<td>SOP</td>
+<td>稳定流程</td>
+<td>规范做法</td>
+<td>替代判断</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>可复用能力</td>
+<td>执行高频能力</td>
+<td>替代责任主体</td>
+</tr>
+<tr>
+<td>Digital Employee</td>
+<td>长期履职角色</td>
+<td>持续承担标准化职责</td>
+<td>超出授权范围行动</td>
+</tr>
+<tr>
+<td>Experience Asset</td>
+<td>经验沉淀</td>
+<td>复用判断、规则、异常</td>
+<td>停留在散乱记录</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch022-human-judgment">CH02.2 人智判断 Human Judgment</h3>
+<p>人智判断，是人在方向、价值、责任、裁决、例外处理和高风险取舍中的不可替代作用。</p>
+<p>DIC 中的人智至少承担五类职责：</p>
+<ol>
+<li>定义目标；</li>
+<li>设定边界；</li>
+<li>判断优先级；</li>
+<li>裁决高风险事项；</li>
+<li>承担责任。</li>
+</ol>
+<p>机器可以提供方案、选项、对比、风险提示与执行结果，但不能替代人类承担最终责任。</p>
+<p>⸻</p>
+<h3 id="ch023-ai-llm">CH02.3 AI / LLM</h3>
+<p>AI / LLM 是认知发动机，适合理解、生成、推演、总结、结构化与草案生成。具体适用场景详见 CH07.2。</p>
+<p>⸻</p>
+<h3 id="ch024-agent">CH02.4 Agent</h3>
+<p>Agent 是带有目标、工具、边界、上下文和输出要求的任务执行单元。</p>
+<p>Agent 不是万能助手，而是角色化执行体。</p>
+<p>DIC 中应区分：</p>
+<ol>
+<li>研究 Agent；</li>
+<li>结构 Agent；</li>
+<li>代码 Agent；</li>
+<li>执行 Agent；</li>
+<li>审校 Agent；</li>
+<li>回流 Agent；</li>
+<li>长期数字员工。</li>
+</ol>
+<p>Agent 必须接受任务边界、输入材料、输出要求、暂停条件和质量门约束。</p>
+<p>⸻</p>
+<h3 id="ch025-sop-skill-agent-digital-employee">CH02.5 SOP / Skill / Agent / Digital Employee 区分</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>核心问题</th>
+<th>成熟条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>SOP</td>
+<td>标准流程怎么做</td>
+<td>流程稳定、可培训</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>高频能力怎么复用</td>
+<td>可触发、可封装、可验证</td>
+</tr>
+<tr>
+<td>Agent</td>
+<td>谁来执行一个任务</td>
+<td>有目标、工具、边界</td>
+</tr>
+<tr>
+<td>Digital Employee</td>
+<td>谁长期承担一类职责</td>
+<td>稳定职责 + 持续运行 + 质量门</td>
+</tr>
+</tbody>
+</table>
+<p>Skill 不是文档说明，而是可触发、可复用、可组合、可审计的能力资产。</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-03">CH 03｜任务归位机制</h2>
+<h3 id="ch031">CH03.1 任务归位类型</h3>
+<table>
+<thead>
+<tr>
+<th>归位类型</th>
+<th>触发条件</th>
+<th>典型输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>iS-Core</td>
+<td>全局基线、项目归位、战略裁决、优先级冲突</td>
+<td>裁决、Step 0A、全局同步</td>
+</tr>
+<tr>
+<td>iS-SCO</td>
+<td>战略推演、路径判断、复杂取舍</td>
+<td>策略推演、选项评估</td>
+</tr>
+<tr>
+<td>iS-Matrix</td>
+<td>SOP、模板、Skill、基线文件生产</td>
+<td>文档资产、规程、模板</td>
+</tr>
+<tr>
+<td>iS-Hub</td>
+<td>工具、Agent、平台、外部案例评估</td>
+<td>Tool Registry、情报清单</td>
+</tr>
+<tr>
+<td>iS-Lab</td>
+<td>未成熟想法、轻量验证</td>
+<td>可行性判断、立项建议</td>
+</tr>
+<tr>
+<td>PCS</td>
+<td>已归属具体项目的执行推进</td>
+<td>项目任务、里程碑、复盘</td>
+</tr>
+<tr>
+<td>External Agent</td>
+<td>需要文件操作、代码、页面、资料整理</td>
+<td>执行包、文件产出</td>
+</tr>
+<tr>
+<td>New Project</td>
+<td>出现新业务对象、长期机制或独立项目域</td>
+<td>项目最小定义、PCS</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch033">CH03.3 任务归位输出字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Task ID</td>
+<td>任务编号</td>
+</tr>
+<tr>
+<td>Task Name</td>
+<td>任务名称</td>
+</tr>
+<tr>
+<td>Trigger</td>
+<td>触发原因</td>
+</tr>
+<tr>
+<td>Routing Decision</td>
+<td>归位结论</td>
+</tr>
+<tr>
+<td>Owner</td>
+<td>主责角色</td>
+</tr>
+<tr>
+<td>Support Role</td>
+<td>协作角色</td>
+</tr>
+<tr>
+<td>Required Input</td>
+<td>输入材料</td>
+</tr>
+<tr>
+<td>Expected Output</td>
+<td>输出</td>
+</tr>
+<tr>
+<td>QA Gate</td>
+<td>质量门</td>
+</tr>
+<tr>
+<td>Feedback Destination</td>
+<td>回流位置</td>
+</tr>
+</tbody>
+</table>
+<p>每一个任务必须知道：</p>
+<ol>
+<li>归哪里；</li>
+<li>谁负责；</li>
+<li>谁支持；</li>
+<li>用什么工具；</li>
+<li>输出什么；</li>
+<li>回到哪里；</li>
+<li>是否可能沉淀为资产。</li>
+</ol>
+<p>⸻</p>
+<h3 id="ch034">CH03.4 新项目触发条件</h3>
+<p>当一个任务具备以下任一特征，应考虑进入 Step 0A 项目最小定义：</p>
+<ol>
+<li>出现新的业务对象；</li>
+<li>出现长期执行场景；</li>
+<li>出现独立项目目标；</li>
+<li>出现跨项目资源调度；</li>
+<li>出现可持续收入或交付机会；</li>
+<li>出现需要单独 PCS 管理的任务簇；</li>
+<li>出现可沉淀为独立引擎或模块的能力。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-04">CH 04｜标准协同路径</h2>
+<h3 id="ch041">CH04.1 全局主流程</h3>
+<p>DIC 的标准协同路径如下：</p>
+<p>目标提出<br />
+  ↓<br />
+人智定向<br />
+  ↓<br />
+任务归位<br />
+  ↓<br />
+路径推演<br />
+  ↓<br />
+节点拆解<br />
+  ↓<br />
+角色分工<br />
+  ↓<br />
+工具 / Agent 调用<br />
+  ↓<br />
+执行交付<br />
+  ↓<br />
+质量检查<br />
+  ↓<br />
+人智裁决<br />
+  ↓<br />
+SSOT / PCS 回写<br />
+  ↓<br />
+经验资产沉淀<br />
+  ↓<br />
+下一轮优化</p>
+<p>DIC 的标准协同路径，不是为了增加流程，而是为了让每一次执行都能被理解、被分派、被检查、被复盘、被沉淀。</p>
+<p>⸻</p>
+<h3 id="ch042">CH04.2 路径展开</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>核心动作</th>
+<th>主责</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>目标提出</td>
+<td>提出任务意图</td>
+<td>人 / 项目负责人</td>
+<td>初始目标</td>
+</tr>
+<tr>
+<td>人智定向</td>
+<td>明确方向、边界、成功标准</td>
+<td>Judgment Holder</td>
+<td>定向说明</td>
+</tr>
+<tr>
+<td>任务归位</td>
+<td>判断归属与路径</td>
+<td>iS-Core / DIC</td>
+<td>Routing Decision</td>
+</tr>
+<tr>
+<td>路径推演</td>
+<td>形成行动路线</td>
+<td>SCO / Matrix</td>
+<td>路径草案</td>
+</tr>
+<tr>
+<td>节点拆解</td>
+<td>拆成任务节点</td>
+<td>Matrix / PCS</td>
+<td>Node List</td>
+</tr>
+<tr>
+<td>角色分工</td>
+<td>分配人、Agent、工具</td>
+<td>PCS / Task Room</td>
+<td>Role Map</td>
+</tr>
+<tr>
+<td>工具调用</td>
+<td>生成执行包</td>
+<td>Matrix / Manus / Codex</td>
+<td>Handoff Package</td>
+</tr>
+<tr>
+<td>执行交付</td>
+<td>完成任务</td>
+<td>人 / Agent / 工具</td>
+<td>Deliverable</td>
+</tr>
+<tr>
+<td>质量检查</td>
+<td>检查内容、格式、风险</td>
+<td>QA Role</td>
+<td>QA Result</td>
+</tr>
+<tr>
+<td>人智裁决</td>
+<td>通过、退回、升级</td>
+<td>Judgment Holder</td>
+<td>Decision Record</td>
+</tr>
+<tr>
+<td>SSOT / PCS 回写</td>
+<td>回写主源或项目账本</td>
+<td>Manus / PCS</td>
+<td>Updated File</td>
+</tr>
+<tr>
+<td>经验沉淀</td>
+<td>形成资产</td>
+<td>iS-Cortex / Matrix</td>
+<td>Experience Asset</td>
+</tr>
+<tr>
+<td>下一轮优化</td>
+<td>修正路径与规则</td>
+<td>Core / PCS</td>
+<td>Patch / Version</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch043">CH04.3 人智定向</h3>
+<p>人智定向必须至少回答：</p>
+<ol>
+<li>为什么做；</li>
+<li>做到什么程度；</li>
+<li>不做什么；</li>
+<li>成功标准是什么；</li>
+<li>风险边界在哪里；</li>
+<li>谁承担最终责任；</li>
+<li>是否需要回写 Master SSOT / Context OS / PCS。</li>
+</ol>
+<p>没有定向的任务，不应直接进入外部 Agent 执行。</p>
+<p>⸻</p>
+<h3 id="ch044">CH04.4 人智裁决</h3>
+<p>人智裁决包括：</p>
+<ol>
+<li>接受；</li>
+<li>退回；</li>
+<li>修正；</li>
+<li>暂停；</li>
+<li>升级；</li>
+<li>作废；</li>
+<li>归档；</li>
+<li>资产化。</li>
+</ol>
+<p>通过不是唯一出口，退回修正是人类保留真实控制权的关键路径。</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-05">CH 05｜任务节点设计机制</h2>
+<h3 id="ch051">CH05.1 任务节点定义</h3>
+<p>任务节点，是从目标到交付过程中可识别、可分派、可执行、可检查、可回流的工作单元，必须具备输入、动作、主责、工具、输出、质量门、风险等级与回流位置。</p>
+<p>⸻</p>
+<h3 id="ch052-task-node">CH05.2 Task Node 标准字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Node ID</td>
+<td>节点编号</td>
+</tr>
+<tr>
+<td>Node Name</td>
+<td>节点名称</td>
+</tr>
+<tr>
+<td>Path Stage</td>
+<td>所属路径阶段</td>
+</tr>
+<tr>
+<td>Project / Domain</td>
+<td>所属项目或领域</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>输入</td>
+</tr>
+<tr>
+<td>Action</td>
+<td>执行动作</td>
+</tr>
+<tr>
+<td>Owner Role</td>
+<td>主责角色</td>
+</tr>
+<tr>
+<td>Support Role</td>
+<td>协作角色</td>
+</tr>
+<tr>
+<td>Tool / Agent</td>
+<td>可用工具或 Agent</td>
+</tr>
+<tr>
+<td>Output</td>
+<td>输出</td>
+</tr>
+<tr>
+<td>QA Gate</td>
+<td>质量门</td>
+</tr>
+<tr>
+<td>Risk Level</td>
+<td>风险等级</td>
+</tr>
+<tr>
+<td>Status</td>
+<td>状态</td>
+</tr>
+<tr>
+<td>Feedback Destination</td>
+<td>回流位置</td>
+</tr>
+<tr>
+<td>Asset Candidate</td>
+<td>是否可沉淀资产</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch053">CH05.3 节点状态枚举</h3>
+<table>
+<thead>
+<tr>
+<th>状态</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Draft</td>
+<td>待确认</td>
+</tr>
+<tr>
+<td>Ready</td>
+<td>可执行</td>
+</tr>
+<tr>
+<td>In Progress</td>
+<td>执行中</td>
+</tr>
+<tr>
+<td>Blocked</td>
+<td>阻塞</td>
+</tr>
+<tr>
+<td>Review</td>
+<td>待审核</td>
+</tr>
+<tr>
+<td>Returned</td>
+<td>退回修正</td>
+</tr>
+<tr>
+<td>Accepted</td>
+<td>已通过</td>
+</tr>
+<tr>
+<td>Archived</td>
+<td>已归档</td>
+</tr>
+<tr>
+<td>Assetized</td>
+<td>已资产化</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch054">CH05.4 节点质量门</h3>
+<p>每个节点必须至少具备一个质量门。</p>
+<p>常见质量门包括：</p>
+<ol>
+<li>输入是否完整；</li>
+<li>输出是否符合格式；</li>
+<li>是否与上位基线冲突；</li>
+<li>是否需要人智裁决；</li>
+<li>是否触发风险升级；</li>
+<li>是否可回写 PCS；</li>
+<li>是否可沉淀资产；</li>
+<li>是否需要版本记录。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-06">CH 06｜不同任务类型的节点模板</h2>
+<h3 id="ch061">CH06.1 战略推演任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+<th>主责</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>背景识别</td>
+<td>事件 / 问题 / 机会</td>
+<td>背景说明</td>
+<td>SCO</td>
+</tr>
+<tr>
+<td>目标确认</td>
+<td>用户意图</td>
+<td>战略目标</td>
+<td>Core / User</td>
+</tr>
+<tr>
+<td>约束识别</td>
+<td>资源 / 时间 / 风险</td>
+<td>约束清单</td>
+<td>SCO</td>
+</tr>
+<tr>
+<td>路径推演</td>
+<td>目标与约束</td>
+<td>选项与判断</td>
+<td>SCO</td>
+</tr>
+<tr>
+<td>人智裁决</td>
+<td>推演结果</td>
+<td>决策记录</td>
+<td>Core / Judgment Holder</td>
+</tr>
+<tr>
+<td>回写</td>
+<td>决策结果</td>
+<td>Context / PCS / Log</td>
+<td>Core / Manus</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch062">CH06.2 项目推进任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>项目归位</td>
+<td>任务目标 / 业务对象</td>
+<td>PCS / 项目定义</td>
+</tr>
+<tr>
+<td>阶段确认</td>
+<td>当前 Step / 阻塞项</td>
+<td>阶段状态</td>
+</tr>
+<tr>
+<td>任务拆解</td>
+<td>阶段目标</td>
+<td>任务列表</td>
+</tr>
+<tr>
+<td>责任分配</td>
+<td>任务列表</td>
+<td>Owner / Support</td>
+</tr>
+<tr>
+<td>执行追踪</td>
+<td>任务状态</td>
+<td>进度记录</td>
+</tr>
+<tr>
+<td>阻塞处理</td>
+<td>Blocker</td>
+<td>处理路径</td>
+</tr>
+<tr>
+<td>阶段复盘</td>
+<td>执行结果</td>
+<td>经验资产</td>
+</tr>
+<tr>
+<td>PCS 回写</td>
+<td>复盘结果</td>
+<td>更新 PCS</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch063">CH06.3 文档生产任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BBMap</td>
+<td>目标与关系锚定</td>
+<td>蓝图地图</td>
+</tr>
+<tr>
+<td>BBLx</td>
+<td>BBMap</td>
+<td>章节展开逻辑</td>
+</tr>
+<tr>
+<td>md</td>
+<td>BBLx</td>
+<td>Markdown 主源</td>
+</tr>
+<tr>
+<td>py</td>
+<td>md + 渲染规范</td>
+<td>渲染脚本</td>
+</tr>
+<tr>
+<td>html</td>
+<td>md + py</td>
+<td>阅读版</td>
+</tr>
+<tr>
+<td>QA</td>
+<td>全部输出</td>
+<td>质检记录</td>
+</tr>
+<tr>
+<td>回写</td>
+<td>通过文件</td>
+<td>GitHub / Index</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch064">CH06.4 工具选型任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求定义</td>
+<td>业务目标</td>
+<td>工具需求说明</td>
+</tr>
+<tr>
+<td>候选搜集</td>
+<td>需求说明</td>
+<td>候选清单</td>
+</tr>
+<tr>
+<td>初筛评分</td>
+<td>候选清单</td>
+<td>2-3 个候选</td>
+</tr>
+<tr>
+<td>PoC 验证</td>
+<td>候选工具</td>
+<td>最小验证结果</td>
+</tr>
+<tr>
+<td>风险检查</td>
+<td>验证结果</td>
+<td>风险清单</td>
+</tr>
+<tr>
+<td>归位登记</td>
+<td>通过工具</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>回流复盘</td>
+<td>使用反馈</td>
+<td>Tool Review Asset</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch065">CH06.5 代码执行任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>需求包</td>
+<td>业务需求</td>
+<td>Codex / Claude Code Package</td>
+</tr>
+<tr>
+<td>仓库定位</td>
+<td>文件路径</td>
+<td>实施范围</td>
+</tr>
+<tr>
+<td>代码实现</td>
+<td>执行包</td>
+<td>代码变更</td>
+</tr>
+<tr>
+<td>测试验证</td>
+<td>变更文件</td>
+<td>测试结果</td>
+</tr>
+<tr>
+<td>审查</td>
+<td>测试结果</td>
+<td>Review Item</td>
+</tr>
+<tr>
+<td>合并 / 回写</td>
+<td>通过结果</td>
+<td>GitHub 更新</td>
+</tr>
+<tr>
+<td>经验沉淀</td>
+<td>代码问题</td>
+<td>SOP / Skill / Exception</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch066-nex2u">CH06.6 Nex₂U 业务任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>用户需求识别</td>
+<td>用户 / 患者 / 场景</td>
+<td>需求标签</td>
+</tr>
+<tr>
+<td>营养规则转译</td>
+<td>医学 / 营养建议</td>
+<td>规则条目</td>
+</tr>
+<tr>
+<td>菜品数据结构化</td>
+<td>菜品 / 原料</td>
+<td>营养字段</td>
+</tr>
+<tr>
+<td>菜单生成</td>
+<td>规则 + 菜品</td>
+<td>菜单方案</td>
+</tr>
+<tr>
+<td>订单履约</td>
+<td>用户选择</td>
+<td>厨房任务</td>
+</tr>
+<tr>
+<td>供应备货</td>
+<td>菜单需求</td>
+<td>原料需求</td>
+</tr>
+<tr>
+<td>现场执行</td>
+<td>出品 / 服务</td>
+<td>状态记录</td>
+</tr>
+<tr>
+<td>反馈采集</td>
+<td>用户 / 现场反馈</td>
+<td>反馈记录</td>
+</tr>
+<tr>
+<td>经验沉淀</td>
+<td>反馈 / 异常</td>
+<td>Asset / SOP / Skill</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch067">CH06.7 异常处理任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>异常发现</td>
+<td>现场 / 数据 / 工具反馈</td>
+<td>异常记录</td>
+</tr>
+<tr>
+<td>风险判断</td>
+<td>异常记录</td>
+<td>风险等级</td>
+</tr>
+<tr>
+<td>临时动作</td>
+<td>风险等级</td>
+<td>处理动作</td>
+</tr>
+<tr>
+<td>责任确认</td>
+<td>处理动作</td>
+<td>Owner</td>
+</tr>
+<tr>
+<td>复盘归因</td>
+<td>执行结果</td>
+<td>原因分析</td>
+</tr>
+<tr>
+<td>规则更新</td>
+<td>复盘结论</td>
+<td>Rule / SOP</td>
+</tr>
+<tr>
+<td>资产沉淀</td>
+<td>异常资料</td>
+<td>Exception Asset</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch068-agent">CH06.8 外部 Agent 执行任务节点</h3>
+<table>
+<thead>
+<tr>
+<th>节点</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务包生成</td>
+<td>目标 / 材料 / 边界</td>
+<td>Handoff Package</td>
+</tr>
+<tr>
+<td>Agent 执行</td>
+<td>执行包</td>
+<td>文件 / 代码 / 页面</td>
+</tr>
+<tr>
+<td>返回反馈</td>
+<td>执行结果</td>
+<td>Return Feedback</td>
+</tr>
+<tr>
+<td>QA 检查</td>
+<td>返回结果</td>
+<td>Review Item</td>
+</tr>
+<tr>
+<td>人智确认</td>
+<td>QA 结果</td>
+<td>接受 / 退回</td>
+</tr>
+<tr>
+<td>回写归档</td>
+<td>确认结果</td>
+<td>GitHub / PCS</td>
+</tr>
+<tr>
+<td>资产化</td>
+<td>执行经验</td>
+<td>SOP / Skill / Exception</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-07ai-agent">CH 07｜AI / Agent / 工具能力归位</h2>
+<h3 id="ch071">CH07.1 工具归位原则</h3>
+<p>DIC 不是工具说明书，但必须定义工具的协同位置。</p>
+<p>核心原则：</p>
+<p>工具可以借力，判断必须自有。<br />
+模型可以替换，协同秩序不能漂移。<br />
+外部 Agent 只能执行任务包，不应直接接收模糊战略任务。</p>
+<p>⸻</p>
+<h4 id="ch072">CH07.2 工具能力归位表</h4>
+<blockquote>
+<p>外部执行体按接入类型分组，具体产品为参考，不写死。产品迭代不影响分工逻辑。</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>接入类型</th>
+<th>工具 / 平台</th>
+<th>DIC 角色</th>
+<th>适合任务</th>
+<th>禁止事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>对话型 AI · 中枢推演</strong></td>
+<td>ChatGPT（GPT-4o/o1）</td>
+<td>中枢推演与结构化</td>
+<td>战略整理、文件结构、执行包生成、审校、跨对话状态管理</td>
+<td>替代最终 SSOT</td>
+</tr>
+<tr>
+<td><strong>对话型 AI · 中枢推演</strong></td>
+<td>Gemini（Google）</td>
+<td>多模态推演与搜索增强</td>
+<td>需要实时信息、多模态输入、Google 生态集成的任务</td>
+<td>单独裁决业务逻辑</td>
+</tr>
+<tr>
+<td><strong>对话型 AI · 长文处理</strong></td>
+<td>Claude（Anthropic）</td>
+<td>长文档复核与结构对照</td>
+<td>长文审校、结构对照、高密度内容分析</td>
+<td>单独裁决业务</td>
+</tr>
+<tr>
+<td><strong>对话型 AI · 中文增强</strong></td>
+<td>Kimi（Moonshot）</td>
+<td>中文资料初筛</td>
+<td>长资料、政策、投标、供应商材料</td>
+<td>最终裁决</td>
+</tr>
+<tr>
+<td><strong>对话型 AI · 中文增强</strong></td>
+<td>文心一言 / 通义千问</td>
+<td>中文场景辅助</td>
+<td>中文内容生成、本地化表达、国内合规场景</td>
+<td>替代结构化推演</td>
+</tr>
+<tr>
+<td><strong>代码执行平台</strong></td>
+<td>Manus</td>
+<td>文件工程与执行落地</td>
+<td>页面、HTML、PPT、文件包、GitHub 整理、自动化脚本</td>
+<td>自行改写上位定义</td>
+</tr>
+<tr>
+<td><strong>代码执行平台</strong></td>
+<td>Codex（OpenAI）</td>
+<td>工程执行</td>
+<td>代码、脚本、测试、API 集成</td>
+<td>决定业务规则</td>
+</tr>
+<tr>
+<td><strong>代码执行平台</strong></td>
+<td>Claude Code</td>
+<td>工程协作</td>
+<td>代码库理解、大型开发任务、代码审查</td>
+<td>替代产品判断</td>
+</tr>
+<tr>
+<td><strong>计算与自动化</strong></td>
+<td>Python / 脚本</td>
+<td>计算与数据处理</td>
+<td>数据处理、渲染、表格、模型、批量操作</td>
+<td>价值判断</td>
+</tr>
+<tr>
+<td><strong>自动化集成</strong></td>
+<td>n8n / Zapier / Make</td>
+<td>流程自动化</td>
+<td>触发器、跨系统数据同步、定时任务</td>
+<td>自行定义业务目标</td>
+</tr>
+<tr>
+<td><strong>体系内能力</strong></td>
+<td>Skill</td>
+<td>可复用能力资产</td>
+<td>高频标准化任务</td>
+<td>临时内容堆放</td>
+</tr>
+<tr>
+<td><strong>体系内能力</strong></td>
+<td>Agent</td>
+<td>角色化任务执行体</td>
+<td>带边界执行任务</td>
+<td>自行定义目标</td>
+</tr>
+<tr>
+<td><strong>体系内能力</strong></td>
+<td>Digital Employee</td>
+<td>长期履职角色</td>
+<td>稳定职责持续运行</td>
+<td>超授权行动</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch073">CH07.3 工具调用基本规则</h3>
+<ol>
+<li>模糊任务先回到 iS-Core / SCO / Matrix，不直接交给外部 Agent；</li>
+<li>工程任务必须有执行包；</li>
+<li>文档任务必须先有 BBMap / BBLx 或明确结构；</li>
+<li>高风险任务不能由工具直接完成；</li>
+<li>所有输出必须能回流；</li>
+<li>结果必须经过质量门；</li>
+<li>重要输出必须进入 GitHub / PCS / Registry；</li>
+<li>工具输出不得直接覆盖上位基线。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-08">CH 08｜执行包机制</h2>
+<h3 id="ch081">CH08.1 执行包定义</h3>
+<p>执行包，是将人智目标和系统任务转化为外部 Agent 或工具可执行指令的结构化任务包。</p>
+<p>外部执行体不是项目负责人；外部执行体必须接收清晰任务包，并按输入、边界、输出、质量门和返回格式执行。</p>
+<p>⸻</p>
+<h3 id="ch082">CH08.2 执行包标准字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mission Name</td>
+<td>任务名称</td>
+</tr>
+<tr>
+<td>Background</td>
+<td>背景</td>
+</tr>
+<tr>
+<td>Goal</td>
+<td>目标</td>
+</tr>
+<tr>
+<td>Input Materials</td>
+<td>输入材料</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>执行范围</td>
+</tr>
+<tr>
+<td>Non-Goals</td>
+<td>不做事项</td>
+</tr>
+<tr>
+<td>Output Requirements</td>
+<td>输出要求</td>
+</tr>
+<tr>
+<td>File Naming</td>
+<td>文件命名</td>
+</tr>
+<tr>
+<td>Version Strategy</td>
+<td>版本策略</td>
+</tr>
+<tr>
+<td>QA Criteria</td>
+<td>质量标准</td>
+</tr>
+<tr>
+<td>Pause Conditions</td>
+<td>暂停条件</td>
+</tr>
+<tr>
+<td>Return Format</td>
+<td>返回格式</td>
+</tr>
+<tr>
+<td>Review Items</td>
+<td>待裁决项</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch083">CH08.3 常见执行包类型</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>适用对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Manus Handoff Package</td>
+<td>文件工程、页面、PPT、GitHub 整理</td>
+</tr>
+<tr>
+<td>Codex Execution Package</td>
+<td>代码实现、测试、脚本</td>
+</tr>
+<tr>
+<td>Claude Code Package</td>
+<td>工程审查、代码库理解</td>
+</tr>
+<tr>
+<td>Kimi Research Package</td>
+<td>中文长资料、行业 / 政策 / 投标材料</td>
+</tr>
+<tr>
+<td>Python Automation Package</td>
+<td>表格、清洗、渲染、计算</td>
+</tr>
+<tr>
+<td>ChatGPT Structuring Package</td>
+<td>结构推演、文档主稿、审校</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch084">CH08.4 暂停条件</h3>
+<p>执行体遇到以下情况必须暂停并返回 Review Item：</p>
+<ol>
+<li>上位定义冲突；</li>
+<li>文件路径不确定；</li>
+<li>任务范围超出执行包；</li>
+<li>需要删除或覆盖原文件；</li>
+<li>涉及公司定位、项目归位、对外承诺；</li>
+<li>涉及医疗、财务、法律风险；</li>
+<li>输出会影响 Master SSOT；</li>
+<li>缺少必要输入材料。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-09">CH 09｜小步快跑与快速试错机制</h2>
+<h3 id="ch091">CH09.1 试错定义</h3>
+<p>试错闭环，是在明确方向与边界后，以最小可验证动作进行快速验证、记录结果、复盘判断、沉淀经验并决定继续、修正、暂停或升级的机制。</p>
+<p>小步快跑不是无边界试错，而是在明确方向、风险和记录机制之后，用最小闭环验证真实世界反馈。</p>
+<p>没有记录、没有复盘、没有回流的试错，只是消耗，不是学习。</p>
+<p>⸻</p>
+<h3 id="ch092-trial-loop">CH09.2 Trial Loop 标准字段</h3>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Trial ID</td>
+<td>试错编号</td>
+</tr>
+<tr>
+<td>Goal</td>
+<td>验证目标</td>
+</tr>
+<tr>
+<td>Scope</td>
+<td>范围</td>
+</tr>
+<tr>
+<td>Boundary</td>
+<td>边界</td>
+</tr>
+<tr>
+<td>Risk Level</td>
+<td>风险</td>
+</tr>
+<tr>
+<td>Minimum Loop</td>
+<td>最小闭环</td>
+</tr>
+<tr>
+<td>Observation</td>
+<td>观察指标</td>
+</tr>
+<tr>
+<td>Result</td>
+<td>结果</td>
+</tr>
+<tr>
+<td>Decision</td>
+<td>Continue / Revise / Pause / Escalate</td>
+</tr>
+<tr>
+<td>Asset Destination</td>
+<td>资产归位</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch093">CH09.3 试错动作结论</h3>
+<table>
+<thead>
+<tr>
+<th>动作</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Continue</td>
+<td>继续扩大验证</td>
+</tr>
+<tr>
+<td>Revise</td>
+<td>修正路径后继续</td>
+</tr>
+<tr>
+<td>Pause</td>
+<td>暂停等待条件</td>
+</tr>
+<tr>
+<td>Escalate</td>
+<td>升级至 Core / SCO / Matrix / PCS</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch094">CH09.4 可试错与不可试错</h3>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>可否试错</th>
+<th>要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>页面原型</td>
+<td>可</td>
+<td>明确不作为正式系统</td>
+</tr>
+<tr>
+<td>字段模板</td>
+<td>可</td>
+<td>可回滚、有版本</td>
+</tr>
+<tr>
+<td>内部流程</td>
+<td>可</td>
+<td>不影响外部承诺</td>
+</tr>
+<tr>
+<td>菜品组合测试</td>
+<td>可</td>
+<td>不涉及医疗承诺</td>
+</tr>
+<tr>
+<td>工具评估</td>
+<td>可</td>
+<td>不接入敏感数据</td>
+</tr>
+<tr>
+<td>对外报价</td>
+<td>谨慎</td>
+<td>必须人工确认</td>
+</tr>
+<tr>
+<td>医疗营养承诺</td>
+<td>不可自动试错</td>
+<td>必须专业审核</td>
+</tr>
+<tr>
+<td>法律 / 财务责任</td>
+<td>不可自动试错</td>
+<td>必须人智裁决</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-10">CH 10｜问题、异常与经验沉淀机制</h2>
+<h3 id="ch101">CH10.1 问题到资产的路径</h3>
+<p>问题出现 → 归类 → 风险判断 → 处理动作 → 结果记录 → 复盘结论 → 资产归档 → SOP / Skill / Agent / Engine 更新</p>
+<p>⸻</p>
+<h3 id="ch102">CH10.2 问题分类表</h3>
+<table>
+<thead>
+<tr>
+<th>问题类型</th>
+<th>示例</th>
+<th>资产方向</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>任务问题</td>
+<td>责任不清、节点遗漏</td>
+<td>Pattern / Field</td>
+</tr>
+<tr>
+<td>工具问题</td>
+<td>工具输出失真</td>
+<td>Exception / Rule</td>
+</tr>
+<tr>
+<td>数据问题</td>
+<td>字段缺失、格式不一</td>
+<td>Field / Rule</td>
+</tr>
+<tr>
+<td>规则问题</td>
+<td>判断标准不清</td>
+<td>Rule / Judgment</td>
+</tr>
+<tr>
+<td>代码问题</td>
+<td>脚本失败、页面错误</td>
+<td>Exception / SOP</td>
+</tr>
+<tr>
+<td>现场问题</td>
+<td>出品延误、服务异常</td>
+<td>Exception / Pattern</td>
+</tr>
+<tr>
+<td>供应问题</td>
+<td>缺货、涨价、替代</td>
+<td>Rule / Exception</td>
+</tr>
+<tr>
+<td>人员问题</td>
+<td>排班缺口、职责模糊</td>
+<td>Pattern / Field</td>
+</tr>
+<tr>
+<td>财务问题</td>
+<td>成本异常、结算不清</td>
+<td>Rule / Field</td>
+</tr>
+<tr>
+<td>判断问题</td>
+<td>取舍依据不足</td>
+<td>Judgment</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch103">CH10.3 经验资产类型</h3>
+<table>
+<thead>
+<tr>
+<th>资产类型</th>
+<th>核心字段</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pattern Asset</td>
+<td>场景、对象、流程、角色、输入、输出、成功条件</td>
+</tr>
+<tr>
+<td>Exception Asset</td>
+<td>异常类型、发生环节、触发信号、处理动作、复盘</td>
+</tr>
+<tr>
+<td>Rule Asset</td>
+<td>规则名称、触发条件、执行动作、例外情况</td>
+</tr>
+<tr>
+<td>Field Asset</td>
+<td>字段名称、类型、来源、质量要求</td>
+</tr>
+<tr>
+<td>Judgment Asset</td>
+<td>判断场景、判断人、价值依据、风险权衡、裁决理由</td>
+</tr>
+<tr>
+<td>SOP</td>
+<td>操作流程、适用范围、责任角色</td>
+</tr>
+<tr>
+<td>Skill</td>
+<td>触发条件、输入、步骤、工具、质量门</td>
+</tr>
+<tr>
+<td>DE Candidate</td>
+<td>长期职责、授权边界、运行频率</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch104">CH10.4 经验沉淀原则</h3>
+<ol>
+<li>重复出现的流程进入 Pattern Asset；</li>
+<li>异常、错误、延误、投诉进入 Exception Asset；</li>
+<li>可判断、可触发、可执行的规则进入 Rule Asset；</li>
+<li>可复用字段、表格、状态进入 Field Asset；</li>
+<li>人类关键判断、拒绝理由、取舍依据进入 Judgment Asset；</li>
+<li>稳定流程进入 SOP；</li>
+<li>高频能力进入 Skill；</li>
+<li>稳定长期职责进入 Digital Employee Candidate；</li>
+<li>可模块化功能进入 Nex·EC Engine Module Candidate。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-11project-to-skill">CH 11｜Project-to-Skill 数智蒸馏机制</h2>
+<h3 id="ch111">CH11.1 定义</h3>
+<p>Project-to-Skill，是从真实项目中提取可复用能力的过程。</p>
+<p>它不是把项目总结写成文章，而是把真实任务中的对象、规则、异常、字段、判断和流程沉淀为可复用资产。</p>
+<p>⸻</p>
+<h3 id="ch112">CH11.2 标准蒸馏路径</h3>
+<p>详见 CH11.3 Project-to-Skill 蒸馏表。</p>
+<p>⸻</p>
+<h3 id="ch113-project-to-skill">CH11.3 Project-to-Skill 蒸馏表</h3>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>输入</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>真实项目运行</td>
+<td>项目任务 / 现场数据</td>
+<td>真实样本</td>
+</tr>
+<tr>
+<td>对象识别</td>
+<td>用户、菜品、订单、岗位、供应商</td>
+<td>对象清单</td>
+</tr>
+<tr>
+<td>规则抽取</td>
+<td>成功 / 失败案例</td>
+<td>规则条目</td>
+</tr>
+<tr>
+<td>异常归档</td>
+<td>异常记录</td>
+<td>Exception Asset</td>
+</tr>
+<tr>
+<td>模板化</td>
+<td>字段 / 流程 / 判断</td>
+<td>SOP / Template</td>
+</tr>
+<tr>
+<td>Skill 化</td>
+<td>高频能力</td>
+<td>Skill</td>
+</tr>
+<tr>
+<td>Agent 配置</td>
+<td>稳定任务角色</td>
+<td>Agent / DE</td>
+</tr>
+<tr>
+<td>引擎化</td>
+<td>可模块化功能</td>
+<td>Nex·EC Candidate</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch114-skill">CH11.4 Skill 成熟条件</h3>
+<p>一个 Skill 至少应满足：</p>
+<ol>
+<li>有明确触发条件；</li>
+<li>有明确输入材料；</li>
+<li>有稳定执行步骤；</li>
+<li>有可调用工具；</li>
+<li>有质量门；</li>
+<li>有输出格式；</li>
+<li>有失败 / 暂停条件；</li>
+<li>有适用与不适用边界；</li>
+<li>有版本记录；</li>
+<li>有真实项目验证来源。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-12">CH 12｜人智决策与风险权限</h2>
+<h3 id="ch121">CH12.1 风险权限原则</h3>
+<p>越是高风险、强不确定、涉及外部承诺或责任承担的事项，越不能绕过人智裁决。</p>
+<p>机器可以推演、建议、整理、模拟、执行低风险任务，但不能替代人承担高风险决策责任。</p>
+<p>⸻</p>
+<h3 id="ch122">CH12.2 风险权限表</h3>
+<table>
+<thead>
+<tr>
+<th>风险等级</th>
+<th>机器权限</th>
+<th>人智要求</th>
+<th>记录要求</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>可建议并自动执行</td>
+<td>事后抽查</td>
+<td>自动记录</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>可生成方案与建议</td>
+<td>责任人审核</td>
+<td>记录审核人</td>
+</tr>
+<tr>
+<td>High</td>
+<td>只可推演与建议</td>
+<td>Judgment Holder 裁决</td>
+<td>记录权衡理由</td>
+</tr>
+<tr>
+<td>Critical / Red</td>
+<td>不得自动执行</td>
+<td>Core / 指定负责人确认</td>
+<td>完整决策记录</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch123">CH12.3 升级触发条件</h3>
+<table>
+<thead>
+<tr>
+<th>触发条件</th>
+<th>升级对象</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>改变全局基线</td>
+<td>iS-Core</td>
+</tr>
+<tr>
+<td>改变项目定位</td>
+<td>iS-Core / PCS</td>
+</tr>
+<tr>
+<td>涉及对外承诺</td>
+<td>Judgment Holder</td>
+</tr>
+<tr>
+<td>涉及医疗 / 财务 / 法律责任</td>
+<td>Core / 指定负责人</td>
+</tr>
+<tr>
+<td>工具输出冲突</td>
+<td>Matrix / Hub</td>
+</tr>
+<tr>
+<td>项目资源冲突</td>
+<td>Core / PCS</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch124-judgment-asset">CH12.4 Judgment Asset</h3>
+<p>当一个决策涉及明显取舍、风险、拒绝、暂停、升级或高价值判断时，应形成 Judgment Asset。</p>
+<p>Judgment Asset 至少包含：</p>
+<ol>
+<li>判断场景；</li>
+<li>判断人；</li>
+<li>背景；</li>
+<li>选项；</li>
+<li>风险；</li>
+<li>价值依据；</li>
+<li>裁决结果；</li>
+<li>后续动作；</li>
+<li>是否回写 Context OS / PCS / Master SSOT。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-13-nex2u">CH 13｜面向 Nex₂U 的应用示范</h2>
+<h3 id="ch131-nex2u">CH13.1 为什么以 Nex₂U 作为首个样板</h3>
+<p>Nex₂U 是超智体系当前推进中的重要实战样板，涉及用户需求、营养规则、菜品结构、订单履约、供应协同、现场反馈与经验沉淀。</p>
+<p>因此，Nex₂U 适合作为 DICB 的首个真实验证场。</p>
+<p>⸻</p>
+<h3 id="ch132-nex2u">CH13.2 Nex₂U 当前关键判断</h3>
+<p>Nex₂U 当前关键不是先做漂亮前端，而是跑通规则、菜品、订单、履约、供应、反馈和经验沉淀的最小闭环。</p>
+<p>⸻</p>
+<h3 id="ch133-nex2u">CH13.3 Nex₂U 最小闭环</h3>
+<p>点餐体验 → 生产保障 → 服务运维 → 采购支持 → 人力管理 → 财务管控 → 经验沉淀（详见 CH13.4）</p>
+<p>⸻</p>
+<h3 id="ch134-nex2u">CH13.4 Nex₂U 最小闭环节点</h3>
+<table>
+<thead>
+<tr>
+<th>业务闭环层</th>
+<th>操作链条层</th>
+<th>对应引擎</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>点餐体验</td>
+<td>用户需求 / 营养规则 / 菜品结构 / 点餐原型</td>
+<td>Nex2U / NexChef</td>
+</tr>
+<tr>
+<td>生产保障</td>
+<td>厨房履约 / 出品任务 / 质量核查</td>
+<td>NexChef / NexOps</td>
+</tr>
+<tr>
+<td>服务运维</td>
+<td>现场执行 / 异常处理 / 设备状态</td>
+<td>NexOps</td>
+</tr>
+<tr>
+<td>采购支持</td>
+<td>原料需求 / 供应备货 / 替代策略</td>
+<td>NexSply</td>
+</tr>
+<tr>
+<td>人力管理</td>
+<td>岗位状态 / 排班 / 效能记录</td>
+<td>NexMPC</td>
+</tr>
+<tr>
+<td>财务管控</td>
+<td>成本核控 / 结算对账 / 毛利追踪</td>
+<td>NexFA</td>
+</tr>
+<tr>
+<td>经验沉淀</td>
+<td>反馈记录 / 复盘 / Skill 提炼</td>
+<td>iS-Cortex / Project-to-Skill</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch135-skill">CH13.5 首批 Skill 候选</h3>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Skill</th>
+<th>使用者</th>
+<th>核心职责</th>
+<th>当前状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>菜单设计</td>
+<td>营养师/运营</td>
+<td>每日/周菜单方案生成</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>2</td>
+<td>点单保障</td>
+<td>前台/收银</td>
+<td>点单异常处理、补单</td>
+<td>部分就绪（打单已封装）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>履约协同</td>
+<td>厨房/运营</td>
+<td>出品任务、履约状态</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>4</td>
+<td>采购管理</td>
+<td>采购/仓管</td>
+<td>采购需求、备货、供应商</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>5</td>
+<td>财务管控</td>
+<td>财务/管理层</td>
+<td>成本、毛利、结算对账</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>6</td>
+<td>人力调度</td>
+<td>店长/运营</td>
+<td>岗责描述、排班、效能</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>7</td>
+<td>日常运维</td>
+<td>店长/全员</td>
+<td>食安检查、设备、环境、开关店、合规记录</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>8</td>
+<td>任务跟踪</td>
+<td>项目人员</td>
+<td>任务状态、阻塞项、进度</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>9</td>
+<td>报告台账</td>
+<td>管理层/中台</td>
+<td>经营日报/周报、复盘、资产入库</td>
+<td>规划</td>
+</tr>
+<tr>
+<td>10</td>
+<td>MetaSkill（Skill 治理）</td>
+<td>中台管理</td>
+<td>检查 Skill 运行状态、输出质量、版本升级</td>
+<td>储备规划</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>打单系统归位说明</strong>：当前打单系统定位为 Skill（点单保障的一部分）。其演进路径为：Skill（打单格式生成）→ System（订单数据持久化与规则引擎）→ Agent（自动监听与触发）。</p>
+</blockquote>
+<p>⸻</p>
+<h3 id="ch136">CH13.6 与番医项目的关系</h3>
+<p>番医项目可作为 DIC 从 Nex₂U 规则走向真实项目功能台的启动场景。</p>
+<p>但番医任务台、餐食台、人力台不应先于 DIC 主源完成而盲目搭建。<br />
+正确顺序应为：</p>
+<p>DIC 主源完成<br />
+  ↓<br />
+GitHub / 文件归位规则明确<br />
+  ↓<br />
+项目台机制确认<br />
+  ↓<br />
+番医三台启动<br />
+  ↓<br />
+任务 / 餐食 / 人力最小闭环<br />
+  ↓<br />
+试运行与经验回流</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-14">CH 14｜阶段路线图</h2>
+<h3 id="ch141">CH14.1 阶段总览</h3>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>目标</th>
+<th>输出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-30 天</td>
+<td>建立 DIC 主源与最小协同机制</td>
+<td>DICB、模板、执行包</td>
+</tr>
+<tr>
+<td>30-90 天</td>
+<td>围绕 Nex₂U / 番医跑最小闭环</td>
+<td>任务台、餐食台、人力台、反馈资产</td>
+</tr>
+<tr>
+<td>90-180 天</td>
+<td>扩展 SOP / Skill / Registry</td>
+<td>Tool Registry、Skill Registry、Experience Asset</td>
+</tr>
+<tr>
+<td>180 天后</td>
+<td>形成稳定运行基线</td>
+<td>DIC V1.0</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch142">CH14.2 阶段优先级</h3>
+<table>
+<thead>
+<tr>
+<th>优先级</th>
+<th>事项</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>P0</td>
+<td>DIC 主源完成、HTML 输出、基础模板</td>
+</tr>
+<tr>
+<td>P1</td>
+<td>GitHub 治理、项目台机制、番医三台</td>
+</tr>
+<tr>
+<td>P2</td>
+<td>Tool / Agent / Skill Registry</td>
+</tr>
+<tr>
+<td>P3</td>
+<td>系统化后台、小程序、自动化集成</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch143">CH14.3 当前建议推进顺序</h3>
+<p>详见 CH14.1 阶段路径表和 CH14.2 当前阶段下一步。</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="ch-15dic">CH 15｜DIC 版本治理与后续升级</h2>
+<h3 id="ch151">CH15.1 版本路径</h3>
+<table>
+<thead>
+<tr>
+<th>版本</th>
+<th>状态</th>
+<th>触发条件</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V0.1</td>
+<td>Working Draft</td>
+<td>首版主源完成</td>
+</tr>
+<tr>
+<td>V0.2</td>
+<td>Pilot Version</td>
+<td>Nex₂U / 番医试运行后</td>
+</tr>
+<tr>
+<td>V0.3</td>
+<td>Registry Version</td>
+<td>Tool / Agent / Skill Registry 建立</td>
+</tr>
+<tr>
+<td>V0.5</td>
+<td>Operational Beta</td>
+<td>多项目使用后</td>
+</tr>
+<tr>
+<td>V1.0</td>
+<td>Stable Baseline</td>
+<td>经 2-3 个项目验证稳定</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch152">CH15.2 更新归位规则</h3>
+<table>
+<thead>
+<tr>
+<th>更新类型</th>
+<th>归位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>公司定位变化</td>
+<td>V3.10</td>
+</tr>
+<tr>
+<td>DIC 协同机制变化</td>
+<td>DICB</td>
+</tr>
+<tr>
+<td>项目状态变化</td>
+<td>PCS</td>
+</tr>
+<tr>
+<td>操作流程稳定</td>
+<td>SOP</td>
+</tr>
+<tr>
+<td>高频能力封装</td>
+<td>Skill</td>
+</tr>
+<tr>
+<td>工具评估变化</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>经验沉淀</td>
+<td>Experience Asset</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<h3 id="ch153">CH15.3 经验触发升级机制</h3>
+<p>DICB 必须通过真实项目的经验沉淀（PER）实现自我进化。当满足以下条件时，必须触发 DICB 的版本升级：<br />
+1. <strong>新协同 Pattern 跑通</strong>：当某个项目（如 Nex₂U）跑通了新的「人-机-系统」协同闭环，且该闭环具有跨项目复用价值时，应将其提炼为新的协同路径写入 CH04。<br />
+2. <strong>工具/Agent 边界突破</strong>：当发现某类 Agent 或工具能够稳定承担原定由人承担的某项工作，或发现其存在系统性风险时，必须修改 CH02 角色关系表。<br />
+3. <strong>治理机制失效</strong>：当发现现有的任务归位（CH03）或版本治理（CH15）机制导致严重认知负荷或效率瓶颈时，必须重构对应章节。</p>
+<p>⸻</p>
+<h3 id="ch154-v310">CH15.4 V3.10 反向补丁原则</h3>
+<p>DIC V0.1 完成后，不建议立即升级 V3.10。</p>
+<p>待 DIC 经 Nex₂U / 番医最小闭环验证后，再考虑给 V3.10 增加轻量引用补丁，例如：</p>
+<ol>
+<li>在项目组合或基线索引中加入 DICB；</li>
+<li>在全域基线对齐协议中说明 DIC 是下位运行基线；</li>
+<li>在 Machine Index 中补入 DIC 文件；</li>
+<li>在版本日志中记录 DIC 的形成。</li>
+</ol>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-aai-agent-tool-capability-matrix">Appendix A｜AI / Agent / Tool Capability Matrix</h2>
+<table>
+<thead>
+<tr>
+<th>Tool Name</th>
+<th>Tool Type</th>
+<th>Best Use</th>
+<th>Forbidden Use</th>
+<th>Required Input</th>
+<th>Output Type</th>
+<th>QA Gate</th>
+<th>Owner</th>
+<th>Status</th>
+<th>Registry Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ChatGPT</td>
+<td>LLM / Structuring</td>
+<td>战略整理、文件主稿、执行包</td>
+<td>替代 SSOT 裁决</td>
+<td>背景、目标、边界</td>
+<td>文档 / 结构</td>
+<td>人智审校</td>
+<td>iS-Core</td>
+<td>Active</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>Claude</td>
+<td>LLM / Review</td>
+<td>长文档复核、第二视角</td>
+<td>单独业务裁决</td>
+<td>文档、审校目标</td>
+<td>Review Note</td>
+<td>结构一致性</td>
+<td>iS-Matrix</td>
+<td>Candidate</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>Codex</td>
+<td>Code Agent</td>
+<td>代码、脚本、测试</td>
+<td>业务规则裁决</td>
+<td>执行包、仓库路径</td>
+<td>Code / PR</td>
+<td>测试通过</td>
+<td>Codex Owner</td>
+<td>Candidate</td>
+<td>Agent Registry</td>
+</tr>
+<tr>
+<td>Claude Code</td>
+<td>Code Agent</td>
+<td>工程理解、代码库协作</td>
+<td>替代产品判断</td>
+<td>仓库、任务说明</td>
+<td>Code / Review</td>
+<td>工程审查</td>
+<td>Dev Owner</td>
+<td>Candidate</td>
+<td>Agent Registry</td>
+</tr>
+<tr>
+<td>Python</td>
+<td>Automation</td>
+<td>表格、清洗、渲染、计算</td>
+<td>价值判断</td>
+<td>数据、脚本需求</td>
+<td>CSV / HTML / JSON</td>
+<td>输出校验</td>
+<td>iS-Matrix / Manus</td>
+<td>Active</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>Manus</td>
+<td>Execution Agent</td>
+<td>文件工程、HTML、PPT、GitHub整理</td>
+<td>自行改写上位定义</td>
+<td>Handoff Package</td>
+<td>文件包</td>
+<td>iS-Core QA</td>
+<td>Manus</td>
+<td>Active</td>
+<td>Agent Registry</td>
+</tr>
+<tr>
+<td>Kimi</td>
+<td>Research Agent</td>
+<td>中文长资料、政策、供应商资料</td>
+<td>最终裁决</td>
+<td>资料与问题</td>
+<td>Research Note</td>
+<td>事实核查</td>
+<td>iS-Hub</td>
+<td>Candidate</td>
+<td>Tool Registry</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-btask-routing-table">Appendix B｜Task Routing Table</h2>
+<table>
+<thead>
+<tr>
+<th>Task Type</th>
+<th>Trigger</th>
+<th>Target Workspace</th>
+<th>Required Output</th>
+<th>Risk Level</th>
+<th>Feedback Destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>全局基线变更</td>
+<td>影响 SSOT / Context OS</td>
+<td>iS-Core</td>
+<td>裁决 / Patch</td>
+<td>High</td>
+<td>Master SSOT / Context OS</td>
+</tr>
+<tr>
+<td>战略路径推演</td>
+<td>多方案取舍</td>
+<td>iS-SCO</td>
+<td>Strategy Note</td>
+<td>Medium</td>
+<td>Decision Log</td>
+</tr>
+<tr>
+<td>SOP / Skill 生产</td>
+<td>高频流程沉淀</td>
+<td>iS-Matrix</td>
+<td>SOP / Skill Draft</td>
+<td>Medium</td>
+<td>SOP / Skill Registry</td>
+</tr>
+<tr>
+<td>工具评估</td>
+<td>新工具 / Agent</td>
+<td>iS-Hub</td>
+<td>Tool Review</td>
+<td>Low-Medium</td>
+<td>Tool Registry</td>
+</tr>
+<tr>
+<td>未成熟想法</td>
+<td>灵感 / 方向未定</td>
+<td>iS-Lab</td>
+<td>Validation Note</td>
+<td>Low</td>
+<td>Lab Log</td>
+</tr>
+<tr>
+<td>项目执行</td>
+<td>已有 PCS</td>
+<td>PCS</td>
+<td>Task Update</td>
+<td>Medium</td>
+<td>PCS</td>
+</tr>
+<tr>
+<td>文件工程</td>
+<td>渲染 / HTML / GitHub</td>
+<td>Manus</td>
+<td>File Package</td>
+<td>Low-Medium</td>
+<td>GitHub</td>
+</tr>
+<tr>
+<td>代码执行</td>
+<td>脚本 / 系统</td>
+<td>Codex / Claude Code</td>
+<td>Code / Test</td>
+<td>Medium</td>
+<td>Repo / Review Log</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-ctask-node-template">Appendix C｜Task Node Template</h2>
+<p>node_id:<br />
+node_name:<br />
+path_stage:<br />
+project_or_domain:<br />
+input:<br />
+action:<br />
+owner_role:<br />
+support_role:<br />
+tool_or_agent:<br />
+output:<br />
+qa_gate:<br />
+risk_level:<br />
+status:<br />
+feedback_destination:<br />
+asset_candidate:<br />
+review_items:</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-dexecution-package-template">Appendix D｜Execution Package Template</h2>
+<p>```markdown</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h1 id="execution-package">Execution Package</h1>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="1-mission-name">1. Mission Name</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="2-background">2. Background</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="3-goal">3. Goal</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="4-input-materials">4. Input Materials</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="5-scope">5. Scope</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="6-non-goals">6. Non-Goals</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="7-output-requirements">7. Output Requirements</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="8-file-naming">8. File Naming</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="9-version-strategy">9. Version Strategy</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="10-qa-criteria">10. QA Criteria</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="11-pause-conditions">11. Pause Conditions</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="12-return-format">12. Return Format</h2>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="13-review-items">13. Review Items</h2>
+<p>⸻<br />
+```<br />
+⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-etrial-loop-record-template">Appendix E｜Trial Loop Record Template</h2>
+<pre><code class="language-yaml">trial_id:
+hypothesis:
+goal:
+minimum_action:
+scope:
+boundary:
+risk_level:
+metric:
+observation:
+result:
+decision: Continue | Revise | Pause | Escalate
+asset_destination:
+owner:
+date:
+review_items:
+
+⸻
+</code></pre>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-fexperience-asset-capture-template">Appendix F｜Experience Asset Capture Template</h2>
+<pre><code class="language-yaml">F.1 Pattern Asset
+
+asset_type: Pattern
+scenario:
+object:
+process:
+roles:
+input:
+output:
+success_condition:
+reuse_condition:
+source_project:
+
+F.2 Exception Asset
+
+asset_type: Exception
+exception_type:
+stage:
+trigger_signal:
+impact:
+temporary_action:
+root_cause:
+review_result:
+future_rule:
+source_project:
+
+F.3 Rule Asset
+
+asset_type: Rule
+rule_name:
+trigger_condition:
+action:
+exception:
+owner:
+qa_gate:
+source_project:
+
+F.4 Field Asset
+
+asset_type: Field
+field_name:
+field_type:
+definition:
+source:
+quality_requirement:
+related_table:
+source_project:
+
+F.5 Judgment Asset
+
+asset_type: Judgment
+scenario:
+judgment_holder:
+background:
+options:
+risk:
+value_basis:
+decision:
+reason:
+follow_up:
+source_project:
+
+F.6 Skill Candidate
+
+asset_type: Skill Candidate
+skill_name:
+trigger:
+input:
+steps:
+tools:
+output:
+qa_gate:
+failure_condition:
+source_project:
+
+F.7 Digital Employee Candidate
+
+asset_type: Digital Employee Candidate
+role_name:
+responsibility:
+trigger_frequency:
+input:
+output:
+authority_boundary:
+qa_gate:
+source_project:
+
+F.8 Engine Module Candidate
+
+asset_type: Engine Module Candidate
+module_name:
+engine:
+business_function:
+input:
+output:
+dependency:
+validation:
+source_project:
+
+⸻
+</code></pre>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-gmachine-readable-index">Appendix G｜Machine-Readable Index</h2>
+<p>{<br />
+  "document_id": "Synexa_DIC_V0.1",<br />
+  "zh_name": "超智科技·数智协同基线",<br />
+  "en_name": "Synexa Digital-Intelligence Collaboration Baseline",<br />
+  "short_name": "DICB",<br />
+  "version": "V0.1",<br />
+  "status": "Working Draft",<br />
+  "upper_source": "Synexa_Company_Intro_V3.10",<br />
+  "maintainer": "iS-Core",<br />
+  "first_application": "Nex2U",<br />
+  "core_concepts": [<br />
+    "Digital-Intelligence Collaboration",<br />
+    "Human Judgment",<br />
+    "Digital Intelligence",<br />
+    "Decision Bridge",<br />
+    "Task Routing",<br />
+    "Task Node",<br />
+    "Execution Package",<br />
+    "Trial Loop",<br />
+    "Experience Asset",<br />
+    "Project-to-Skill"<br />
+  ],<br />
+  "output_files": {<br />
+    "markdown": "Synexa_DIC_V0.1.md",<br />
+    "render_script": "Synexa_Baseline_Render_Core_V0.1.py",<br />
+    "html": "Synexa_DIC_V0.1.html"<br />
+  },<br />
+  "next_steps": [<br />
+    "Generate render script",<br />
+    "Generate HTML reading version",<br />
+    "Review with Manus",<br />
+    "Prepare GitHub governance",<br />
+    "Prepare Fanyi project workbench"<br />
+  ]<br />
+}</p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-i-workspace-mapping">Appendix I｜工作空间映射表 (Workspace Mapping)</h2>
+<p>本表将 DIC 定义的协同角色与 Synexa iS 体系中实际存在的 Manus 对话组（工作空间）进行映射，确保新接入的 Agent 明确自己的物理归属。</p>
+<table>
+<thead>
+<tr>
+<th>DIC 角色层级</th>
+<th>角色定位</th>
+<th>对应实际工作空间 (Workspace)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>L1 治理层</strong></td>
+<td>全局裁决、战略推演、基线维护</td>
+<td>iS-Core（智核中枢）、iS-SCO（枢机经纬）、iS-Matrix（智核矩阵）</td>
+</tr>
+<tr>
+<td><strong>L2 引擎层</strong></td>
+<td>核心业务协同与能力输出</td>
+<td>iS-NexFlow（超级项管）、Nex₂U（智食引擎）、iS-NexChef 等</td>
+</tr>
+<tr>
+<td><strong>L3 项目层</strong></td>
+<td>垂直场景与具体项目执行</td>
+<td>各项目专属 PCS 对话组（如 NTogether、AeroLink）</td>
+</tr>
+<tr>
+<td><strong>L4 个人层</strong></td>
+<td>个人效能与独立探索</td>
+<td>更好的自己·DSA、金钱拼图·Money Mosaic 等</td>
+</tr>
+<tr>
+<td><strong>支撑层</strong></td>
+<td>情报收集、灵感前测</td>
+<td>iS-Hub（智权枢纽）、iS-Lab（智核实验）</td>
+</tr>
+</tbody>
+</table>
+<p><em>注：完整工作空间注册表详见 <code>00-master/WORKSPACE_REGISTRY_v2.1.md</code>。</em></p>
+<p>⸻</p>
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="appendix-hversion-register-change-log">Appendix H｜Version Register &amp; Change Log</h2>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Date</th>
+<th>Change Summary</th>
+<th>Impact Scope</th>
+<th>Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>V0.1</td>
+<td>2026-06-27</td>
+<td>首版 DICB Markdown 主源草案</td>
+<td>DICB / Nex₂U / GitHub 后续治理</td>
+<td>iS-Core</td>
+</tr>
+</tbody>
+</table>
+<p>⸻</p>
+<p>Closing Statement｜结语</p>
+<p>V3.10 定义超智的总图，DICB 定义超智的走法。</p>
+<p>BBMap 定蓝图，BBLx 定章节逻辑，DICB 定正式主源。</p>
+<p>先让规则成文，再让 GitHub 和项目台按规则运行。</p>
+<p>DICB 的核心价值，不是把工具列全，而是让人和机器在真实项目中形成共同协同秩序，并把问题、规则、判断和经验持续沉淀为可复用资产。</p>
+<p>⸻</p>
+<p>本文件为《超智科技·数智协同基线 V0.1》Markdown 主源草案。后续所有事实性修改应回到本 Markdown 主源进行。HTML / PDF / JSON / ZIP 均为输出形态，不替代主源。</p>
+  </div>
+
+
+  <div class="doc-footer">
+    SYNEXA · INTERNAL SSOT · GENERATED 2026-07-01 · BBLx_HTML_GENERATOR V1.3
+  </div>
+
+</div>
+</body>
+</html>

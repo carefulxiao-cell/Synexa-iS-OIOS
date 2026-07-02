@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Synexa iS Activation & Alignment Protocol｜SIA 全局级激活与对齐协议索引</title>
+<style>
+
+:root {
+  --green:   #28CC83;
+  --purple:  #8B5ACA;
+  --dark:    #1F2933;
+  --mid:     #374151;
+  --muted:   #667085;
+  --faint:   #98A2B3;
+  --border:  #D9DEE7;
+  --bg-soft: #F7F9FC;
+
+  /* 纯系统字体栈（零外部依赖，跨平台兼容）*/
+  --font-en-theme: 'Helvetica Neue', 'Arial', sans-serif;
+  --font-zh-title: 'PingFang SC', 'STSong', 'SimSun', Georgia, serif;
+  --font-zh-body:  'PingFang SC', 'Microsoft YaHei', 'STHeiti', Arial, sans-serif;
+  --font-data:     'SF Mono', 'Consolas', 'Courier New', monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-soft);
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── 页面容器 ── */
+.page-wrap {
+  max-width: min(1280px, calc(100% - 48px));
+  margin: 0 auto;
+  padding: 40px 0 80px;
+}
+
+/* ── 封面区域 ── */
+.cover {
+  background: #fff;
+  border-radius: 12px;
+  padding: 56px 64px 48px;
+  margin-bottom: 32px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+.topline {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover-title {
+  font-family: var(--font-zh-title);
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.cover-en {
+  font-family: var(--font-en-theme);
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mid);
+  margin-bottom: 8px;
+}
+
+.cover-sub {
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+
+.cover-quote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 14px 20px;
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  color: var(--mid);
+  border-radius: 0 6px 6px 0;
+  margin-bottom: 32px;
+  line-height: 1.8;
+}
+
+.statgrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 16px;
+  margin-top: 8px;
+}
+
+.stat {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 16px;
+  background: #fff;
+}
+
+.stat .num {
+  font-family: var(--font-en-theme);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat .statlabel {
+  font-family: var(--font-zh-body);
+  font-size: 13px;
+  color: var(--mid);
+  margin-bottom: 4px;
+}
+
+.stat .statsub {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+}
+
+/* ── 章节卡片 ── */
+.chapter {
+  background: #fff;
+  border-radius: 8px;
+  padding: 40px 48px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,.05);
+}
+
+.eyebrow {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--green);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+/* ── 标题层级 ── */
+h1 {
+  font-family: var(--font-zh-title);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark);
+  border-top: 1px solid var(--border);
+  padding-top: 20px;
+  margin-bottom: 24px;
+  line-height: 1.4;
+}
+
+h2 {
+  font-family: var(--font-zh-body);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--mid);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin: 28px 0 14px;
+}
+
+h3 {
+  font-family: var(--font-zh-body);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--mid);
+  margin: 20px 0 10px;
+}
+
+h4 {
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--green);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 16px 0 8px;
+}
+
+/* ── 表格 ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 13px;
+}
+
+th {
+  background: #F0F2F5;
+  color: var(--dark);
+  font-family: var(--font-zh-body);
+  font-weight: 700;
+  font-size: 12px;
+  padding: 9px 12px;
+  text-align: left;
+  border: 1px solid var(--border);
+}
+
+td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+tr:nth-child(even) td { background: var(--bg-soft); }
+
+/* ── 标签组件 ── */
+.tag {
+  display: inline-block;
+  background: rgba(40,204,131,.12);
+  color: #1a9e63;
+  border: 1px solid rgba(40,204,131,.3);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: var(--font-en-theme);
+  font-size: 11px;
+  font-weight: 600;
+  margin: 2px 3px 2px 0;
+}
+
+.chain {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+/* ── 引言/blockquote ── */
+blockquote {
+  border-left: 3px solid var(--green);
+  background: var(--bg-soft);
+  padding: 12px 18px;
+  margin: 16px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 14px;
+  color: var(--mid);
+}
+
+/* ── 代码 ── */
+code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 1px 5px;
+  color: var(--purple);
+}
+
+pre {
+  background: #0B1220;
+  border-radius: 6px;
+  padding: 20px;
+  overflow-x: auto;
+  margin: 16px 0;
+}
+
+pre code {
+  font-family: var(--font-data);
+  font-size: 12px;
+  color: #e2e8f0;
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+/* ── 段落/列表 ── */
+p { margin: 10px 0; }
+ul, ol { padding-left: 22px; margin: 10px 0; }
+li { margin: 4px 0; line-height: 1.7; }
+
+strong { font-weight: 700; color: var(--dark); }
+em { color: var(--purple); font-style: normal; font-weight: 600; }
+
+/* ── 分隔线 ── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 28px 0;
+}
+
+/* ── 页脚 ── */
+.doc-footer {
+  text-align: center;
+  font-family: var(--font-en-theme);
+  font-size: 10px;
+  color: var(--faint);
+  letter-spacing: 0.1em;
+  padding: 32px 0 0;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+
+</style>
+</head>
+<body>
+<div class="page-wrap">
+
+  <div class="cover">
+    <div class="topline">SYNEXA · INTERNAL SSOT · L3 STATION</div>
+    <div class="cover-title">Synexa iS Activation & Alignment Protocol｜SIA 全局级激活与对齐协议索引</div>
+    <div class="cover-en"></div>
+    <div class="cover-sub"></div>
+    
+    
+  </div>
+
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <blockquote>
+<p>Version: v0.2.0<br />
+Maintainer: iS-Core<br />
+Status: Active — Foundation Skill / Global Governance Mechanism<br />
+Skill Path: 04-skills/synexa-is-activation-alignment/<br />
+Date: 2026-06-30</p>
+</blockquote>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="_1">一、协议定位</h2>
+<p>SIA（Synexa iS Activation &amp; Alignment）是 Synexa iS 的<strong>全局级激活与对齐协议</strong>，属于 Foundation Skill 层级，不归属于任何单一项目。</p>
+<p><strong>宪法级定位</strong>：SIA 是落实体系第一性原理（认知负荷最小化）的强制启动仪式。通过标准化的 Task Room 激活流程，确保执行体在介入复杂现实前，拥有唯一且清晰的真相来源（SSOT），避免判断力被碎片化信息稀释。</p>
+<p>其核心职能是：在执行任何复杂任务前，将任务快速组织成 Task Room，调用对应的能力域（Capability Domain）、基础 Skill、专项 Skill 与执行体，并在执行前后完成数据源、版本、资产归属与发布状态的对齐检查。</p>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="_1">二、适用范围</h2>
+<p>本协议适用于 Synexa iS 全域，包括但不限于：</p>
+<ul>
+<li>所有 Task Room（任务室）</li>
+<li>所有 Capability Domain（能力域）</li>
+<li>Foundation Skill 层与 Project / Theme Skill 层</li>
+<li>各项目对话组（PCS）</li>
+<li>外部执行体（Manus、GPT、Kimi、Claude Code、Kimi Claw 等）协作前的启动与对齐</li>
+</ul>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="_1">三、触发词</h2>
+<p>以下触发词可激活 SIA 协议：</p>
+<ul>
+<li>启动 SIA</li>
+<li>按 SIA 执行</li>
+<li>启动 SIA 巡检</li>
+<li>启动 SIA 发布检查</li>
+</ul>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="skill">四、Skill 主体位置</h2>
+<pre><code>04-skills/synexa-is-activation-alignment/
+├── SKILL.md                          ← Skill 入口文件
+├── VERSION                           ← 当前版本 0.1.0
+├── CHANGELOG.md                      ← 版本变更记录
+├── agents/openai.yaml                ← GPT Skills 接口定义
+├── references/
+│   ├── sia_protocol.md               ← SIA 协议正文
+│   ├── capability_asset_taxonomy.md  ← 能力资产分类
+│   ├── data_source_audit_protocol.md ← 数据源审计协议
+│   ├── execution_agent_packages.md   ← 执行体包定义
+│   ├── operating_architecture.md     ← 运营架构参考
+│   ├── release_checklist.md          ← 发布检查清单
+│   └── test_cases.md                 ← 测试用例
+├── scripts/
+│   └── validate_sia_manifest.py      ← Manifest 校验脚本
+└── dist/releases/
+    └── synexa-is-activation-alignment_v0.1.0_skill.zip  ← GPT 安装包
+</code></pre>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="_1">五、与其他全局机制的关系</h2>
+<table>
+<thead>
+<tr>
+<th>机制</th>
+<th>关系说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ISYNC_PROTOCOL.md</code></td>
+<td><strong>任务生命周期闭环</strong>：SIA 负责「开局对齐」，ISYNC 负责「收尾沉淀」。无 SIA 不开局，无 ISYNC 不收尾。</td>
+</tr>
+<tr>
+<td><code>WORKSPACE_REGISTRY_v2.2.md</code></td>
+<td>SIA 激活的 Task Room 必须映射到注册表中已定义的工作空间。</td>
+</tr>
+<tr>
+<td><code>Cross_Workspace_Collaboration_Protocol</code></td>
+<td>SIA 是任务启动层，跨工作空间协同协议是任务执行层，两者互补</td>
+</tr>
+<tr>
+<td><code>synexa-collaboration-router</code> Skill</td>
+<td>SIA 负责激活与对齐，Router 负责路由与交接，先 SIA 后 Router</td>
+</tr>
+<tr>
+<td><code>IS_CODE_PACKAGE_GOVERNANCE</code></td>
+<td>SIA 的发布检查流程引用代码包治理原则</td>
+</tr>
+<tr>
+<td><code>CONTEXT_OS.md</code></td>
+<td>SIA 运行结果应回写至 CONTEXT_OS 的当前状态字段</td>
+</tr>
+</tbody>
+</table>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="_1">六、强制检查点（人智关键不绕过）</h2>
+<p>在 SIA 的启动检查清单（Release Checklist）中，必须包含以下强制检查项：</p>
+<ul>
+<li><strong>高风险裁决确认</strong>：本次任务是否涉及方向设定或高风险裁决？若是，必须确认已获得 iS-Core 或人类指挥官的明确授权，不可由系统自行替代。</li>
+</ul>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="_1">七、应用说明</h2>
+<p>SIA 解决的核心问题是：每次开始一个新任务，执行体（AI / 人）对「当前状态」的认知是混乱的。没有 SIA 的情况下，每次开局都需要重新回答「我们现在在哪、上次说到哪、任务边界是什么、谁负责、用哪个版本的文件」——这些问题消耗大量认知资源，且每次答案可能不一致。SIA 将这些问题变成一个<strong>标准化的启动仪式</strong>，强制在任务开始前一次性对齐。</p>
+<h3 id="71">7.1 层面一：单次任务启动（最常用）</h3>
+<p><strong>触发时机：</strong> 开始一个新的、有一定复杂度的任务前。</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>内容</th>
+<th>目的</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. 读取基线</td>
+<td>确认当前体系版本（超智基线 V3.11 / DIC V0.3）和 CONTEXT_OS 状态</td>
+<td>确保执行体使用最新的真相来源</td>
+</tr>
+<tr>
+<td>2. 明确任务边界</td>
+<td>本次任务做什么、不做什么、交付物是什么</td>
+<td>防止任务蔓延，减少认知负荷</td>
+</tr>
+<tr>
+<td>3. 确认角色</td>
+<td>谁是指挥官（人），谁是执行体（AI），谁做裁决</td>
+<td>落实「人智关键不绕过」</td>
+</tr>
+<tr>
+<td>4. 高风险检查</td>
+<td>本次任务是否涉及方向设定或高风险裁决？</td>
+<td>若是，必须先获得 iS-Core 授权</td>
+</tr>
+<tr>
+<td>5. 确认资产</td>
+<td>本次任务依赖哪些文件、数据、工具？版本是否最新？</td>
+<td>防止使用错误版本</td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例：</strong> 「启动②超智基线 V3.10 审核完善」即为一个 SIA 触发点。正确做法是先完成上述5步对齐，再开始审核。</p>
+<h3 id="72">7.2 层面二：跨工作空间任务交接</h3>
+<p><strong>触发时机：</strong> 一个任务需要从一个工作空间（如 iS-Core）移交到另一个（如 iS-SCO 或某个 PCS）时。</p>
+<p>SIA 确保接收方拿到的是一个结构化的任务包，包含：当前状态、已完成的部分、待完成的部分、关键决策和约束——而不是一堆聊天记录。</p>
+<p><strong>示例：</strong> iS-Core 完成项目最小定义（Step 0A）后，移交给项目专属 PCS 工作空间。SIA 确保 PCS 接手时，无需重新理解背景。</p>
+<h3 id="73">7.3 层面三：定期体系巡检</h3>
+<p><strong>触发词：</strong> <code>启动 SIA 巡检</code></p>
+<p><strong>触发时机：</strong> 定期（如每月一次）或在体系发生重大变更后。</p>
+<p>SIA 检查所有活跃工作空间的状态是否与 CONTEXT_OS 一致，发现「已执行但未沉淀」的决策，触发 ISYNC 补录。</p>
+<h3 id="74">7.4 完整任务生命周期闭环</h3>
+<pre><code>SIA（开局对齐）→ 任务执行 → ISYNC（收尾沉淀）→ PER（经验归库）→ 基线升级（闭环）
+</code></pre>
+<p>SIA 是入口，ISYNC 是出口，两者共同保障「每次任务都有始有终，经验不丢失」。</p>
+<hr />
+  </div>
+
+  <div class="chapter">
+    <div class="eyebrow">CORE CHAPTER</div>
+    <h2 id="patch-proposal">八、Patch Proposal（待后续工作空间处理）</h2>
+<p>以下文件建议在下一版本迭代中纳入 SIA 引用，但当前版本尚未存在，不强行创建：</p>
+<ol>
+<li><code>Synexa_Company_Intro_V3.11.md</code> — 建议将 SIA 纳入 Task Room Runtime Layer 启动协议</li>
+<li><code>Synexa_DIC_V0.3.md</code> — 建议标注 SIA 属于 Foundation / Global Governance Skill</li>
+<li><code>Synexa_iS_Data_Source_Audit_Protocol_v0.1.md</code> — 建议标注 SIA-Audit 与 synexa-baseline-auditor 的关系</li>
+</ol>
+<p>上述文件由 iS-Matrix 负责在下一迭代中创建或更新，并提交 iS-Core 裁决后入库。</p>
+  </div>
+
+
+  <div class="doc-footer">
+    SYNEXA · INTERNAL SSOT · GENERATED 2026-07-01 · BBLx_HTML_GENERATOR V1.3
+  </div>
+
+</div>
+</body>
+</html>

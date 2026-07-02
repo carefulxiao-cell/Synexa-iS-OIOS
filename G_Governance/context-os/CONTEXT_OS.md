@@ -10,8 +10,8 @@
 ## 1. 体系运行基线
 
 * **当前体系版本**：SSADS V1.4
-* **核心架构**：G/A/E/S³/P 五层生态架构（2026-07-02 正式落地，详见 `G_Governance/master/WORKSPACE_REGISTRY_v2.2.md`）
-* **仓库目录架构**：G_Governance / A_Clusters / E_Engines / S3_Neural / P_Personal / X_Assets / Z_Archive（与五层架构完全对齐，2026-07-02 重构完成）
+* **核心架构**：G/A/E/S²/P 五层生态架构（2026-07-02 正式落地，详见 `G_Governance/master/WORKSPACE_REGISTRY_v2.2.md`）
+* **仓库目录架构**：G_Governance / A_Clusters / E_Engines / S2_Neural / P_Personal / X_Assets / Z_Archive（与五层架构完全对齐，2026-07-02 重构完成）
 * **方法总线**：18步全局工作流标准（2026-04-18 正式确立，详见 `G_Governance/master/SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`）
 * **最高裁决原则**：总纲 > Context OS > PCS > 决策日志 > 临时讨论
 * **工作空间注册**：详见 `G_Governance/master/WORKSPACE_REGISTRY_v2.2.md`（G/A/E/N/P 五层，2026-07-02 更新）
@@ -232,7 +232,7 @@
 | 2026-04-07 | SSADS 总纲升级 | 将总纲文件从 v1.2 升级至 V1.4 完整版。 | 全局 |
 
 | 2026-06-27 | **DIC 领域基线体系建立（iS-Core 裁决）** | 新建 `00-overview/domain-baselines/dic/` 目录；落盘 DIC·BBM V0.1（Step2）和 DIC·BBLx V0.1（Step3）两个文件；同步更新 REPO_INDEX v1.1 / _INDEX / CONTEXT_OS v2.9。3个索引文件全部对齐。首个验证场：Nex₂U；Review Item：V3.10 CH04.1 补丁等 DIC V0.2 后执行。 | DIC 领域基线，全局文件索引 |
-| 2026-07-02 | **⑥ 仓库目录大迁徙：G/A/E/S³/P 五层架构物理落地（iS-Core 执行）** | ①废除旧 `00-99` 编号体系，重构为与五层架构完全对齐的物理目录（G_Governance / A_Clusters / E_Engines / S3_Neural / P_Personal / X_Assets / Z_Archive）；②旧版 SCI V3.7-V3.9、全部旧版全局架构图（v1.0-v1.7）归入 Z_Archive；③合并 04-skills 和 06-skills 至 S3_Neural/skills；④合并 06-tracker 至 Z_Archive；⑤README.md 更新为新架构说明；⑥ISYNC 协议正式废除，全部相关文件归入 `Z_Archive/isync_deprecated/`，机制降维为 SSOT 强制回写原则；⑦CONTEXT_OS 升级为 v3.0。 | 全局仓库治理，体系架构 |
+| 2026-07-02 | **⑥ 仓库目录大迁徙：G/A/E/S²/P 五层架构物理落地（iS-Core 执行）** | ①废除旧 `00-99` 编号体系，重构为与五层架构完全对齐的物理目录（G_Governance / A_Clusters / E_Engines / S2_Neural / P_Personal / X_Assets / Z_Archive）；②旧版 SCI V3.7-V3.9、全部旧版全局架构图（v1.0-v1.7）归入 Z_Archive；③合并 04-skills 和 06-skills 至 S2_Neural/skills；④合并 06-tracker 至 Z_Archive；⑤README.md 更新为新架构说明；⑥ISYNC 协议正式废除，全部相关文件归入 `Z_Archive/isync_deprecated/`，机制降维为 SSOT 强制回写原则；⑦CONTEXT_OS 升级为 v3.0。 | 全局仓库治理，体系架构 |
 
 ---
 

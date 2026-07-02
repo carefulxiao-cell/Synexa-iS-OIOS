@@ -1,7 +1,7 @@
 # Synexa iS · Context OS (全局状态总账本)
 
-> **版本**：v2.9
-> **更新时间**：2026-06-27
+> **版本**：v3.0
+> **更新时间**：2026-07-02
 > **定位**：Synexa iS 体系的动态运行层，记录当前活跃项目全景、全局状态与关键决策。
 > **使用原则**：所有智能体在执行任务前，必须优先读取本文件以获取最新全局上下文。
 
@@ -10,13 +10,15 @@
 ## 1. 体系运行基线
 
 * **当前体系版本**：SSADS V1.4
-* **核心架构**：五层协同架构 (System -> SOP -> Skills -> Agent Matrix -> PCS)
-* **方法总线**：18步全局工作流标准（2026-04-18 正式确立，详见 `SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`）
+* **核心架构**：G/A/E/S³/P 五层生态架构（2026-07-02 正式落地，详见 `G_Governance/master/WORKSPACE_REGISTRY_v2.2.md`）
+* **仓库目录架构**：G_Governance / A_Clusters / E_Engines / S3_Neural / P_Personal / X_Assets / Z_Archive（与五层架构完全对齐，2026-07-02 重构完成）
+* **方法总线**：18步全局工作流标准（2026-04-18 正式确立，详见 `G_Governance/master/SYNEXA_IS_BASE_FRAMEWORK_v1.0.md`）
 * **最高裁决原则**：总纲 > Context OS > PCS > 决策日志 > 临时讨论
-* **对话组总数**：L1×5 + L2×7 + L3/L4 若干（详见 `00-master/WORKSPACE_REGISTRY_v2.0.md`）
-* **域名与基础设施注册**：详见 `00-master/DOMAIN_REGISTRY_v1.0.md`
+* **工作空间注册**：详见 `G_Governance/master/WORKSPACE_REGISTRY_v2.2.md`（G/A/E/N/P 五层，2026-07-02 更新）
+* **域名与基础设施注册**：详见 `G_Governance/master/DOMAIN_REGISTRY_v1.0.md`
 * **主控入口**：【智核中枢·iS-Core】（对外品牌名：超智系统·Synexa iS）
-* **全局文件命名规范**：`[中文摘要]_[英文代号]_v[版本].md`，所有工作空间生成文件时强制执行。详见 `00-master/PROMPT_SYSTEM_TASK_v1.0.md` 第五节。`IS_SOP_FILE_GOVERNANCE_v1.0.md` 中的命名规则已废止，以本规范为唯一标准。
+* **全局文件命名规范**：`[中文摘要]_[英文代号]_v[版本].md`，所有工作空间生成文件时强制执行。
+* **ISYNC 协议**：⚠️ 已于 2026-07-02 正式废除。全局指令同步机制降维为「SSOT 强制回写原则」：任何关键决策和推演结果，必须由 AI 主动回写到 GitHub 对应文件，绝不停留在聊天记录。
 
 ---
 
@@ -178,8 +180,8 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **TBF** | 任务目标基线文件（三态核查） | 版本交付时强制执行 | `05-sop/TBF_Template_v2.1.md` | 🟢 已升级（v2.1，三态门禁生效） |
 | **SOP-003** | 执行框强制提交规范 | 每次代码交付时强制执行 | `05-sop/SOP_003_Execution_Submission_v1.0.md` | 🟢 已启用（2026-04-17） |
-| **ISYNC** | 全局指令同步协议 | `汇总指令` / `全面审查 [项目代号]` | `00-master/ISYNC_PROTOCOL.md` | 🟢 已启用（2026-04-16 初始化） |
-| **INSTRUCTION_TRACKER** | 指令追踪表机制 | 每次新增指令时强制归档 | `06-isync/INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-18，Core 首发，向全 PCS 推广中） |
+| **ISYNC** | 全局指令同步协议 | ~~`汇总指令` / `全面审查 [项目代号]`~~ | `Z_Archive/isync_deprecated/` | ❌ **已废除（2026-07-02）**：机制过重，降维为 SSOT 强制回写原则 |
+| **SSOT 回写原则** | 关键决策强制回写 | 每次关键决策后自动执行 | `G_Governance/context-os/CONTEXT_OS.md` | 🟢 已启用（替代 ISYNC，iS-Core 维护） |
 | **SOP_007** | 指令汇总追踪表机制体系级标准规范 | 所有 PCS 工作空间建立指令追踪表时强制遵循 | `05-sop/SOP_007_Instruction_Tracker_Standard_v1.0.md` | 🟢 已启用（2026-04-20，响应 NexFlow PCS ISYNC 通报，为 SOP_004/005/006 上位体系级文件） |
 | **GLOBAL_INSTRUCTION_TRACKER** | 全局指令追踪总表 | 各项目在里程碑节点或重大状态变更时向 iS-Core 提交 ISYNC 通报 | `06-isync/GLOBAL_INSTRUCTION_TRACKER.md` | 🟢 已启用（2026-04-20，初始化，6个项目摘要行） |
 | **DIALOGUE_FRAMEWORK_L2** | Layer 2 标准四框架构定义 | 建立新对话组时强制对照 | `00-master/SYNEXA_DIALOGUE_ARCHITECTURE_v1.0.md`（待重建） | 🟡 架构已裁决，文件待重建 |
@@ -230,6 +232,7 @@
 | 2026-04-07 | SSADS 总纲升级 | 将总纲文件从 v1.2 升级至 V1.4 完整版。 | 全局 |
 
 | 2026-06-27 | **DIC 领域基线体系建立（iS-Core 裁决）** | 新建 `00-overview/domain-baselines/dic/` 目录；落盘 DIC·BBM V0.1（Step2）和 DIC·BBLx V0.1（Step3）两个文件；同步更新 REPO_INDEX v1.1 / _INDEX / CONTEXT_OS v2.9。3个索引文件全部对齐。首个验证场：Nex₂U；Review Item：V3.10 CH04.1 补丁等 DIC V0.2 后执行。 | DIC 领域基线，全局文件索引 |
+| 2026-07-02 | **⑥ 仓库目录大迁徙：G/A/E/S³/P 五层架构物理落地（iS-Core 执行）** | ①废除旧 `00-99` 编号体系，重构为与五层架构完全对齐的物理目录（G_Governance / A_Clusters / E_Engines / S3_Neural / P_Personal / X_Assets / Z_Archive）；②旧版 SCI V3.7-V3.9、全部旧版全局架构图（v1.0-v1.7）归入 Z_Archive；③合并 04-skills 和 06-skills 至 S3_Neural/skills；④合并 06-tracker 至 Z_Archive；⑤README.md 更新为新架构说明；⑥ISYNC 协议正式废除，全部相关文件归入 `Z_Archive/isync_deprecated/`，机制降维为 SSOT 强制回写原则；⑦CONTEXT_OS 升级为 v3.0。 | 全局仓库治理，体系架构 |
 
 ---
 

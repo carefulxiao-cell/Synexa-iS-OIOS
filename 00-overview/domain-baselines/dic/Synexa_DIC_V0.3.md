@@ -1406,17 +1406,17 @@ source_project:
 ⸻
 
 ## Appendix I｜工作空间映射表 (Workspace Mapping)
-本表将 DIC 定义的协同角色与 Synexa iS 体系中实际存在的 Manus 对话组（工作空间）进行映射，确保新接入的 Agent 明确自己的物理归属。
+本表将 DIC 定义的协同角色与 Synexa iS 体系中实际存在的 Manus 对话组（工作空间）进行映射，依据超智基线 V3.11 CH11 五层架构归位，确保新接入的 Agent 明确自己的物理归属。
 
-| DIC 角色层级 | 角色定位 | 对应实际工作空间 (Workspace) |
-|---|---|---|
-| **L1 治理层** | 全局裁决、战略推演、基线维护 | iS-Core（智核中枢）、iS-SCO（枢机经纬）、iS-Matrix（智核矩阵） |
-| **L2 引擎层** | 核心业务协同与能力输出 | iS-NexFlow（超级项管）、Nex₂U（智食引擎）、iS-NexChef 等 |
-| **L3 项目层** | 垂直场景与具体项目执行 | 各项目专属 PCS 对话组（如 NTogether、AeroLink） |
-| **L4 个人层** | 个人效能与独立探索 | 更好的自己·DSA、金钱拼图·Money Mosaic 等 |
-| **支撑层** | 情报收集、灵感前测 | iS-Hub（智权枢纽）、iS-Lab（智核实验） |
+| DIC 角色层级 | 工作空间层（CH11） | 代号 | 对应实际工作空间 |
+|---|---|---|---|
+| **L1 治理层** | G 层（治理规则层） | G0-G5 | iS-Core（智核中枢）/ iS-SCO（枢机经纬）/ iS-Matrix（智核矩阵）/ iS-Hub（智权枢纽）/ iS-Lab（智核实验）/ iS-Publish（文本与输出标准库） |
+| **L2 引擎层** | E 层（业务引擎层） | E1-E7 | iS-NexFlow（超级项管）/ Nex₂U（智食引擎）/ iS-NexChef / iS-NexMPC / iS-NexFA / iS-NexSply（供应链智能中台）/ iS-Synexa（超智建设） |
+| **L3 项目层** | A 层（智能集群层） | A1-An | 各项目专属 PCS 对话组（如 NTogether·膳食同行、AeroLink·空港供链、Lingua Babel·语言巴别塔） |
+| **L3 支撑层** | N 层（协同神经体层） | N1-N3 | iS-Proxima（近场感知）/ iS-Vena（协同数据脉）/ iS-Cortex（协同皮层） |
+| **L4 个人层** | P 层（个人效能层） | P1-P5 | 更好的自己·DSA / 金钱拼图·Money Mosaic / 博弈曲面·Game Surface / 食养余欢·FineSense / 云图计划 |
 
-*注：完整工作空间注册表详见 `00-master/WORKSPACE_REGISTRY_v2.1.md`。*
+*注：完整工作空间注册表详见 `00-master/WORKSPACE_REGISTRY_v2.2.md`。*
 
 ⸻
 

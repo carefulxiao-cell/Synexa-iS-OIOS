@@ -17,7 +17,7 @@
 | `G_Governance/` | **G 层（治理规则层）** | 体系宪法、认知基线（SCI）、全局状态总账本、AI 应用配置指令 |
 | `A_Clusters/` | **A 层（智能集群层）** | 各项目 PCS 专属空间（每个项目一个独立子目录） |
 | `E_Engines/` | **E 层（业务引擎层）** | 各业务引擎的底层逻辑定义与能力原子 |
-| `S2_Neural/` | **S² 层（协同神经体层）** | SOP（标准流程）+ Skill（能力资产）+ Sync（ISYNC 指令同步） |
+| `S2_Neural/` | **S² 层（协同神经体层）** | SOP（标准流程）+ Skill（能力资产） |
 | `P_Personal/` | **P 层（个人效能层）** | 个人专属探索项目 |
 | `X_Assets/` | 公共支撑 | 图片、视觉规范、品牌资产 |
 | `Z_Archive/` | 历史归档 | 废弃或极低频查阅的历史文件 |
@@ -32,7 +32,7 @@
 | `G_Governance/master/REPO_GOVERNANCE_v1.0.md` | 仓库治理规范 |
 | `G_Governance/overview/Synexa_Company_Intro_V3.11.md` | 认知基线（SCI V3.11） |
 | `G_Governance/master/WORKSPACE_REGISTRY_v2.2.md` | 工作空间注册表 |
-| `G_Governance/master/ISYNC_PROTOCOL.md` | ISYNC 全局指令同步协议 |
+
 | `A_Clusters/_INDEX.md` | 项目索引 |
 
 ---

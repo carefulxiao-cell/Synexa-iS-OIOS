@@ -464,7 +464,7 @@ BOUNDARY
 | 项目                    | 定义                                                                     |
 |-------------------------|--------------------------------------------------------------------------|
 | Document Type           | Internal Master SSOT                                                     |
-| Version                 | V3.10                                                                    |
+| Version                 | V3.11                                                                    |
 | Baseline Principle      | 允许演化，但不允许失忆；允许压缩，但不允许失真；允许重排，但不允许暗删。 |
 | Human-Machine Principle | 人能快速理解，机器能稳定解析，智能体能据此推演，组织能持续迭代。         |
 | Visual Principle        | 英文像机器，中文像人；数字像系统，标题像判断；设计决策必须 token 化。    |
@@ -3640,6 +3640,31 @@ APPENDIX
 | 更新日期 | 2026-06 |
 | 更新内容 | 新增 CH26.11.11 CSS 样式沿用与优化触发机制；H.4 增补 CSS 一致性、文件命名合规性、包结构一致性三项 QA。 |
 | 变更类型 | Minor |
+
+</div>
+
+<div class="section chapter" id="F0-V3.11">
+<div class="eyebrow">VERSION RECORD</div>
+
+## F.0 V3.11 版本记录
+
+| 字段 | 内容 |
+|---|---|
+| 版本号 | V3.11 |
+| 更新日期 | 2026-07 |
+| 升级类型 | Major · 体系架构对齐升级 |
+| 升级主题 | G/A/E/S²/P 五层架构落地；ISYNC 协议废除；SSOT 强制回写原则确立；GitHub 仓库目录全面重构 |
+| 新增内容 | 确立 G（治理规则层）/ A（智能集群层）/ E（业务引擎层）/ S²（协同神经体层）/ P（个人效能层）五层生态架构；废除 ISYNC 三级同步协议，以 SSOT 强制回写原则替代；GitHub 仓库目录从 00-99 编号体系重构为 G_Governance / A_Clusters / E_Engines / S2_Neural / P_Personal / X_Assets / Z_Archive；DIC 升级至 V0.4（新增 CH05.5 项目生命周期刻度定义）；WORKSPACE_REGISTRY 升级至 v2.2（五层架构完整注册） |
+| 删除内容 | 无（ISYNC 相关文件已归档至 Z_Archive，未删除） |
+| 压缩内容 | 无 |
+| 合并内容 | 原 06-tracker 合并至 S2_Neural/isync；原 04-skills 合并至 S2_Neural/skills |
+| 改写内容 | REPO_GOVERNANCE_v1.0.md 全文重写以对齐新目录结构 |
+| Forward Audit 结论 | V3.11 在 V3.10 基础上完成体系架构的物理落地，不改变公司定位、能力体系与核心章节结构；所有旧版文件均已归档，未删除 |
+| Reverse Audit 结论 | V3.10 全部内容应完整保留，无任何删减 |
+| 高风险变更 | 无 |
+| 红色变更 | 无 |
+| 文件状态 | V3.11 为 Master SSOT 当前版本 |
+| 下一步待办 | 基于 V3.11.md 重新生成完整 HTML；推送至 GitHub；同步更新 GPT【智核中枢·iS-Core】Project 挂载文件 |
 
 </div>
 

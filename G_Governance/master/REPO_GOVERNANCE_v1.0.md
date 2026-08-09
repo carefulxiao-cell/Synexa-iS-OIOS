@@ -1,60 +1,59 @@
 # REPO_GOVERNANCE_v1.0.md
 # Synexa iS · 仓库治理规范
 
-版本：v1.0
+版本：v1.1
 状态：🟢 活跃
 归属：全局治理 · iS-Core 维护
-最后更新：2026-06-30
-变更说明：v1.0 初始版本。整合原 IS_NAMING_CONVENTION_v1.0.md，建立仓库目录、收录、归位、输出物、命名与归档的统一治理规范。
+最后更新：2026-07-02
+变更说明：v1.1 升级。全面对齐 G/A/E/S²/P 五层生态架构，重构目录收录规则。
 
 ---
 
 ## 一、目录结构总览
 
-| 目录 | 定位 | 说明 |
+本仓库的物理目录结构与 Synexa iS 五层生态架构完全对齐：
+
+| 目录 | 架构层 | 定位 |
 |---|---|---|
-| `00-master/` | 全局治理层 | 体系级规则、协议、注册表、架构图，所有工作空间共用 |
-| `00-overview/` | 认知基线层 | 公司认知基线（SCI）、工作空间架构、DIC 领域基线、渲染工具 |
-| `02-context-os/` | 全局状态层 | CONTEXT_OS.md，体系唯一状态总账本，iS-Core 维护 |
-| `03-projects/` | 项目层 | 各项目 PCS 文件夹，每个项目独立子目录 |
-| `04-assets/` | 资产层 | 图表、图片等视觉资产 |
-| `05-sop/` | SOP 层 | 标准作业程序，跨项目通用 |
-| `05-engines/` | 引擎层 | 能力原子、引擎模块定义 |
-| `06-isync/` | 指令同步层 | ISYNC 协议文件、各工作空间指令追踪 |
-| `06-skills/` | Skill 层 | 正式 Skill 包，含 SKILL.md + 脚本 + 参考文件 |
-| `06-tracker/` | 追踪层 | 全局指令追踪（与 06-isync 存在重叠，待合并） |
+| `G_Governance/` | **G 层（治理规则层）** | 体系宪法、认知基线（SCI）、全局状态总账本、AI 应用配置指令 |
+| `A_Clusters/` | **A 层（智能集群层）** | 各项目 PCS 专属空间（每个项目一个独立子目录） |
+| `E_Engines/` | **E 层（业务引擎层）** | 各业务引擎的底层逻辑定义与能力原子 |
+| `S2_Neural/` | **S² 层（协同神经体层）** | SOP（标准流程）+ Skill（能力资产） |
+| `P_Personal/` | **P 层（个人效能层）** | 个人专属探索项目 |
+| `X_Assets/` | 公共支撑 | 图片、视觉规范、品牌资产 |
+| `Z_Archive/` | 历史归档 | 废弃或极低频查阅的历史文件 |
 
 ---
 
 ## 二、各目录收录规则
 
-**`00-master/`**
-- 收：全局治理文件（本文件）、ISYNC 协议、工作空间注册表、架构图（.d2/.png/.mmd）、RACI、核心原则、能力矩阵
-- 不收：项目文件、单个工作空间专属文件、草稿
+**`G_Governance/`**
+- 收：全局治理文件（本文件）、工作空间注册表、架构图、SCI 认知基线、DIC 领域基线、CONTEXT_OS.md（状态总账本）、AI 应用配置指令
+- 不收：项目执行文件、单个工作空间专属文件、草稿
 
-**`00-overview/`**
-- 收：SCI 认知基线（Synexa_Company_Intro_Vx.x.md）、工作空间架构说明、DIC 领域基线（domain-baselines/dic/）、渲染工具（baseline-builder/）
-- 不收：项目执行文件、ISYNC 追踪、Skill 包
+**`A_Clusters/`**
+- 收：各项目子目录（`A_Clusters/{ProjectName}/`），内含 PCS、执行包、项目文档
+- 不收：跨项目通用文件（归 `G_Governance/` 或 `S2_Neural/`）
 
-**`02-context-os/`**
-- 收：CONTEXT_OS.md（唯一文件，SSOT）
-- 不收：任何其他文件
+**`E_Engines/`**
+- 收：各业务引擎（Nex·EC）的底层逻辑定义、能力原子
+- 不收：具体项目的执行文件
 
-**`03-projects/`**
-- 收：各项目子目录（`03-projects/{ProjectName}/`），内含 PCS、执行包、项目文档
-- 不收：跨项目通用文件（归 `00-master/` 或 `05-sop/`）
+**`S2_Neural/`**
+- 收：跨项目通用 SOP（`SOP_[NNN]_描述_v[版本号].md`）、正式 Skill 包（含 SKILL.md）
+- 不收：项目专属流程（归项目目录）、未完成或未验证的 Skill
 
-**`05-sop/`**
-- 收：跨项目通用 SOP，格式 `SOP_[NNN]_描述_v[版本号].md`
-- 不收：项目专属流程（归项目目录）
+**`P_Personal/`**
+- 收：个人效能提升、探索性项目
+- 不收：参与体系协同的正式业务文件
 
-**`06-isync/`**
-- 收：各工作空间 ISYNC 文件（`{工作空间}_ISYNC.md`）、全局指令追踪、GPT 同步日志
-- 不收：项目执行文件
+**`X_Assets/`**
+- 收：图表输出（.png/.svg）、视觉规范、品牌资产
+- 不收：文本类基线文件
 
-**`06-skills/`**
-- 收：正式 Skill 包（子目录，含 SKILL.md）
-- 不收：未完成或未验证的 Skill
+**`Z_Archive/`**
+- 收：已被新版本替代的旧版本文件、已废止的协议（如 ISYNC）、历史同步包
+- 不收：活跃文件
 
 ---
 
@@ -62,13 +61,13 @@
 
 判断一个文件应放在哪里，按以下顺序：
 
-1. **是否是全局治理规则？** → `00-master/`
-2. **是否是认知基线 / 渲染工具？** → `00-overview/`
-3. **是否是某个项目的执行文件？** → `03-projects/{ProjectName}/`
-4. **是否是跨项目通用 SOP？** → `05-sop/`
-5. **是否是 Skill 包？** → `06-skills/`
-6. **是否是指令追踪 / ISYNC？** → `06-isync/`
-7. **以上都不是，且是历史版本？** → 对应目录下的 `archive/` 子目录
+1. **是否是全局治理规则、基线或状态账本？** → `G_Governance/`
+2. **是否是某个具体项目的执行文件？** → `A_Clusters/{ProjectName}/`
+3. **是否是业务引擎的底层逻辑定义？** → `E_Engines/`
+4. **是否是跨项目通用 SOP 或 Skill 包？** → `S2_Neural/`
+5. **是否是个人探索项目？** → `P_Personal/`
+6. **是否是图片或视觉资产？** → `X_Assets/`
+7. **以上都不是，且是历史版本？** → `Z_Archive/`
 
 ---
 
@@ -77,7 +76,7 @@
 输出物（HTML、PDF、图片、zip 等）按以下规则管理：
 
 - **HTML 渲染输出**：与主源 md 同目录，文件名与 md 保持一致（仅扩展名不同）
-- **图表输出**（.png）：与源文件（.d2/.mmd）同目录，或统一放入 `04-assets/diagrams/`
+- **图表输出**（.png）：统一放入 `X_Assets/diagrams/`
 - **zip 交付包**：不入库，仅本地留存或通过 Manus 附件交付
 - **草稿 / 中间产物**：不推送 GitHub，仅在确认后推送正式版
 
@@ -95,32 +94,32 @@
 
 ### 5.2 文件命名格式
 
-**治理类文件（`00-master/`）**
+**治理类文件（`G_Governance/master/`）**
 ```
 [全大写功能描述]_v[版本号].md
-示例：REPO_GOVERNANCE_v1.0.md、WORKSPACE_REGISTRY_v2.1.md
+示例：REPO_GOVERNANCE_v1.0.md、WORKSPACE_REGISTRY_v2.2.md
 ```
 
-**基线类文件（`00-overview/`）**
+**基线类文件（`G_Governance/overview/`）**
 ```
 Synexa_[描述]_V[版本号].md
-示例：Synexa_Company_Intro_V3.10.md、Synexa_DIC_V0.2.md
+示例：Synexa_Company_Intro_V3.11.md、Synexa_DIC_V0.3.md
 ```
 
-**SOP 文件（`05-sop/`）**
+**SOP 文件（`S2_Neural/sop/`）**
 ```
 SOP_[NNN]_[描述]_v[版本号].md
 [NNN] = 三位数序号，累加排列，用于排序和快速定位
-示例：SOP_001_FBR_Mechanism_v1.1.md、SOP_008_General_Production_Workflow_v1.1.md
+示例：SOP_001_FBR_Mechanism_v1.1.md
 ```
 
-**项目文件（`03-projects/`）**
+**项目文件（`A_Clusters/`）**
 ```
 [ProjectName]_[描述]_v[版本号].md
 示例：Nex2U_Business_Strategy_v1.3.md
 ```
 
-**Skill 包（`06-skills/`）**
+**Skill 包（`S2_Neural/skills/`）**
 ```
 目录名：S²-[功能描述]_v[版本号]/   （S² = Synexa Skill）
 示例：S²-activation-alignment_v0.4/
@@ -135,7 +134,7 @@ SOP_[NNN]_[描述]_v[版本号].md
 | 正式发布 / 内容完整度达标 | 升至整数版本（V0.x → V1.0） |
 | 治理类文件（v 小写） | v1.0 → v1.1 → v2.0 |
 | 基线类文件（V 大写） | V0.1 → V0.2 → V1.0 |
-| 同一文件只保留最新版本在根目录 | 旧版本移入 `archive/` |
+| 同一文件只保留最新版本在活跃目录 | 旧版本移入 `Z_Archive/` |
 
 ### 5.4 语言风格选择标准
 
@@ -235,13 +234,13 @@ SOP_[NNN]_[描述]_v[版本号].md
 
 ## 六、归档规则
 
-**进档条件（移入 `archive/`）：**
+**进档条件（移入 `Z_Archive/`）：**
 
 - 已被新版本替代的旧版本文件
 - 已废止的协议或 SOP
 - 实验性文件，已确认不再使用
 
-**清理条件（可从 `archive/` 删除）：**
+**清理条件（可从 `Z_Archive/` 删除）：**
 
 - 归档超过 6 个月，且无任何引用
 - 经 iS-Core 确认无历史参考价值
@@ -249,9 +248,8 @@ SOP_[NNN]_[描述]_v[版本号].md
 **归档操作规则：**
 
 - 归档时不修改文件内容，仅移动路径
-- 归档后在原目录的 README.md 中注明「已归档至 archive/」
 - 不得直接删除活跃文件，必须先归档再清理
 
 ---
 
-*全局治理文件 · iS-Core 维护 · v1.0 · 2026-06-30*
+*全局治理文件 · iS-Core 维护 · v1.1 · 2026-07-02*

@@ -1,0 +1,221 @@
+direction: down
+
+title: {
+  label: "Synexa iS-OIOS · GitHub Repository Architecture\n协同智能操作系统 · 仓库架构图 · SSADS V1.4"
+  near: top-center
+  shape: text
+  style: {
+    font-size: 20
+    bold: true
+  }
+}
+
+# ── Root ──────────────────────────────────────────────────────────────────
+root: "carefulxiao-cell/Synexa-iS-OIOS" {
+  shape: rectangle
+  style: {
+    fill: "#F7F9FC"
+    stroke: "#374151"
+    stroke-width: 2
+    font-size: 14
+    bold: true
+  }
+}
+
+# ── G_Governance ──────────────────────────────────────────────────────────
+G: "G_Governance/\nG 层 · 治理规则层" {
+  shape: rectangle
+  style: {
+    fill: "#EEF4FF"
+    stroke: "#4F7FE8"
+    stroke-width: 2
+    font-size: 13
+    bold: true
+  }
+
+  master: "master/\n全局治理规则" {
+    style: { fill: "#DBEAFE"; stroke: "#4F7FE8" }
+
+    wr: "WORKSPACE_REGISTRY_v2.2.md\n工作空间注册表（G/A/E/S²/P 五层）" {
+      shape: document
+      style: { fill: "#ffffff"; stroke: "#93C5FD" }
+    }
+    rg: "REPO_GOVERNANCE_v1.0.md\n仓库治理规则（命名/归档/目录）" {
+      shape: document
+      style: { fill: "#ffffff"; stroke: "#93C5FD" }
+    }
+  }
+
+  context: "context-os/\n全局状态总账本" {
+    style: { fill: "#DBEAFE"; stroke: "#4F7FE8" }
+
+    cos: "CONTEXT_OS.md\n体系唯一状态总账本 · v3.0" {
+      shape: document
+      style: { fill: "#ffffff"; stroke: "#93C5FD" }
+    }
+  }
+
+  overview: "overview/\n认知基线层" {
+    style: { fill: "#DBEAFE"; stroke: "#4F7FE8" }
+
+    sci: "Synexa_Company_Intro_V3.11.md\n超智基线（含 HTML）" {
+      shape: document
+      style: { fill: "#ffffff"; stroke: "#93C5FD" }
+    }
+
+    dic_dir: "domain-baselines/dic/\nDIC 数智协同基线" {
+      style: { fill: "#EFF6FF"; stroke: "#93C5FD" }
+
+      dic: "Synexa_DIC_V0.4.md\nDIC 数智协同基线（含 HTML）" {
+        shape: document
+        style: { fill: "#ffffff"; stroke: "#93C5FD" }
+      }
+    }
+  }
+
+  appconf: "app-configs/\nAI 应用配置层" {
+    style: { fill: "#DBEAFE"; stroke: "#4F7FE8" }
+
+    inst: "iS_Instructions_All_Workspaces_v2.0.md\n全工作空间 System Prompt 汇总" {
+      shape: document
+      style: { fill: "#ffffff"; stroke: "#93C5FD" }
+    }
+  }
+}
+
+# ── A_Clusters ────────────────────────────────────────────────────────────
+A: "A_Clusters/\nA 层 · 智能集群层（各项目 PCS）" {
+  shape: rectangle
+  style: {
+    fill: "#F0FDF4"
+    stroke: "#22C55E"
+    stroke-width: 2
+    font-size: 13
+    bold: true
+  }
+
+  note: "各项目专属 PCS 工作空间\n（当前目录为空，项目立项后在此建立子目录）" {
+    shape: text
+    style: { font-size: 12; italic: true; font-color: "#6B7280" }
+  }
+}
+
+# ── E_Engines ─────────────────────────────────────────────────────────────
+E: "E_Engines/\nE 层 · 业务引擎层" {
+  shape: rectangle
+  style: {
+    fill: "#FFF7ED"
+    stroke: "#F97316"
+    stroke-width: 2
+    font-size: 13
+    bold: true
+  }
+
+  note2: "Nex·EC 11 Core Engines / A-F Groups\n（引擎定义文件待建立）" {
+    shape: text
+    style: { font-size: 12; italic: true; font-color: "#6B7280" }
+  }
+}
+
+# ── S2_Neural ─────────────────────────────────────────────────────────────
+S2: "S2_Neural/\nS² 层 · 协同神经体层" {
+  shape: rectangle
+  style: {
+    fill: "#FDF4FF"
+    stroke: "#A855F7"
+    stroke-width: 2
+    font-size: 13
+    bold: true
+  }
+
+  sop: "sop/\nSOP 标准作业程序" {
+    style: { fill: "#FAE8FF"; stroke: "#D8B4FE" }
+    note3: "（待建立）" { shape: text; style: { font-size: 11; italic: true; font-color: "#9CA3AF" } }
+  }
+
+  skills: "skills/\nSkill 能力资产包" {
+    style: { fill: "#FAE8FF"; stroke: "#D8B4FE" }
+    note4: "（待建立）" { shape: text; style: { font-size: 11; italic: true; font-color: "#9CA3AF" } }
+  }
+}
+
+# ── P_Personal ────────────────────────────────────────────────────────────
+P: "P_Personal/\nP 层 · 个人效能层" {
+  shape: rectangle
+  style: {
+    fill: "#FFF1F2"
+    stroke: "#F43F5E"
+    stroke-width: 2
+    font-size: 13
+    bold: true
+  }
+
+  note5: "个人专属探索项目\n（当前目录为空）" {
+    shape: text
+    style: { font-size: 12; italic: true; font-color: "#6B7280" }
+  }
+}
+
+# ── X_Assets ──────────────────────────────────────────────────────────────
+X: "X_Assets/\n公共支撑层（图片/视觉规范）" {
+  shape: rectangle
+  style: {
+    fill: "#F9FAFB"
+    stroke: "#9CA3AF"
+    stroke-width: 1
+    font-size: 13
+  }
+
+  diag: "diagrams/\n架构图资产" {
+    style: { fill: "#F3F4F6"; stroke: "#D1D5DB" }
+
+    pan: "Synexa_Ecosystem_Panorama_V1.0.png\n生态全景图 V1.0" {
+      shape: document
+      style: { fill: "#ffffff"; stroke: "#D1D5DB" }
+    }
+    d2: "REPO_ARCHITECTURE.d2\n仓库架构图（本文件）" {
+      shape: document
+      style: { fill: "#ffffff"; stroke: "#D1D5DB" }
+    }
+  }
+}
+
+# ── Z_Archive ─────────────────────────────────────────────────────────────
+Z: "Z_Archive/\n历史归档（冷存储）" {
+  shape: rectangle
+  style: {
+    fill: "#F9FAFB"
+    stroke: "#9CA3AF"
+    stroke-width: 1
+    stroke-dash: 4
+    font-size: 13
+  }
+
+  dic_old: "dic-versions/\nDIC 历史版本（V0.3 等）" {
+    style: { fill: "#F3F4F6"; stroke: "#D1D5DB"; stroke-dash: 3 }
+  }
+
+  legacy: "legacy-restructure/\n重构草案历史文件" {
+    style: { fill: "#F3F4F6"; stroke: "#D1D5DB"; stroke-dash: 3 }
+  }
+}
+
+# ── README ────────────────────────────────────────────────────────────────
+readme: "README.md\n仓库入口说明（指向治理规范与状态总账本）" {
+  shape: document
+  style: {
+    fill: "#FFFBEB"
+    stroke: "#F59E0B"
+    stroke-width: 1
+  }
+}
+
+# ── Connections ───────────────────────────────────────────────────────────
+root -> G: "" { style: { stroke: "#4F7FE8"; stroke-width: 2 } }
+root -> A: "" { style: { stroke: "#22C55E"; stroke-width: 2 } }
+root -> E: "" { style: { stroke: "#F97316"; stroke-width: 2 } }
+root -> S2: "" { style: { stroke: "#A855F7"; stroke-width: 2 } }
+root -> P: "" { style: { stroke: "#F43F5E"; stroke-width: 2 } }
+root -> X: "" { style: { stroke: "#9CA3AF"; stroke-width: 1 } }
+root -> Z: "" { style: { stroke: "#9CA3AF"; stroke-width: 1; stroke-dash: 4 } }
+root -> readme: "" { style: { stroke: "#F59E0B"; stroke-width: 1 } }

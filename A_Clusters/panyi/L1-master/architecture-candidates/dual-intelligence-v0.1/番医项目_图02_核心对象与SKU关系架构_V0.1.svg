@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1900" viewBox="0 0 1200 1900" role="img" aria-labelledby="title desc">
+<title id="title">图02｜番医核心对象与 SKU 关系架构</title>
+<desc id="desc">番医项目首批架构表达候选；待业务审核，非系统实施批准依据。</desc>
+<defs>
+  <marker id="arrow-ink" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#161A25"/></marker>
+  <marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#2D8EFF"/></marker>
+  <marker id="arrow-purple" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8B5ACA"/></marker>
+  <marker id="arrow-gold" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8A020"/></marker>
+  <marker id="arrow-red" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E60012"/></marker>
+  <style>
+    .zh{font-family:'PingFang SC','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#161A25}
+    .en{font-family:'Space Grotesk','Noto Sans',sans-serif;fill:#161A25;letter-spacing:.3px}
+    .mono{font-family:'IBM Plex Mono','Noto Sans Mono',monospace;letter-spacing:.2px}
+    .title{font-size:30px;font-weight:700}.sub{font-size:14px;fill:#667085}
+    .section{font-size:16px;font-weight:700}.cardtitle{font-size:15px;font-weight:700}.body{font-size:12px;fill:#667085}
+    .small{font-size:10.8px;fill:#667085}.label{font-size:10px;font-weight:700;letter-spacing:.7px}
+    .rel{font-size:10px;font-weight:700;fill:#667085;font-family:'IBM Plex Mono','Noto Sans Mono',monospace}
+  </style>
+</defs>
+<rect x="0" y="0" width="1200" height="1900" fill="#F7F9FC"/>
+
+<g id="header">
+<text x="60" y="64" class="mono label" fill="#4F46E5">PANYI · DUAL INTELLIGENCE · ARCHITECTURE PACK · V0.1</text>
+<text x="60" y="108" class="zh title">核心对象与 SKU 关系架构</text>
+<text x="60" y="136" class="en sub">Core Objects, SKU &amp; Controlled Relationship Architecture</text>
+<rect x="60" y="158" width="1080" height="1" fill="#D9DEE7"/>
+<rect x="60" y="174" width="100" height="24" rx="12" fill="#161A25"/>
+<text x="110" y="190" text-anchor="middle" class="mono label" fill="#FFFFFF">FIG 02</text>
+<rect x="170" y="174" width="250" height="24" rx="12" fill="#F5F1FF" stroke="#8B5ACA"/>
+<text x="295" y="190" text-anchor="middle" class="mono label" fill="#8B5ACA">CANDIDATE · REVIEW REQUIRED</text>
+<text x="1140" y="190" text-anchor="end" class="mono small">1200 × 1900 · EDITABLE SVG</text>
+</g>
+<g class="section-heading"><rect x="60" y="221" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="238" class="mono label" fill="#4F46E5">02A</text>
+<text x="150" y="238" class="zh section">共用对象、范围配置与版本治理</text>
+<text x="1140" y="238" text-anchor="end" class="zh small">共享不等于全局可编辑；范围覆盖须留来源和有效期</text></g>
+<g id="governance"><rect x="60" y="266" width="1080" height="90" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="74" y="280" width="203.0" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="83" y="294" class="mono label" fill="#4F46E5">CONTROL PLANE · CANDIDATE</text>
+<text x="76" y="324" class="zh cardtitle">受控主数据与规则版本</text>
+<text x="76" y="347" text-anchor="start" class="zh body"><tspan x="76">对象版本 · 状态 · 生效期 · 批准信息 · 范围（集团 / 项目 / 院区 / 厨房 / 服务点 / 渠道 / 场景）· 继承—覆盖—禁用 · 历史快照</tspan></text>
+</g>
+<g><rect x="60" y="378" width="220" height="22" rx="11" fill="#F0F1FF" opacity=".16" stroke="#4F46E5" stroke-width=".8"/><text x="170.0" y="393" text-anchor="middle" class="mono label" fill="#4F46E5">SHARED CAPABILITY POOL</text></g>
+<g><rect x="840" y="378" width="210" height="22" rx="11" fill="#F5F1FF" opacity=".16" stroke="#8B5ACA" stroke-width=".8"/><text x="945.0" y="393" text-anchor="middle" class="mono label" fill="#8B5ACA">SCOPED CONFIGURATION</text></g>
+<g class="section-heading"><rect x="60" y="415" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="432" class="mono label" fill="#4F46E5">02B</text>
+<text x="150" y="432" class="zh section">场景、菜单档位与产品链</text>
+<text x="1140" y="432" text-anchor="end" class="zh small">场景 ≠ 菜单 ≠ 档位 ≠ 餐次；产品 ≠ 变体 ≠ SKU ≠ 套餐</text></g>
+<g id="scene"><rect x="60" y="466" width="250" height="116" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="74" y="480" width="90" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="83" y="494" class="mono label" fill="#2D8EFF">SCENE</text>
+<text x="76" y="524" class="zh cardtitle">场景配置</text>
+<text x="76" y="547" text-anchor="start" class="zh body"><tspan x="76">对象 / 地点 / 时段 / 渠道 / 服务与履约规则</tspan></text>
+</g>
+<g id="slot"><rect x="370" y="466" width="250" height="116" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="384" y="480" width="90" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="393" y="494" class="mono label" fill="#2D8EFF">MENU SLOT</text>
+<text x="386" y="524" class="zh cardtitle">菜单结构点 / 档位</text>
+<text x="386" y="547" text-anchor="start" class="zh body"><tspan x="386">餐次、菜序、窗口、排序、必选性、容量</tspan></text>
+</g>
+<g id="menu"><rect x="680" y="466" width="250" height="116" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="694" y="480" width="106.80000000000001" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="703" y="494" class="mono label" fill="#8B5ACA">MENU VERSION</text>
+<text x="696" y="524" class="zh cardtitle">菜单版本与可售项</text>
+<text x="696" y="547" text-anchor="start" class="zh body"><tspan x="696">范围 + 有效期下的编排；非生产指令</tspan></text>
+</g>
+<g id="product"><rect x="60" y="650" width="205" height="118" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="74" y="664" width="90" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="83" y="678" class="mono label" fill="#28CC83">PRODUCT</text>
+<text x="76" y="708" class="zh cardtitle">标准产品</text>
+<text x="76" y="731" text-anchor="start" class="zh body"><tspan x="76">产品家族 / 共用能力池</tspan></text>
+</g>
+<g id="variant"><rect x="315" y="650" width="205" height="118" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="329" y="664" width="90" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="338" y="678" class="mono label" fill="#28CC83">VARIANT</text>
+<text x="331" y="708" class="zh cardtitle">产品变体</text>
+<text x="331" y="731" text-anchor="start" class="zh body"><tspan x="331">口味、规格、人群、工艺或营养差异</tspan></text>
+</g>
+<g id="sku"><rect x="570" y="650" width="205" height="118" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="584" y="664" width="90" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="593" y="678" class="mono label" fill="#28CC83">SALES SKU</text>
+<text x="586" y="708" class="zh cardtitle">售卖 SKU</text>
+<text x="586" y="731" text-anchor="start" class="zh body"><tspan x="586">包装、份量、渠道、定价、履约差异</tspan></text>
+</g>
+<g id="setmeal"><rect x="825" y="650" width="315" height="118" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="839" y="664" width="90" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="848" y="678" class="mono label" fill="#28CC83">SET MEAL</text>
+<text x="841" y="708" class="zh cardtitle">组合套餐</text>
+<text x="841" y="731" text-anchor="start" class="zh body"><tspan x="841">组成 SKU × 数量 / 可选 / 替换组 / 加价 / 生效期</tspan></text>
+</g>
+<path id="scene-slot" d="M310,524 L370,524" fill="none" stroke="#2D8EFF" stroke-width="1.7" marker-end="url(#arrow-blue)"/>
+<text x="340" y="512" text-anchor="middle" class="rel">M:N · 场景化档位配置</text>
+<path id="slot-menu" d="M620,524 L680,524" fill="none" stroke="#8B5ACA" stroke-width="1.7" marker-end="url(#arrow-purple)"/>
+<text x="650" y="512" text-anchor="middle" class="rel">编排</text>
+<path id="product-variant" d="M265,709 L315,709" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="290" y="697" text-anchor="middle" class="rel">1:N</text>
+<path id="variant-sku" d="M520,709 L570,709" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="545" y="697" text-anchor="middle" class="rel">1:N 候选</text>
+<path id="sku-set" d="M775,709 L825,709" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="800" y="697" text-anchor="middle" class="rel">M:N</text>
+<path id="menu-sku" d="M805,582 C805,615 680,620 670,650" fill="none" stroke="#8B5ACA" stroke-width="1.7" stroke-dasharray="6 5" marker-end="url(#arrow-purple)"/>
+<text x="770" y="620" text-anchor="middle" class="rel" fill="#8B5ACA">档位上架 / 可售范围</text>
+<g class="section-heading"><rect x="60" y="813" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="830" class="mono label" fill="#4F46E5">02C</text>
+<text x="150" y="830" class="zh section">配方、BOM、SOP、质量与采购供应链</text>
+<text x="1140" y="830" text-anchor="end" class="zh small">受控规则独立版本化；采购交易对象不可代替营养 / 配方对象</text></g>
+<g id="recipe"><rect x="60" y="866" width="205" height="112" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="74" y="880" width="90" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="83" y="894" class="mono label" fill="#8B5ACA">RECIPE</text>
+<text x="76" y="924" class="zh cardtitle">配方版本</text>
+<text x="76" y="947" text-anchor="start" class="zh body"><tspan x="76">适用关系：范围 / 优先级 / 生效期</tspan></text>
+</g>
+<g id="bom"><rect x="315" y="866" width="205" height="112" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="329" y="880" width="90" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="338" y="894" class="mono label" fill="#8B5ACA">BOM LINE</text>
+<text x="331" y="924" class="zh cardtitle">BOM 明细</text>
+<text x="331" y="947" text-anchor="start" class="zh body"><tspan x="331">用量 / 单位 / 损耗 / 替代规则</tspan></text>
+</g>
+<g id="sop"><rect x="570" y="866" width="205" height="112" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="584" y="880" width="90" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="593" y="894" class="mono label" fill="#8B5ACA">SOP</text>
+<text x="586" y="924" class="zh cardtitle">工艺 SOP</text>
+<text x="586" y="947" text-anchor="start" class="zh body"><tspan x="586">工序 / 设备 / 节点 / 标签 / 温控</tspan></text>
+</g>
+<g id="quality"><rect x="825" y="866" width="315" height="112" rx="12" fill="#FFF1F2" stroke="#E60012" stroke-width="1.2"/>
+<rect x="839" y="880" width="90" height="20" rx="10" fill="#E60012" opacity=".12"/>
+<text x="848" y="894" class="mono label" fill="#E60012">QUALITY</text>
+<text x="841" y="924" class="zh cardtitle">质量放行标准</text>
+<text x="841" y="947" text-anchor="start" class="zh body"><tspan x="841">验收 / 质检 / 不合格处置；不与 SOP 混用</tspan></text>
+</g>
+<g id="ingredient"><rect x="60" y="1030" width="205" height="112" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="74" y="1044" width="92.0" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="83" y="1058" class="mono label" fill="#E8A020">INGREDIENT</text>
+<text x="76" y="1088" class="zh cardtitle">标准食材</text>
+<text x="76" y="1111" text-anchor="start" class="zh body"><tspan x="76">营养 / 过敏原 / 分类 / 标准计量</tspan></text>
+</g>
+<g id="procsku"><rect x="315" y="1030" width="205" height="112" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="329" y="1044" width="129.0" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="338" y="1058" class="mono label" fill="#E8A020">PROCUREMENT SKU</text>
+<text x="331" y="1088" class="zh cardtitle">采购 SKU</text>
+<text x="331" y="1111" text-anchor="start" class="zh body"><tspan x="331">品牌 / 包装 / 规格 / 外部交易编码</tspan></text>
+</g>
+<g id="supplier"><rect x="570" y="1030" width="205" height="112" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="584" y="1044" width="121.60000000000001" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="593" y="1058" class="mono label" fill="#E8A020">SUPPLIER OFFER</text>
+<text x="586" y="1088" class="zh cardtitle">供应商供货项</text>
+<text x="586" y="1111" text-anchor="start" class="zh body"><tspan x="586">报价 / MOQ / 交期 / 合同 / 有效期</tspan></text>
+</g>
+<g id="channel"><rect x="825" y="1030" width="315" height="112" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="839" y="1044" width="158.6" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="848" y="1058" class="mono label" fill="#E8A020">PROCUREMENT CHANNEL</text>
+<text x="841" y="1088" class="zh cardtitle">采购通道</text>
+<text x="841" y="1111" text-anchor="start" class="zh body"><tspan x="841">直供 / 平台 / 框架协议；不等同供应商</tspan></text>
+</g>
+<path id="variant-recipe" d="M417,768 L162,866" fill="none" stroke="#8B5ACA" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-purple)"/>
+<text x="260" y="824" text-anchor="middle" class="rel">M:N · 适用配方</text>
+<path id="recipe-bom" d="M265,922 L315,922" fill="none" stroke="#8B5ACA" stroke-width="1.7" marker-end="url(#arrow-purple)"/>
+<text x="290" y="910" text-anchor="middle" class="rel">1:N</text>
+<path id="recipe-sop" d="M265,946 L570,946" fill="none" stroke="#8B5ACA" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-purple)"/>
+<text x="418" y="963" text-anchor="middle" class="rel">引用受控版本</text>
+<path id="recipe-quality" d="M265,970 L825,970" fill="none" stroke="#E60012" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-red)"/>
+<text x="545" y="988" text-anchor="middle" class="rel">引用放行标准</text>
+<path id="bom-ingredient" d="M417,978 L162,1030" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<text x="290" y="1010" text-anchor="middle" class="rel">投入 / 用量</text>
+<path id="ingredient-procsku" d="M265,1086 L315,1086" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<text x="290" y="1074" text-anchor="middle" class="rel">M:N · 转换</text>
+<path id="procsku-supplier" d="M520,1086 L570,1086" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<text x="545" y="1074" text-anchor="middle" class="rel">M:N</text>
+<path id="supplier-channel" d="M775,1086 L825,1086" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<text x="800" y="1074" text-anchor="middle" class="rel">M:N</text>
+<g class="section-heading"><rect x="60" y="1185" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="1202" class="mono label" fill="#4F46E5">02D</text>
+<text x="150" y="1202" class="zh section">需求、生产、库存、采购与履约事实闭环</text>
+<text x="1140" y="1202" text-anchor="end" class="zh small">预测、计划、订单、批次、PO、收货与库存均为不同事实</text></g>
+<g id="order"><rect x="60" y="1236" width="205" height="108" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="74" y="1250" width="92.0" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="83" y="1264" class="mono label" fill="#2D8EFF">MEAL ORDER</text>
+<text x="76" y="1294" class="zh cardtitle">餐食订单</text>
+<text x="76" y="1317" text-anchor="start" class="zh body"><tspan x="76">需求事实 / 履约承诺；不等于预测</tspan></text>
+</g>
+<g id="demand"><rect x="315" y="1236" width="205" height="108" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="329" y="1250" width="99.4" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="338" y="1264" class="mono label" fill="#2D8EFF">DEMAND PLAN</text>
+<text x="331" y="1294" class="zh cardtitle">需求计划</text>
+<text x="331" y="1317" text-anchor="start" class="zh body"><tspan x="331">预测 / 确认 / 冻结；按场景、餐次、对象归集</tspan></text>
+</g>
+<g id="batch"><rect x="570" y="1236" width="205" height="108" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="584" y="1250" width="136.4" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="593" y="1264" class="mono label" fill="#28CC83">PRODUCTION BATCH</text>
+<text x="586" y="1294" class="zh cardtitle">生产批次</text>
+<text x="586" y="1317" text-anchor="start" class="zh body"><tspan x="586">计划分配、领料、产出、质检与版本快照</tspan></text>
+</g>
+<g id="inventory"><rect x="825" y="1236" width="315" height="108" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="839" y="1250" width="129.0" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="848" y="1264" class="mono label" fill="#E8A020">INVENTORY BATCH</text>
+<text x="841" y="1294" class="zh cardtitle">库存批次 / 台账事件</text>
+<text x="841" y="1317" text-anchor="start" class="zh body"><tspan x="841">地点 / 批次 / 效期 / 质量状态 / 可用量</tspan></text>
+</g>
+<g id="po"><rect x="60" y="1410" width="270" height="108" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="74" y="1424" width="99.4" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="83" y="1438" class="mono label" fill="#E8A020">SUPPLIER PO</text>
+<text x="76" y="1468" class="zh cardtitle">供应商采购订单</text>
+<text x="76" y="1491" text-anchor="start" class="zh body"><tspan x="76">PO 头 / 行；请购、下达、确认、收货、关闭</tspan></text>
+</g>
+<g id="receipt"><rect x="405" y="1410" width="270" height="108" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="419" y="1424" width="90" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="428" y="1438" class="mono label" fill="#E8A020">RECEIVING</text>
+<text x="421" y="1468" class="zh cardtitle">收货、验收与入库</text>
+<text x="421" y="1491" text-anchor="start" class="zh body"><tspan x="421">收货 ≠ 验收 ≠ 入库；不合格 / 退货可追溯</tspan></text>
+</g>
+<g id="delivery"><rect x="750" y="1410" width="390" height="108" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="764" y="1424" width="158.6" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="773" y="1438" class="mono label" fill="#28CC83">DELIVERY &amp; FEEDBACK</text>
+<text x="766" y="1468" class="zh cardtitle">配送 / 交付 / 反馈</text>
+<text x="766" y="1491" text-anchor="start" class="zh body"><tspan x="766">订单行 / 路线 / 批次可追溯；反馈指向发生对象</tspan></text>
+</g>
+<path id="order-demand" d="M265,1290 L315,1290" fill="none" stroke="#2D8EFF" stroke-width="1.7" marker-end="url(#arrow-blue)"/>
+<text x="290" y="1278" text-anchor="middle" class="rel">M:N · 需求归集</text>
+<path id="demand-batch" d="M520,1290 L570,1290" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="545" y="1278" text-anchor="middle" class="rel">M:N · 生产分配</text>
+<path id="batch-inventory" d="M775,1290 L825,1290" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<text x="800" y="1278" text-anchor="middle" class="rel">M:N · 领料 / 产出</text>
+<path id="po-receipt" d="M330,1464 L405,1464" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<text x="367" y="1452" text-anchor="middle" class="rel">PO 行</text>
+<path id="receipt-inventory" d="M675,1464 L900,1344" fill="none" stroke="#E8A020" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-gold)"/>
+<text x="790" y="1410" text-anchor="middle" class="rel">入库批次</text>
+<path id="batch-delivery" d="M672,1344 L945,1410" fill="none" stroke="#28CC83" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-ink)"/>
+<text x="820" y="1380" text-anchor="middle" class="rel">出品 / 交付</text>
+<path id="order-delivery" d="M162,1344 L850,1410" fill="none" stroke="#2D8EFF" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-blue)"/>
+<text x="520" y="1392" text-anchor="middle" class="rel">履约 / 反馈</text>
+<g class="section-heading"><rect x="60" y="1573" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="1590" class="mono label" fill="#4F46E5">02E</text>
+<text x="150" y="1590" class="zh section">继承与审核约束</text>
+<text x="1140" y="1590" text-anchor="end" class="zh small">专项餐基于通用能力池继承规则，不预设独立产品库</text></g>
+<g id="inherit"><rect x="60" y="1620" width="515" height="130" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="74" y="1634" width="188.20000000000002" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="83" y="1648" class="mono label" fill="#4F46E5">INHERITANCE · CANDIDATE</text>
+<text x="76" y="1678" class="zh cardtitle">通用能力池 → 专项 / 场景配置</text>
+<text x="76" y="1701" text-anchor="start" class="zh body"><tspan x="76">控糖餐、月子餐、专家餐、围餐等：继承 Product / Ingredient / Recipe / SOP 的适用版本；再按专业与场景规则做范围配置。</tspan><tspan x="76" dy="16">任何覆盖须记录来源、理由、生效期、审核与责任人。</tspan></text>
+</g>
+<g id="verify-count"><rect x="625" y="1620" width="515" height="130" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="639" y="1634" width="136.4" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="648" y="1648" class="mono label" fill="#E8A020">TO VERIFY · KIMI</text>
+<text x="641" y="1678" class="zh cardtitle">104 结构点 / 141 产品 SKU</text>
+<text x="641" y="1701" text-anchor="start" class="zh body"><tspan x="641">仅作为待核验母表事实；本轮不重编、不固化为正式编号或现行规模。</tspan><tspan x="641" dy="16">应先核对：对象层级、名称、状态、价格、映射关系、源版本与责任源。</tspan></text>
+</g>
+<g id="footer">
+<rect x="60" y="1834" width="1080" height="1" fill="#D9DEE7"/>
+<text x="60" y="1862" class="mono small">SOURCE · 用户任务书 + 番医总控台 V0.1.16 + 餐食运营台 V0.1.12 + 数据字典 v0.3</text>
+<text x="1140" y="1862" text-anchor="end" class="zh small" fill="#E60012">首批候选｜待业务审核｜非实施批准</text>
+</g>
+</svg>

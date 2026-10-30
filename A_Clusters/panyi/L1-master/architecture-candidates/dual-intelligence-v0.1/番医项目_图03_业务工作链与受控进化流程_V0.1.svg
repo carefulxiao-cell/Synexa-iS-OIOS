@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1900" viewBox="0 0 1200 1900" role="img" aria-labelledby="title desc">
+<title id="title">图03｜番医业务工作链与受控进化流程</title>
+<desc id="desc">番医项目首批架构表达候选；待业务审核，非系统实施批准依据。</desc>
+<defs>
+  <marker id="arrow-ink" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#161A25"/></marker>
+  <marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#2D8EFF"/></marker>
+  <marker id="arrow-purple" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8B5ACA"/></marker>
+  <marker id="arrow-gold" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8A020"/></marker>
+  <marker id="arrow-red" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E60012"/></marker>
+  <style>
+    .zh{font-family:'PingFang SC','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#161A25}
+    .en{font-family:'Space Grotesk','Noto Sans',sans-serif;fill:#161A25;letter-spacing:.3px}
+    .mono{font-family:'IBM Plex Mono','Noto Sans Mono',monospace;letter-spacing:.2px}
+    .title{font-size:30px;font-weight:700}.sub{font-size:14px;fill:#667085}
+    .section{font-size:16px;font-weight:700}.cardtitle{font-size:15px;font-weight:700}.body{font-size:12px;fill:#667085}
+    .small{font-size:10.8px;fill:#667085}.label{font-size:10px;font-weight:700;letter-spacing:.7px}
+    .rel{font-size:10px;font-weight:700;fill:#667085;font-family:'IBM Plex Mono','Noto Sans Mono',monospace}
+  </style>
+</defs>
+<rect x="0" y="0" width="1200" height="1900" fill="#F7F9FC"/>
+
+<g id="header">
+<text x="60" y="64" class="mono label" fill="#4F46E5">PANYI · DUAL INTELLIGENCE · ARCHITECTURE PACK · V0.1</text>
+<text x="60" y="108" class="zh title">业务工作链与受控进化流程</text>
+<text x="60" y="136" class="en sub">Operational Work Chain &amp; Controlled Evolution Flow</text>
+<rect x="60" y="158" width="1080" height="1" fill="#D9DEE7"/>
+<rect x="60" y="174" width="100" height="24" rx="12" fill="#161A25"/>
+<text x="110" y="190" text-anchor="middle" class="mono label" fill="#FFFFFF">FIG 03</text>
+<rect x="170" y="174" width="250" height="24" rx="12" fill="#F5F1FF" stroke="#8B5ACA"/>
+<text x="295" y="190" text-anchor="middle" class="mono label" fill="#8B5ACA">CANDIDATE · REVIEW REQUIRED</text>
+<text x="1140" y="190" text-anchor="end" class="mono small">1200 × 1900 · EDITABLE SVG</text>
+</g>
+<g class="section-heading"><rect x="60" y="221" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="238" class="mono label" fill="#4F46E5">03A</text>
+<text x="150" y="238" class="zh section">入口与四类受控版本</text>
+<text x="1140" y="238" text-anchor="end" class="zh small">发布菜单不等于生产指令；只有确认需求和批准生产计划可驱动执行</text></g>
+<g id="weekly-package"><rect x="60" y="266" width="1080" height="80" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="74" y="280" width="203.0" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="83" y="294" class="mono label" fill="#4F46E5">INPUT PACKAGE · CANDIDATE</text>
+<text x="76" y="324" class="zh cardtitle">每周全部启用场景的菜单计划包</text>
+<text x="76" y="347" text-anchor="start" class="zh body"><tspan x="76">覆盖常规场景与临时场景；包含适用范围、菜单候选、专业规则引用、历史事实与待核事项。</tspan></text>
+</g>
+<g id="version-0"><rect x="60" y="376" width="250" height="100" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="74" y="390" width="151.20000000000002" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="83" y="404" class="mono label" fill="#8B5ACA">CONTROLLED VERSION</text>
+<text x="76" y="434" class="zh cardtitle">菜单版本</text>
+<text x="76" y="457" text-anchor="start" class="zh body"><tspan x="76">草稿 → 待审核 → 已批准 → 已发布 / 生效</tspan></text>
+</g>
+<g id="version-1"><rect x="330" y="376" width="250" height="100" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="344" y="390" width="151.20000000000002" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="353" y="404" class="mono label" fill="#2D8EFF">CONTROLLED VERSION</text>
+<text x="346" y="434" class="zh cardtitle">需求版本</text>
+<text x="346" y="457" text-anchor="start" class="zh body"><tspan x="346">预测 → 待确认 → 已确认 → 已冻结</tspan></text>
+</g>
+<g id="version-2"><rect x="600" y="376" width="250" height="100" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="614" y="390" width="151.20000000000002" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="623" y="404" class="mono label" fill="#28CC83">CONTROLLED VERSION</text>
+<text x="616" y="434" class="zh cardtitle">生产版本</text>
+<text x="616" y="457" text-anchor="start" class="zh body"><tspan x="616">草拟 → 审核 → 已批准 → 已冻结 → 放行</tspan></text>
+</g>
+<g id="version-3"><rect x="870" y="376" width="250" height="100" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="884" y="390" width="151.20000000000002" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="893" y="404" class="mono label" fill="#E8A020">CONTROLLED VERSION</text>
+<text x="886" y="434" class="zh cardtitle">采购 / 库存执行</text>
+<text x="886" y="457" text-anchor="start" class="zh body"><tspan x="886">请购 → PO → 收货验收 → 入库 / 领料 / 对账</tspan></text>
+</g>
+<g class="section-heading"><rect x="60" y="509" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="526" class="mono label" fill="#4F46E5">03B</text>
+<text x="150" y="526" class="zh section">阶段 1｜菜单形成与需求确认</text>
+<text x="1140" y="526" text-anchor="end" class="zh small">菜单候选可发布；确认需求才进入执行驱动</text></g>
+<g id="f1"><rect x="60" y="558" width="220" height="126" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="74" y="572" width="90" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="83" y="586" class="mono label" fill="#8B5ACA">01</text>
+<text x="76" y="616" class="zh cardtitle">菜单生成</text>
+<text x="76" y="639" text-anchor="start" class="zh body"><tspan x="76">常规与临时场景</tspan><tspan x="76" dy="15">产品 / 结构点 / 专业规则引用</tspan></text>
+</g>
+<g id="g1"><polygon points="360,576.0 419.0,621 360,666.0 301.0,621" fill="#FFF1F2" stroke="#E60012" stroke-width="1.3"/>
+<text x="360" y="615" text-anchor="middle" class="zh small" fill="#E60012"><tspan x="360">专业审核</tspan><tspan x="360" dy="14">HUMAN</tspan></text>
+</g>
+<g id="f2"><rect x="500" y="558" width="220" height="126" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="514" y="572" width="90" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="523" y="586" class="mono label" fill="#8B5ACA">02</text>
+<text x="516" y="616" class="zh cardtitle">菜单发布</text>
+<text x="516" y="639" text-anchor="start" class="zh body"><tspan x="516">可供选择菜单 / 备选池</tspan><tspan x="516" dy="15">锁定菜单版本与适用范围</tspan></text>
+</g>
+<g id="f3"><rect x="780" y="558" width="300" height="126" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="794" y="572" width="90" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="803" y="586" class="mono label" fill="#2D8EFF">03</text>
+<text x="796" y="616" class="zh cardtitle">需求合并与预测</text>
+<text x="796" y="639" text-anchor="start" class="zh body"><tspan x="796">订单 / 预约 / 历史实绩 / 临时需求</tspan><tspan x="796" dy="15">预测值、确认值与差异原因分开保存</tspan></text>
+</g>
+<path id="f1-g1" d="M280,621 L301,621" fill="none" stroke="#8B5ACA" stroke-width="1.7" marker-end="url(#arrow-purple)"/>
+<path id="g1-f2" d="M419,621 L500,621" fill="none" stroke="#E60012" stroke-width="1.7" marker-end="url(#arrow-red)"/>
+<text x="458" y="607" text-anchor="middle" class="rel">通过 / 退回</text>
+<path id="f2-f3" d="M720,621 L780,621" fill="none" stroke="#2D8EFF" stroke-width="1.7" marker-end="url(#arrow-blue)"/>
+<text x="750" y="607" text-anchor="middle" class="rel">可选菜单</text>
+<g id="g2"><polygon points="960,693.0 1019.0,738 960,783.0 901.0,738" fill="#FFF1F2" stroke="#E60012" stroke-width="1.3"/>
+<text x="960" y="732" text-anchor="middle" class="zh small" fill="#E60012"><tspan x="960">确认需求</tspan><tspan x="960" dy="14">HUMAN</tspan></text>
+</g>
+<path id="f3-g2" d="M930,684 L960,693" fill="none" stroke="#2D8EFF" stroke-width="1.7" marker-end="url(#arrow-blue)"/>
+<text x="935" y="720" text-anchor="middle" class="rel">确认</text>
+<g><rect x="60" y="710" width="215" height="22" rx="11" fill="#FFF8E7" opacity=".16" stroke="#E8A020" stroke-width=".8"/><text x="167.5" y="725" text-anchor="middle" class="mono label" fill="#E8A020">备选菜单 ≠ 生产指令</text></g>
+<g><rect x="300" y="710" width="310" height="22" rx="11" fill="#ECFBF4" opacity=".16" stroke="#28CC83" stroke-width=".8"/><text x="455.0" y="725" text-anchor="middle" class="mono label" fill="#28CC83">已确认需求 = 下游唯一合法输入</text></g>
+<g><rect x="650" y="710" width="330" height="22" rx="11" fill="#FFF1F2" opacity=".16" stroke="#E60012" stroke-width=".8"/><text x="815.0" y="725" text-anchor="middle" class="mono label" fill="#E60012">冻结前可调整 / 冻结后走异常变更</text></g>
+<g class="section-heading"><rect x="60" y="823" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="840" class="mono label" fill="#4F46E5">03C</text>
+<text x="150" y="840" class="zh section">阶段 2｜生产、物料与采购计划</text>
+<text x="1140" y="840" text-anchor="end" class="zh small">共享采购合并净需求；专项采购独立标识、授权与成本归集</text></g>
+<g id="f4"><rect x="60" y="872" width="220" height="126" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="74" y="886" width="90" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="83" y="900" class="mono label" fill="#28CC83">04</text>
+<text x="76" y="930" class="zh cardtitle">生产计划</text>
+<text x="76" y="953" text-anchor="start" class="zh body"><tspan x="76">产量、批次、产线、工时、出品时点</tspan><tspan x="76" dy="15">需求冻结点与临时变更窗口</tspan></text>
+</g>
+<g id="f5"><rect x="340" y="872" width="220" height="126" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="354" y="886" width="90" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="363" y="900" class="mono label" fill="#E8A020">05</text>
+<text x="356" y="930" class="zh cardtitle">物料需求 / MRP</text>
+<text x="356" y="953" text-anchor="start" class="zh body"><tspan x="356">BOM、损耗、单位换算、可用库存、在途、替代规则</tspan></text>
+</g>
+<g id="g3"><polygon points="640,890.0 699.0,935 640,980.0 581.0,935" fill="#FFF1F2" stroke="#E60012" stroke-width="1.3"/>
+<text x="640" y="929" text-anchor="middle" class="zh small" fill="#E60012"><tspan x="640">物料复核</tspan><tspan x="640" dy="14">HUMAN</tspan></text>
+</g>
+<g id="f6"><rect x="780" y="872" width="300" height="126" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="794" y="886" width="90" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="803" y="900" class="mono label" fill="#E8A020">06</text>
+<text x="796" y="930" class="zh cardtitle">采购下单</text>
+<text x="796" y="953" text-anchor="start" class="zh body"><tspan x="796">共享采购：多场景净需求合并</tspan><tspan x="796" dy="15">专项采购：专用标识 / 独立授权 / 预算与供货规则</tspan></text>
+</g>
+<path id="g2-f4" d="M1019,783 C1019,835 280,835 280,872" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="650" y="830" text-anchor="middle" class="rel" fill="#28CC83">已确认需求</text>
+<path id="f4-f5" d="M280,935 L340,935" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<path id="f5-g3" d="M560,935 L581,935" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<path id="g3-f6" d="M699,935 L780,935" fill="none" stroke="#E60012" stroke-width="1.7" marker-end="url(#arrow-red)"/>
+<text x="740" y="920" text-anchor="middle" class="rel">批准后下单</text>
+<g class="section-heading"><rect x="60" y="1033" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="1050" class="mono label" fill="#4F46E5">03D</text>
+<text x="150" y="1050" class="zh section">阶段 3｜供应、生产、履约与结算</text>
+<text x="1140" y="1050" text-anchor="end" class="zh small">实际事件要回写事实；收货、验收、入库、领料、生产、交付与成本不可合并为单状态</text></g>
+<g id="f7"><rect x="810" y="1082" width="195" height="132" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="824" y="1096" width="90" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="833" y="1110" class="mono label" fill="#E8A020">07</text>
+<text x="826" y="1140" class="zh cardtitle">验收入库</text>
+<text x="826" y="1163" text-anchor="start" class="zh body"><tspan x="826">数量 / 批次 / 效期 / 温控 / 质检</tspan><tspan x="826" dy="15">合格入库 / 不合格退货 / 待处置</tspan></text>
+</g>
+<g id="f8"><rect x="560" y="1082" width="195" height="132" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="574" y="1096" width="90" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="583" y="1110" class="mono label" fill="#28CC83">08</text>
+<text x="576" y="1140" class="zh cardtitle">领料与排产排工</text>
+<text x="576" y="1163" text-anchor="start" class="zh body"><tspan x="576">冻结生产版本领料</tspan><tspan x="576" dy="15">岗位资质 / 产能 / 工时 / 时段覆盖</tspan></text>
+</g>
+<g id="f9"><rect x="310" y="1082" width="195" height="132" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="324" y="1096" width="90" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="333" y="1110" class="mono label" fill="#28CC83">09</text>
+<text x="326" y="1140" class="zh cardtitle">生产检查</text>
+<text x="326" y="1163" text-anchor="start" class="zh body"><tspan x="326">实际投料 / 产出 / 留样 / 温控 / 质检</tspan><tspan x="326" dy="15">放行 / 返工 / 报废</tspan></text>
+</g>
+<g id="f10"><rect x="60" y="1082" width="195" height="132" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="74" y="1096" width="90" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="83" y="1110" class="mono label" fill="#2D8EFF">10</text>
+<text x="76" y="1140" class="zh cardtitle">配送销售</text>
+<text x="76" y="1163" text-anchor="start" class="zh body"><tspan x="76">路线批次 / 交接 / 签收 / 实发</tspan><tspan x="76" dy="15">订单行与生产批次可追溯</tspan></text>
+</g>
+<g id="f11"><rect x="400" y="1262" width="400" height="118" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="414" y="1276" width="90" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="423" y="1290" class="mono label" fill="#4F46E5">11</text>
+<text x="416" y="1320" class="zh cardtitle">结算成本与经营事实</text>
+<text x="416" y="1343" text-anchor="start" class="zh body"><tspan x="416">采购价、收货、领用、损耗、报废、销量、退餐、餐补 / 结算口径分层对账；成本回写菜单、场景与餐次。</tspan></text>
+</g>
+<path id="f6-f7" d="M930,998 L907,1082" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<text x="950" y="1052" text-anchor="middle" class="rel">到货</text>
+<path id="f7-f8" d="M810,1148 L755,1148" fill="none" stroke="#E8A020" stroke-width="1.7" marker-end="url(#arrow-gold)"/>
+<path id="f8-f9" d="M560,1148 L505,1148" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<path id="f9-f10" d="M310,1148 L255,1148" fill="none" stroke="#28CC83" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<path id="delivery-to-fin" d="M158,1214 C175,1260 350,1320 400,1320" fill="none" stroke="#4F46E5" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="270" y="1280" text-anchor="middle" class="rel" fill="#4F46E5">实绩 / 销售 / 交付</text>
+<path id="batch-to-fin" d="M407,1214 C410,1240 500,1250 500,1262" fill="none" stroke="#4F46E5" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="600" y="1245" text-anchor="middle" class="rel" fill="#4F46E5">消耗 / 产出 / 质量</text>
+<g class="section-heading"><rect x="60" y="1417" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="1434" class="mono label" fill="#4F46E5">03E</text>
+<text x="150" y="1434" class="zh section">阶段 4｜复盘、候选与人工受控进化</text>
+<text x="1140" y="1434" text-anchor="end" class="zh small">实绩不能自动改写规则；先候选，后审核，再进入新版本草稿</text></g>
+<g id="f12"><rect x="60" y="1466" width="260" height="126" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="74" y="1480" width="90" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="83" y="1494" class="mono label" fill="#4F46E5">12</text>
+<text x="76" y="1524" class="zh cardtitle">复盘优化</text>
+<text x="76" y="1547" text-anchor="start" class="zh body"><tspan x="76">销量、成本、浪费、质量、体验、异常、交付时效</tspan><tspan x="76" dy="15">规则 / 专业主源 / 经营指标双向校验</tspan></text>
+</g>
+<g id="candidate"><rect x="410" y="1466" width="260" height="126" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="424" y="1480" width="90" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="433" y="1494" class="mono label" fill="#8B5ACA">CANDIDATE</text>
+<text x="426" y="1524" class="zh cardtitle">优化候选池</text>
+<text x="426" y="1547" text-anchor="start" class="zh body"><tspan x="426">候选规则、菜单、配方、采购或排班修改</tspan><tspan x="426" dy="15">保留证据、影响范围与差异说明</tspan></text>
+</g>
+<g id="g4"><polygon points="780,1481.0 845.0,1529 780,1577.0 715.0,1529" fill="#FFF1F2" stroke="#E60012" stroke-width="1.3"/>
+<text x="780" y="1523" text-anchor="middle" class="zh small" fill="#E60012"><tspan x="780">人工审核</tspan><tspan x="780" dy="14">与授权</tspan></text>
+</g>
+<g id="newdraft"><rect x="960" y="1466" width="180" height="126" rx="12" fill="#FFF1F2" stroke="#E60012" stroke-width="1.2"/>
+<rect x="974" y="1480" width="106.80000000000001" height="20" rx="10" fill="#E60012" opacity=".12"/>
+<text x="983" y="1494" class="mono label" fill="#E60012">NEXT VERSION</text>
+<text x="976" y="1524" class="zh cardtitle">新版本草稿</text>
+<text x="976" y="1547" text-anchor="start" class="zh body"><tspan x="976">重新进入菜单 / 需求 / 生产受控链</tspan></text>
+</g>
+<path id="fin-review" d="M600,1380 L190,1466" fill="none" stroke="#4F46E5" stroke-width="1.7" marker-end="url(#arrow-ink)"/>
+<text x="360" y="1430" text-anchor="middle" class="rel">经营事实</text>
+<path id="review-candidate" d="M320,1529 L410,1529" fill="none" stroke="#8B5ACA" stroke-width="1.7" marker-end="url(#arrow-purple)"/>
+<path id="candidate-g4" d="M670,1529 L715,1529" fill="none" stroke="#8B5ACA" stroke-width="1.7" marker-end="url(#arrow-purple)"/>
+<path id="g4-newdraft" d="M845,1529 L960,1529" fill="none" stroke="#E60012" stroke-width="1.7" marker-end="url(#arrow-red)"/>
+<text x="900" y="1515" text-anchor="middle" class="rel">采纳 / 退回</text>
+<path id="next-to-menu" d="M1050,1466 C1120,1395 1120,520 500,520" fill="none" stroke="#E60012" stroke-width="1.7" stroke-dasharray="6 5" marker-end="url(#arrow-red)"/>
+<text x="1090" y="1000" text-anchor="middle" class="rel" fill="#E60012">经批准后形成后续菜单草稿</text>
+<g class="section-heading"><rect x="60" y="1633" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="1650" class="mono label" fill="#4F46E5">03F</text>
+<text x="150" y="1650" class="zh section">变更与异常受控通道</text>
+<text x="1140" y="1650" text-anchor="end" class="zh small">单场景修改必须重算全局影响；不得以线下消息绕开审计</text></g>
+<g id="change"><rect x="60" y="1682" width="515" height="112" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="74" y="1696" width="210.4" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="83" y="1710" class="mono label" fill="#E8A020">CHANGE CONTROL · CANDIDATE</text>
+<text x="76" y="1740" class="zh cardtitle">变更影响引擎</text>
+<text x="76" y="1763" text-anchor="start" class="zh body"><tspan x="76">菜单 / 人数 / BOM / 供应库存 / 生产资源变更 → 影响订单、总需求、共享/专用食材、产能、工时、路线、预算与成本差异 → 重新审批或升级。</tspan></text>
+</g>
+<g id="exception"><rect x="625" y="1682" width="515" height="112" rx="12" fill="#FFF1F2" stroke="#E60012" stroke-width="1.2"/>
+<rect x="639" y="1696" width="203.0" height="20" rx="10" fill="#E60012" opacity=".12"/>
+<text x="648" y="1710" class="mono label" fill="#E60012">EXCEPTION CONTROL · HUMAN</text>
+<text x="641" y="1740" class="zh cardtitle">异常受控通道</text>
+<text x="641" y="1763" text-anchor="start" class="zh body"><tspan x="641">临时加餐、断供、验收不合格、库存不足、饮食变更、设备/人员故障：异常编号、影响评估、临时授权、补救动作、事后复盘。</tspan></text>
+</g>
+<g id="footer">
+<rect x="60" y="1834" width="1080" height="1" fill="#D9DEE7"/>
+<text x="60" y="1862" class="mono small">SOURCE · 用户任务书 + 番医总控台 V0.1.16 + 餐食运营台 V0.1.12 + 数据字典 v0.3</text>
+<text x="1140" y="1862" text-anchor="end" class="zh small" fill="#E60012">首批候选｜待业务审核｜非实施批准</text>
+</g>
+</svg>

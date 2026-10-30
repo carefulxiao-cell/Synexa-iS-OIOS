@@ -1,0 +1,40 @@
+{
+  "format_version": 1,
+  "asset": {
+    "id": "panyi-core-objects-sku-relationships-v0.1",
+    "title": "Panyi Core Objects and SKU Relationships",
+    "title_zh": "番医项目核心对象与SKU关系架构",
+    "version": "V0.1",
+    "purpose": "business-ontology-review",
+    "page_family": "portrait-longform",
+    "outputs": ["svg", "png", "pdf"],
+    "editable_objects_required": true
+  },
+  "canvas": {"width": 1200, "height": 1900, "unit": "px", "safe_margin_pct": 0.05},
+  "typography": {
+    "zh_script": "sc",
+    "zh_title": {"font": "PingFang SC", "weight": "Bold"},
+    "zh_module": {"font": "PingFang SC", "weight": "Semibold"},
+    "zh_body": {"font": "PingFang SC", "weight": "Regular"},
+    "en_brand": {"font": "Space Grotesk", "weight": "Semibold"},
+    "technical": {"font": "IBM Plex Mono", "weight": "Medium"},
+    "fallback_zh": "Noto Sans CJK SC"
+  },
+  "content_statuses": [
+    {"id": "object-boundaries", "state": "candidate"},
+    {"id": "sku-counts", "state": "to-confirm"},
+    {"id": "professional-parameters", "state": "to-confirm"}
+  ],
+  "relationships": [
+    {"id": "scene-slot", "source": "scene", "target": "menu-slot", "direction": "bidirectional", "meaning": "many-to-many scene-specific slot configuration"},
+    {"id": "product-variant-sku", "source": "product", "target": "sales-sku", "direction": "forward", "meaning": "product family to variant to sales SKU"},
+    {"id": "plan-batch", "source": "demand-plan", "target": "production-batch", "direction": "bidirectional", "meaning": "many-to-many production allocation and actuals"}
+  ],
+  "objects": [
+    {"id": "header", "x": 60, "y": 45, "width": 1080, "height": 154},
+    {"id": "product-chain", "x": 60, "y": 466, "width": 1080, "height": 302},
+    {"id": "recipe-supply-chain", "x": 60, "y": 866, "width": 1080, "height": 276},
+    {"id": "execution-facts", "x": 60, "y": 1236, "width": 1080, "height": 282}
+  ],
+  "quality_gates": {"content_locked": true, "all_objects_in_bounds": true, "font_fallback_documented": true, "cross_format_review_required": true}
+}

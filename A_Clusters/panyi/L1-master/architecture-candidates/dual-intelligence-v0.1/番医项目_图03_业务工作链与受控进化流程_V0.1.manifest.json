@@ -1,0 +1,40 @@
+{
+  "format_version": 1,
+  "asset": {
+    "id": "panyi-controlled-workchain-evolution-v0.1",
+    "title": "Panyi Controlled Work Chain and Evolution",
+    "title_zh": "番医项目业务工作链与受控进化流程",
+    "version": "V0.1",
+    "purpose": "controlled-operating-flow-review",
+    "page_family": "portrait-longform",
+    "outputs": ["svg", "png", "pdf"],
+    "editable_objects_required": true
+  },
+  "canvas": {"width": 1200, "height": 1900, "unit": "px", "safe_margin_pct": 0.05},
+  "typography": {
+    "zh_script": "sc",
+    "zh_title": {"font": "PingFang SC", "weight": "Bold"},
+    "zh_module": {"font": "PingFang SC", "weight": "Semibold"},
+    "zh_body": {"font": "PingFang SC", "weight": "Regular"},
+    "en_brand": {"font": "Space Grotesk", "weight": "Semibold"},
+    "technical": {"font": "IBM Plex Mono", "weight": "Medium"},
+    "fallback_zh": "Noto Sans CJK SC"
+  },
+  "content_statuses": [
+    {"id": "controlled-versions", "state": "candidate"},
+    {"id": "change-impact-engine", "state": "candidate"},
+    {"id": "automation-scope", "state": "not-effective"}
+  ],
+  "relationships": [
+    {"id": "approved-demand-to-production", "source": "confirmed-demand", "target": "production-plan", "direction": "forward", "meaning": "only legal execution input"},
+    {"id": "actuals-to-review", "source": "operating-actuals", "target": "review-and-candidate-pool", "direction": "forward", "meaning": "actuals form candidates, not automatic rules"},
+    {"id": "human-approved-new-version", "source": "human-approval", "target": "next-version-draft", "direction": "forward", "meaning": "approved candidate re-enters controlled version flow"}
+  ],
+  "objects": [
+    {"id": "header", "x": 60, "y": 45, "width": 1080, "height": 154},
+    {"id": "version-control", "x": 60, "y": 266, "width": 1080, "height": 210},
+    {"id": "operating-workchain", "x": 60, "y": 558, "width": 1080, "height": 822},
+    {"id": "controlled-evolution", "x": 60, "y": 1466, "width": 1080, "height": 328}
+  ],
+  "quality_gates": {"content_locked": true, "all_objects_in_bounds": true, "font_fallback_documented": true, "cross_format_review_required": true}
+}

@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1900" viewBox="0 0 1200 1900" role="img" aria-labelledby="title desc">
+<title id="title">图01｜番医项目总体生态与系统能力架构</title>
+<desc id="desc">番医项目首批架构表达候选；待业务审核，非系统实施批准依据。</desc>
+<defs>
+  <marker id="arrow-ink" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#161A25"/></marker>
+  <marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#2D8EFF"/></marker>
+  <marker id="arrow-purple" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#8B5ACA"/></marker>
+  <marker id="arrow-gold" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E8A020"/></marker>
+  <marker id="arrow-red" markerWidth="9" markerHeight="9" refX="8" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 Z" fill="#E60012"/></marker>
+  <style>
+    .zh{font-family:'PingFang SC','Noto Sans CJK SC','Microsoft YaHei',sans-serif;fill:#161A25}
+    .en{font-family:'Space Grotesk','Noto Sans',sans-serif;fill:#161A25;letter-spacing:.3px}
+    .mono{font-family:'IBM Plex Mono','Noto Sans Mono',monospace;letter-spacing:.2px}
+    .title{font-size:30px;font-weight:700}.sub{font-size:14px;fill:#667085}
+    .section{font-size:16px;font-weight:700}.cardtitle{font-size:15px;font-weight:700}.body{font-size:12px;fill:#667085}
+    .small{font-size:10.8px;fill:#667085}.label{font-size:10px;font-weight:700;letter-spacing:.7px}
+    .rel{font-size:10px;font-weight:700;fill:#667085;font-family:'IBM Plex Mono','Noto Sans Mono',monospace}
+  </style>
+</defs>
+<rect x="0" y="0" width="1200" height="1900" fill="#F7F9FC"/>
+
+<g id="header">
+<text x="60" y="64" class="mono label" fill="#4F46E5">PANYI · DUAL INTELLIGENCE · ARCHITECTURE PACK · V0.1</text>
+<text x="60" y="108" class="zh title">总体生态与系统能力架构</text>
+<text x="60" y="136" class="en sub">Ecosystem &amp; System Capability Architecture</text>
+<rect x="60" y="158" width="1080" height="1" fill="#D9DEE7"/>
+<rect x="60" y="174" width="100" height="24" rx="12" fill="#161A25"/>
+<text x="110" y="190" text-anchor="middle" class="mono label" fill="#FFFFFF">FIG 01</text>
+<rect x="170" y="174" width="250" height="24" rx="12" fill="#F5F1FF" stroke="#8B5ACA"/>
+<text x="295" y="190" text-anchor="middle" class="mono label" fill="#8B5ACA">CANDIDATE · REVIEW REQUIRED</text>
+<text x="1140" y="190" text-anchor="end" class="mono small">1200 × 1900 · EDITABLE SVG</text>
+</g>
+<g class="section-heading"><rect x="60" y="221" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="238" class="mono label" fill="#4F46E5">01A</text>
+<text x="150" y="238" class="zh section">项目边界、责任主体与上位接口</text>
+<text x="1140" y="238" text-anchor="end" class="zh small">真实事实进入系统；专业人员保留审核与授权</text></g>
+<g id="role-0"><rect x="60" y="266" width="200" height="96" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="74" y="280" width="121.60000000000001" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="83" y="294" class="mono label" fill="#4F46E5">RESPONSIBILITY</text>
+<text x="76" y="324" class="zh cardtitle">项目主基线 / 专项总控</text>
+<text x="76" y="347" text-anchor="start" class="zh body"><tspan x="76">版本、资产、责任、决策记录</tspan></text>
+</g>
+<g id="role-1"><rect x="280" y="266" width="200" height="96" rx="12" fill="#FFF1F2" stroke="#E60012" stroke-width="1.2"/>
+<rect x="294" y="280" width="121.60000000000001" height="20" rx="10" fill="#E60012" opacity=".12"/>
+<text x="303" y="294" class="mono label" fill="#E60012">RESPONSIBILITY</text>
+<text x="296" y="324" class="zh cardtitle">专业人员</text>
+<text x="296" y="347" text-anchor="start" class="zh body"><tspan x="296">业务事实 / 专业审核 / 授权裁决</tspan></text>
+</g>
+<g id="role-2"><rect x="500" y="266" width="200" height="96" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="514" y="280" width="121.60000000000001" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="523" y="294" class="mono label" fill="#2D8EFF">RESPONSIBILITY</text>
+<text x="516" y="324" class="zh cardtitle">Kimi</text>
+<text x="516" y="347" text-anchor="start" class="zh body"><tspan x="516">事实整理 / 母表与口径核验</tspan></text>
+</g>
+<g id="role-3"><rect x="720" y="266" width="200" height="96" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="734" y="280" width="121.60000000000001" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="743" y="294" class="mono label" fill="#8B5ACA">RESPONSIBILITY</text>
+<text x="736" y="324" class="zh cardtitle">ChatGPT</text>
+<text x="736" y="347" text-anchor="start" class="zh body"><tspan x="736">策略 / 架构 / 分析 / 指令</tspan></text>
+</g>
+<g id="role-4"><rect x="940" y="266" width="200" height="96" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="954" y="280" width="121.60000000000001" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="963" y="294" class="mono label" fill="#28CC83">RESPONSIBILITY</text>
+<text x="956" y="324" class="zh cardtitle">Manus</text>
+<text x="956" y="347" text-anchor="start" class="zh body"><tspan x="956">技术架构 / 系统工程 / MVP</tspan></text>
+</g>
+<g id="future-04"><rect x="60" y="382" width="1080" height="66" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="74" y="396" width="90" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="83" y="410" class="mono label" fill="#E8A020">TO VERIFY</text>
+<text x="76" y="440" class="zh cardtitle">未来 04 系统专项接口</text>
+<text x="76" y="463" text-anchor="start" class="zh body"><tspan x="76">承接经业务审核后的技术架构、数据模型、接口、权限与 MVP 设计；本轮仅预留接口。</tspan></text>
+</g>
+<g class="section-heading"><rect x="60" y="475" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="492" class="mono label" fill="#4F46E5">01B</text>
+<text x="150" y="492" class="zh section">双数智引擎与共用业务对象 / 规则体系</text>
+<text x="1140" y="492" text-anchor="end" class="zh small">两个引擎协同，不互相替代</text></g>
+<g id="data-engine"><rect x="60" y="520" width="500" height="290" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="74" y="534" width="247.4" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="83" y="548" class="mono label" fill="#2D8EFF">ENGINE A · EXISTING + CANDIDATE</text>
+<text x="76" y="578" class="zh cardtitle">经营数据数智引擎</text>
+<text x="76" y="601" text-anchor="start" class="zh body"><tspan x="76">原始事实采集 → 标准化 → 对账 → 计算与追溯 → 经营分析</tspan><tspan x="76" dy="17">保留：来源、时间、处理批次、责任源、差异原因与数据血缘</tspan><tspan x="76" dy="17">边界：不覆盖原始事实；分析指标不反向充当订单 / 库存 / 批次事实</tspan></text>
+</g>
+<g><rect x="78" y="705" width="128" height="22" rx="11" fill="#EEF6FF" opacity=".16" stroke="#2D8EFF" stroke-width=".8"/><text x="142.0" y="720" text-anchor="middle" class="mono label" fill="#2D8EFF">原始事实</text></g>
+<g><rect x="223" y="705" width="128" height="22" rx="11" fill="#EEF6FF" opacity=".16" stroke="#2D8EFF" stroke-width=".8"/><text x="287.0" y="720" text-anchor="middle" class="mono label" fill="#2D8EFF">标准化事实</text></g>
+<g><rect x="368" y="705" width="128" height="22" rx="11" fill="#EEF6FF" opacity=".16" stroke="#2D8EFF" stroke-width=".8"/><text x="432.0" y="720" text-anchor="middle" class="mono label" fill="#2D8EFF">对账差异</text></g>
+<g><rect x="78" y="740" width="128" height="22" rx="11" fill="#EEF6FF" opacity=".16" stroke="#2D8EFF" stroke-width=".8"/><text x="142.0" y="755" text-anchor="middle" class="mono label" fill="#2D8EFF">计算结果</text></g>
+<g><rect x="223" y="740" width="128" height="22" rx="11" fill="#EEF6FF" opacity=".16" stroke="#2D8EFF" stroke-width=".8"/><text x="287.0" y="755" text-anchor="middle" class="mono label" fill="#2D8EFF">经营洞察</text></g>
+<g id="ops-engine"><rect x="640" y="520" width="500" height="290" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="654" y="534" width="166.0" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="663" y="548" class="mono label" fill="#8B5ACA">ENGINE B · CANDIDATE</text>
+<text x="656" y="578" class="zh cardtitle">菜单与运营数智引擎</text>
+<text x="656" y="601" text-anchor="start" class="zh body"><tspan x="656">场景菜单 → 产品组合 → 预测 / 确认需求 → 采购 / 库存 → 生产 / 排工 → 配送 / 反馈</tspan><tspan x="656" dy="17">形成：菜单版本、需求计划、生产计划、MRP、执行任务与履约反馈</tspan><tspan x="656" dy="17">边界：系统规则辅助判断；不替代专业审核、授权或异常裁决</tspan></text>
+</g>
+<g><rect x="658" y="705" width="128" height="22" rx="11" fill="#F5F1FF" opacity=".16" stroke="#8B5ACA" stroke-width=".8"/><text x="722.0" y="720" text-anchor="middle" class="mono label" fill="#8B5ACA">场景菜单</text></g>
+<g><rect x="803" y="705" width="128" height="22" rx="11" fill="#F5F1FF" opacity=".16" stroke="#8B5ACA" stroke-width=".8"/><text x="867.0" y="720" text-anchor="middle" class="mono label" fill="#8B5ACA">需求计划</text></g>
+<g><rect x="948" y="705" width="128" height="22" rx="11" fill="#F5F1FF" opacity=".16" stroke="#8B5ACA" stroke-width=".8"/><text x="1012.0" y="720" text-anchor="middle" class="mono label" fill="#8B5ACA">生产计划</text></g>
+<g><rect x="658" y="740" width="128" height="22" rx="11" fill="#F5F1FF" opacity=".16" stroke="#8B5ACA" stroke-width=".8"/><text x="722.0" y="755" text-anchor="middle" class="mono label" fill="#8B5ACA">采购库存</text></g>
+<g><rect x="803" y="740" width="128" height="22" rx="11" fill="#F5F1FF" opacity=".16" stroke="#8B5ACA" stroke-width=".8"/><text x="867.0" y="755" text-anchor="middle" class="mono label" fill="#8B5ACA">履约反馈</text></g>
+<g id="shared-core"><rect x="365" y="828" width="470" height="112" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="379" y="842" width="188.20000000000002" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="388" y="856" class="mono label" fill="#4F46E5">SHARED CORE · CANDIDATE</text>
+<text x="381" y="886" class="zh cardtitle">共用业务对象与规则体系</text>
+<text x="381" y="909" text-anchor="start" class="zh body"><tspan x="381">Scene / Menu Slot / Product / Variant / SKU / Recipe / BOM / SOP / Ingredient / Supplier / Plan / Batch / Inventory / PO</tspan><tspan x="381" dy="16">范围配置 · 继承—覆盖—禁用 · 版本 / 生效期 / 审批 / 审计</tspan></text>
+</g>
+<path id="engine-link" d="M560,655 C585,655 615,655 640,655" fill="none" stroke="#4F46E5" stroke-width="1.7" marker-end="url(#arrow-purple)"/>
+<text x="600" y="645" text-anchor="middle" class="rel" fill="#4F46E5">事实 ↔ 执行实绩</text>
+<path id="data-to-core" d="M310,810 L510,828" fill="none" stroke="#2D8EFF" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-blue)"/>
+<text x="420" y="812" text-anchor="middle" class="rel">标准事实 / 洞察</text>
+<path id="ops-to-core" d="M890,810 L690,828" fill="none" stroke="#8B5ACA" stroke-width="1.7" stroke-dasharray="5 5" marker-end="url(#arrow-purple)"/>
+<text x="780" y="812" text-anchor="middle" class="rel">规则引用 / 版本</text>
+<g class="section-heading"><rect x="60" y="975" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="992" class="mono label" fill="#4F46E5">01C</text>
+<text x="150" y="992" class="zh section">四大业务域 × 六层系统能力</text>
+<text x="1140" y="992" text-anchor="end" class="zh small">业务域贯穿六层能力，不等于独立系统孤岛</text></g>
+<g id="domain-0"><rect x="60" y="1022" width="250" height="112" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="74" y="1036" width="129.0" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="83" y="1050" class="mono label" fill="#2D8EFF">BUSINESS DOMAIN</text>
+<text x="76" y="1080" class="zh cardtitle">需求与产品</text>
+<text x="76" y="1103" text-anchor="start" class="zh body"><tspan x="76">Scene · 菜单 · 产品 · 组合 · 需求</tspan></text>
+</g>
+<g id="domain-1"><rect x="330" y="1022" width="250" height="112" rx="12" fill="#FFF8E7" stroke="#E8A020" stroke-width="1.2"/>
+<rect x="344" y="1036" width="129.0" height="20" rx="10" fill="#E8A020" opacity=".12"/>
+<text x="353" y="1050" class="mono label" fill="#E8A020">BUSINESS DOMAIN</text>
+<text x="346" y="1080" class="zh cardtitle">采购与生产</text>
+<text x="346" y="1103" text-anchor="start" class="zh body"><tspan x="346">BOM · 库存 · 采购 · 批次 · 排工</tspan></text>
+</g>
+<g id="domain-2"><rect x="600" y="1022" width="250" height="112" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="614" y="1036" width="129.0" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="623" y="1050" class="mono label" fill="#28CC83">BUSINESS DOMAIN</text>
+<text x="616" y="1080" class="zh cardtitle">履约与服务</text>
+<text x="616" y="1103" text-anchor="start" class="zh body"><tspan x="616">订单 · 配送 · 标签 · 交接 · 反馈</tspan></text>
+</g>
+<g id="domain-3"><rect x="870" y="1022" width="250" height="112" rx="12" fill="#F0F1FF" stroke="#4F46E5" stroke-width="1.2"/>
+<rect x="884" y="1036" width="129.0" height="20" rx="10" fill="#4F46E5" opacity=".12"/>
+<text x="893" y="1050" class="mono label" fill="#4F46E5">BUSINESS DOMAIN</text>
+<text x="886" y="1080" class="zh cardtitle">财务与经营</text>
+<text x="886" y="1103" text-anchor="start" class="zh body"><tspan x="886">对账 · 成本 · 损益 · 洞察 · 复盘</tspan></text>
+</g>
+<g id="layer-0"><rect x="60" y="1160" width="335" height="88" rx="12" fill="#FFFFFF" stroke="#161A25" stroke-width="1.2"/>
+<rect x="74" y="1174" width="90" height="20" rx="10" fill="#161A25" opacity=".12"/>
+<text x="83" y="1188" class="mono label" fill="#161A25">L1</text>
+<text x="76" y="1218" class="zh cardtitle">数据接入</text>
+<text x="76" y="1241" text-anchor="start" class="zh body"><tspan x="76">POS / 订单 / 采购 / 库存 / 生产 / 配送 / 财务</tspan></text>
+</g>
+<g id="layer-1"><rect x="420" y="1160" width="335" height="88" rx="12" fill="#FFFFFF" stroke="#161A25" stroke-width="1.2"/>
+<rect x="434" y="1174" width="90" height="20" rx="10" fill="#161A25" opacity=".12"/>
+<text x="443" y="1188" class="mono label" fill="#161A25">L2</text>
+<text x="436" y="1218" class="zh cardtitle">主数据与规则</text>
+<text x="436" y="1241" text-anchor="start" class="zh body"><tspan x="436">对象、版本、范围、专业主源、规则校验</tspan></text>
+</g>
+<g id="layer-2"><rect x="780" y="1160" width="335" height="88" rx="12" fill="#FFFFFF" stroke="#161A25" stroke-width="1.2"/>
+<rect x="794" y="1174" width="90" height="20" rx="10" fill="#161A25" opacity=".12"/>
+<text x="803" y="1188" class="mono label" fill="#161A25">L3</text>
+<text x="796" y="1218" class="zh cardtitle">事实与计划</text>
+<text x="796" y="1241" text-anchor="start" class="zh body"><tspan x="796">事实、预测、需求、生产、物料、排班计划</tspan></text>
+</g>
+<g id="layer-3"><rect x="60" y="1272" width="335" height="88" rx="12" fill="#FFFFFF" stroke="#161A25" stroke-width="1.2"/>
+<rect x="74" y="1286" width="90" height="20" rx="10" fill="#161A25" opacity=".12"/>
+<text x="83" y="1300" class="mono label" fill="#161A25">L4</text>
+<text x="76" y="1330" class="zh cardtitle">业务执行</text>
+<text x="76" y="1353" text-anchor="start" class="zh body"><tspan x="76">采购、收货、领料、生产、质检、配送、结算</tspan></text>
+</g>
+<g id="layer-4"><rect x="420" y="1272" width="335" height="88" rx="12" fill="#FFFFFF" stroke="#161A25" stroke-width="1.2"/>
+<rect x="434" y="1286" width="90" height="20" rx="10" fill="#161A25" opacity=".12"/>
+<text x="443" y="1300" class="mono label" fill="#161A25">L5</text>
+<text x="436" y="1330" class="zh cardtitle">智能分析</text>
+<text x="436" y="1353" text-anchor="start" class="zh body"><tspan x="436">对账、成本、产能、风险、经营洞察、优化候选</tspan></text>
+</g>
+<g id="layer-5"><rect x="780" y="1272" width="335" height="88" rx="12" fill="#FFFFFF" stroke="#161A25" stroke-width="1.2"/>
+<rect x="794" y="1286" width="90" height="20" rx="10" fill="#161A25" opacity=".12"/>
+<text x="803" y="1300" class="mono label" fill="#161A25">L6</text>
+<text x="796" y="1330" class="zh cardtitle">人机交互</text>
+<text x="796" y="1353" text-anchor="start" class="zh body"><tspan x="796">任务、审批、例外、看板、告警、反馈、审计</tspan></text>
+</g>
+<g class="section-heading"><rect x="60" y="1388" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="1405" class="mono label" fill="#4F46E5">01D</text>
+<text x="150" y="1405" class="zh section">三项横贯能力与人机受控进化</text>
+<text x="1140" y="1405" text-anchor="end" class="zh small">横贯能力不是外挂模块，而是每个对象和工作节点的约束</text></g>
+<g id="rail-0"><rect x="60" y="1435" width="1080" height="64" rx="12" fill="#EEF6FF" stroke="#2D8EFF" stroke-width="1.2"/>
+<rect x="74" y="1449" width="114.2" height="20" rx="10" fill="#2D8EFF" opacity=".12"/>
+<text x="83" y="1463" class="mono label" fill="#2D8EFF">CROSS-CUTTING</text>
+<text x="76" y="1493" class="zh cardtitle">数据治理与血缘</text>
+<text x="76" y="1516" text-anchor="start" class="zh body"><tspan x="76">原始值不可覆盖 · 责任源 · 对账差异 · 可重跑计算</tspan></text>
+</g>
+<g id="rail-1"><rect x="60" y="1517" width="1080" height="64" rx="12" fill="#FFF1F2" stroke="#E60012" stroke-width="1.2"/>
+<rect x="74" y="1531" width="114.2" height="20" rx="10" fill="#E60012" opacity=".12"/>
+<text x="83" y="1545" class="mono label" fill="#E60012">CROSS-CUTTING</text>
+<text x="76" y="1575" class="zh cardtitle">权限、版本与审计</text>
+<text x="76" y="1598" text-anchor="start" class="zh body"><tspan x="76">审批 / 生效 / 冻结 / 变更 / 作废 · 历史快照 · 审计日志</tspan></text>
+</g>
+<g id="rail-2"><rect x="60" y="1599" width="1080" height="64" rx="12" fill="#F5F1FF" stroke="#8B5ACA" stroke-width="1.2"/>
+<rect x="74" y="1613" width="114.2" height="20" rx="10" fill="#8B5ACA" opacity=".12"/>
+<text x="83" y="1627" class="mono label" fill="#8B5ACA">CROSS-CUTTING</text>
+<text x="76" y="1657" class="zh cardtitle">AI 协同与受控学习</text>
+<text x="76" y="1680" text-anchor="start" class="zh body"><tspan x="76">事实整理 / 分析 / 建议 → 优化候选 → 人工审核 → 新版本草稿</tspan></text>
+</g>
+<g class="section-heading"><rect x="60" y="1688" width="5" height="22" rx="2.5" fill="#4F46E5"/>
+<text x="78" y="1705" class="mono label" fill="#4F46E5">01E</text>
+<text x="150" y="1705" class="zh section">关键责任边界</text>
+<text x="1140" y="1705" text-anchor="end" class="zh small">专业人员与系统的边界必须可审计</text></g>
+<g id="human-boundary"><rect x="60" y="1732" width="520" height="72" rx="12" fill="#FFF1F2" stroke="#E60012" stroke-width="1.2"/>
+<rect x="74" y="1746" width="121.60000000000001" height="20" rx="10" fill="#E60012" opacity=".12"/>
+<text x="83" y="1760" class="mono label" fill="#E60012">HUMAN APPROVAL</text>
+<text x="76" y="1790" class="zh cardtitle">人工必须确认 / 授权</text>
+<text x="76" y="1813" text-anchor="start" class="zh body"><tspan x="76">专业规则、真实业务事实、例外处置、供应商资格、院方承诺、正式生效。</tspan></text>
+</g>
+<g id="ai-boundary"><rect x="620" y="1732" width="520" height="72" rx="12" fill="#ECFBF4" stroke="#28CC83" stroke-width="1.2"/>
+<rect x="634" y="1746" width="114.2" height="20" rx="10" fill="#28CC83" opacity=".12"/>
+<text x="643" y="1760" class="mono label" fill="#28CC83">AI ASSISTANCE</text>
+<text x="636" y="1790" class="zh cardtitle">智能体可以辅助</text>
+<text x="636" y="1813" text-anchor="start" class="zh body"><tspan x="636">整理、核验、分析、生成候选、追踪任务、技术实现；不得自行放行。</tspan></text>
+</g>
+<g id="footer">
+<rect x="60" y="1834" width="1080" height="1" fill="#D9DEE7"/>
+<text x="60" y="1862" class="mono small">SOURCE · 用户任务书 + 番医总控台 V0.1.16 + 餐食运营台 V0.1.12 + 数据字典 v0.3 + 人力管理台 V0.2</text>
+<text x="1140" y="1862" text-anchor="end" class="zh small" fill="#E60012">首批候选｜待业务审核｜非实施批准</text>
+</g>
+</svg>

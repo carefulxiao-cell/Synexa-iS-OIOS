@@ -1,0 +1,39 @@
+{
+  "format_version": 1,
+  "asset": {
+    "id": "panyi-dual-intelligence-ecosystem-v0.1",
+    "title": "Panyi Dual Intelligence Ecosystem",
+    "title_zh": "番医项目双数智引擎总体生态与系统能力架构",
+    "version": "V0.1",
+    "purpose": "business-architecture-review",
+    "page_family": "portrait-longform",
+    "outputs": ["svg", "png", "pdf"],
+    "editable_objects_required": true
+  },
+  "canvas": {"width": 1200, "height": 1900, "unit": "px", "safe_margin_pct": 0.05},
+  "typography": {
+    "zh_script": "sc",
+    "zh_title": {"font": "PingFang SC", "weight": "Bold"},
+    "zh_module": {"font": "PingFang SC", "weight": "Semibold"},
+    "zh_body": {"font": "PingFang SC", "weight": "Regular"},
+    "en_brand": {"font": "Space Grotesk", "weight": "Semibold"},
+    "technical": {"font": "IBM Plex Mono", "weight": "Medium"},
+    "fallback_zh": "Noto Sans CJK SC"
+  },
+  "content_statuses": [
+    {"id": "data-engine", "state": "candidate"},
+    {"id": "menu-operations-engine", "state": "candidate"},
+    {"id": "future-system-interface", "state": "to-confirm"}
+  ],
+  "relationships": [
+    {"id": "facts-to-execution", "source": "operating-data-engine", "target": "menu-operations-engine", "direction": "bidirectional", "meaning": "facts inform execution; execution actuals return as facts"},
+    {"id": "human-approval", "source": "professional-personnel", "target": "controlled-versions", "direction": "forward", "meaning": "professional review and authorization gate"}
+  ],
+  "objects": [
+    {"id": "header", "x": 60, "y": 45, "width": 1080, "height": 154},
+    {"id": "engine-layer", "x": 60, "y": 520, "width": 1080, "height": 420},
+    {"id": "capability-layer", "x": 60, "y": 1022, "width": 1080, "height": 496},
+    {"id": "responsibility-boundary", "x": 60, "y": 1732, "width": 1080, "height": 72}
+  ],
+  "quality_gates": {"content_locked": true, "all_objects_in_bounds": true, "font_fallback_documented": true, "cross_format_review_required": true}
+}
